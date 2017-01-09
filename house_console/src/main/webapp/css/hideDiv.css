@@ -1,0 +1,7 @@
+.black_overlay {display: none; position: absolute; top: 20%; left: 0%; width: 1000px; background-color: ; z-index: 1001;}
+.white_content {display: none; position: absolute; top: 15%; left: 15%; width: 1000px; padding: 16px; border: 10px solid #666; background-color: white; z-index: 1002; overflow: auto;}
+
+.handle_success{height: 20px; background: url("../images/drop-yes.gif") no-repeat #defada; border:1px solid #a4d99b; background-position:5px; line-height: 25px; padding-left: 30px; margin: 5px;}
+.handle_failure{height: 20px; background: url("../images/exclamation.gif") no-repeat #feedeb; border:1px solid #e76757; background-position:5px; line-height: 25px; padding-left: 30px; margin: 5px;}
+.handle_success img,.handle_failure img{float: right; margin: 8px 8px 0px 0px; cursor: pointer; width: 8px; height: 8px; padding-left: 30px;}
+.handle_success img:hover,.handle_failure img:hover{float: right; margin: 7px 7px 0px 0px; cursor: pointer; width: 9px; height: 9px;}

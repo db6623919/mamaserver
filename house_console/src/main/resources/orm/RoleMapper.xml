@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="roleMapper">
+
+	<sql id="base_column">
+	    id, name ,status ,description
+	</sql>
+	
+	<!-- 通过用户名查询用户角色 -->
+	<select id="getRoleByUserName" parameterType="user" resultType="role">
+		select
+		<include refid="base_column" />
+	    from T_SYS_ROLE r where exists
+		    (select ur.role_id from T_SYS_USER u, T_SYS_USER_ROLE ur 
+			    where u.id = #{id}
+			    and u.id = ur.user_id 
+			    and r.id = ur.role_id 
+		    )
+		and r.status = '1'
+	</select>
+	
+	<!-- 根据roleid判断角色用户是否有关联 -->
+	<select id="getUserByRoleid" parameterType="int" resultType="int">
+		select count(1) 
+		from T_SYS_USER_ROLE where role_id=#{role_id}
+	</select>	
+	
+	<!-- 通过resourceid查询Role -->
+	<select id="getRolesByResourceid" parameterType="int" resultType="role">
+		select
+		<include refid="base_column" />
+	    from  T_SYS_ROLE,T_SYS_ROLE_RESOURCE where role_id = id and resource_id=#{resourceid}
+	</select>
+	
+	<!-- 通过userid查询Role -->
+	<select id="getRolesByUserid" parameterType="int" resultType="role">
+		select
+		<include refid="base_column" />
+	    from  T_SYS_ROLE r,T_SYS_USER_ROLE ur where ur.user_id=#{userid} and r.id=ur.role_id
+	</select>
+	
+	<!-- 上面得sql 为原用户认证框架使用  -->
+	
+	
+	
+	<!-- 获得所有的角色信息  -->
+	<select id="getAllRoles" resultType="role">
+	    select
+	    <include refid="base_column" />
+	    from T_SYS_ROLE
+	</select>
+	
+	
+	<select id="getRoleById" parameterType="int"	resultType="role">
+		select
+	    <include refid="base_column" />
+	    from T_SYS_ROLE
+	    where id=#{role_id}
+	</select>
+	
+	
+	
+	<update id="updateRole" parameterType="role">
+		update T_SYS_ROLE 
+		SET name=#{name},
+		status =#{status}, description=#{description}
+		where id=#{id}
+	</update>
+	
+	<delete id="deleteRoleResource"	parameterType="int">
+		delete from T_SYS_ROLE_RESOURCE 
+		where role_id=#{role_id}
+	</delete>
+	
+	<insert id="insertRoleResource" parameterType="roleresource">
+		insert into 
+		T_SYS_ROLE_RESOURCE (role_id, resource_id)
+		values ( #{role_id},  #{resource_id})	
+	</insert>
+	
+	<delete id="deleteRole" parameterType="int">
+	    delete from T_SYS_ROLE
+	    where id=#{id}
+	</delete>
+	
+	<insert id="insertRole" parameterType="role">
+	    insert into  T_SYS_ROLE ( name, status, description)
+	    values( #{name} ,  #{status}, #{description} )
+	</insert>
+	
+	
+	<select id="findRole" parameterType="role" resultType="role">
+	    select 
+	     <include refid="base_column" />
+	    from T_SYS_ROLE
+	    where 1=1 
+	    <if test="name != null and name !=''">
+			and name = #{name} 
+		</if> 
+	</select>
+		
+	
+</mapper>

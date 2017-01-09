@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="customerMapper">
+
+	<sql id="base_column">
+		cust_id,from_user_name,to_user_name,cust_name,cert_type,cert_no,grade,mobile,email,nick_name,gender,home_phone,office_phone,contact_addr,postal_code,qq_no,wb_no,point,cust_stat,create_time,update_time 
+	</sql>
+	
+	<sql id="insert_column">create_time</sql>
+	
+	<sql id="table_name">T_WX_CUSTOMER</sql>
+	
+	 <!-- 分页查询微信信息 -->
+	<select id="selectByPage" parameterType="Map" resultType="customer">
+		SELECT *   
+		FROM 
+		<include refid="table_name"/>
+		WHERE 1=1  
+		<if test="cust_id != null and cust_id != '' ">
+			and cust_id = #{cust_id}
+		</if>
+		<if test="from_user_name != null and from_user_name != '' ">
+			and from_user_name = #{from_user_name}
+		</if>
+		<if test="to_user_name != null and to_user_name != '' ">
+			and to_user_name = #{to_user_name}
+		</if>
+		<if test="cust_name != null and cust_name != '' ">
+			and cust_name = #{cust_name}
+		</if>
+		<if test="cert_type != null and cert_type != '' ">
+			and cert_type = #{cert_type}
+		</if>
+		<if test="cert_no != null and cert_no != '' ">
+			and cert_no = #{cert_no}
+		</if>
+		<if test="grade != null and grade != '' ">
+			and grade = #{grade}
+		</if>
+		<if test="mobile != null and mobile != '' ">
+			and mobile = #{mobile}
+		</if>
+		<if test="email != null and email != '' ">
+			and email = #{email}
+		</if>
+		<if test="nick_name != null and nick_name != '' ">
+			and nick_name = #{nick_name}
+		</if>
+		<if test="gender != null and gender != '' ">
+			and gender = #{gender}
+		</if>
+		<if test="home_phone != null and home_phone != '' ">
+			AND home_phone like CONCAT('%',#{home_phone},'%') 
+		</if>
+		<if test="office_phone != null and office_phone != '' ">
+			and office_phone = #{office_phone}
+		</if>
+		<if test="contact_addr != null and contact_addr != '' ">
+			and contact_addr like CONCAT('%',#{contact_addr},'%') 
+		</if>
+		<if test="postal_code != null and postal_code != '' ">
+			and postal_code = #{postal_code}
+		</if>
+		<if test="qq_no != null and qq_no != '' ">
+			and qq_no = #{qq_no}
+		</if>
+		<if test="wb_no != null and wb_no != '' ">
+			and wb_no = #{wb_no}
+		</if>
+		<if test="point != null and point != '' ">
+			and point = #{point}
+		</if>
+		<if test="cust_stat != null and cust_stat != '' ">
+			and cust_stat = #{cust_stat}
+		</if>
+		<if test="create_time != null and create_time != '' ">
+			and create_time = #{create_time}
+		</if>
+		<if test="update_time != null and update_time != '' ">
+			and update_time = #{update_time}
+		</if>
+		order by create_time desc
+	</select>
+	<select id="selectByPage_count" parameterType="Map"  resultType="int">  
+		select count(1) 
+		FROM 
+		<include refid="table_name"/>
+		WHERE 1=1  
+		<if test="cust_id != null and cust_id != '' ">
+			and cust_id = #{cust_id}
+		</if>
+		<if test="from_user_name != null and from_user_name != '' ">
+			and from_user_name = #{from_user_name}
+		</if>
+		<if test="to_user_name != null and to_user_name != '' ">
+			and to_user_name = #{to_user_name}
+		</if>
+		<if test="cust_name != null and cust_name != '' ">
+			and cust_name = #{cust_name}
+		</if>
+		<if test="cert_type != null and cert_type != '' ">
+			and cert_type = #{cert_type}
+		</if>
+		<if test="cert_no != null and cert_no != '' ">
+			and cert_no = #{cert_no}
+		</if>
+		<if test="grade != null and grade != '' ">
+			and grade = #{grade}
+		</if>
+		<if test="mobile != null and mobile != '' ">
+			and mobile = #{mobile}
+		</if>
+		<if test="email != null and email != '' ">
+			and email = #{email}
+		</if>
+		<if test="nick_name != null and nick_name != '' ">
+			and nick_name = #{nick_name}
+		</if>
+		<if test="gender != null and gender != '' ">
+			and gender = #{gender}
+		</if>
+		<if test="home_phone != null and home_phone != '' ">
+			AND home_phone like CONCAT('%',#{home_phone},'%') 
+		</if>
+		<if test="office_phone != null and office_phone != '' ">
+			and office_phone = #{office_phone}
+		</if>
+		<if test="contact_addr != null and contact_addr != '' ">
+			and contact_addr like CONCAT('%',#{contact_addr},'%') 
+		</if>
+		<if test="postal_code != null and postal_code != '' ">
+			and postal_code = #{postal_code}
+		</if>
+		<if test="qq_no != null and qq_no != '' ">
+			and qq_no = #{qq_no}
+		</if>
+		<if test="wb_no != null and wb_no != '' ">
+			and wb_no = #{wb_no}
+		</if>
+		<if test="point != null and point != '' ">
+			and point = #{point}
+		</if>
+		<if test="cust_stat != null and cust_stat != '' ">
+			and cust_stat = #{cust_stat}
+		</if>
+		<if test="create_time != null and create_time != '' ">
+			and create_time = #{create_time}
+		</if>
+		<if test="update_time != null and update_time != '' ">
+			and update_time = #{update_time}
+		</if>
+		order by create_time desc
+	</select>
+
+	<!-- 插入数据到参数表 -->
+	<insert id="insertOne" parameterType="Map">
+		insert into 
+		<include refid="table_name"/>
+		(<include refid="insert_column"/>
+		<if test="from_user_name != null and from_user_name != '' ">
+		,from_user_name
+		</if>
+		<if test="to_user_name != null and to_user_name != '' ">
+		,to_user_name
+		</if>
+		<if test="cust_name != null and cust_name != '' ">
+		,cust_name
+		</if>
+		<if test="cert_type != null and cert_type != '' ">
+		,cert_type
+		</if>
+		<if test="cert_no != null and cert_no != '' ">
+		,cert_no
+		</if>
+		<if test="grade != null and grade != '' ">
+		,grade
+		</if>
+		<if test="mobile != null and mobile != '' ">
+		,mobile
+		</if>
+		<if test="email != null and email != '' ">
+		,email
+		</if>
+		<if test="nick_name != null and nick_name != '' ">
+		,nick_name
+		</if>
+		<if test="gender != null and gender != '' ">
+		,gender
+		</if>
+		<if test="home_phone != null and home_phone != '' ">
+		,home_phone
+		</if>
+		<if test="office_phone != null and office_phone != '' ">
+		,office_phone
+		</if>
+		<if test="contact_addr != null and contact_addr != '' ">
+		,contact_addr
+		</if>
+		<if test="postal_code != null and postal_code != '' ">
+		,postal_code
+		</if>
+		<if test="qq_no != null and qq_no != '' ">
+		,qq_no
+		</if>
+		<if test="wb_no != null and wb_no != '' ">
+		,wb_no
+		</if>
+		<if test="point != null and point != '' ">
+		,point
+		</if>
+		<if test="cust_stat != null and cust_stat != '' ">
+		,cust_stat
+		</if>
+  		) 
+		values (
+		NOW()
+		<if test="from_user_name != null and from_user_name != '' ">
+		,#{from_user_name}
+		</if>
+		<if test="to_user_name != null and to_user_name != '' ">
+		,#{to_user_name}
+		</if>
+		<if test="cust_name != null and cust_name != '' ">
+		,#{cust_name}
+		</if>
+		<if test="cert_type != null and cert_type != '' ">
+		,#{cert_type}
+		</if>
+		<if test="cert_no != null and cert_no != '' ">
+		,#{cert_no}
+		</if>
+		<if test="grade != null and grade != '' ">
+		,#{grade}
+		</if>
+		<if test="mobile != null and mobile != '' ">
+		,#{mobile}
+		</if>
+		<if test="email != null and email != '' ">
+		,#{email}
+		</if>
+		<if test="nick_name != null and nick_name != '' ">
+		,#{nick_name}
+		</if>
+		<if test="gender != null and gender != '' ">
+		,#{gender}
+		</if>
+		<if test="home_phone != null and home_phone != '' ">
+		,#{home_phone}
+		</if>
+		<if test="office_phone != null and office_phone != '' ">
+		,#{office_phone}
+		</if>
+		<if test="contact_addr != null and contact_addr != '' ">
+		,#{contact_addr}
+		</if>
+		<if test="postal_code != null and postal_code != '' ">
+		,#{postal_code}
+		</if>
+		<if test="qq_no != null and qq_no != '' ">
+		,#{qq_no}
+		</if>
+		<if test="wb_no != null and wb_no != '' ">
+		,#{wb_no}
+		</if>
+		<if test="point != null and point != '' ">
+		,#{point}
+		</if>
+		<if test="cust_stat != null and cust_stat != '' ">
+		,#{cust_stat}
+		</if>
+		)
+	</insert>
+	
+	<!-- 修改一条记录 -->
+	<update id="updateOne" parameterType="Map">
+		update <include refid="table_name"/> 
+		   set update_time=NOW() 
+			   <if test="from_user_name != null and from_user_name != '' ">
+				 ,from_user_name=#{from_user_name} 
+			   </if>
+			   <if test="to_user_name != null and to_user_name != '' ">
+				 ,to_user_name=#{to_user_name} 
+			   </if>
+			   <if test="cust_name != null and cust_name != '' ">
+				 ,cust_name=#{cust_name}
+			   </if>
+			   <if test="cert_type != null and cert_type != '' ">
+				 ,cert_type=#{cert_type}
+			   </if>
+			   <if test="cert_no != null and cert_no != '' ">
+				 ,cert_no=#{cert_no}
+			   </if>
+			   <if test="grade != null and grade != '' ">
+				 ,grade=#{grade}
+			   </if>
+			   <if test="mobile != null and mobile != '' ">
+				 ,mobile=#{mobile} 
+			   </if>
+			   <if test="email != null and email != '' ">
+				 ,email=#{email} 
+			   </if>
+			   <if test="nick_name != null and nick_name != '' ">
+				 ,nick_name=#{nick_name} 
+			   </if>
+			   <if test="gender != null and gender != '' ">
+				 ,gender=#{gender} 
+			   </if>
+			   <if test="home_phone != null and home_phone != '' ">
+				 ,home_phone=#{home_phone} 
+			   </if>
+			   <if test="office_phone != null and office_phone != '' ">
+				 ,office_phone=#{office_phone} 
+			   </if>
+			   <if test="contact_addr != null and contact_addr != '' ">
+				 ,contact_addr=#{contact_addr} 
+			   </if>
+			   <if test="postal_code != null and postal_code != '' ">
+				 ,postal_code=#{postal_code} 
+			   </if>
+			   <if test="qq_no != null and qq_no != '' ">
+				 ,qq_no=#{qq_no} 
+			   </if>
+			   <if test="wb_no != null and wb_no != '' ">
+				 ,wb_no=#{wb_no} 
+			   </if>
+			   <if test="point != null and point != '' ">
+				 ,point=#{point} 
+			   </if>
+			   <if test="cust_stat != null and cust_stat != '' ">
+				 ,cust_stat=#{cust_stat} 
+			   </if>
+			   <if test="update_time != null and update_time != '' ">
+				 ,update_time=NOW()
+			   </if>
+		 where 1=1 
+		 <if test="cust_id != null and cust_id != '' ">
+			AND cust_id = #{cust_id} 
+		 </if>
+	</update>
+	
+	<!-- 删除一条记录 -->
+	<delete id="deleteOne" parameterType="Map">
+		delete from <include refid="table_name"/> 
+		where 1=1
+		<if test="cust_id != null and cust_id != '' ">
+		  and cust_id = #{cust_id} 
+	    </if>
+		<if test="from_user_name != null and from_user_name != '' ">
+		  and from_user_name = #{from_user_name} 
+	    </if>
+	    <if test="to_user_name != null and to_user_name != '' ">
+		  and to_user_name = #{to_user_name} 
+	    </if> 
+	</delete>
+
+</mapper>

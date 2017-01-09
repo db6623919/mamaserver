@@ -1,0 +1,45 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+/*查询订单*/
+.check_order_title{ border-bottom:1px solid #ccc; margin:10px 0px 0px 0px; padding-left:13px; overflow: hidden;}
+
+.check_order_title ul li{ float:left; border-top:1px solid #ccc; border-right:1px solid #ccc; border-left:1px solid #ccc; 
+margin-right:4px; width:70px; height:25px; line-height:25px; text-align:center; background:#fff; }
+
+.check_order_title ul li a{ cursor:pointer; display:block; width:70px; height:25px; font-size:12px; color:#666;}
+.check_order_title .check_order_title_li_on a{ cursor:default;  color:#888; height:26px; _height:25px; background:#eee; display:block; font-weight:bold;  }
+
+
+.allrecord_table{}
+.allrecord_table table{ width:750px;}
+.allrecord_table table th{ background:#eee;  padding:5px 0px 5px 10px; font-weight:normal; border-bottom:1px solid #ccc; color:#666; text-align:left; font-size:12px; }
+.allrecord_table table td{ padding:20px 0px 20px 10px; text-align:left; font-size:12px; border-bottom:1px solid #ccc; color:#555;}
+
+/*详情下拉框*/
+.allrecord_xq{ position:relative;}
+.allrecord_xq_div{
+	position: absolute;
+	left: -9px;
+	top: 15px;
+	width: 42px;
+	height: 47px;
+	border: 1px solid #ccc;
+	text-align: center;
+	line-height: 21px;
+	background: #f3f3f3;
+	padding-top: 5px;
+	
+}
+
+
+/*订单详情弹出框*/
+
+.details{ padding:15px; background:#fff;}
+.details table{ width:620px; border:1px solid #ccc;}
+.details table th{ background:#eee;  padding:5px 0px 5px 10px; font-weight:normal; border-bottom:1px solid #ccc; color:#666; text-align:left; font-size:14px; }
+.details table td{ padding:10px 0px 10px 10px; text-align:left; font-size:12px; border-bottom:1px solid #ccc; color:#555; background:#fff;}
+
+.details_close{margin-bottom:2px; text-align:right;}
+.details_close a{font-size:13px; font-weight:bold;}

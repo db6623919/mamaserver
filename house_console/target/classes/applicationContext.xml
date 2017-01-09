@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:util="http://www.springframework.org/schema/util" 
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-3.2.xsd 
+	http://www.springframework.org/schema/tx 
+	http://www.springframework.org/schema/tx/spring-tx-3.2.xsd 
+	http://www.springframework.org/schema/aop 
+	http://www.springframework.org/schema/aop/spring-aop-3.2.xsd 
+    http://www.springframework.org/schema/context 
+	http://www.springframework.org/schema/context/spring-context-3.2.xsd
+	http://www.springframework.org/schema/util
+    http://www.springframework.org/schema/util/spring-util.xsd"
+	default-autowire="byName" default-lazy-init="true">
+
+	<description>Spring-database</description>
+	
+	<context:component-scan base-package="com.console">
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />
+	</context:component-scan>
+	
+	<!-- 引入并读取配置文件 -->
+	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>file:/opt/pay/config/house/console/jdbc.properties</value>
+				<value>file:/opt/pay/config/house/console/log4j.properties</value>
+				<value>file:/opt/pay/config/house/console/msg.properties</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="dataSource" class="com.p6spy.engine.spy.P6DataSource">    
+		<constructor-arg ref="dataSourceTarget" />  
+	</bean>
+	
+	<!-- 数据源配置,使用应用内的DBCP数据库连接池 -->
+	<bean id="dataSourceTarget" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+		<property name="driverClass" value="${jdbc.driver}" />
+		<property name="jdbcUrl" value="${jdbc.url}" />
+		<property name="properties" ref="dataSourceProperties" />
+		<property name="initialPoolSize" value="${jdbc.initialPoolSize}" />
+		<property name="minPoolSize" value="${jdbc.minPoolSize}" />
+		<property name="maxPoolSize" value="${jdbc.maxPoolSize}" />
+		<property name="acquireIncrement" value="${jdbc.acquireIncrement}" />
+		<property name="acquireRetryAttempts" value="5" />
+		<property name="acquireRetryDelay" value="1000" />
+		<property name="breakAfterAcquireFailure" value="false" />
+		<property name="maxIdleTime" value="1000" />
+		<property name="maxStatements" value="10" />
+		<property name="idleConnectionTestPeriod" value="60" />
+		<property name="testConnectionOnCheckout" value="false" />
+		<property name="testConnectionOnCheckin" value="false" />
+		<property name="autoCommitOnClose" value="false" />
+	</bean>
+	<bean id="dataSourceProperties" class="com.console.framework.dao.PropertiesEncryptFactoryBean">
+		<property name="properties">
+			<props>
+				<prop key="username">${jdbc.username}</prop>
+				<prop key="password">${jdbc.password}</prop>
+			</props>
+		</property>
+	</bean>
+
+	<!-- mybatis Dao -->
+	<bean id="myBatisDao" class="com.console.framework.dao.MyBatisDao" />
+
+	<!-- mybatis配置 -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="configLocation" value="classpath:mybatis-config.xml" />
+	</bean>
+	
+	<!-- jdbcTemplate配置 -->
+	<bean id="jdbcTemplate" class="com.console.framework.dao.JdbcTemplateExtend">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+	</bean>
+	
+	<!-- 事务管理器配置,单数据源事务 -->
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<aop:config proxy-target-class="true">
+		<aop:advisor pointcut="execution(* com.console.service.*Service.*(..))" advice-ref="txAdvice" />
+	</aop:config>
+
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="get*" read-only="true" />
+			<tx:method name="find*" read-only="true" />
+			<tx:method name="query*" read-only="true" />
+			<tx:method name="is*" read-only="true" />
+			<tx:method name="*" propagation="REQUIRED" rollback-for="Exception" />
+		</tx:attributes>
+	</tx:advice>
+	
+	<!-- 用于中英文切换 -->
+	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+        <property name="basename" value="/locale/messages"/> 
+    </bean>
+    
+	<import resource="spring-security.xml"/>
+	
+	<util:properties id="msgProperties" location="file:/opt/pay/config/house/console/msg.properties"></util:properties>
+	<bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+   		<property name="staticMethod" value="com.console.util.MsgPropertiesUtils.setProperties"/>
+   		<property name="arguments" ref="msgProperties" />
+ 	</bean>
+</beans>

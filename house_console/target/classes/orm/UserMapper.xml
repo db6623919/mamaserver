@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="userMapper">
+		
+	<!-- 通过用户名查询用户信息 -->
+	<select id="getUserByUserId" parameterType="String" resultType="user">
+		select * 
+		from T_SYS_USER 
+		where 1=1 
+		and id = #{userid} 
+	</select>
+	
+	<!-- 通过用户名查询用户信息 -->
+	<select id="getUserByUserName" parameterType="String" resultType="user">
+		select * 
+		from T_SYS_USER 
+		where 1=1 
+		and username = #{username}  
+	</select>
+	
+	<!-- 通过用户名查询用户信息 -->
+	<select id="getUserByUserName2" parameterType="Map" resultType="user">
+		select * 
+		from T_SYS_USER 
+		where 1=1 
+		<if test="username != null and username !='' ">
+			and username = #{username} 
+		</if>
+		<if test="user_id != null and user_id !=''">
+			and id = #{user_id} 
+		</if>
+	</select>
+	
+	<!-- 通过用户名修改用户密码 -->
+	<update id="updateUserPwd" parameterType="Map" >
+		update T_SYS_USER 
+		set password = #{password} 
+		where username = #{username}
+	</update>
+	
+	
+	<!-- 上面的sql 为原用户认证框架所使用  -->
+	
+	
+		<!-- 通过用户名和姓名查询用户信息 -->
+	<select id="getUserByUserNameAndName" parameterType="Map" resultType="user">
+		select * 
+		from T_SYS_USER 
+		where 1=1 
+		<if test="username != null and username !='' ">
+			and username = #{username} 
+		</if>
+		<if test="name != null and name !=''">
+			and name = #{name} 
+		</if>
+	</select>
+	
+	
+			<!-- 通过用户名和姓名查询用户信息 -->
+	<select id="getUserByUserNameAndName_count" parameterType="Map" resultType="int">
+		select count(*) 
+		from T_SYS_USER 
+		where 1=1 
+		<if test="username != null and username !='' ">
+			and username = #{username} 
+		</if>
+		<if test="name != null and name !=''">
+			and name = #{name} 
+		</if>
+	</select>
+	
+	<!-- 保存用户信息 -->	
+	<insert id="saveUser" parameterType="user" >
+	    insert into T_SYS_USER 
+	    (username, password, name, status, description, create_time)
+	    values
+	    (#{username}, #{password}, #{name}, #{status}, #{description},now())
+	</insert>
+	
+
+	
+	<!-- 保存用户-角色关系信息 -->
+	<insert id="saveUserRole" parameterType="Map">
+	    insert into T_SYS_USER_ROLE
+	    (user_id, role_id) values (#{user_id},  #{role_id})
+	</insert>
+	
+	
+	<!-- 更新用户信息 -->
+	<update id="updateUser"  parameterType="user">
+		update T_SYS_USER 
+		set name=#{name}, description=#{description} , status=#{status}
+	    <if test="username != null and username !='' ">
+			, username = #{username} 
+		</if>
+		where id=#{id}
+	</update>
+	
+	<!-- 更新用户的角色信息 -->
+	<update id="updateUserRole"  parameterType="Map">
+		update T_SYS_USER_ROLE
+		set role_id=#{role_id}
+		where user_id=#{user_id}
+	</update>
+	
+	
+	<delete id="deleteUser"	parameterType="int">
+		delete from T_SYS_USER 
+		where id=#{user_id}
+	</delete>
+	
+	<delete id="deleteUserRole"	parameterType="int">
+		delete from T_SYS_USER_ROLE 
+		where user_id=#{user_id}
+	</delete>
+	
+	<update id="updatePwd" parameterType="user">
+		update T_SYS_USER
+		set password=#{password}
+		where id=#{id}  and name=#{name}
+	</update>
+	
+	
+	
+</mapper>

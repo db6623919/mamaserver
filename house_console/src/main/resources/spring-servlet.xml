@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-3.2.xsd 
+	http://www.springframework.org/schema/context 
+	http://www.springframework.org/schema/context/spring-context-3.2.xsd 
+	http://www.springframework.org/schema/mvc 
+    http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd">
+
+	<description>Spring-web MVC</description>
+
+	<!-- 启动基于Spring MVC的注解功能 -->
+	<mvc:annotation-driven />
+
+	<!-- 对所有类进行扫描，以完成Bean创建和自动依赖注入的功能 -->
+	<context:component-scan base-package="com.console">
+		<context:exclude-filter type="annotation"
+			expression="org.springframework.stereotype.Service" />
+	</context:component-scan>
+
+	<!-- 当请求应用程序首页时，将执行/hello请求，还可以设定成redirect -->
+	<!-- <mvc:view-controller path="/" view-name="forward:/hello" /> -->
+
+	<!-- 不精准拦截，也会拦截静态资源 -->
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/**" /> <!-- 需要拦截的链接/** /role/*所有 -->
+			<!-- <bean class="com.mybank.enterprise.framework.interceptor.BankInterceptor" 
+				/> -->
+			<bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors>
+    
+   <!-- 静态资源访问 -->  
+   <mvc:resources location="/img/" mapping="/img/**"/>  
+   <mvc:resources location="/js/" mapping="/js/**"/>  
+    
+    
+   <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">  
+        <property name="defaultEncoding" value="utf-8"></property>   
+        <property name="maxUploadSize" value="10485760000"></property>  
+        <property name="maxInMemorySize" value="4096000"></property>  
+   </bean> 
+	
+	<bean id="localeResolver"
+		class="org.springframework.web.servlet.i18n.SessionLocaleResolver" />
+
+	<!-- 启动基于Spring MVC的注解功能,等同mvc:annotation-driven，但设置后会拦截RedirectAttributes -->
+	<!-- 不精准拦截，不拦截静态资源 -->
+	<!-- <bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping" 
+		> -->
+	<!-- <property name="interceptors"> -->
+	<!-- <list> -->
+	<!-- <bean class="com.yy.common.base.BasedInterceptor"></bean> -->
+	<!-- </list> -->
+	<!-- </property> -->
+	<!-- </bean> -->
+	<!-- <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter" 
+		/> -->
+
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+		<property name="viewClass"
+			value="org.springframework.web.servlet.view.JstlView" />
+		<property name="prefix" value="/page/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+
+	<!-- 总错误处理 -->
+	<bean id="exceptionResolver"
+		class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+		<property name="defaultErrorView">
+			<value>/common/500</value>
+		</property>
+		<property name="defaultStatusCode">
+			<value>500</value>
+		</property>
+		<property name="exceptionMappings">
+			<props>
+				<prop key="java.lang.exception">/common/500</prop>
+			</props>
+		</property>
+		<property name="warnLogCategory">
+			<value>org.springframework.web.servlet.handler.SimpleMappingExceptionResolver
+			</value>
+		</property>
+	</bean>
+
+	<!-- 为了REST风格，webxml配置url-pattern为/，需要配置不需要跳转的静态资源，配置.do,.form等不需要此处 -->
+	<!-- <mvc:resources mapping="/image/**" location="/image/" cache-period="31556921"/> -->
+	<!-- <mvc:resources mapping="/js/**" location="/js/" cache-period="31556922"/> -->
+	<!-- <mvc:resources mapping="/css/**" location="/css/" cache-period="31556923"/> -->
+	<!-- <mvc:resources mapping="/resource/**" location="/resource/" cache-period="31556924"/> -->
+
+	<!-- 用于持有ApplicationContext,可以使用SpringContextHolder.getBean('x')的静态方法得到spring 
+		bean对象 -->
+	<bean class="com.console.framework.base.SpringContextHolder"
+		lazy-init="false" />
+
+
+
+</beans>

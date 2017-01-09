@@ -1,0 +1,70 @@
+@charset "utf-8";
+/* CSS Document */
+
+/*快捷充值*/
+
+.fast_recharge_bg{ margin:0 auto; width:1000px !important;  margin-top:10px; padding-top:40px; background-color:#F3F6FB; padding-bottom:40px;}
+
+.fast_recharge_bg .enter_money{ padding:30px 0px 20px 40px; overflow:hidden;}
+.fast_recharge_bg .enter_money ul li{ margin-bottom:15px;}
+.fast_recharge_bg .enter_money .em_title{ display: inline-block; width:140px; text-align:right; padding-right:10px; color:#666;}
+.fast_recharge_bg .enter_money .em_input{ width:150px; border:1px solid #ccc; background:url(../images/inputextbg.gif) repeat-x;  padding:5px; }
+
+.fast_recharge_bg .choose_pay{ overflow:hidden;clear:both; }
+.fast_recharge_bg .choose_pay .cp_tab{ padding-left:45px; height:31px;  overflow:hidden; clear:both;}
+.fast_recharge_bg .choose_pay .cp_tab a{ display:block; float:left; width:100px; height:30px; line-height:30px; text-align:center; border:1px solid #ccc; border-bottom-color:#E6E6E6; color:#666; background-color:#E6E6E6; margin:0px 8px; font-size:13px;}
+.fast_recharge_bg .choose_pay .cp_tab .current{ color:#fff; background-color:#58B2F1; border:1px solid #2089D8; border-bottom-color:#58B2F1; cursor:default;}
+.fast_recharge_bg .choose_pay .cp_tab .current:hover{ text-decoration:none;}
+
+.fast_recharge_bg .choose_pay .cp_content{ border:1px solid #2089D8; background-color:#fff; padding:20px 20px 20px 20px; }
+.fast_recharge_bg .choose_pay .cp_content .cpc_p1{ display:block; font-size:14px; color:#444;}
+.fast_recharge_bg .choose_pay .cp_content .cpc_p2{ display:block; font-size:12px; color:#999; margin-top:8px;}
+
+/*支付向导*/
+.fast_recharge_bg .choose_pay .cp_content .cpc_table{ overflow:hidden; clear:both; margin-top:15px;}
+.fast_recharge_bg .choose_pay .cp_content .cpc_table table{ width:100%;} 
+.fast_recharge_bg .choose_pay .cp_content .cpc_table table th{ background-color:#F3F7FD; text-align:left; height:35px; padding-left:10px; font-size:13px;}
+.fast_recharge_bg .choose_pay .cp_content .cpc_table table td{ padding:15px 10px; border-bottom:1px dotted #ddd;}
+.fast_recharge_bg .choose_pay .cp_content .cpc_table .cpc_btn{ border:1px solid #ccc; background-color:#E9E9E9; padding:4px 10px; color:#333;}
+.fast_recharge_bg .choose_pay .cp_content .cpc_table .cpc_btn:hover{ border:1px solid #ddd; background-color:#eee; color:#666;}
+
+/*网上银行选择*/
+.fast_recharge_bg .choose_pay .cp_content .cpc_p3{display:block; font-size:13px; color:#444; margin-top:8px; padding-bottom:20px; border-bottom:1px solid #eee;}
+.fast_recharge_bg .choose_pay .cp_content .e_bank_choose{ overflow:hidden; clear:both; padding:25px 0px 0px 7px;}
+.fast_recharge_bg .choose_pay .cp_content .e_bank_choose span{ cursor:pointer; overflow:hidden; float:left; display:block ; padding-left:5px; width:181px; height:36px; margin-bottom:30px;  _margin-bottom:10px; border:1px solid #fff; }
+.fast_recharge_bg .choose_pay .cp_content .e_bank_choose span input{ vertical-align:middle; }
+.fast_recharge_bg .choose_pay .cp_content .e_bank_choose span img{ display:inline-block; width:154px; height:36px; vertical-align:middle; overflow:hidden; }
+
+.fast_recharge_bg .choose_pay .cp_content .next_btn{ overflow:hidden; clear:both; border-top:1px solid #eee; padding-top:15px; height:32px; *margin-top:25px;}
+.fast_recharge_bg .choose_pay .cp_content .next_btn a{ float:right; display:block; background-color:#ffa316; width:165px; height:32px; line-height:32px; font-size:17px;  text-align:center; color:#fff;}
+.fast_recharge_bg .choose_pay .cp_content .next_btn a:hover{text-decoration:none; background-color:#ffc91b;} 
+
+/*手机支付选择*/
+.fast_recharge_bg .choose_pay .cp_content .mobile_choose{ overflow:auto; clear:both; padding:15px 0px 20px 7px;}
+.fast_recharge_bg .choose_pay .cp_content .mobile_choose .mc_p1{display:block; font-size:13px; color:#444;}
+.fast_recharge_bg .choose_pay .cp_content .mobile_choose .mc_p2{ display:block; font-weight:bold; font-size:14px; color:#444; margin-top:15px;}
+.fast_recharge_bg .choose_pay .cp_content .mobile_choose img{ display:block; width:82px; height:39px; margin-bottom:20px;}
+.fast_recharge_bg .choose_pay .cp_content .mobile_choose table{ width:600px; margin-top:10px;}
+.fast_recharge_bg .choose_pay .cp_content .mobile_choose table th{background-color:#F3F7FD; text-align:left; height:35px; padding-left:10px; font-size:13px;}
+.fast_recharge_bg .choose_pay .cp_content .mobile_choose table td{padding:15px 10px; }
+
+/*付款等待弹出层*/
+.popup_payment{ width:340px; margin:0 auto; background-color:#fff; display:none; border:1px solid #58B2F1;}
+.popup_payment .pp_close{ background-color:#58B2F1; width:100%; height:30px; overflow:hidden; clear:both;}
+.popup_payment .pp_close a{ float:right; display:block; padding:1px 5px; background-color:#fff; border:1px solid #ccc; color:#444; font-weight:bold; margin:5px 5px 0px 0px;}
+.popup_payment .pp_close a:hover{ text-decoration:none; color:#999;}
+
+.popup_payment .pp_content{ overflow:hidden; padding:35px 40px; }
+.popup_payment .pp_content a{  font-size:14px;  }
+.popup_payment .pp_content .pp_prompt{ background:url(../images/prompt.jpg) no-repeat left top; height:57px; line-height:27px; padding-left:70px; font-size:16px; overflow:hidden; clear:both; font-weight:bold;}
+.popup_payment .pp_content .pp_text{ font-size:13px; margin-top:20px; line-height:25px;}
+.popup_payment .pp_content .pp_btn{ overflow:hidden; clear:both; padding-left:18px; margin:20px 0px;}
+.popup_payment .pp_content .pp_btn a{ display:inline-block; background-color:#58B2F1; width:100px; height:28px; line-height:28px; font-size:14px;  text-align:center; color:#fff;}
+.popup_payment .pp_content .pp_btn a:hover{ text-decoration:none; background-color:#ffc91b;}
+
+/*快捷充值完成*/
+.fast_recharge_bg .recharge_successful{ overflow:hidden; clear:both; padding:32px 0px 0px 70px; }
+.fast_recharge_bg .recharge_successful span{ float:left; display:block; background:url(../images/public_success.jpg) no-repeat; width:77px; height:75px; margin-right:20px;}
+.fast_recharge_bg .recharge_successful .recharge_successful_text{ float:left; font-size:17px; color:#666; margin-top:25px;}
+.fast_recharge_bg .recharge_successful .recharge_successful_text font{ font-size:14px;}
+.fast_recharge_bg .recharge_successful .recharge_successful_text font a{ font-size:14px;}

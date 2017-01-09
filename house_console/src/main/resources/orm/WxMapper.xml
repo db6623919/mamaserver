@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="wxMapper">
+
+	<sql id="base_column">
+		id,msg_type,from_user_name,to_user_name,content,msg_id,pic_url,location_x,location_y,scale,label,title,description,url,event,event_key,media_id,format,thumb_media_id,article_count,articles,create_time,update_time 
+	</sql>
+	
+	<sql id="insert_column">msg_type,create_time</sql>
+	
+	<sql id="table_name">T_WX_MSG</sql>
+	
+	 <!-- 分页查询微信信息 -->
+	<select id="selectByPage" parameterType="Map" resultType="wx">
+		SELECT *   
+		FROM 
+		<include refid="table_name"/>
+		WHERE 1=1  
+		<if test="id != null and id != '' ">
+			and id = #{id}
+		</if>
+		<if test="msg_type != null and msg_type != '' ">
+			and msg_type = #{msg_type}
+		</if>
+		<if test="from_user_name != null and from_user_name != '' ">
+			and from_user_name = #{from_user_name}
+		</if>
+		<if test="to_user_name != null and to_user_name != '' ">
+			and to_user_name = #{to_user_name}
+		</if>
+		<if test="content != null and content != '' ">
+			and content = #{content}
+		</if>
+		<if test="msg_id != null and msg_id != '' ">
+			and msg_id = #{msg_id}
+		</if>
+		<if test="pic_url != null and pic_url != '' ">
+			and pic_url = #{pic_url}
+		</if>
+		<if test="location_x != null and location_x != '' ">
+			and location_x = #{location_x}
+		</if>
+		<if test="location_y != null and location_y != '' ">
+			and location_y = #{location_y}
+		</if>
+		<if test="scale != null and scale != '' ">
+			and scale = #{scale}
+		</if>
+		<if test="label != null and label != '' ">
+			and label = #{label}
+		</if>
+		<if test="title != null and title != '' ">
+			AND title like CONCAT('%',#{title},'%') 
+		</if>
+		<if test="description != null and description != '' ">
+			and description = #{description}
+		</if>
+		<if test="url != null and url != '' ">
+			and url = #{url}
+		</if>
+		<if test="event != null and event != '' ">
+			and event = #{event}
+		</if>
+		<if test="event_key != null and event_key != '' ">
+			and event_key = #{event_key}
+		</if>
+		<if test="media_id != null and media_id != '' ">
+			and media_id = #{media_id}
+		</if>
+		<if test="format != null and format != '' ">
+			and format = #{format}
+		</if>
+		<if test="thumb_media_id != null and thumb_media_id != '' ">
+			and thumb_media_id = #{thumb_media_id}
+		</if>
+		<if test="article_count != null and article_count != '' ">
+			and article_count = #{article_count}
+		</if>
+		<if test="articles != null and articles != '' ">
+			and articles = #{articles}
+		</if>
+		<if test="create_time != null and create_time != '' ">
+			and create_time = #{create_time}
+		</if>
+		<if test="update_time != null and update_time != '' ">
+			and update_time = #{update_time}
+		</if>
+		order by create_time desc
+	</select>
+	<select id="selectByPage_count" parameterType="Map"  resultType="int">  
+		select count(1) 
+		FROM 
+		<include refid="table_name"/>
+		WHERE 1=1  
+		<if test="id != null and id != '' ">
+			and id = #{id}
+		</if>
+		<if test="msg_type != null and msg_type != '' ">
+			and msg_type = #{msg_type}
+		</if>
+		<if test="from_user_name != null and from_user_name != '' ">
+			and from_user_name = #{from_user_name}
+		</if>
+		<if test="to_user_name != null and to_user_name != '' ">
+			and to_user_name = #{to_user_name}
+		</if>
+		<if test="content != null and content != '' ">
+			and content = #{content}
+		</if>
+		<if test="msg_id != null and msg_id != '' ">
+			and msg_id = #{msg_id}
+		</if>
+		<if test="pic_url != null and pic_url != '' ">
+			and pic_url = #{pic_url}
+		</if>
+		<if test="location_x != null and location_x != '' ">
+			and location_x = #{location_x}
+		</if>
+		<if test="location_y != null and location_y != '' ">
+			and location_y = #{location_y}
+		</if>
+		<if test="scale != null and scale != '' ">
+			and scale = #{scale}
+		</if>
+		<if test="label != null and label != '' ">
+			and label = #{label}
+		</if>
+		<if test="title != null and title != '' ">
+			AND title like CONCAT('%',#{title},'%') 
+		</if>
+		<if test="description != null and description != '' ">
+			and description = #{description}
+		</if>
+		<if test="url != null and url != '' ">
+			and url = #{url}
+		</if>
+		<if test="event != null and event != '' ">
+			and event = #{event}
+		</if>
+		<if test="event_key != null and event_key != '' ">
+			and event_key = #{event_key}
+		</if>
+		<if test="media_id != null and media_id != '' ">
+			and media_id = #{media_id}
+		</if>
+		<if test="format != null and format != '' ">
+			and format = #{format}
+		</if>
+		<if test="thumb_media_id != null and thumb_media_id != '' ">
+			and thumb_media_id = #{thumb_media_id}
+		</if>
+		<if test="article_count != null and article_count != '' ">
+			and article_count = #{article_count}
+		</if>
+		<if test="articles != null and articles != '' ">
+			and articles = #{articles}
+		</if>
+		<if test="create_time != null and create_time != '' ">
+			and create_time = #{create_time}
+		</if>
+		<if test="update_time != null and update_time != '' ">
+			and update_time = #{update_time}
+		</if>
+		order by create_time desc
+	</select>
+
+	<!-- 插入数据到参数表 -->
+	<insert id="insertOne" parameterType="Map">
+		insert into 
+		<include refid="table_name"/>
+		(<include refid="insert_column"/>
+		<if test="from_user_name != null and from_user_name != '' ">
+		,from_user_name
+		</if>
+		<if test="to_user_name != null and to_user_name != '' ">
+		,to_user_name
+		</if>
+		<if test="content != null and content != '' ">
+		,content
+		</if>
+		<if test="msg_id != null and msg_id != '' ">
+		,msg_id
+		</if>
+		<if test="pic_url != null and pic_url != '' ">
+		,pic_url
+		</if>
+		<if test="location_x != null and location_x != '' ">
+		,location_x
+		</if>
+		<if test="location_y != null and location_y != '' ">
+		,location_y
+		</if>
+		<if test="scale != null and scale != '' ">
+		,scale
+		</if>
+		<if test="label != null and label != '' ">
+		,label
+		</if>
+		<if test="title != null and title != '' ">
+		,title
+		</if>
+		<if test="description != null and description != '' ">
+		,description
+		</if>
+		<if test="url != null and url != '' ">
+		,url
+		</if>
+		<if test="event != null and event != '' ">
+		,event
+		</if>
+		<if test="event_key != null and event_key != '' ">
+		,event_key
+		</if>
+		<if test="media_id != null and media_id != '' ">
+		,media_id
+		</if>
+		<if test="format != null and format != '' ">
+		,format
+		</if>
+		<if test="thumb_media_id != null and thumb_media_id != '' ">
+		,thumb_media_id
+		</if>
+		<if test="article_count != null and article_count != '' ">
+		,article_count
+		</if>
+		<if test="articles != null and articles != '' ">
+		,articles
+		</if>
+  		) 
+		values (
+		#{msg_type},NOW()
+		<if test="from_user_name != null and from_user_name != '' ">
+		,#{from_user_name}
+		</if>
+		<if test="to_user_name != null and to_user_name != '' ">
+		,#{to_user_name}
+		</if>
+		<if test="content != null and content != '' ">
+		,#{content}
+		</if>
+		<if test="msg_id != null and msg_id != '' ">
+		,#{msg_id}
+		</if>
+		<if test="pic_url != null and pic_url != '' ">
+		,#{pic_url}
+		</if>
+		<if test="location_x != null and location_x != '' ">
+		,#{location_x}
+		</if>
+		<if test="location_y != null and location_y != '' ">
+		,#{location_y}
+		</if>
+		<if test="scale != null and scale != '' ">
+		,#{scale}
+		</if>
+		<if test="label != null and label != '' ">
+		,#{label}
+		</if>
+		<if test="title != null and title != '' ">
+		,#{title}
+		</if>
+		<if test="description != null and description != '' ">
+		,#{description}
+		</if>
+		<if test="url != null and url != '' ">
+		,#{url}
+		</if>
+		<if test="event != null and event != '' ">
+		,#{event}
+		</if>
+		<if test="event_key != null and event_key != '' ">
+		,#{event_key}
+		</if>
+		<if test="media_id != null and media_id != '' ">
+		,#{media_id}
+		</if>
+		<if test="format != null and format != '' ">
+		,#{format}
+		</if>
+		<if test="thumb_media_id != null and thumb_media_id != '' ">
+		,#{thumb_media_id}
+		</if>
+		<if test="article_count != null and article_count != '' ">
+		,#{article_count}
+		</if>
+		<if test="articles != null and articles != '' ">
+		,#{articles}
+		</if>
+		)
+	</insert>
+	
+	<!-- 修改一条记录 -->
+	<update id="updateOne" parameterType="Map">
+		update <include refid="table_name"/> 
+		   set update_time=NOW() 
+			   <if test="msg_type != null and msg_type != '' ">
+				 ,msg_type=#{msg_type} 
+			   </if>
+			   <if test="from_user_name != null and from_user_name != '' ">
+				 ,from_user_name=#{from_user_name} 
+			   </if>
+			   <if test="to_user_name != null and to_user_name != '' ">
+				 ,to_user_name=#{to_user_name} 
+			   </if>
+			   <if test="content != null and content != '' ">
+				 ,content=#{content}
+			   </if>
+			   <if test="msg_id != null and msg_id != '' ">
+				 ,msg_id=#{msg_id}
+			   </if>
+			   <if test="pic_url != null and pic_url != '' ">
+				 ,pic_url=#{pic_url}
+			   </if>
+			   <if test="location_x != null and location_x != '' ">
+				 ,location_x=#{location_x}
+			   </if>
+			   <if test="location_y != null and location_y != '' ">
+				 ,location_y=#{location_y} 
+			   </if>
+			   <if test="scale != null and scale != '' ">
+				 ,scale=#{scale} 
+			   </if>
+			   <if test="label != null and label != '' ">
+				 ,label=#{label} 
+			   </if>
+			   <if test="title != null and title != '' ">
+				 ,title=#{title} 
+			   </if>
+			   <if test="description != null and description != '' ">
+				 ,description=#{description} 
+			   </if>
+			   <if test="url != null and url != '' ">
+				 ,url=#{url} 
+			   </if>
+			   <if test="event != null and event != '' ">
+				 ,event=#{event} 
+			   </if>
+			   <if test="event_key != null and event_key != '' ">
+				 ,event_key=#{event_key} 
+			   </if>
+			   <if test="media_id != null and media_id != '' ">
+				 ,media_id=#{media_id} 
+			   </if>
+			   <if test="format != null and format != '' ">
+				 ,format=#{format} 
+			   </if>
+			   <if test="thumb_media_id != null and thumb_media_id != '' ">
+				 ,thumb_media_id=#{thumb_media_id} 
+			   </if>
+			   <if test="article_count != null and article_count != '' ">
+				 ,article_count=#{article_count} 
+			   </if>
+			   <if test="articles != null and articles != '' ">
+				 ,articles=#{articles} 
+			   </if>
+		 where 1=1 
+		 <if test="id != null and id != '' ">
+			AND id = #{id} 
+		 </if>
+	</update>
+	
+	<!-- 删除一条记录 -->
+	<delete id="deleteOne" parameterType="Map">
+		delete from <include refid="table_name"/> 
+		where 1=1
+		<if test="id != null and id != '' ">
+		  and id = #{id} 
+	    </if>
+	</delete>
+	
+</mapper>

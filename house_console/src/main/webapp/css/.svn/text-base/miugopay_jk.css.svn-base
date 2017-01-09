@@ -1,0 +1,117 @@
+@charset "utf-8";
+/* CSS Document */
+
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,textarea,p,blockquote,th,td,a,input,select { padding: 0;margin: 0; font-size:12px; color:#333; font-family:"微软雅黑";outline:none; }
+
+table { border-collapse: collapse;border-spacing: 0;}
+fieldset,img { border: 0;}
+a{text-decoration:none; color:#008fcc;}
+a:hover{ text-decoration:underline;}
+
+ul { list-style: none outside none;}
+h1,h2,h3,h4,h5,h6 {font-weight: normal;font-size: 100%;}
+
+
+/*顶部logo*/
+
+.jk_logobg{ height:67px; border-bottom:5px solid #E6A11B; width:100%;}
+.jk_logo_center{width:1000px; margin:0 auto;}
+.jk_logo{ background:url(../images/miugopay_logo.jpg) no-repeat; width:400px; height:67px; text-indent:-9999px; float:left;  }
+.logo_cashier{background:url(../images/miugopay_logo_cashier.jpg) no-repeat; width:294px; height:67px; text-indent:-9999px; float:left; }
+.user_name{ float:right; font-size:13px; line-height:67px; margin-right:10px;}
+
+/*整体*/
+.jk_main{ width:1000px;  margin:0 auto; padding-top:30px; background:#fff; }
+
+/*左部*/
+.jk_left{ float:left; width:500px; background:#fff; margin-bottom:20px; }
+.jk_left img{ margin-left:70px;}
+
+
+/*右部*/
+.jk_right{ float:right; width:500px; height:auto; background:#fff ;margin-bottom:20px;  }
+
+.login_bg{width:318px; height:auto; background:#fff; border:10px solid #eee;  text-align:center; margin-left:50px;  }
+
+.login_title{ height:52px;}
+.login_title ul{}
+.login_title ul li{ float:left; height:52px; width:158px;}
+.login_title ul li a{background:url(../images/login_title_bg.jpg) repeat-x; display:block; height:52px; width:158px; line-height:52px; cursor:pointer; font-size:14px; font-weight:bold; text-align:center; color:#fff; border:1px solid #333;}
+.login_title .login_title_on{ background:none; color:#333; border:0 none; text-decoration:none; cursor:default; font-size:14px;}
+
+.login_center1{ font-size:12px; text-align:left; background:#fff; color:#999; margin:20px 0px 20px 20px; }
+.login_center1 a{color:#0066CC;}
+.login_center1 a:hover{ text-decoration:underline;}
+.login_pai_btn{ margin-left:11px;}
+.login_pai_btn a{ background:url(../images/login_sh_btn.png) left 0px; height:47px; display:block; width:296px; text-indent:-9999px; cursor:pointer;}
+.login_pai_btn a:hover{ background:url(../images/login_sh_btn.png) left -53px;}
+
+.login_input{ width:285px; text-align:left; color:#666; font-size:14px; height:36px; line-height:36px; margin:0 auto; clear:both;}
+.login_input_password{ width:285px; text-align:left; color:#666;  margin:0 auto;}
+.s_keyboard{ background:url(../images/s_keyboard.jpg) no-repeat; width:34px; height:30px; display:inline-block; float:left; cursor:pointer;}
+
+.login_input .cs_input{ width:285px;  padding:7px 0px 7px 5px; padding-left:5px; border:1px solid #ccc; background:url(../images/input_bg.jpg) repeat-x; }
+.login_input .cs_input_password{ width:285px; padding:7px 0px 7px 5px; padding-left:5px; background:url(../images/input_password_bg.jpg) repeat-x;}
+.login_input .cs_select{ width:285px; padding:7px 0px; border:1px solid #ccc; background:url(../images/input_bg.jpg) repeat-x;}
+
+.login_input a{ clear:both; font-size:12px; color:#666;  cursor:pointer; vertical-align:bottom; }
+.login_input a:hover{color:#0066CC; text-decoration:underline;}
+.login_sh_btn{ margin-top:20px; margin-left:11px; clear:both; height:47px;}
+.login_sh_btn a{ background:url(../images/login_sh_btn.png) left 0px; height:47px; display:block; width:296px; text-indent:-9999px; cursor:pointer;}
+.login_sh_btn a:hover{background:url(../images/login_sh_btn.png) left -53px;}
+
+.login_input a.huoqu_dx{background:url(../images/getinfo_btn.jpg) no-repeat left top; width:79px; height:32px; padding:0px; border:0 none; margin-left:5px; color:#fff; text-align:center; display:inline-block; line-height:32px;}
+a:hover.huoqu_dx{ text-decoration:underline; color:#fff;}
+
+/*按钮失效状态*/
+.login_input a.huoqu_dx_n{background:url(../images/getinfo_btn.jpg) no-repeat left -32px; width:79px; height:32px; padding:0px; border:0 none; margin-left:5px; color:#ccc; text-align:center; display:inline-block; line-height:32px;}
+a:hover.huoqu_dx_n{ text-decoration:none; color:#ccc;}
+
+.login_footer{ margin-top:17px; width:318px; background:#fff; padding-top:12px; border-top:1px solid #eee; padding-bottom:10px;}
+.login_footer a{ color:#666; font-size:12px;}
+.login_footer a:hover{ text-decoration:underline;}
+.login_footer span{color:#ccc; font-size:12px; padding:0px 9px;}
+
+/*登录密码数字键盘*/
+.vk{width:180px; float:right; clear:both;  height:50px; margin-top:3px; margin-right:6px; } 
+.vk ul{ text-align:center; width:172px; } 
+.vk ul li{  width:20px;  height:20px; vertical-align : middle; text-align:center; float:left; border : 1px solid  #ccc;  background-color : #999;  color:#fff;line-height:20px;cursor:pointer;} 
+.vk ul li:hover{ background-color:#666;}
+.vk ul li.vkbtn{  width:60px; height:20px; vertical-align : middle; text-align:center; float:left;  border : 1px solid  #ccc;  background-color : #999;  color:#fff; line-height:20px;
+ font-size:11px;cursor:pointer; } 
+.vk ul li.vkbtn:hover{background-color:#666;}
+
+
+/*登录信息错误*/
+.login_error_bg{width:285px; margin:0 auto;  clear:both; padding-top:20px;}
+.login_error{width:240px; border:1px solid #FFAD77; height:auto; line-height:20px; padding:5px 10px 5px 40px; text-align:left; color:#FF0000; background:url(../images/error.jpg) no-repeat center left #FFFFD0;}
+.login_error img{margin-right:15px; margin-left:5px; vertical-align:middle;}
+
+.index_error_bg{width:285px; clear:both; padding-top:20px; margin-left: 18px;}
+.index_error{width:240px; border:1px solid #FFAD77; height:auto; line-height:20px; padding:5px 10px 5px 40px; text-align:left; color:#FF0000; background:url(../images/error.jpg) no-repeat center left #FFFFD0;}
+.index_error img{margin-right:15px; margin-left:5px; vertical-align:middle;}
+
+/*价格颜色*/
+.c_jg{color:#FF9509; font-weight:bold;}
+
+
+/*支付信息，温馨提醒*/
+
+.after_pay_bg_s{ background:url(../images/pay_success.jpg) no-repeat; width:780px; height:300px; margin:0 auto;}
+
+.after_pay_bg_f{background:url(../images/pay_fail.jpg) no-repeat; width:780px; height:300px; margin:0 auto;}
+
+.s_pay_bg{ padding:100px 0px 0px 0px; width:500px;  }
+.s_pay_bg ul li{ margin:7px 0px; font-size:14px;}
+.s_pay_bg .s_pay_t{ display:inline-block; text-align:right; width:173px; padding-right:15px; }
+
+/*合作金融机构*/
+.cooperate_bg{ width:800px; margin:0 auto;  overflow:hidden; padding-left:10px;}
+.cooperate_bg strong{ padding-left:15px;}
+.cooperate_bg .cooperate_icon{ background:url(../images/cooperate_icon.jpg) no-repeat; width:211px; height:49px; overflow:hidden; margin:8px 0;}
+
+/*底部*/
+.footer{ border-top:1px solid #ddd; clear:both; width:800px; margin:0 auto; text-align:center; padding-top:4px;  }
+.footer p{color:#888;margin-top:12px;}
+.footer p a{ color:#888; margin: 0px 15px;}
+

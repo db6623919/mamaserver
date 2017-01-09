@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="resourceMapper">
+
+	<sql id="base_column">
+	    id,type,name,privilege,parent_id,status,sort,description,bz1,bz2,bz3,bz4,bz5
+	</sql>
+
+	<!-- 通过角色名查询资源 -->
+	<select id="getResourceByRoleName" parameterType="role" resultType="resource">
+	    select
+	    <include refid="base_column" />
+	    from T_SYS_RESOURCE re where exists
+		    (select rr.resource_id from T_SYS_ROLE r, T_SYS_ROLE_RESOURCE rr
+				where r.name = #{name}
+			    and r.id = rr.role_id
+	            and re.id = rr.resource_id
+			)
+		and re.status='1' ORDER BY re.sort
+	</select>	
+	
+	<!-- 查询全部资源 -->
+	<select id="getResource" resultType="resource">
+	    select
+	    <include refid="base_column" />
+	    from T_SYS_RESOURCE
+	</select>
+	
+	<!-- 以上SQL 为原认证框架用 -->
+	
+	<select id="getResourceById" parameterType="int"	resultType="resource">
+	    select
+	    <include refid="base_column" />
+	    from T_SYS_RESOURCE
+	    where id=#{resource_id}
+	</select>
+	
+	<select id="findResource" parameterType="resource"  resultType="resource">
+		select
+	    <include refid="base_column" />
+	    from T_SYS_RESOURCE
+		where 1=1
+		<if test="name != null and name !='' ">
+		and name=#{name}
+		</if>
+		<if test="privilege != null and privilege !='' ">
+		and privilege=#{privilege}
+		</if>
+		<if test="parent_id != null and parent_id != '' ">
+		and parent_id=#{parent_id}
+		</if>
+	</select>
+	
+	
+	<insert id="insertResource" parameterType="resource">
+		insert into T_SYS_RESOURCE
+		(type,name,privilege,parent_id,status,sort,description,bz1,bz2,bz3,bz4,bz5)
+		values
+		(#{type}, #{name}, #{privilege}, #{parent_id}, #{status}, 
+		 #{sort}, #{description}, #{bz1}, #{bz2}, #{bz3}, #{bz4}, #{bz5})
+	</insert>
+	
+	<update id="updateResource" parameterType="resource">
+	    update T_SYS_RESOURCE
+	    set privilege=#{privilege}, status=#{status}, sort=#{sort}, description=#{description}
+	    where id=#{id}
+	</update>
+	
+	<delete id="deleteResource" parameterType="int">
+	    delete from T_SYS_RESOURCE where id=#{id}
+	</delete>
+	
+		
+</mapper>

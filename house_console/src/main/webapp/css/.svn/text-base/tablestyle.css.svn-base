@@ -1,0 +1,45 @@
+body {
+	background: white;
+}
+
+#nav {
+	height: 30px;
+	line-height: 30px;
+	border-bottom: 1px solid #666;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+	width: 100%;
+	border: 0;
+	margin-top: 35px;
+}
+
+table th {
+	height: 30px;
+	background-color: #999;
+	font-weight: bold;
+	color: #fff;
+	border: 1px solid #666;
+	font-size: 14px;
+}
+
+table td {
+	height: 30px;
+	color: #333;
+	border: 1px solid #666;
+	font-size: 13px;
+}
+
+fieldset,img {
+	border: 0;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+input,select {
+	color: #333;
+}

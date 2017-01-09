@@ -1,0 +1,26 @@
+@charset "utf-8";
+/* CSS Document */
+
+/*==============miugopay 通用小键盘（其实js不通啊，悲催，手写丫，蛋疼）=====================*/
+
+/*登录密码数字键盘*/
+.vk{width:310px; height:50px; margin-top:3px; clear:both; padding-top:3px; } 
+.vk dl{ text-align:center; width:172px; margin-left:150px; } 
+.vk dl dd{  width:20px;  height:20px; vertical-align : middle; text-align:center; float:left; border : 1px solid  #ccc;  background-color : #999;  color:#fff;line-height:20px;cursor:pointer; font-size:13px;} 
+.vk dl dd:hover{ background-color:#666;}
+.vk dl dd.vkbtn{  width:60px; height:20px; vertical-align : middle; text-align:center; float:left;  border : 1px solid  #ccc;  background-color : #999;  color:#fff; line-height:20px;
+ font-size:11px;cursor:pointer; } 
+.vk dl dd.vkbtn:hover{background-color:#666;}
+
+.s_border{width:180px; height:30px;  border:1px solid #ccc; display:inline-block; vertical-align:middle;}
+
+.s_kb{display:inline-block; width:34px; height:30px; float:right; background:url(../images/public/s_keyboard.jpg) no-repeat; cursor:pointer;}
+
+.sktbg{width:550px; float:left; margin-top:25px;  margin-bottom:30px;}
+.skbg{ width:310px; height:32px; margin-top:15px; }
+.sktitle{ width:100px; float:left; padding-right:10px; text-align:right; font-size:13px; height:30px; line-height:30px; }
+.skborder{ float:right; width:190px; height:30px;  border:1px solid #ccc;}
+.skinput{ width:140px;  float:left; padding:6px 0px 6px 5px; border:0 none; }
+.skinput_n{ width:185px; padding:6px 0px 6px 5px; border:1px solid #ccc; background:#fff; margin-left:-1px;}
+.s_keyboard{ background:url(../images/s_keyboardp.jpg) no-repeat; width:34px; height:30px; display:inline-block; float:left; cursor:pointer;}
+

@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>   
+<beans:beans xmlns="http://www.springframework.org/schema/security"   
+    xmlns:beans="http://www.springframework.org/schema/beans"   
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"   
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd   
+                        http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.2.xsd">   
+                           
+<!--     <debug/>    -->
+           
+    
+    <http pattern="/resources/**" security="none"/> 
+    <http pattern="/css/**" security="none"/> 
+    <http pattern="/images/**" security="none"/> 
+    <http pattern="/js/**" security="none"/>
+    <http pattern="/logs/**" security="none"/>    
+    <http pattern="/resource/**" security="none"/>
+    <http pattern="/index.shtml" security="none"/>
+    <http pattern="/timeoutLogout.shtml" security="none"/>
+    <http pattern="/init.shtml" security="none"/>
+    <http pattern="qiao/qiaoCallback.shtml" security="none"/>
+    <http pattern="/qiao/qiaoCallback.shtml" security="none"/>
+    <http pattern="/qiaoCallback.shtml" security="none"/>
+    <http pattern="/toLogin.shtml" security="none"/>
+    <http pattern="/page/login.jsp" security="none"/>
+    <http pattern="/common/403.jsp" security="none"/>
+    <http pattern="/page/index.jsp" security="none"/>
+    <http pattern="/page/mainPage.jsp" security="none"/>
+    <http pattern="/page/wap/**" security="none"/> 
+    <http pattern="/wap/*.shtml" security="none"/> 
+    <http pattern="/randomcode" security="none"/>
+
+      
+    <http use-expressions="true"  access-denied-page="/page/common/403.jsp"  entry-point-ref="authenticationProcessingFilterEntryPoint">   
+
+<!--	<intercept-url pattern="/secure/**" access="ROLE_ADMIN,IS_AUTHENTICATED_ANONYMOUSLY"/>
+		IS_AUTHENTICATED_ANONYMOUSLY        允许匿名用户进入
+		IS_AUTHENTICATED_FULLY              允许登录用户进入
+		IS_AUTHENTICATED_REMEMBERED         允许登录用户和rememberMe用户进入
+		isAuthenticated()                   表示根目录下的secure目录需要经过验证后才能访问的-->
+		
+        <!-- 实现免登陆验证 -->  
+<!--         <remember-me key="spitterKey" token-validity-seconds = "2419200" /> 4个礼拜-->
+
+        <!-- 单点登录需要配置session-authentication-strategy-ref -->
+<!--         <session-management session-authentication-strategy-ref="sas" invalid-session-url="/system!index.shtml" />    -->
+<!-- 		 <session-management invalid-session-url="/system!index.shtml" /> -->
+        
+        <!-- 单点登录 -->
+<!--         <custom-filter  ref="concurrencyFilter" before="CONCURRENT_SESSION_FILTER" />   -->
+
+        <!-- 登录认证 --> 
+       
+        <custom-filter ref="loginFilter" position="FORM_LOGIN_FILTER"  />   
+     
+        
+        <!-- 权限认证 -->
+        <custom-filter ref="securityFilter" before="FILTER_SECURITY_INTERCEPTOR"/>
+             
+    </http>   
+   
+    
+    <!-- 登录认证过滤器 -->   
+    <beans:bean id="loginFilter" class="com.console.framework.auth.MyUsernamePasswordAuthenticationFilter">
+    	
+<!--    <beans:property name="sessionAuthenticationStrategy" ref="sas" /> -->
+
+        <!-- 处理登录的action -->   
+        <beans:property name="filterProcessesUrl" value="/login"/>
+        <!-- 验证成功后的处理-->   
+        <beans:property name="authenticationSuccessHandler" ref="loginLogAuthenticationSuccessHandler"/>
+        <!-- 验证失败后的处理-->   
+        <beans:property name="authenticationFailureHandler" ref="simpleUrlAuthenticationFailureHandler"/> 
+        <beans:property name="authenticationManager" ref="myAuthenticationManager"/> 
+        <beans:property name="myBatisDao" ref="myBatisDao"/>
+    </beans:bean>
+    
+    <!-- 登录成功 -->   
+    <beans:bean id="loginLogAuthenticationSuccessHandler"   
+        class="org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler">   
+        <beans:property name="defaultTargetUrl" value="/main.shtml"/>
+        <beans:property name="alwaysUseDefaultTargetUrl" value="true" />
+    </beans:bean>
+    
+    <!-- 登录失败-->   
+    <beans:bean id="simpleUrlAuthenticationFailureHandler" class="org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler">   
+        <!-- 可以配置相应的跳转方式。属性forwardToDestination为true采用forward false为sendRedirect -->   
+        <beans:property name="defaultFailureUrl" value="/toLogin.shtml"></beans:property>   
+    </beans:bean>   
+       
+    <!-- 权限认证过滤器 -->   
+    <beans:bean id="securityFilter" class="com.console.framework.auth.MySecurityFilter">   
+        <!-- 用户拥有的权限 -->   
+        <beans:property name="authenticationManager" ref="myAuthenticationManager" />   
+        <!-- 用户是否拥有所请求资源的权限 -->   
+        <beans:property name="accessDecisionManager" ref="myAccessDecisionManager" />   
+        <!-- 资源与权限对应关系 -->   
+        <beans:property name="securityMetadataSource" ref="mySecurityMetadataSource" />   
+    </beans:bean>  
+     
+    <!-- 实现了UserDetailsService的Bean --> 
+    <authentication-manager  alias="myAuthenticationManager" erase-credentials="false">   
+        <authentication-provider user-service-ref="myUserDetailServiceImpl" > 
+        	<password-encoder hash="md5">
+        	<salt-source system-wide="BirePfBc0F4ogGgOgvZe"/>
+			<!-- <salt-source user-property="username"/> -->
+  			</password-encoder>
+        </authentication-provider>  
+    </authentication-manager>   
+      
+    <!-- 用户是否拥有所请求资源的权限 -->
+    <beans:bean id="myAccessDecisionManager" class="com.console.framework.auth.MyAccessDecisionManager"/>
+    <!-- 资源与权限对应关系 -->  
+    <beans:bean id="mySecurityMetadataSource" class="com.console.framework.auth.MySecurityMetadataSource">   
+        <beans:constructor-arg name="myBatisDao" ref="myBatisDao"/>
+    </beans:bean>   
+    <beans:bean id="myUserDetailServiceImpl" class="com.console.framework.auth.MyUserDetailServiceImpl">   
+        <beans:property name="myBatisDao" ref="myBatisDao"/>
+    </beans:bean>   
+    
+<!--     单点登录过滤器  -->
+<!--      <beans:bean id="concurrencyFilter" class="org.springframework.security.web.session.ConcurrentSessionFilter"> -->
+<!--   		<beans:property name="sessionRegistry" ref="sessionRegistry" /> -->
+<!--   		<beans:property name="expiredUrl" value="/system!timeoutindex.shtml" /> -->
+<!-- 	</beans:bean>      -->
+<!--     <beans:bean id="sas" class=	"org.springframework.security.web.authentication.session.ConcurrentSessionControlStrategy"> -->
+<!--   		<beans:constructor-arg name="sessionRegistry" ref="sessionRegistry" /> -->
+<!--   		<beans:property name="maximumSessions" value="1" /> -->
+<!-- 	</beans:bean> -->
+	<beans:bean id="sessionRegistry" class="org.springframework.security.core.session.SessionRegistryImpl" />
+       
+    <!-- 未登录的切入点 -->   
+    <beans:bean id="authenticationProcessingFilterEntryPoint" class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint">   
+        <beans:property name="loginFormUrl" value="/main.shtml"/>
+    </beans:bean>  
+
+     
+</beans:beans>
