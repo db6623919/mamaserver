@@ -1,0 +1,33 @@
+.am-header-title a{
+  color: #ffffff;
+}
+.am-hotline-body{
+  height: 100%;
+  overflow: hidden;
+  background-size:100% 100%;
+  background-image: url(../i/hotline/bg.jpg);
+}
+.am-hotline-phone{   
+  margin-left: 4rem;
+  margin-right: 4rem;
+  border: 1px solid #ffffff;
+  text-align: center;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  margin-top: 5rem;
+  font-size: 2.1rem;
+  color: #ffffff;
+}
+.am-hotline-phone-img{
+  width: 45px;
+}
+.am-hotline-text-1{
+  letter-spacing: 7px;
+}
+.am-hotline-tips{
+  color: #ffffff;
+  margin-left: 4rem;
+  margin-right: 4rem;
+  margin-top: 1.5rem;
+  font-size: 1rem;
+}

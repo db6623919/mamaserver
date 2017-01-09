@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+	<head lang="en">
+		<meta charset="UTF-8">
+		<title>领取旅居劵</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="Cache-Control" content="no-cache" />
+		<link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/reset.css')">
+		<link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/order_3_5.css')">
+		<link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/wx.css')"/>
+		<script type="text/javascript" src="#springUrl('/assets/js/zepto.min.js')"></script>
+		<script type="text/javascript" src="#springUrl('/assets/js/common.js')"></script>
+		<script type="text/javascript">
+			var adaptPageClass = "content";
+		</script>
+	</head>
+	<body>
+		<div class="body content">
+			<header class="bg-red ">
+				<div class="head">
+					<a class="back ui-link" id="back" tdata-rel="back">返回</a>
+					<div class="title header_title" id="header-title">旅居劵</div>
+					<div class="more_wraper">
+					</div>
+				</div>
+			</header>
+			<div class="wx_top">
+					<div class="coupon_count"><span id="count">6</span>张免费入住的旅居劵</div>
+					<div class="coupon_house" >入住房间：<span id="houseName">三亚亲和源三房两厅</span></div>
+			</div>
+			<div class="wx_middle fs-12  text-color-white">
+					<div class="coupon_status w-100 ">领取成功</div>
+					<div class="coupon_hint w-100 fs-0-9">请使用手机号登陆【妈妈送房】APP查看旅居劵</div>
+			</div>
+			<div class="wx_bottom"></div>
+			
+			<div class="coupon_list_title fs-1 pl-10 pr-10">
+				<div class="fl text-color-69 w-50 pt-10 pb-10 ">领取状态</div>
+				<div class="fr fs-1 text-color w-50 pt-10 pb-10 tr"><span class="text-color-fb" id="people">2人</span>已领取 &nbsp;&nbsp;共<span id="total">5</span>份礼品</div>
+			</div>
+			<div class="coupon_list clear border-bottom-default " id="list">
+			</div>
+		</div>
+		<script type="text/javascript" src="#springUrl('/assets/js/underscore-min.js')"></script>
+		<script type="text/template" id="tpl">
+			<%var detail=JSON.parse(datas.showDetail)%>
+			<% _.each(datas.receives, function (item,i) { %>
+				<div class="coupon_item pt-20 pb-20 border-top-default pl-10">
+					<div class=" fs-12 text-color-91">
+						<div>
+							<div class="coupon_item_name fl text-color"><%-cutOut(item.accountRefId)%></div>
+							<div class="coupon_item_time fr pr-10"><%-getLocalTime(item.createTime)%></div>
+						</div>
+						
+						<div class="coupon_item_houses clear fs-1">免费入住劵：<%-detail.houseName%></div>
+						<div class="coupon_item_count fs-1">数量：<%-detail.copiesLimit%>张</div>
+					</div>
+				</div>
+			<%});%>
+			
+		</script>
+		<script>
+			onload=function(){
+				var data=${data};
+				var giveCode;
+				if(data.code==0){
+					var result=data.data.hotelCouponGive;
+					var showDetail=JSON.parse(result.showDetail);
+					giveCode=result.giveCode;
+					$("#count").html(showDetail.copiesLimit);
+					$("#houseName").html(showDetail.houseName);
+					$("#people").html(result.receives.length);
+					$("#total").html(showDetail.total);
+					
+					var render=_.template($('#tpl').html());
+					var html=render({datas:result});
+					$('#list').html(html);
+				}else{
+					myAlert('友情提示', '系统繁忙，请稍后重试');
+				}
+			}
+		</script>
+	</body>
+</html>

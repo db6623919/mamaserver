@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>妈妈送房</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-cache" />
+  <link rel="stylesheet" href="#springUrl('/assets/css/amazeui.min.css')"/>
+  <link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/reset.css')">
+  <link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/register_v2.css')">
+  <script type="text/javascript" src="#springUrl('/assets/js/jquery.min.js')"></script>
+  <script type="text/javascript" src="#springUrl('/assets/js/amazeui.min.js')"></script>
+  <script type="text/javascript" src="#springUrl('/assets/js/common.js')"></script>
+  <script type="text/javascript" src="#springUrl('/assets/js/count-time.js')"></script>
+  <script type="text/javascript">
+  	var adaptPageClass = "content";
+  </script>
+  <style>
+
+  </style>
+</head>
+<body>
+  <div class="body content">
+    <header class="header clearfix">
+       <div class="head">
+        <a class="back ui-link" href="javascript:void(0);" onClick="javascript :history.go(-1);" tdata-rel="back">返回</a>
+        <div class="title header_title" id="header-title">升级有红包</div>
+       </div>
+    </header>
+    <div class="am-g bg-fbf pb-15 pl-15 pr-15">
+	  #if($!map.level==1)
+      <div class="mt-15 am-card-border clearfix">
+          <div class="bg-yunyou am-card-container am-u-sm-3 am-pl-0 am-pr-0 tc ">
+              <img src="#springUrl('/assets/i/card-des/yunyou-icon.png')">
+              <p class="am-mg-0"style="color:#ffffff;font-size:1.4rem;padding:0.5rem 0 1.5rem;">云游卡</p>
+          </div>
+          <div class="am-u-sm-9 am-pr-0" style="">
+              <p class="pr-15 fs-1 pt-5">
+              即刻升级，尊享订房返利<span class="text-color-red">2.0%</span>
+              </p>
+              <p class="fs-1 pr-15" style="color:#bbbbbb;">
+                累计可送<span class="text-color-red">$!map.yunyouReward</span>积分红包，$!map.yunyouPrice积分奢华别墅免费住<span class="text-color-red">$!map.yunyouCount</span>晚
+              </p>
+                <div class="am-u-sm-7 am-pl-0 am-pr-0 mt-10">
+                  <p class="fs-13" style="line-height:2rem;">
+                    还需<span class="text-color-red">$!map.yunyouAmt</span>元
+                  </p>
+                </div>
+                <div class="am-u-sm-5 am-pl-0 pr-5 mt-10" style="text-align:right">
+                  <button class="am-btn am-btn-warning am-radius" rel="$!map.yunyouAmt">
+                    立即充值
+                  </button>
+                </div>
+          </div>
+      </div>
+       <div class="mt-10 am-card-border clearfix">
+          <div class="bg-huanju am-card-container am-u-sm-3 am-pl-0 am-pr-0 tc ">
+              <img src="#springUrl('/assets/i/card-des/huanju-icon.png')">
+              <p class="am-mg-0"style="color:#ffffff;font-size:1.4rem;padding:0.5rem 0 1.5rem;">欢聚卡</p>
+          </div>
+          <div class="am-u-sm-9 am-pr-0" style="">
+              <p class="pr-15 fs-1 pt-5">
+                 即刻升级，尊享订房返利<span class="text-color-red">1.5%</span>
+              </p>
+              <p class="fs-1 pr-15" style="color:#bbbbbb;">
+                累计可送<span class="text-color-red">$!map.huanjuReward</span>积分红包，$!map.huanjuPrice积分豪华套房免费住<span class="text-color-red">$!map.huanjuCount</span>晚
+              </p>
+                <div class="am-u-sm-7 am-pl-0 am-pr-0 mt-10">
+                  <p class="fs-13" style="line-height:2rem;">
+                    还需<span class="text-color-red">$!map.huanjuAmt</span>元
+                  </p>
+                </div>
+                <div class="am-u-sm-5 am-pl-0 pr-5 mt-10" style="text-align:right">
+                  <button class="am-btn am-btn-warning am-radius" rel="$!map.huanjuAmt">
+                    立即充值
+                  </button>
+                </div>
+          </div>
+      </div>
+       <div class="mt-10 am-card-border clearfix">
+          <div class="bg-honey am-card-container am-u-sm-3 am-pl-0 am-pr-0 tc ">
+              <img src="#springUrl('/assets/i/card-des/honey-icon.png')">
+              <p class="am-mg-0"style="color:#ffffff;font-size:1.4rem;padding:0.5rem 0 1.5rem;">甜蜜卡</p>
+          </div>
+          <div class="am-u-sm-9 am-pr-0" style="">
+              <p class="pr-15 fs-1 pt-5">
+               即刻升级，尊享订房返利<span class="text-color-red">1.0%</span>
+              </p>
+              <p class="fs-1 pr-15" style="color:#bbbbbb;">
+                 累计可送<span class="text-color-red">$!map.tianmiReward</span>积分红包，$!map.tianmiPrice积分高级双房免费住<span class="text-color-red">$!map.tianmiCount</span>晚
+              </p>
+                <div class="am-u-sm-7 am-pl-0 am-pr-0 mt-10">
+                  <p class="fs-13" style="line-height:2rem;">
+                    还需<span class="text-color-red">$!map.tianmiAmt</span>元
+                  </p>
+                </div>
+                <div class="am-u-sm-5 am-pl-0 pr-5 mt-10" style="text-align:right">
+                  <button class="am-btn am-btn-warning am-radius" rel="$!map.tianmiAmt">
+                    立即充值
+                  </button>
+                </div>
+          </div>
+      </div>
+       <div class="mt-10 am-card-border clearfix">
+          <div class="bg-xiaoyao am-card-container am-u-sm-3 am-pl-0 am-pr-0 tc ">
+              <img src="#springUrl('/assets/i/card-des/xiaoyao-icon.png')">
+              <p class="am-mg-0"style="color:#ffffff;font-size:1.4rem;padding:0.5rem 0 1.5rem;">逍遥卡</p>
+          </div>
+          <div class="am-u-sm-9 am-pr-0" style="">
+              <p class="pr-15 fs-1 pt-5">
+              即刻升级，尊享订房返利<span class="text-color-red">0.5%</span>
+              </p>
+              <p class="fs-1 pr-15" style="color:#bbbbbb;">
+                    累计可送<span class="text-color-red">$!map.xiaoyaoReward</span>积分红包，$!map.xiaoyaoPrice积分温馨单房免费住<span class="text-color-red">$!map.xiaoyaoCount</span>晚
+              </p>
+                <div class="am-u-sm-7 am-pl-0 am-pr-0 mt-10">
+                  <p class="fs-13" style="line-height:2rem;">
+                    还需<span class="text-color-red">$!map.xiaoyaoAmt</span>元
+                  </p>
+                </div>
+                <div class="am-u-sm-5 am-pl-0 pr-5 mt-10" style="text-align:right">
+                  <button class="am-btn am-btn-warning am-radius" rel="$!map.xiaoyaoAmt">
+                    立即充值
+                  </button>
+                </div>
+          </div>
+      </div>
+	  
+	  #elseif($!map.level==2)
+	  <div class="mt-15 am-card-border clearfix">
+          <div class="bg-yunyou am-card-container am-u-sm-3 am-pl-0 am-pr-0 tc ">
+              <img src="#springUrl('/assets/i/card-des/yunyou-icon.png')">
+              <p class="am-mg-0"style="color:#ffffff;font-size:1.4rem;padding:0.5rem 0 1.5rem;">云游卡</p>
+          </div>
+          <div class="am-u-sm-9 am-pr-0" style="">
+              <p class="pr-15 fs-1 pt-5">
+              即刻升级，尊享订房返利<span class="text-color-red">2.0%</span>
+              </p>
+              <p class="fs-1 pr-15" style="color:#bbbbbb;">
+                累计可送<span class="text-color-red">$!map.yunyouReward</span>积分红包，$!map.yunyouPrice积分奢华别墅免费住<span class="text-color-red">$!map.yunyouCount</span>晚
+              </p>
+                <div class="am-u-sm-7 am-pl-0 am-pr-0 mt-10">
+                  <p class="fs-13" style="line-height:2rem;">
+                    还需<span class="text-color-red">$!map.yunyouAmt</span>元
+                  </p>
+                </div>
+                <div class="am-u-sm-5 am-pl-0 pr-5 mt-10" style="text-align:right">
+                  <button class="am-btn am-btn-warning am-radius" rel="$!map.yunyouAmt">
+                    立即充值
+                  </button>
+                </div>
+          </div>
+      </div>
+       <div class="mt-10 am-card-border clearfix">
+          <div class="bg-huanju am-card-container am-u-sm-3 am-pl-0 am-pr-0 tc ">
+              <img src="#springUrl('/assets/i/card-des/huanju-icon.png')">
+              <p class="am-mg-0"style="color:#ffffff;font-size:1.4rem;padding:0.5rem 0 1.5rem;">欢聚卡</p>
+          </div>
+          <div class="am-u-sm-9 am-pr-0" style="">
+              <p class="pr-15 fs-1 pt-5">
+                 即刻升级，尊享订房返利<span class="text-color-red">1.5%</span>
+              </p>
+              <p class="fs-1 pr-15" style="color:#bbbbbb;">
+                累计可送<span class="text-color-red">$!map.huanjuReward</span>积分红包，$!map.huanjuPrice积分豪华套房免费住<span class="text-color-red">$!map.huanjuCount</span>晚
+              </p>
+                <div class="am-u-sm-7 am-pl-0 am-pr-0 mt-10">
+                  <p class="fs-13" style="line-height:2rem;">
+                    还需<span class="text-color-red">$!map.huanjuAmt</span>元
+                  </p>
+                </div>
+                <div class="am-u-sm-5 am-pl-0 pr-5 mt-10" style="text-align:right">
+                  <button class="am-btn am-btn-warning am-radius" rel="$!map.huanjuAmt">
+                    立即充值
+                  </button>
+                </div>
+          </div>
+      </div>
+       <div class="mt-10 am-card-border clearfix">
+          <div class="bg-honey am-card-container am-u-sm-3 am-pl-0 am-pr-0 tc ">
+              <img src="#springUrl('/assets/i/card-des/honey-icon.png')">
+              <p class="am-mg-0"style="color:#ffffff;font-size:1.4rem;padding:0.5rem 0 1.5rem;">甜蜜卡</p>
+          </div>
+          <div class="am-u-sm-9 am-pr-0" style="">
+              <p class="pr-15 fs-1 pt-5">
+               即刻升级，尊享订房返利<span class="text-color-red">1.0%</span>
+              </p>
+              <p class="fs-1 pr-15" style="color:#bbbbbb;">
+                 累计可送<span class="text-color-red">$!map.tianmiReward</span>积分红包，$!map.tianmiPrice积分高级双房免费住<span class="text-color-red">$!map.tianmiCount</span>晚
+              </p>
+                <div class="am-u-sm-7 am-pl-0 am-pr-0 mt-10">
+                  <p class="fs-13" style="line-height:2rem;">
+                    还需<span class="text-color-red">$!map.tianmiAmt</span>元
+                  </p>
+                </div>
+                <div class="am-u-sm-5 am-pl-0 pr-5 mt-10" style="text-align:right">
+                  <button class="am-btn am-btn-warning am-radius" rel="$!map.tianmiAmt">
+                    立即充值
+                  </button>
+                </div>
+          </div>
+      </div>
+	  #elseif($!map.level==3)
+	      <div class="mt-15 am-card-border clearfix">
+          <div class="bg-yunyou am-card-container am-u-sm-3 am-pl-0 am-pr-0 tc ">
+              <img src="#springUrl('/assets/i/card-des/yunyou-icon.png')">
+              <p class="am-mg-0"style="color:#ffffff;font-size:1.4rem;padding:0.5rem 0 1.5rem;">云游卡</p>
+          </div>
+          <div class="am-u-sm-9 am-pr-0" style="">
+              <p class="pr-15 fs-1 pt-5">
+              即刻升级，尊享订房返利<span class="text-color-red">2.0%</span>
+              </p>
+              <p class="fs-1 pr-15" style="color:#bbbbbb;">
+                累计可送<span class="text-color-red">$!map.yunyouReward</span>积分红包，$!map.yunyouPrice积分奢华别墅免费住<span class="text-color-red">$!map.yunyouCount</span>晚
+              </p>
+                <div class="am-u-sm-7 am-pl-0 am-pr-0 mt-10">
+                  <p class="fs-13" style="line-height:2rem;">
+                    还需<span class="text-color-red">$!map.yunyouAmt</span>元
+                  </p>
+                </div>
+                <div class="am-u-sm-5 am-pl-0 pr-5 mt-10" style="text-align:right">
+                  <button class="am-btn am-btn-warning am-radius" rel="$!map.yunyouAmt">
+                    立即充值
+                  </button>
+                </div>
+          </div>
+      </div>
+       <div class="mt-10 am-card-border clearfix">
+          <div class="bg-huanju am-card-container am-u-sm-3 am-pl-0 am-pr-0 tc ">
+              <img src="#springUrl('/assets/i/card-des/huanju-icon.png')">
+              <p class="am-mg-0"style="color:#ffffff;font-size:1.4rem;padding:0.5rem 0 1.5rem;">欢聚卡</p>
+          </div>
+          <div class="am-u-sm-9 am-pr-0" style="">
+              <p class="pr-15 fs-1 pt-5">
+                 即刻升级，尊享订房返利<span class="text-color-red">1.5%</span>
+              </p>
+              <p class="fs-1 pr-15" style="color:#bbbbbb;">
+                累计可送<span class="text-color-red">$!map.huanjuReward</span>积分红包，$!map.huanjuPrice积分豪华套房免费住<span class="text-color-red">$!map.huanjuCount</span>晚
+              </p>
+                <div class="am-u-sm-7 am-pl-0 am-pr-0 mt-10">
+                  <p class="fs-13" style="line-height:2rem;">
+                    还需<span class="text-color-red">$!map.huanjuAmt</span>元
+                  </p>
+                </div>
+                <div class="am-u-sm-5 am-pl-0 pr-5 mt-10" style="text-align:right">
+                  <button class="am-btn am-btn-warning am-radius" rel="$!map.huanjuAmt">
+                    立即充值
+                  </button>
+                </div>
+          </div>
+      </div>
+	  #elseif($!map.level==4)
+		    <div class="mt-15 am-card-border clearfix">
+          <div class="bg-yunyou am-card-container am-u-sm-3 am-pl-0 am-pr-0 tc ">
+              <img src="#springUrl('/assets/i/card-des/yunyou-icon.png')">
+              <p class="am-mg-0"style="color:#ffffff;font-size:1.4rem;padding:0.5rem 0 1.5rem;">云游卡</p>
+          </div>
+          <div class="am-u-sm-9 am-pr-0" style="">
+              <p class="pr-15 fs-1 pt-5">
+              即刻升级，尊享订房返利<span class="text-color-red">2.0%</span>
+              </p>
+              <p class="fs-1 pr-15" style="color:#bbbbbb;">
+                累计可送<span class="text-color-red">$!map.yunyouReward</span>积分红包，$!map.yunyouPrice积分奢华别墅免费住<span class="text-color-red">$!map.yunyouCount</span>晚
+              </p>
+                <div class="am-u-sm-7 am-pl-0 am-pr-0 mt-10">
+                  <p class="fs-13" style="line-height:2rem;">
+                    还需<span class="text-color-red">$!map.yunyouAmt</span>元
+                  </p>
+                </div>
+                <div class="am-u-sm-5 am-pl-0 pr-5 mt-10" style="text-align:right">
+                  <button class="am-btn am-btn-warning am-radius" rel="$!map.yunyouAmt">
+                    立即充值
+                  </button>
+                </div>
+          </div>
+      </div>
+	  #end
+    </div>
+
+  </div>
+ <script type="text/javascript">
+
+ $(function(){
+    $(".am-btn").click(function(){
+    	var amt = $(this).attr("rel");
+	 	self.location.href='#springUrl('/my/recharge_index.htm')?amt='+amt;
+    });
+});
+ </script>
+</body>
+</html>

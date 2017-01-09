@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+	<meta charset="UTF-8">
+	<title>换劵中心</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="Cache-Control" content="no-cache" />
+
+	<link rel="stylesheet" href="#springUrl('/assets/css/amazeui.min.css')" />
+	<link rel="stylesheet" href="#springUrl('/assets/css/reset.css')" />
+	<link rel="stylesheet" href="#springUrl('/assets/css/index.css')">
+	<link rel="stylesheet" href="#springUrl('/assets/css/order_3_5.css')" />
+
+	<script type="text/javascript" src="#springUrl('/assets/js/jquery.min.js')"></script>
+	<script type="text/javascript" src="#springUrl('/assets/js/amazeui.min.js')"></script>
+	<script type="text/javascript" src="#springUrl('/assets/js/common.js?_v=1')"></script>
+	<script type="text/javascript" src="#springUrl('/assets/js/TouchSlide.1.0.source.js')"></script>
+	
+	<script type="text/javascript">
+		var adaptPageClass = "content";
+	</script>
+</head>
+<body>
+	<div id="text">
+				
+			</div>
+	<div class="body content bg-ee" style="min-height: 979px;">
+		<header class="bg-red  clearfix">
+			<div class="head">
+	        	<a class="back ui-link" href="javascript:void(0);" onClick="javascript :history.go(-1);" tdata-rel="back">返回</a>
+	        	<div class="title header_title" id="header-title">换劵中心</div>
+	       	</div>
+		</header>
+		<div class="am-g ">
+			<div class="slider" id="selectC_tab">
+				<div class="hd clearfix">
+					<ul>
+						<li>
+							<a class="color-grey" href="javascript:void(0);">发布的换劵</a>
+						</li>
+						<li><a class="color-grey" href="javascript:void(0);">申请的换劵</a></li>
+					</ul>
+				</div>
+				<div id="list" class="bd">
+					<ul>
+						
+					</ul>
+					<ul>
+							
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<script type="text/template" id="tpl">
+	    <%if(datas.length==0){%>
+	        <div style="text-align: center;">
+		        <p class="am-text-center fs-0-9 text-color-91"><h2>您暂无旅居券</h2></p>
+		    </div>
+		<%}%>
+		<% _.each(datas, function (item,i) { %>
+			<div class="w-100  mt-12 pl-10 pr-10 pos-relative" onclick="location.href='#springUrl('/exchange/item-<%-item.id%>.htm')'">
+							<img src="#springUrl('/assets/i/travel/travel.png')" class="am-travel-img">
+							<div class="am-travel">
+								<div class="am-u-sm-7">
+									<p class="fs-12 text-color-6 fw-bd mt-0 mb-0"><%-decodeURI(JSON.parse(item.showDetail).houseName) %></p>
+									<p class="fs-0-9 text-color-91 mt-5 mb-0">免费入住1晚</p>
+								</div>
+								<div class="am-u-sm-5 tr text-color-white fs-12 tr">
+									<span class="fw-bd fs-2-64"><%-eval("("+item.hotelCouponIds+").length")%></span>张
+								</div>
+								<div class="clear"></div>
+								<div class="mt-5">
+									<div class="am-u-sm-6">
+										<p class="fs-0-9 text-color-91"><%-JSON.parse(item.showDetail).inSeason==1?"旺季入住":"平季入住"%><span class="text-color-fb">（<%-status[item.status]%>）</span></p>
+									</div>
+									<div class="am-u-sm-6 tr">
+										<p class="fs-0-9 text-color-91"><span class="text-color-fb"><%-item.requestCount %>人</span>申请交换该劵</p>
+									</div>
+								</div>
+							</div>
+						</div>
+			<% }); %>
+	</script>
+	<script type="text/javascript" src="#springUrl('/assets/js/underscore-min.js')"></script>
+	<script type="text/javascript">
+		(function(){
+			var datas=[];
+			_(datas);
+		})();
+		
+		TouchSlide({
+				slideCell: "#selectC_tab",
+				startFun:function(i,c){
+					$.ajax({
+						type:'get',
+						data:'type='+(1+i),
+						url:"#springUrl('/my/exchange/listToJson.htm')",
+						success:function(data){
+							if(data.code==0){
+								//decodeURI
+								var status=[];
+								status.push("交换中");
+								status.push("成功交换");
+								status.push("取消交换");
+								datas=JSON.parse(data.data);
+								var render=_.template($('#tpl').html());
+								var html=render({datas:datas,status:status});
+								$('#list>ul').eq(i).html(html);
+							}else{
+								myAlert('友情提示', '系统繁忙，请稍后重试');
+							}
+							
+						}
+					});
+				}
+			});
+		
+	</script>
+</body>
+</html>

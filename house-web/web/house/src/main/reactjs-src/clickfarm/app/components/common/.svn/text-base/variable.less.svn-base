@@ -1,0 +1,4 @@
+@primary-color: #ff6f5c;
+@highlight-color: #ff5300;
+@primary-btn-active: #FF573D;
+@bg-color: #fbfbfb;

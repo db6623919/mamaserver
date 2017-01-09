@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+
+	<head lang="en">
+		<meta charset="UTF-8">
+		<title>换劵详情</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="Cache-Control" content="no-cache" />
+		<link rel="stylesheet" href="#springUrl('/assets/css/amazeui.min.css')" />
+		<link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/reset.css')">
+		<link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/order_3_5.css')" />
+		<link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/order_what.css')" />
+		<link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/trade.css')" />
+		<script type="text/javascript" src="#springUrl('/assets/js/jquery.min.js')"></script>
+		<script type="text/javascript" src="#springUrl('/assets/js/amazeui.min.js')"></script>
+		<script type="text/javascript" src="#springUrl('/assets/js/common.js')"></script>
+		<script src="#springUrl('/assets/js/TouchSlide.1.0.source.js')"></script>
+		<script type="text/javascript">
+			var adaptPageClass = "content";
+		</script>
+		#parse("/is_login.vm")
+	</head>
+	<body class="bg-ee">
+		
+		<div class="body content ">
+			<header class="bg-fb">
+				<div class="head">
+					<a class="back ui-link" href="javascript:void(0);" onClick="javascript :history.go(-1);" tdata-rel="back">返回</a>
+					<div class="title header_title" id="header-title">换劵详情</div>
+					<div class="more_wraper2" id="mycancel">
+						取消换劵
+					</div>
+					
+				</div>
+			</header>
+			<div id="status"></div>
+			
+			<div id="myCouopon">
+				
+			</div>
+			
+
+			<div class="w-100 pt-10  text-color-91">
+				<p class="fs-11  pl-10 am-mg-0">申请交换列表</p>
+			</div>
+			
+			<div id="coupon_items">
+			
+			</div>
+			
+			
+			
+			<div class="am-g w-90 bg-fb fs-12 text-color-white line-h-32 tc mt-40 mb-15 am-radius" id="applyExchange">
+				申请换劵
+			</div>
+
+		</div>
+		<script type="text/javascript" src="#springUrl('/assets/js/underscore-min.js')"></script>
+		<script type="text/template" id="status_tmp">
+			<%if(status==0){%>
+				<div class="tc line-h-2-8 text-color-dc fs-1 bg-fe border-bottom-fa" id="status">
+					<img src="#springUrl('/assets/i/trade/icon_g.png')" class="icon">换劵需求已发布，等待换劵中...
+				</div>
+			<%}else if(status==1){%>
+				<div class="tc line-h-2-8 text-color-dc fs-1 bg-fe border-bottom-fa" id="status">
+					<img src="#springUrl('/assets/i/trade/icon_g.png')" class="icon">换劵需求已发布，成功交换...
+			    </div>
+			<%}else if(status==2){%>
+				<div class="tc line-h-2-8 text-color-c3 fs-1 bg-fe border-bottom-fa" id="status">
+					<img src="#springUrl('/assets/i/trade/icon_x.png')" class="icon">换劵需求已取消...
+				</div>
+			<%}else {%>	
+				<div class="tc line-h-2-8 text-color-dc fs-1 bg-fe border-bottom-fa" id="status">
+					<img src="#springUrl('/assets/i/trade/icon_g.png')" class="icon">换劵需求已发布，等待换劵中...
+				</div>
+			<%}%>
+			
+		</script>
+		<script type="text/template" id="mycoupon">
+			<div class="coupon border-bottom-0" data-wrapper="coupon" >
+					<div class="coupon-wrapper">
+						<div class="coupon-detail">
+							<div class="upper clearfix">
+								<div class="pull-left">
+									<p class="name"><%-JSON.parse(exchange.showDetail).houseName%></p>
+									<p class="type">免费入住1晚</p>
+								</div>
+								<div class="amount pull-right">
+									<span class="total" data-number="total"><%-eval(exchange.hotelCouponIds).length%></span>张
+								</div>
+							</div>
+							<div class="lower clearfix text">
+								<div class="pull-left">
+									<%-JSON.parse(exchange.showDetail).inSeason==1?"旺季入住":"淡季入住"%>
+								</div>
+								<div class="pull-right">
+									<%-getLocalTime(JSON.parse(exchange.showDetail).expireTime)%>到期
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="w-100 bc-white  border-top-default border-bottom-default ">
+					<div class="am-img-container-room clearfix">
+						<p class="fs-1 text-color-34 pl-10 pb-10 am-mg-0">交换意向：（必填）</p>
+						<p class="fs-11 text-color pl-10 am-mg-0 pr-15 tj"><%-JSON.parse(exchange.showDetail).intention%></p>
+					</div>
+				</div>
+		</script>
+		<script type="text/template" id="couponList">
+			<!--没有申请换劵的人-->
+			<%if(exchange.requests.length<=0){%>
+			<div class="w-100 bc-white mt-10 border-top-default border-bottom-default ">
+				<p class="fs-11 text-color-91 tc pt-15 pb-15 am-mg-0">暂时无人申请换劵</p>
+			</div>
+			<%}else{%>
+				<%_.each(exchange.requests,function(item,i){%>
+					<%var item_detail=JSON.parse(item.showDetail)%>
+					<div class="item2 border-default mt-10  pb-10">
+						<div class="icon_head left-10">
+							<img src="#springUrl('/assets/i/moren.png')" class="">
+						</div>
+						<div class="item_head">
+							<div class="fl fs-1 pl-10 pl-44">
+								<p><%-cutOut(item.memberName)%>
+									<br><span class="fs-0-9 text-color-91"><%-getLocalTime(item.createTime)+"申请"%></span></p>
+							</div>
+							<%if(${uid}==item.memberId ){%>
+							    <span id="span_<%-item.id%>">
+								<%if(exchange.status!=0){%>
+									
+								<%}else if(item.status==0){%>
+									<a class="fr item_head_right mr-10 active_trade" onclick="toCancel(2,<%-item.id%>)">取消换入</a>
+								<%}else if(item.status==1){%>
+									<a class="fr item_head_right mr-10 active_trade">成功交换</a>
+								<%}else if(item.status==2){%>
+									<a class="fr item_head_right mr-10 ">已取消</a>
+								<%}else{%>
+									<a class="fr item_head_right mr-10 ">未知状态</a>
+								<%}%>
+								</span>
+							<%}else{%>
+						        <span id="span_<%-item.id%>">
+								<%if(item.status==0){%>
+									<%if(${uid}==exchange.memberId){%>
+										<a class="fr item_head_right mr-10 active_trade" onclick="exchange(this,<%-item.exchangeId%>,<%-item.id%>)">立即换入</a>
+									<%}%>
+								<%}else if(item.status==1){%>
+									<a class="fr item_head_right mr-10 active_trade">成功交换</a>
+								<%}else if(item.status==2){%>
+									<a class="fr item_head_right mr-10 ">已取消</a>
+								<%}else{%>
+									<a class="fr item_head_right mr-10 ">未知状态</a>
+								<%}%>
+								</span>
+							<%}%>
+							
+						</div>
+						<div class="coupon border-bottom-0" data-wrapper="coupon" >
+							<div class="coupon-wrapper">
+								<div class="coupon-detail">
+									<div class="upper clearfix">
+										<div class="pull-left">
+											<p class="name"><%-item_detail.houseName%></p>
+											<p class="type">免费入住1晚</p>
+										</div>
+										<div class="amount pull-right">
+											<span class="total" data-number="total"><%-eval(item.hotelCouponIds).length%></span>张
+										</div>
+									</div>
+									<div class="lower clearfix text">
+										<div class="pull-left">
+											<%-item_detail.inSeason==1?"旺季入住":"淡季入住"%>
+										</div>
+										<div class="pull-right">
+											<%-getLocalTime(item_detail.expireTime)%>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				<%})%>
+			<%}%>
+		</script>
+		
+		<script>
+			(function(){
+				try{
+					var exchange=${exchange};
+					var exchange_detail=exchange.exchangeDetail;
+					
+					var render=_.template($("#status_tmp").html());
+					var html=render({status:exchange_detail.status,user:user});
+					$("#status").html(html);
+					
+					render=_.template($('#mycoupon').html());
+					html=render({exchange:exchange_detail,user:user});
+					$('#myCouopon').html(html);
+					console.log(exchange_detail);
+					render=_.template($("#couponList").html());
+					html=render({exchange:exchange_detail,user:user});
+					$('#coupon_items').html(html);
+					//自己取消发布的换劵
+					if(${uid}==exchange_detail.memberId&&exchange_detail.status==0){
+						$("#mycancel").show();
+						$("#mycancel").bind("click",function(e){
+							toCancel(1,exchange_detail.id);
+						});
+					}else{
+						$("#mycancel").hide();
+					}
+					
+					//自己不可以申请换劵
+					if(${uid}==exchange_detail.memberId){
+						$("#applyExchange").hide();
+					}else{
+						$("#applyExchange").show().bind("click",function(){
+							location.href="#springUrl('/my/exchange/apply-"+exchange_detail.id+".htm')";
+						});
+						
+						//换劵详情
+				}
+				}catch(e){
+					myAlert('友情提示', '系统繁忙，请稍后重试');
+				}
+				
+			})();
+			function toCancel(type,id){
+				$.ajax({
+					type:'post',
+					data:'type='+type+'&id='+id,
+					url:"#springUrl('/my/exchange/cancel.htm')",
+					success:function(data){
+						if(data.code==0){
+							var result=JSON.parse(data.data);
+							myAlert('友情提示', '取消成功',function(){
+								var render=_.template($("#status_tmp").html());
+								var html=render({status:2});
+								$("#status").html("");
+								$("#span_"+id).html("<a class='fr item_head_right mr-10 '>已取消</a>");
+								$("#mycancel").hide();
+								
+							});
+						}else{
+							myAlert('友情提示', '系统繁忙，请稍后重试');
+						}
+					}
+				});
+			}
+			
+			
+			function exchange(e,exchangeId,requestId){
+				$.ajax({
+					type:'post',
+					data:'requestId='+requestId+'&id='+exchangeId,
+					url:"#springUrl('/my/exchange/accept.htm')",
+					success:function(data){
+						var result=data;
+						if(result.code==0){
+							myAlert('友情提示', '交换成功',function(){
+								var render=_.template($("#status_tmp").html());
+								var html=render({status:1});
+								$("#status").html(html);
+								$("#mycancel").hide();
+							});
+						}else{
+							myAlert('友情提示', '系统繁忙，请稍后重试');
+						}
+					}
+				});
+				
+			}
+		</script>
+		
+	</body>
+
+</html>

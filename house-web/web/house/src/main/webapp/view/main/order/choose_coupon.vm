@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>选择旅居券</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-cache" />
+  <link rel="stylesheet" href="#springUrl('/assets/css/amazeui.min.css')"/>
+  <link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/reset.css')">
+  <link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/order_3_5.css')">
+  <script type="text/javascript" src="#springUrl('/assets/js/jquery.min.js')"></script>
+  <script type="text/javascript" src="#springUrl('/assets/js/amazeui.min.js')"></script>
+  <script type="text/javascript" src="#springUrl('/assets/js/common.js')"></script>
+  <script type="text/javascript">
+    var adaptPageClass = "content";
+  </script>
+</head>
+<body class="">
+  <div class="body content">
+    <header class="bg-red">
+       <div class="head">
+        <a class="back ui-link"  onclick="hideModal()">返回</a>
+        <div class="title header_title" id="header-title">选择旅居券</div>
+        <div class="more_wraper">
+         <a class="menu " data-menuaction="switch" id="confirm">确定</a>
+        </div>
+       </div>
+    </header>
+    <section class="choose-coupon">
+      <div id="tips_travel" class="coupon-header">
+        <p class="smaller">
+          	入住时间中，平季<span id="normal">$!{offSeasonDays}</span>晚，旺季<span id="hot">$!{inSeasonDays}</span>晚
+        </p>
+        <p class="larger">
+         
+        </p>
+      </div>
+	<div id="couponList">
+	
+      
+
+      
+     </div>
+      
+    </section>
+  </div>
+  <script type="text/javascript" src="#springUrl('/assets/js/neworder_3_5.js')"></script>
+  <script type="text/javascript">
+  var couponList=[];
+    $(function(){
+    		
+    		var json=$!{hotelCoupons};
+    		var html="";
+    		// '      <p class="type">两房一厅，免费入住1晚</p>'+
+    		
+    		if(json.hotelCouponGroups.length > 0) {
+    			$(json.hotelCouponGroups).each(function(i,e){
+    			html+=' <div class="coupon" data-wrapper="coupon" firstHotelCouponId="'+e.hotelCouponIds[0]+'" inSeason="'+e.inSeason+'"  >'+
+					   '     <div class="coupon-wrapper">'+
+					    '      <div class="coupon-detail">'+
+					      '      <div class="upper clearfix">'+
+					       '       <div class="pull-left">'+
+					        '        <p class="name">'+e.name+'</p>'+
+					         
+					          '    </div>'+
+					           '   <div class="amount pull-right">'+
+					           '     <span class="total" data-number="total">'+e.count+'</span>张'+
+					            '  </div>'+
+					           ' </div>'+
+					           ' <div class="lower clearfix text">'+
+					            '  <div class="pull-left">'+
+					            	'   '+(e.inSeason?"旺季入住":"平季入住")+' '+
+					            '  </div>'+
+					             ' <div class="pull-right">'+
+					              '  '+getExpireTime(e.expireTime)+'到期 '+
+					             ' </div>'+
+					           ' </div>'+
+					          '</div>'+
+					       ' </div>'+
+					       ' <div class="capsule clearfix">'+
+					         ' <div class="pull-right clearfix">'+
+					         '   <div class="capsule-btn minus pull-left unactive" data-click="minus">'+
+					          '    <img src="#springUrl('/assets/i/neworder_3_5/minus.png')">'+
+					           ' </div>'+
+					           ' <div class="selector pull-left" data-number="selected">'+
+					             ' 0'+
+					          '  </div>'+
+					          '  <div class="capsule-btn add pull-left" data-click="add">'+
+					           '   <img src="#springUrl('/assets/i/neworder_3_5/add2.png')">'+
+					           ' </div>'+
+					         ' </div>'+
+					       ' </div>'+
+					      '</div>';
+    				
+    				
+    		});
+    		} else {
+			    $("#tips_travel").css("display","none");
+    			html += "<p class='am-text-center fs-0-9 text-color-91'>您暂无旅居券</p>";
+    		}
+    		
+    		$("#couponList").html(html);
+    		cc.init();
+    		$('[data-click="minus"]').on('click', function(){
+		      cc.minus($(this));
+		    });
+		    $('[data-click="add"]').on('click', function(){
+		      cc.add($(this));
+		    })
+		    $('#confirm').on('click', function(){
+		    	//Integer houseId = Integer.valueOf(request.getParameter("houseId")); // 酒店房源ID
+			//String startDate = request.getParameter("startDate"); // 入住开始时间
+			//String endDate = request.getParameter("endDate"); // 入住结束时间
+			//String[] hotelCouponIdsStr = request.getParameterValues("hotelCouponIds");// 使用旅居券
+			//List<Long> hotelCouponIds = null;// 旅居券ID列表
+				couponList=[];
+		    	$('.coupon').each(function(i,e){
+		    		var coupon=$(e).attr("");
+		    		var count=$(e).find(".selector").html();
+		    		
+		    		for(var j=0;j<count;j++){
+		    			couponList.push(json.hotelCouponGroups[i].hotelCouponIds[j]);
+		    		}
+		    	
+		    	});
+				var houseId='$!{houseId}';
+				var startDate='$!{expireTimeFromStr}';
+				var endDate='$!{expireTimeFromTo}';
+		     	$.ajax({
+		     		type:'get',
+		     		data:"houseId="+houseId+"&startDate="+startDate+"&endDate="+endDate+"&hotelCouponIds="+couponList.join(),
+		     		url:"#springUrl('/my/getOrderPriceInfo.htm')",
+		     		success:function(data){
+		     			if(data.code!=0){
+		     				showTip("选择的旅居劵不匹配",3);
+		     				return false;
+		     			}
+		     			
+		     			$("#totalTime").html(data.data.days);
+		    			$("#footerTotalAmt").html(data.data.totalAmt);
+		    			$("#total").html(data.data.orderFinalAmt);
+		    			$("#actual").html(data.data.orderFinalAmt);
+		    			$("#inSeasonDays").val(data.data.inSeasonDays);
+		    			$("#offSeasonDays").val(data.data.offSeasonDays);
+		    			$("#discount").html(data.data.hotelCouponDiscountAmt);
+		    			$("#realInSeasonDays").val(data.data.realInSeasonDays);//实际抵扣天数
+		    			var coupons=data.data.hotelCouponSize;
+		    			if(coupons&&coupons>0){
+		    			    $("#realInSeasonDays").html(data.data.realInSeasonDays);//实际抵扣天数
+							$("#coupon").html("<span class='color-black'>已使用<span class='text-color-fb' id='coupons'>"+coupons+"</span>张劵</span>");
+						}else{
+							$("#coupon").html("使用旅居券");
+						}
+						hideModal();
+		     		}
+		     	});
+		    });
+    	
+    });
+    
+    function getExpireTime(time) {
+    	var expireTime = new Date(time);
+    	var year = expireTime.getFullYear();
+		var month = expireTime.getMonth() + 1;
+		var date = expireTime.getDate();
+		var hour = expireTime.getHours();
+		var minute = expireTime.getMinutes();
+		if (month < 10) {
+			month = "0" + month;
+		}
+		if (date < 10) {
+			date = "0" + date;
+		}
+		if (hour < 10) {
+			hour = "0" + hour;
+		}
+		if (minute < 10) {
+			minute = "0" + minute;
+		}
+		return year + "-" + month + "-" + date + " " + hour + ":" + minute;
+    }
+    
+  </script>
+</body>
+</html>

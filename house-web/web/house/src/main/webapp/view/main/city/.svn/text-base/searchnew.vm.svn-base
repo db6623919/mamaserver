@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>妈妈送房</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-cache" />
+  <link rel="stylesheet" href="#springUrl('/assets/css/amazeui.min.css')"/>
+  <link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/reset.css?version=20160804')">
+  <link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/index.css?version=20160804')">
+  
+  <script type="text/javascript" src="#springUrl('/assets/js/jquery.min.js')"></script>
+  <script type="text/javascript" src="#springUrl('/assets/js/amazeui.min.js')"></script>
+  <script type="text/javascript" src="#springUrl('/assets/js/common.js')"></script>
+  
+  <link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/jquery.autocomplete.css?version=20160830')"/>
+    
+  <script type="text/javascript" src="#springUrl('/assets/js/jquery.autocomplete.js')"></script>
+  <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak="></script>
+  
+
+  <script type="text/javascript">
+  	var adaptPageClass = "content";
+  </script>
+
+</head>
+<body>
+  <div class="body content">
+       <header class="header clearfix">
+           <div class="head">
+            <a class="back ui-link" href="#springUrl('/index.htm')" tdata-rel="back">返回</a>
+            <div class="title header_title" id="header-title">发现</div>
+
+           </div>
+        </header>
+		<div class="search-contianer">
+				<div>
+					<span>
+						<img src="#springUrl('/assets/i/index/search-icon.png')"/>
+					</span>
+					<input type="text" name="cityName" id="cityName" placeholder="请输入城市名，如：丽江，凤凰"/>
+				</div>
+				<div>
+					<a href="javascript:void(0);" onClick="searchHouseByName();">搜索</a>
+				</div>
+		</div>
+        <p style="font-size:1.1rem;padding-left:1.5rem;margin-top:1rem;margin-bottom:1rem;"> <b id='cruentCity'></b> </p>
+       
+        <div class="am-g bc-white border-bottom-red">
+            <div class="am-city-container pl-15 pr-15 pb-15">
+                <h1 class="fs-13 am-mg-0 pt-5 pb-15 mt-15"><span class="am-title-border mr-5">&nbsp;</span>热门城市</h1>
+                <ul class="am-city-list pl-5 fs-13 clearfix">
+				  #foreach ($!cityInfoList1 in $!cityInfoList1)	
+					
+                  <li><a href="javascript:void(0);" onclick="toList($!cityInfoList1.cityId,'$!cityInfoList1.cityName')">$!cityInfoList1.cityName</a></li>
+					
+				  #end
+                </ul>
+            </div>
+        </div>
+		<div class="am-city-area">
+		#foreach ($!letter in $!letterSet)	
+          <div>
+            <h1 class="fs-13 am-mg-0 mt-5 text-color-red pt-5 pb-5 reg-border-bottom">$!letter</h1>
+            #foreach ($!cityInfoList in $!cityInfoList)	
+            	#if($!letter ==$!cityInfoList.firstLetter )
+            	<p class="fs-13 am-mg-0 pt-5 pb-5 text-color-red"><a href="javascript:void(0);" onClick="toList($!cityInfoList.cityId,'$!cityInfoList.cityName')">$!cityInfoList.cityName</a></p>
+          		#end
+          	#end
+          </div>
+		 #end
+        </div>
+  </div>
+
+<script type="text/javascript">
+  
+  $(function(){
+        //var city = returnCitySN['cname'];
+        //city = city.split("省")[1].split("市")[0];
+  		//var city = remote_ip_info['city'];
+     	
+     	var myCity = new BMap.LocalCity();
+	    myCity.get(myFun);
+	     
+	  
+  });
+  
+  	function myFun(result){
+		var cityName = result.name.split("市")[0];
+		if (cityName == null || cityName == undefined || cityName == '') {
+              return;
+        }
+		$.ajax({
+		type : 'POST',
+		url : "/getCityByName.htm",
+		data : {
+			"name": cityName
+		},
+		dataType: "json",
+		success : function(resp) {
+			if ('0'==resp.data.code) {
+			    //city = "<a href=\"#springUrl('/city/list.htm?cityId=')"+resp.data.cityId+"&cityName="+city+"\">"+city+"</a>";
+			    var  city = "当前城市：<a href=\"#springUrl('/city/searchHouseByName.htm?cityId=')"+resp.data.cityId+"&name="+cityName+"\">"+cityName+"</a>";
+				document.getElementById('cruentCity').innerHTML = city;
+			} else {
+			    var  city = "当前城市："+cityName;
+				document.getElementById('cruentCity').innerHTML = city;
+			}
+		},
+		
+	  }); 
+	  
+	}
+	
+  function goIndex(){
+    location.href='#springUrl('/index.htm')';
+  }
+  
+  function toList(cityId,cityName){
+  	cityName = encodeURI(encodeURI(cityName));
+  	location.href="#springUrl('/city/searchHouseByName.htm?cityId=')"+cityId+"&name="+cityName;
+  }
+  
+  function searchHouseByName(){
+    var cityName = encodeURI(encodeURI($("#cityName").val()));
+    var serchSuccess = 0;
+       $.ajax({
+		type : 'POST',
+		url : "/getCityByName.htm",
+		data : {
+			"name": $("#cityName").val()
+		},
+		dataType: "json",
+		success : function(resp) {
+			if ('1'==resp.data.code) {
+				showTip("无对应城市！",2);
+				return false;
+			} else {
+			   location.href="#springUrl('/city/searchHouseByName.htm?name=')"+cityName;
+			}
+		},
+		
+	  }); 
+	    	
+  }
+  
+$(function() {
+
+    $().ready(function () {
+       var cityName = "["
+       var arrayObj = new Array();
+        $.ajax({
+            type: "POST",
+            contentType: "application/json",
+            url: "/getAllCitys.htm",
+            data: {
+                 "name": $("#cityName").val()
+                 },
+            dataType: "json",
+            success: function (msg) {
+                var json1 = eval(msg.data.list);
+                
+                $.each(json1,function(i,rs){
+                  cityName+="{name:\""+json1[i].cityName+"\",pinyin:\""+json1[i].pinyin+"\"},";
+			   });
+			   cityName+="]";
+                
+      var arrayObj = eval(cityName);
+      
+      $("#cityName").autocomplete(arrayObj,{
+            minChars: 0,//自动完成激活之前填入的最小字符
+              max:12,//列表条目数
+              //width: 200,//提示的宽度
+              scrollHeight: 300,//提示的高度
+              matchContains: true,//是否只要包含文本框里的就可以
+              autoFill:false,//自动填充
+              formatItem: function(data, i, max) {//格式化列表中的条目 row:条目对象,i:当前条目数,max:总条目数
+                if(typeof(data.name) != "undefined"){
+                  return data.name;
+                } else {
+                	$('.ac_results').hide();
+                }
+               
+            },
+            formatMatch: function(data, i, max) {//配合formatItem使用，作用在于，由于使用了formatItem，所以条目中的内容有所改变，而我们要匹配的是原始的数据，所以用formatMatch做一个调整，使之匹配原始数据
+              return data.name+data.pinyin;
+            },
+            formatResult: function(data) {//定义最终返回的数据，比如我们还是要返回原始数据，而不是formatItem过的数据
+             return data.name;
+            }
+        }).result(function(event,data,formatted){
+           // alert(data.name);
+        }); 
+        
+        
+            }
+        });
+        
+        });
+             
+        
+    });
+    
+    
+  
+</script>  
+</body>
+</html>

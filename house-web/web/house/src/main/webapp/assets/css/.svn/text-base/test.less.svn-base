@@ -1,0 +1,6 @@
+@main-coloe:#ebebeb;
+@radius:-webkit-border-radius: 4px;-moz-border-radius: 4px;border-radius: 4px;
+
+body{background-color: @main-coloe;}
+.body{border-bottom: solid 1px #eee;}
+div{.body}

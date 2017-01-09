@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>妈妈送房</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-cache" />
+  <link rel="stylesheet" href="#springUrl('/assets/css/amazeui.min.css')"/>
+  <link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/reset.css')">
+  <link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/register_v2.css')">
+  <link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/index.css')">
+  <script type="text/javascript" src="#springUrl('/assets/js/jquery.min.js')"></script>
+  <script type="text/javascript" src="#springUrl('/assets/js/amazeui.min.js')"></script>
+  <script type="text/javascript" src="#springUrl('/assets/js/common.js')"></script>
+  <script type="text/javascript" src="#springUrl('/assets/js/count-time.js')"></script>
+  <script type="text/javascript">
+  	var adaptPageClass = "content";
+  </script>
+</head>
+<body>
+  <div class="body content">
+    <header class="header clearfix">
+       <div class="head">
+        <a class="back ui-link" href="#springUrl('/my/personalData.htm')" tdata-rel="back">返回</a>
+        <div class="title header_title" id="header-title">我的昵称</div>
+       </div>
+    </header>
+    <div class="am-g bg-fbf">
+      <form>
+        <div class="font_1_3">
+          <div class="reg_div_1 margin_top_2 input-margin-bottom">
+            <img src="#springUrl('/assets/i/register_v2/icon_person.png')" class="reg_icon1"/>
+            <input value="$!userInfo.nickName" placeholder="新的昵称" type="text" class="reg_input_1" need="need" rel="nickname" msgid="error_9" onblur="dataValidateV2(this);" msg="昵称" id="nickName"/>
+          </div>
+          <div class="am-container reg_err_div div_hidden" id="error_9">
+            <img src="#springUrl('/assets/i/register_v2/icon_err.png')" class="err_icon_1"/>
+            <font id="error_9_span"></font>
+          </div>
+
+          <div class="reg_botton a_hand margin_top_2" onclick="checkdata();">保存修改</div>
+
+          <div class="reg_err_div_2 div_hidden">
+            您输入的手机号错误！
+          </div>
+
+        </div>
+      </form>
+    </div>
+
+  </div>
+ <script type="text/javascript">
+ function checkdata () {
+    var re = 0; 
+    $(".reg_err_div").each(function(){
+      var is_rel = $(this).hasClass("div_hidden");
+      if(is_rel != true){
+        re = 1;
+        return false;
+      }
+    });
+    $("input[need='need']").each(function(){
+      var val = $(this).val();
+      if(val == ''){
+        re = 1;
+        return false;
+      }
+    });
+    //验证通过
+    if(re == 0){
+	var nickName = $("#nickName").val();
+      	$.ajax({
+            url: "#springUrl('/my/updateUserInfo.htm')" ,
+            type:'post',
+            data: "nickName=" + nickName,
+    		async: false,
+    	 	success: function(response) {	
+         		var obj = eval(response);
+    			if(response.code==0) {
+    				self.location.href='#springUrl('/my/personalData.htm')';
+    			}else{
+    				 $("#errorMsg").removeClass("div_hidden");
+                     $("#errorMsg").html(response.msg);
+    	             return false;
+    			}
+    		},
+    		error:function(response){
+             $("#errorMsg").removeClass("div_hidden");
+              $("#errorMsg").html("网络异常");
+              return false;
+            },
+    		 dataType:'json'
+    		 });
+    }
+ }
+ </script>
+</body>
+</html>

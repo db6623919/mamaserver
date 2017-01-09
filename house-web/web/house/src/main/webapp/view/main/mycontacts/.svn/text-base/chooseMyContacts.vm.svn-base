@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>选择联系人</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-cache" />
+  <link rel="stylesheet" href="#springUrl('/assets/css/amazeui.min.css')"/>
+  <link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/reset.css')">
+  <link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/order_3_5.css')">
+  <script type="text/javascript" src="#springUrl('/assets/js/jquery.min.js')"></script>
+  <script type="text/javascript" src="#springUrl('/assets/js/amazeui.min.js')"></script>
+  <script type="text/javascript" src="#springUrl('/assets/js/common.js')"></script>
+  
+  <script type="text/javascript">
+  	var adaptPageClass = "content";
+  </script>
+</head>
+<body>
+  <div class="body content">
+    <header class="bg-red">
+       <div class="head">
+        <a class="back ui-link" id="back" tdata-rel="back">返回</a>
+        <div class="title header_title" id="header-title">选择联系人</div>
+        <div class="more_wraper">
+         <a class="menu_action title" data-menuaction="switch" href="#" id="confirm">确定</a>
+        </div>
+       </div>
+    </header>
+    <section class="choose-person">
+      <form>
+        #foreach($!contactsList in $!contactsList)
+        <ul class="list">
+          <li>
+			
+            <div class="clearfix" data-info="person">
+              <div class="color-black pull-left">
+                <span class="name" data-info="name" >姓名:$!contactsList.contactsName</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <span class="number" data-info="number" >手机号:$!contactsList.contactsPhone</span>
+              </div>
+              <div class="pull-right icon-select">
+                <img id="$!contactsList.contactsId" sign="select" contactsName="$!contactsList.contactsName" contactsPhone="$!contactsList.contactsPhone" src="../assets/i/neworder_3_5/select.png" data-selector="img">
+              </div>
+            </div>
+          </li>
+        </ul>
+        #end
+      </form>
+    </section>
+	 <form id="form" method="get" action="#springUrl('/my/toOrder.htm')">
+     
+		<input type="hidden" id="c_name" name="name" value=""/>
+		<input type="hidden" id="c_phone" name="phone" value=""/>	
+		<input type="hidden" id="startdate" name="startdate" value="$!startdate"/>	
+		<input type="hidden" id="enddate" name="enddate" value="$!enddate"/>	
+		<input type="hidden" id="houseId" name="houseId" value="$!houseId"/>	
+		<input type="hidden" id="houseName" name="houseName" value="$!houseName"/>	
+		<input type="hidden" id="cityName" name="cityName" value="$!cityName"/>	
+		<input type="hidden" id="footerTotalAmt" name="footerTotalAmt" value="$!footerTotalAmt"/>	
+		<input type="hidden" id="total" name="total" value="$!total"/>	
+		<input type="hidden" id="actual" name="actual" value="$!actual"/>	
+      
+      </form>
+  </div>
+  <script type="text/javascript" src="#springUrl('/assets/js/neworder_3_5.js')"></script>
+  <script type="text/javascript">
+    $('[data-selector="img"]').on('click', function(){
+      cp.selectToggle($(this))
+    })
+    
+    var init = function(){
+      var info = localStorage.mmsfangPerson;
+      if(info)
+      {
+        info = JSON.parse(info);
+        $('input[name="person"]').each(function(i){
+          var _this = $(this);
+          if(Number(_this.attr('value')) == info.value)
+          {
+            _this.siblings('[data-selector="img"]').trigger('click');
+          }
+        })
+      }
+    }();
+      
+	$('#confirm').on('click', function(){
+      $("img[sign='select']").each(function(){
+    		var srcValue = $(this).attr("src");
+    		var string=srcValue.substring(srcValue.lastIndexOf("/")+1);
+		
+    		if(string == "selected.png"){
+     			$("input[name='contactsId']").html($(this).attr("id"));
+     			$("#c_name").val(encodeURIComponent($(this).attr("contactsName")));
+    			$("#c_phone").val($(this).attr("contactsPhone"));
+    			return false;
+    		}
+    	})
+				
+	  $("#form").submit();
+    });
+	
+	 
+	
+  </script>
+</body>
+</html>

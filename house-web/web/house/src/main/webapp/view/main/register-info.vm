@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>妈妈送房</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-cache" />
+  <link rel="stylesheet" href="#springUrl('/assets/css/amazeui.min.css')"/>
+  <link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/recharge.css')">
+  <link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/reset.css')">
+  <link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/register_v2.css')">
+  <script type="text/javascript" src="#springUrl('/assets/js/jquery.min.js')"></script>
+  <script type="text/javascript" src="#springUrl('/assets/js/amazeui.min.js')"></script>
+  <script type="text/javascript" src="#springUrl('/assets/js/common.js')"></script>
+  <script type="text/javascript" src="#springUrl('/assets/js/count-time.js')"></script>
+  <script type="text/javascript">
+  	var adaptPageClass = "content";
+  </script>
+  <style>
+
+  </style>
+</head>
+<body>
+  <div class="body content">
+    <header class="header clearfix">
+       <div class="head">
+        <a class="back ui-link" href="javascript:void(0);" onClick="javascript :history.back(-1);" tdata-rel="back">返回</a>
+        <div class="title header_title" id="header-title">消费者会员入会协议书</div>
+
+       </div>
+    </header>
+    <div class="am-g bg-fbf">
+        <div class="ml-5 mr-5 mt-5 pl-5 pr-5 am-reg-border">
+             <h1 class="fs-13 am-mg-0 mt-5 text-color-75 pt-5 pb-5 reg-border-bottom" >
+                <span class="am-title-border"></span>
+                第一条<span class="ml-5">名词定义</span>
+            </h1>
+            <p>
+              1、妈妈送房网：是指由深圳妈妈送房网络科技有限公司运营管理的互联网平台（域名为：www.mmsfang.com）、微信号、手机APP等。
+            </p>
+            <p>
+              2、业主（开发商）：是指符合深圳妈妈送房网络科技有限公司标准且持有一定存量公寓、酒店物业的业主，该等业主愿意与消费者会员合作，履行任我行会员制产品项下的相关义务。
+            </p>
+            <p>
+              3、消费者会员：是指具有旅游住宿等消费需求并在妈妈送房网申请注册且办理任我行会员卡的单位或具有完全民事权利能力和民事行为能力的个人。
+            </p>
+            <p>
+              4、任我行会员卡：是指由消费者会员与业主（开发商）签订《消费者会员入会协议书》，并在缴交一定会员费用后办理的虚拟电子会员卡，该会员卡由业主（开发商）会员委托妈妈送房网核发及维护。
+            </p>
+            <h1 class="fs-13 am-mg-0 mt-15 text-color-75 pt-5 pb-5 reg-border-bottom">
+                <span class="am-title-border"></span>
+                第二条<span class="ml-5">入会流程</span>
+            </h1>
+            <p>
+              1、本协议成立：业主（开发商）与妈妈送房网签署《居间合作协议》，即视为已经接受本协议相关条款；消费者会员通过妈妈送房网以网络在线点击“【我要注册】”按钮确认，本协议即成立。
+            </p>
+            <p>
+              2、会费充值:消费者会员可通过深圳妈妈送房网络科技有限公司指定合作的第三方支付机构进行会费充值。
+            </p>
+            <p>
+              3、会费划转：消费者会员在妈妈送房网站充值会费成功后，由深圳妈妈送房网络科技有限公司统一安排将该会费划给业主（开发商），并由业主（开发商）向消费者会员提供积分兑换和住房消费服务等义务。
+            </p>
+            <h1 class="fs-13 am-mg-0 mt-15 text-color-75 pt-5 pb-5 reg-border-bottom">
+                <span class="am-title-border"></span>
+                第三条<span class="ml-5">会籍维护</span>
+            </h1>
+            <p>
+                 深圳妈妈送房网络科技有限公司向消费者会员提供入会与退会的信息咨询服务、会员账户信息管理服务、积分结算、会籍转让等相关服务。
+            </p>
+            <h1 class="fs-13 am-mg-0 mt-15 text-color-75 pt-5 pb-5 reg-border-bottom">
+                <span class="am-title-border"></span>
+                第四条<span class="ml-5">任我行会员卡充值和积分</span>
+            </h1>
+            <p>
+              1、消费者会员在妈妈送房网注册登记，且与业主（开发商）签订《消费者会员入会协议书》后，业主（开发商）委托深圳妈妈送房网络科技有限公司核发任我行会员卡，并由深圳妈妈送房网络科技有限公司进行会籍维护。其中业主（开发商）收取会员预存费用，为会员提供住宿消费等服务；深圳妈妈送房网络科技有限公司作为居间人，向业主（开发商）收取一定数额的居间费，并向消费者会员提供居间信息咨询、会员权益协调维护、会员积分结算等服务。
+            </p>
+            <p>
+              2、任我行会员卡充值和奖励<br>
+             消费者会员通过预存会费的形式向任我行会员卡充值，持卡期间可持续充值。充值后以人民币1元换取1个积分的形式获得与充值金额等值的积分。消费者每次充值即奖励红包积分，奖励积分可用于消费。具体以妈妈送房网平台公布为准。
+            </p>
+            <p>
+              3、会员消费
+              持卡人可以使用任我行会员卡内的积分在业主（开发商）以及在与深圳妈妈送房网络科技有限公司合作的其他业主（开发商)提供的住房、出行等服务内进行消费，并享受相关优惠。具体如下：<br>
+              1）房源共享。消费者会员可凭其卡内积分订住妈妈送房网所有合作业主（开发商)持有或管理的度假居所。<br>
+              2）房费优惠。消费会员在妈妈送房网住宿消费时享受相应的会员价。会员价格将会根据地区、淡旺季因素等略有调节，最终以妈妈送房网平台公布的实时会员价为准。业主（开发商）提供其他包括行程安排、接机等服务的，可以积分形式结算，具体价格甲丙双方另行协商并在妈妈送房网上予以公布，供消费者会员选择消费。不同等级的会员在消费时，享有其他优惠。<br>
+            </p>
+            <p>
+              4、会员权益转让<br>
+             持有任我行会员卡满6个月，且累计消费额超过累计充值额20%的消费者会员，可以转让会员卡及相应权益。妈妈送房网免费提供会籍转让居间服务，协助消费者会员促成转让。具体价格由出让方和受让方协商决定，会员卡对应的剩余权益不因转让价格变化而变化。
+            </p>
+            <p>
+              5、溢价换房<br>
+              持有任我行会员卡满6个月，且累计消费额超过累计充值额20%的消费者会员，若购买业主（开发商）或与深圳妈妈送房网络科技有限公司合作的其他业主（开发商）在妈妈送方网中展示的房产，其会员卡内剩余积分可按1.01倍进行房屋总价抵扣，即：抵扣总额= 剩余积分×1.01×1元人民币。
+            </p>
+            <h1 class="fs-13 am-mg-0 mt-15 text-color-75 pt-5 pb-5 reg-border-bottom">
+                <span class="am-title-border"></span>
+                第五条<span class="ml-5">积分管理</span>
+            </h1>
+            <p>
+              1、消费者会员在完成充值后，深圳妈妈送房网络科技有限公司将对消费者会员充值金额进行会员卡积分兑换（1元人民币兑换1个积分），并将该积分划入消费者会员所持有的任我行会员卡；同时，深圳妈妈送房网络科技有限公司将根据本协议第四条之规定，将全部奖励积分一次性划入消费者会员所持有的任我行会员卡。
+            </p>
+            <p>
+              2、消费者会员可以根据本协议第四条之约定，使用其持有的任我行会员卡内的积分通过妈妈送房网进行消费，深圳妈妈送房网络科技有限公司将对消费者会员会员卡内的积分进行划扣结算。消费者会员会员卡内的积分余额计算方式如下：<br>
+              积分余额=充值积分+奖励积分-已使用积分。
+            </p>
+            <h1 class="fs-13 am-mg-0 mt-15 text-color-75 pt-5 pb-5 reg-border-bottom">
+                <span class="am-title-border"></span>
+                第六条<span class="ml-5">承诺及保证</span>
+            </h1>
+            <p>
+              1、各方承诺关于本协议订立与履行所提供的资料真实、有效、合法。
+            </p> 
+            <p>
+              2、各方保证其具有签署本协议的合法有效权力和履行本协议的能力。
+            </p>
+            <p>
+              3、各方保证因实现本协议约定的合作目的而投入的一切资金来源合法，且各自保证有充足的资金履行其在本协议项下的义务。
+            </p>
+            <h1 class="fs-13 am-mg-0 mt-15 text-color-75 pt-5 pb-5 reg-border-bottom">
+                <span class="am-title-border"></span>
+                第七条<span class="ml-5">各方权利义务</span>
+            </h1>
+            <p>
+              1、业主（开发商）权利义务<br>
+              1）业主（开发商）应当严格遵守妈妈送房网的相关规则，承诺向消费者会员提供优质的住房消费服务；<br>
+              2）业主（开发商）应在接到消费者会员对其服务质量提出投诉后，立即向消费者会员采取解释、改正、道歉等补救措施，以确保消费者会员权益不受损害。<br>
+            </p>
+            <p>
+              2、消费者会员权利义务<br>
+              1）消费者会员应当严格遵守妈妈送房网的相关规则，同时有权依照协议获得相应的权益；<br>
+              2）消费者会员应当采取适当的措施维护其持有的任我行会员卡的安全，防止账号密码被他人盗用。非因深圳妈妈送房网络科技有限公司原因造成会员卡被他人盗用所产生的全部损失由消费者会员自行承担；<br>
+              3）消费者会员应确保其充值的资金来源合法，并遵守国家有关部门及业主（开发商）对酒店住宿管理的相关规定。<br>
+            </p>
+            <p>
+              3、深圳妈妈送房网络科技有限公司权利义务<br>
+              1）深圳妈妈送房网络科技有限公司有权对于业主（开发商）提供的资料进行核实，并对业主（开发商）运营期间的情况进行实地考察，业主（开发商）应给予积极支持和配合；<br>
+              2）深圳妈妈送房网络科技有限公司有权对业主（开发商）违反妈妈送房网相关规则的行为提出整改要求。<br>
+            </p>
+            <h1 class="fs-13 am-mg-0 mt-15 text-color-75 pt-5 pb-5 reg-border-bottom">
+                <span class="am-title-border"></span>
+                第八条<span class="ml-5">证据和计算</span>
+            </h1>
+            <p>
+             本协议各方确认并同意，委托妈妈送房网对本协议项下的任何金额进行计算；在无明显错误的情况下，妈妈送房网对本协议项下任何金额的任何证明或确定，应作为该金额有关事项的终局证明。
+            </p>
+            <h1 class="fs-13 am-mg-0 mt-15 text-color-75 pt-5 pb-5 reg-border-bottom">
+                <span class="am-title-border"></span>
+                第九条<span class="ml-5">通知</span>
+            </h1>
+            <p>
+                1、本协议任何一方根据本协议约定做出的通知和/或文件均应以书面形式做出，或者委托妈妈送房网通过指定渠道进行公布。
+            </p>
+            <p>
+                2、本协议各方之间的书面通知或文件往来，必须发送至本协议列出的各方的联系人。如以专人送递，在交付后即被视为送达；如以快递或挂号信方式发送的，在快递或挂号信寄出后三日即被视为送达。若本协议任何一方更改其联系人或联系地址，应尽快按本条约定在相关信息变更之日起三日内书面通知其他各方。
+            </p>
+            <p>
+                3、除另有约定或通知外，本协议任何一方的联系方式均以其在妈妈送房网注册登记或公布的联系方式为准。
+            </p>
+            <h1 class="fs-13 am-mg-0 mt-15 text-color-75 pt-5 pb-5 reg-border-bottom">
+                <span class="am-title-border"></span>
+                第十一条<span class="ml-5">法律适用和管辖</span>
+            </h1>
+            <p>
+              本协议的签订、履行、终止、解释均适用中国法律（不包含港澳台地区）。各方同意，因本协议所产生的或与本协议有关的一切争议，各方应协商解决；协商无法达成一致的，各方一致同意向深圳妈妈送房网络科技有限公司住所地人民法院提起诉讼。
+            </p>
+            <h1 class="fs-13 am-mg-0 mt-15 text-color-75 pt-5 pb-5 reg-border-bottom">
+                <span class="am-title-border"></span>
+                第十二条<span class="ml-5">其他</span>
+            </h1>
+            <p>
+                1、本协议项下各方同意并承诺，本协议项下各方提供的信息均应在提供给本协议其他各方的同时提供给妈妈送房网。本协议各方授权妈妈送房网根据本协议任意一方的合理要求向其提供本协议各方向妈妈送房网提供的所有信息。
+            </p>
+            <p>    
+                2、协议各方均同意并确认，业主（开发商）、消费者会员通过其在妈妈送房网注册生产的虚拟账户和银行账户采取的行为所产生的法律效果和法律责任归属于业主（开发商）、消费者会员本人；业主（开发商）、消费者会员授权和委托妈妈送房网根据本协议所采取的全部行动和措施的法律后果均归属于业主（开发商）、消费者会员，与妈妈送房网无关，妈妈送房网也不因此承担任何责任。
+            </p>
+            <p>    
+                3、业主（开发商）和消费者会员在妈妈送房网平台进行相关交易（包括但不限于会费充值、会员消费等）所产生的全部税费依法由各方自行承担并自行缴交，妈妈送房网并不负有代扣代缴义务。
+            </p>
+            <p>
+                4、本协议中部分条款根据相关法律法规等的规定成为无效，或部分无效时，该等无效不影响本协议项下其他条款的效力，各方仍应履行其在本协议项下义务。
+            </p>    
+            <p>
+                5、本协议项下的附件和补充协议构成本协议不可分割的一部分。
+            </p>    
+            <p>    
+                6、本协议经业主（开发商）和消费者会员通过妈妈送房网以网络在线点击确认的方式签订。本协议各方委托妈妈送房网保管所有与本协议有关的书面文件或电子信息；本协议各方确认并同意由妈妈送房网提供的与本协议有关的书面文件或电子信息在无明显错误的情况下应作为本协议有关事项的终局证明。
+            </p>
+             <table class="w-100 mt-5 mb-15">
+                <tr>
+                  <th colspan="2">妈妈送房网合作业主（开发商）列表</th>
+                </tr>
+                <tr class="grey">
+                  <td class="bor-right">序号</td>
+                  <td class="border-left-none">名称</td>
+                </tr>
+                #foreach ($!del in $!delList)
+                <tr class="white">
+                  <td class="bor-right">$!del.index</td>
+                  <td class="border-left-none">$!del.name</td>
+                </tr>
+                #end
+            </table>
+        </div>
+    </div>
+  </div>
+</body>
+</html>

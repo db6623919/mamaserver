@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>订单详情</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="Cache-Control" content="no-cache" />
+		<link rel="stylesheet" href="#springUrl('/assets/css/amazeui.min.css')" />
+		<link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/reset.css')">
+		<link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/order_what.css')" />
+		<script type="text/javascript" src="#springUrl('/assets/js/jquery.min.js')"></script>
+		<script type="text/javascript" src="#springUrl('/assets/js/amazeui.min.js')"></script>
+		<script type="text/javascript" src="#springUrl('/assets/js/common.js')"></script>
+		<script type="text/javascript" src="#springUrl('/assets/js/neworder_3_5.js')"></script>
+		<script src="#springUrl('/assets/js/TouchSlide.1.0.source.js')"></script>
+		<script type="text/javascript">
+			var adaptPageClass = "content";
+		</script>
+	</head>
+
+	<body class="bg-ee">
+		<div class="body content ">
+			<header class="bg-fb">
+				<div class="head">
+					<a class="back ui-link" id="back" href="javascript:void(0);" onclick="javascript :history.go(-1);" tdata-rel="back">返回</a>
+					<div class="title header_title" id="header-title">报名</div>
+				</div>
+			</header>
+			
+			<form id="enrollForm"  method="post">
+			<div class="am-g  fs-1 text-color bc-white   bc-white h-100 mt-10">
+				<div class="w-100 line-h-32  border-bottom-default border-top-default">
+					<div class="pl-10 fs-11 text-color-fb"><span class="am-title-border mr-5">&nbsp;</span>费用及优惠</div>
+				</div>
+				<div class="w-100   pl-10 h-18">
+					<div class="w-20 fl text-color-91">姓名</div>
+					<div class="w-80 fr"><input type="text" name="name"/></div>
+				</div>
+				
+				<div class="w-100  h-18 pl-10 ">
+					<div class="w-20 fl text-color-91">手机号</div>
+					<div class="w-80 fr"><input type="telephone"  name="phone" onkeyup="value=value.replace(/[^\d]/g,'') "/></div>
+				</div>
+				
+				<div class="w-100  h-18 pl-10 ">
+					<div class="w-20 fl text-color-91">微信号</div>
+					<div class="w-80 fr"><input type="text"  name="weChat"/></div>
+				</div>
+				<div class="w-100  h-18 pl-10 ">
+					<div class="w-20 fl text-color-91">性别</div>
+					<div class="w-80 fr"><input type="text"  name="sex"/></div>
+				</div>
+				<div class="w-100 h-18 pl-10 border-bottom-default ">
+					<div class="w-20 fl text-color-91">年龄</div>
+					<div class="w-80 fr"><input type="text" name="age" onkeyup="value=value.replace(/[^\d]/g,'') " /></div>
+				</div>
+			</div>
+			
+			</form>
+
+				<div class="ml-10 mr-10 line-h-32 fs-12 text-color-white bg-fb tc border-radian mt-40 ls-2 mb-15" onclick="sureEnroll()">
+					确认
+				</div>
+
+			
+			
+			
+		</div>
+	</body>
+<script>
+function sureEnroll() {
+	$.ajax({
+		url:"#springUrl('/enroll/toAdd.htm')",
+		type:'post',
+		async: false,
+		data:$("#enrollForm").serialize() ,
+		success:function(data) {
+			if(data.code == 0){
+				
+			}
+		}
+	});
+}
+
+</script>
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>用户中心</title>
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-cache" />
+  <link rel="stylesheet" href="#springUrl('/assets/css/amazeui.min.css')"/>
+  <link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/reset.css')">
+  <link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/ucenter.css')">
+  <script type="text/javascript" src="#springUrl('/assets/js/jquery.min.js')"></script>
+  <script type="text/javascript" src="#springUrl('/assets/js/common.js')"></script>
+  <script type="text/javascript">
+    var adaptPageClass = "content";
+  </script>
+</head>
+<body class="am-backcolor-f0">
+  <div class="content body">
+	<header>
+       <div class="head">
+        <a href="#springUrl('/index.htm')" data-ajax="false" class="logolink"><img  src="#springUrl('/assets/i/common/mmsf-logo.png')" /></a>
+       
+        <div class="title header_title" id="header-title"></div>
+        <div class="more_wraper header-menu-btn">
+         <a class="more_R menu_action" data-menuaction="switch" href="#"></a>
+         <div class="more_pop hMenulist" style="display: none;">
+          <span class="pop_tri"></span>  
+          <ul class="more_ul" style="display: none;">
+			<li class="menu_action no_bor1"><span class="home_xz"></span><a href="#springUrl('/index.htm')">首页</a></li>
+			<li class="menu_action"><span class="home_xz"></span><a href="#springUrl('/my/toLogin.htm')">登录</a></li>
+            <li class="menu_action no_bor1"><span class="home_xz"></span><a href="#springUrl('/toRegister.htm')">注册</a></li>
+          </ul>
+         </div>
+        </div>
+       </div>
+    </header>
+    <div class="am-width-100 am-ucenter-header am-logout-status-div">
+    	<div class="am-status-in">
+    		<header data-am-widget="header" class="am-header am-ucenter-h26">
+    			<div class="am-header-left am-header-nav">
+				    <a href="javascript:void(0);" onClick="javascript :history.back(-1);">
+				        <img class="am-header-icon-custom" src="data:image/svg+xml;charset=utf-8,&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 12 20&quot;&gt;&lt;path d=&quot;M10,0l2,2l-8,8l8,8l-2,2L0,10L10,0z&quot; fill=&quot;%23fff&quot;/&gt;&lt;/svg&gt;" alt=""/>
+				    </a>
+			    </div>
+    		</header>
+			<div class="am-g">
+	        	<img src="#springUrl('/assets/i/ucenter/user-icon.jpg')" class="am-ucenter-uicon am-center"/>
+	      	</div>
+	        <div class="am-width-100 am-text-center am-margin-top-xs am-margin-bottom">
+	      		妈妈送房账号
+	        </div>
+    	</div>
+
+    	<div class="am-status-out">
+	        <header data-am-widget="header" class="am-header">
+		        <h1 class="am-header-title">
+		        	<a href="#title-link">用户中心</a>
+		        </h1>
+	        </header>
+	        <div class="am-width-100 am-text-center am-margin-top-sm am-margin-bottom">	
+	      		欢迎登陆妈妈送房
+	        </div>
+	        <div class="am-g">
+	        	<div class="am-u-sm-6 am-reginster" >
+		          	<button type="button" class="am-btn am-btn-default am-round am-fr am-ucenter-bnt" onclick="toLogin()">
+		          		登陆
+		          	</button>
+	        	</div>
+	        	<div class="am-u-sm-6 am-reginster">
+	          		<button type="button" class="am-btn am-btn-default am-round am-ucenter-bnt" onclick="toRegister()">
+	          		    注册
+	          		</button>
+	        	</div>
+	      	</div>
+        </div>
+
+    </div>
+	<div class="am-container am-padding-bottom-xl">
+		<div class="am-g am-ucenter-title am-backcolor-ff" onclick="myOrder()">
+			<div class="am-u-sm-2">
+			  <img src="#springUrl('/assets/i/ucenter/icon-total.png')" class="am-ucenter-icon">
+			</div>
+			<div class="am-u-sm-10 am-ucenter-pad0">
+			  全部订单
+			</div>
+		</div>
+		<div class="am-g am-ucenter-gap"></div>
+		<div class="am-g am-ucenter-title am-backcolor-ff" onclick="myCardTotal()">
+			<div class="am-u-sm-2">
+			  <img src="#springUrl('/assets/i/ucenter/icon-rwx.png')" class="am-ucenter-icon">
+			</div>
+			<div class="am-u-sm-10 am-ucenter-pad0" >
+			       任我行会员卡
+			</div>
+		</div>
+		<div class="am-g am-ucenter-title am-backcolor-ff">
+			<div class="am-u-sm-2">
+			  <img src="#springUrl('/assets/i/ucenter/icon-home.png')" class="am-ucenter-icon">
+			</div>
+			<div class="am-u-sm-10 am-ucenter-pad0">
+			        老友巢房产
+			</div>
+		</div>
+		<div class="am-g am-ucenter-gap"></div>
+		<div class="am-g am-ucenter-title am-backcolor-ff" onclick="recharge_offline();">
+			<div class="am-u-sm-2">
+			  <img src="#springUrl('/assets/i/ucenter/icon-bug.png')" class="am-ucenter-icon">
+			</div>
+			<div class="am-u-sm-10 am-ucenter-pad0">
+			          我要充值
+			</div>
+		</div>
+		<div class="am-g am-ucenter-title am-backcolor-ff">
+			<div class="am-u-sm-2">
+			  <img src="#springUrl('/assets/i/ucenter/icon-collect.png')" class="am-ucenter-icon">
+			</div>
+			<div class="am-u-sm-10 am-ucenter-pad0">
+			  我的收藏
+			</div>
+		</div>
+		<div class="am-g am-ucenter-gap"></div>
+		<div class="am-g am-ucenter-title am-backcolor-ff">
+			<div class="am-u-sm-2">
+			  <img src="#springUrl('/assets/i/ucenter/icon-service.png')" class="am-ucenter-icon">
+			</div>
+			<div class="am-u-sm-10 am-ucenter-pad0">
+			  客服中心（0755-888888）
+			</div>
+		</div>
+	</div>
+  </div>
+    <script type="text/javascript">
+    function toLogin(){
+        self.location.href='#springUrl('/toLogin.htm')';
+    }
+    function toRegister(){
+       self.location.href='#springUrl('/toRegister.htm')';
+    }
+    function myCardTotal(){
+       self.location.href='#springUrl('/myCardTotal.htm')';
+    }
+    function myOrder(){
+      self.location.href='#springUrl('/my/myOrder.htm')';
+    }
+    function recharge_offline(){
+      self.location.href='#springUrl('/recharge_offline.htm')';
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>妈妈送房</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-cache" />
+  <link rel="stylesheet" href="#springUrl('/assets/css/amazeui.min.css')"/>
+  <link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/reset.css')">
+  <script type="text/javascript" src="#springUrl('/assets/js/jquery.min.js')"></script>
+  <script type="text/javascript" src="#springUrl('/assets/js/common.js')"></script>
+  <script type="text/javascript" src="#springUrl('/assets/js/amazeui.min.js')"></script>
+  <script type="text/javascript">
+    var adaptPageClass = "content";
+  </script>
+
+</head>
+<body>
+  <div class="content body">
+    <header class="header clearfix">
+       <div class="head">
+        <a class="back ui-link" href="javascript:void(0);" onClick="javascript :history.go(-1);" tdata-rel="back">返回</a>
+        <div class="title header_title" id="header-title">天天送房</div>
+       </div>
+    </header>
+    <div class="am-g pb-15">
+      <div class="pl-15 pr-15 mt-10">
+          <a href="http://mp.weixin.qq.com/s?__biz=MzI5ODAzNjczNA==&mid=400226264&idx=2&sn=d5e02daff428d59712d277c237b1c713#wechat_redirect"><img src="#springUrl('/assets/i/common/banner-1.jpg')"></a>
+      </div>
+      <div class="pl-15 pr-15 mt-10">
+          <a href="http://mp.weixin.qq.com/s?__biz=MzI5ODAzNjczNA==&mid=400488175&idx=1&sn=e013a5e680ddf8553cdc0e48d75a9ee7#rd"><img src="#springUrl('/assets/i/common/banner-3.jpg')"></a>
+       </div>
+    </div>
+  </div>
+</body>
+</html>

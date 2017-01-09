@@ -1,0 +1,109 @@
+    body{
+      overflow-x:hidden;
+    }
+    .am-order-ok{
+      display: inline-block;
+      background: url(../i/order/order-ok.png) no-repeat;
+      width: 7.25rem;
+      height: 7.125rem;
+      background-size: 100%;
+    }
+    .am-reg-ok{
+      display: inline-block;
+      background: url(../i/common/reg-icon.jpg) no-repeat;
+      width: 15.2rem;
+      height: 15.2rem;
+      background-size: 100%;
+    }
+    .am-recharge-ok{
+      display: inline-block;
+      background: url(../i/recharge/recharge-suc.png) no-repeat;
+      width: 8.85rem;
+      height: 5.15rem;
+      background-size: 100%;
+    }
+    .am-wechat-pay{
+      display: inline-block;
+      width: 16rem;
+      height: 16rem;
+      background-size: 100%;
+      background-image: url(../i/recharge/mmsf-code.png);
+    }
+    .pt-35{
+      padding-top: 3.5rem;
+    }
+    .pt-25{
+      padding-top: 2.5rem;
+    }
+    .pb-25{
+      padding-bottom: 2.5rem;
+    }
+    .line-h-1-4{
+      line-height: 1.4rem;
+    }
+    .suc_button{
+    background-color: #f75c52;
+    color: #ffffff;
+    margin-left: 4.5rem;
+    margin-right: 4.5rem;
+    border-radius: 5px;
+    line-height: 4rem;
+    text-align: center;
+    font-size: 1.7rem;
+    }
+
+    .invite_button{
+    background-color: #f75c52;
+    color: #ffffff;
+    margin-left: 8.5rem;
+    margin-right: 8.5rem;
+    margin-top: 4.5rem;
+    border-radius: 5px;
+    line-height: 4rem;
+    text-align: center;
+    font-size: 1.7rem;
+    }
+
+    .share_button{
+	width:60%;
+    background-color: #ffffff;
+    color:#ff0000;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 1.2rem;
+    border:solid 1px red;
+    margin-bottom:50px;
+    margin-top: 5.5rem;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 2.5rem;
+    vertical-align: middle;
+    }
+
+    .recharge_suc{
+    background-color: #f75c52;
+    color: #ffffff;
+    margin-left: 2.2rem;
+    margin-right: 2.2rem;
+    border-radius: 5px;
+    line-height: 4rem;
+    text-align: center;
+    font-size: 1.7rem;
+    }
+    .a_hand{
+        cursor: pointer;
+    }
+    .content{
+        background-color: #fff;
+    }
+
+    .red-line{
+      display: inline-block;
+      width: 2rem;
+      height: 1px;
+      background-color: #f75c52;
+      vertical-align: 10%;
+      line-height: 3.5rem;
+    }

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>订单提交成功</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-cache" />
+  <link rel="stylesheet" href="#springUrl('/assets/css/amazeui.min.css')"/>
+  <link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/reset.css')">
+  <link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/order_3_5.css')">
+  <script type="text/javascript" src="#springUrl('/assets/js/jquery.min.js')"></script>
+  <script type="text/javascript" src="#springUrl('/assets/js/amazeui.min.js')"></script>
+  <script type="text/javascript" src="#springUrl('/assets/js/common.js')"></script>
+  <script type="text/javascript">
+  	var adaptPageClass = "content";
+  	function goOrderList() {
+  		location.href="#springUrl('/my/getOrders.htm?page=1&type=0')";
+  	}
+  </script>
+</head>
+<body>
+  <div class="body content">
+    <header class="bg-red">
+       <div class="head">
+        <a class="back ui-link" href="javascript:void(0);" onClick="javascript :goOrderList();" tdata-rel="back">返回</a>
+        <div class="title header_title" id="header-title">订单提交成功</div>
+       </div>
+    </header>
+    <section class="success">
+      <div class="img-success">
+        <img src="#springUrl('/assets/i/neworder_3_5/icon_success.png')">
+      </div>
+      <p class="tips-success color-black">
+        您的订单已经提交，妈妈小管家正在确认，请稍候...
+      </p>
+      <a class="success-btn my-order" href="#springUrl('/my/getOrders.htm?page=1&type=0')">我的订单</a>
+      <a class="success-btn back-to-home" href="#springUrl('/index.htm')">回首页</a>
+    </section>
+  </div>
+  
+</body>
+</html>

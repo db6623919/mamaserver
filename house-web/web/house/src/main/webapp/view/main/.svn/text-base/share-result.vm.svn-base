@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>注册成功</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-cache" />
+  <link rel="stylesheet" href="#springUrl('/assets/css/amazeui.min.css')"/>
+  <link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/reset.css')">
+  <link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/order-suc.css')">
+  <script type="text/javascript" src="#springUrl('/assets/js/jquery.min.js')"></script>
+  <script type="text/javascript" src="#springUrl('/assets/js/common.js')"></script>
+  <script type="text/javascript" src="#springUrl('/assets/js/amazeui.min.js')"></script>
+  <script type="text/javascript">
+    var adaptPageClass = "bc-white";
+  </script>
+</head>
+<body style="background-color:#3e89e6;">
+   <!-- <header class="header clearfix">
+       <div class="head">
+        <!-- <a href="index.html" data-ajax="false" class="logolink"><img width="80" height="40" src="#springUrl('/assets/i/common/mmsf-logo.png" /></a> -->
+        <a class="back ui-link" href="index.html" tdata-rel="back">返回</a>
+        <div class="title header_title" id="header-title">注册成功</div>
+       </div>
+    </header> -->
+
+<style>
+
+.share-gif{
+	margin-top:5.5rem;
+	margin-bottom:3rem;
+	text-align:center;
+}
+.share-gif img{
+	width:60%;
+}
+.share-message{
+	padding-left:2.5rem;
+	padding-right:2.5rem;
+	text-align:center;
+}
+.share-message span{
+	margin:10px 0;
+	color:white;
+}
+</style>
+
+  <div>
+
+	<div class="share-gif">
+		<img id="share-gif-img" src="#springUrl('/assets/i/common/share-gif-1.png')">
+	</div>
+
+	<div class="share-message">
+	<p class="am-mg-0 text-color-white line-h-2 fs-15">帮哥们凑份子吧<br>
+	10秒注册，您即获50元注册奖励。<br>
+	轻松送哥们去妈妈家尽享美景靓房！</p>
+	</div>
+
+  </div>
+
+<script type="text/javascript">
+function is_weixin(){
+	var ua = navigator.userAgent.toLowerCase();
+	if (ua.match(/MicroMessenger/i) == "micromessenger") {
+		return true;
+	} else {
+		return false;
+	}
+}
+
+var start_car_cnt = 0;
+var share_gif_img = document.getElementById('share-gif-img');
+var timer;
+
+function start_car(){
+	start_car_cnt = start_car_cnt +1;
+	var currnet_cnt = start_car_cnt%3;
+	//alert(currnet_cnt);
+	//alert(share_gif_img.getAttribute('src'));
+
+	if(currnet_cnt==0)
+		share_gif_img.setAttribute('src','#springUrl('/assets/i/common/share-gif-0.png')');
+	if(currnet_cnt==1)
+		share_gif_img.setAttribute('src','#springUrl('/assets/i/common/share-gif-1.png')');
+	if(currnet_cnt==2)
+		share_gif_img.setAttribute('src','#springUrl('/assets/i/common/share-gif-2.png')');
+	if(start_car_cnt==20){
+		clearInterval(timer);
+		self.location.href="www.baidu.com";
+	}	
+
+}
+
+window.onload = function() {
+	timer = window.setInterval(start_car, 200);
+}
+</script>
+
+</body>
+</html>

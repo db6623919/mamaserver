@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>妈妈送房</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-cache" />
+  <link rel="stylesheet" href="#springUrl('/assets/css/amazeui.min.css')"/>
+  <link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/reset.css')">
+  <link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/register_v2.css')">
+  <link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/newlogin.css')">
+  <script type="text/javascript" src="#springUrl('/assets/js/jquery.min.js')"></script>
+  <script type="text/javascript" src="#springUrl('/assets/js/amazeui.min.js')"></script>
+  <script type="text/javascript" src="#springUrl('/assets/js/common.js')"></script>
+  <script type="text/javascript">
+  	var adaptPageClass = "content";
+  </script>
+  <style>
+
+  </style>
+</head>
+<body>
+  <div class="body content">
+    <header class="header clearfix">
+       <div class="head">
+        <a class="back ui-link" href="#springUrl('/index.htm')" tdata-rel="back">返回</a>
+        <div class="title header_title" id="header-title">登录</div>
+        <div class="more_wraper header-menu-btn">
+         <a class="reg_login" href="$!{init.registerAddress}">注册</a>
+        </div>
+       </div>
+    </header>
+    <div class="am-g bg-fbf">
+      <form>
+        <div class="font_1_3">
+          <div class="reg_div_1 margin_top_2">
+            <img src="#springUrl('/assets/i/register_v2/icon_phone.png')" class="reg_icon1"/>
+            <input value="" placeholder="请输入手机号" type="telephone" class="reg_input_1" need="need" rel="phone" msgid="error_1" onblur="dataValidateV2(this);" id="phone" maxlength="11" isLogin="isLogin"/>
+          </div>
+          <div class="am-container reg_err_div div_hidden" id="error_1">
+            <img src="#springUrl('/assets/i/register_v2/icon_err.png')" class="err_icon_1"/>
+           <font id="error_1_span"></font>
+          </div>
+
+          <div class="reg_div_1 mt-5">
+            <img src="#springUrl('/assets/i/register_v2/icon_pwd.png')" class="reg_icon1"/>
+            <input value="" placeholder="请输入密码" type="password" class="reg_input_1" rel="newpassword" msgid="error_3" need="need" onblur="dataValidateV2(this);" id="password" maxlength="20"/>
+          </div>
+          <div class="am-container reg_err_div div_hidden" id="error_3">
+            <img src="#springUrl('/assets/i/register_v2/icon_err.png')" class="err_icon_1" need="need"/>
+          <font id="error_3_span"></font>
+          </div>
+          
+          <div class="reg_div_1 mt-5 div_hidden" style="position:relative;" id="checkCodeDiv">
+            <img src="#springUrl('/assets/i/register_v2/icon_certify.png')" class="reg_icon1"/>
+            <input value="" placeholder="请输入验证码" type="text" class="reg_input_1" rel="code" msgid="error_2" onblur="dataValidateV2(this);" id="code" maxlength="6"/>
+            <img src="#springUrl('/randomcode')" class="certify-code" id="verifyImage"/>
+          </div>
+          <div class="am-container reg_err_div div_hidden" id="error_2">
+            <img src="#springUrl('/assets/i/register_v2/icon_err.png')" class="err_icon_1" need="need"/>
+            <font id="error_2_span"></font>
+          </div>
+
+          <div class="reg_botton a_hand margin_top_2" onclick="checkdata();" id="loginbutton">登录</div>
+
+          <a class="reg_a color_f75 a_hand fr pr-15" href="$!{init.forgetPasswordAddress}">忘记密码？</a>
+
+          <div class="reg_err_div_2 div_hidden" id="errorMsg">
+          </div>
+
+        </div>
+      </form>
+    </div>
+
+  </div>
+ <script type="text/javascript">
+ var count =0;
+ var flag = 0;
+  $(function() {
+		$("#verifyImage").click(function(){
+			$("#verifyImage").attr("src", "#springUrl('/randomcode?time=')"+new Date().getTime());
+		});
+	});
+ 
+ function toThree(){
+ 	self.location.href="#springUrl('/toThreeLogin.htm')";
+ }
+ 
+ function checkdata () {
+    var re = 0; 
+    $(".reg_err_div").each(function(){
+      var is_rel = $(this).hasClass("div_hidden");
+      if(is_rel != true){
+        re = 1;
+        return false;
+      }
+    });
+    $("input[need='need']").each(function(){
+      var val = $(this).val();
+      var msg = $(this).attr("placeholder");
+      if(val == ''){
+        re = 1;
+		$("#errorMsg").removeClass("div_hidden");
+        $("#errorMsg").html(msg);
+        return false;
+      }
+    });
+    //验证通过
+    if(re == 0){
+	 	var phone = $("#phone").val();
+    	var pwd = $("#password").val();
+    	var code = $("#code").val();
+		var redirect_url = '${redirect_url}';
+       $.ajax({
+	        url: "#springUrl('/login.htm')" ,
+	        type:'post',
+	        data: "phone=" + phone + "&password="+pwd + "&code="+code+ "&flag="+flag,
+	        beforeSend:function(){
+				$("#loginbutton").html("登录中...");
+			},
+			success: function(response) {
+			    $("#loginbutton").html("登录");
+			     var obj = eval(response);
+                 if(response.code==0) {
+					 self.location.href=redirect_url;
+  		             return false;
+                 } else {
+                 	count = count+1;
+                 	 if(count == 2){
+					 	$("#checkCodeDiv").removeClass("div_hidden");
+					 	$("#code").attr("need","need");
+					 	flag=1;
+					 }
+				 	$("#errorMsg").removeClass("div_hidden");
+                     $("#errorMsg").html(response.msg);
+  		             return false;
+                 }
+            },
+            error:function(response){
+              $("#loginbutton").html("登录");
+			  $("#errorMsg").removeClass("div_hidden");
+              $("#errorMsg").html("网络异常");
+              return false;
+            },
+            afterSend:function(){
+				$("#loginbutton").html("登录");
+			},
+	        dataType:'json'
+	    });
+    }
+ }
+ </script>
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>旅行家</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-cache" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<script type="text/javascript">
+  	var adaptPageClass = "content";
+  </script>
+	
+
+</head>
+<body style="margin:0;">
+<div class="body content">
+	<img src="http://file.88mmmoney.com/8bf00800-4226-4d91-bceb-3b7cde50b64e" style="width: 100%;" />
+</div>
+
+<script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>				
+<script type="text/javascript" src="#springUrl('/assets/js/jquery.min.js')"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+
+<script type="text/javascript">
+var sWidth = window.innerWidth;
+var sHeight = window.innerHeight;
+var plat = navigator.platform;
+if((sWidth > 420) && (plat.indexOf("Android") > -1 || plat.indexOf("iPhone") > -1)) {
+	if(document.compatMode == "CSSICompat") {
+		sWidth = document.documentElement.clientWidth;
+		sHeight = document.documentElement.clientHeight;
+	} else {
+		sWidth = document.body.clientWidth;
+		sHeight = document.body.clientHeight;
+	}
+}
+//$(".content").css("width", sWidth);
+$(".content").css("max-width", "640px");
+$(".content").css("margin", "0 auto");
+$(".content").css("min-height", sHeight);	
+	
+wx.config({
+      debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+      appId: '$!appId', // 必填，公众号的唯一标识
+      timestamp: '$!timestamp', // 必填，生成签名的时间戳
+      nonceStr: '$!noncestr', // 必填，生成签名的随机串
+      signature: '$!signature',// 必填，签名，见附录1
+      jsApiList: [
+      	'onMenuShareTimeline',
+ 		'onMenuShareAppMessage'
+      ] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+});
+
+wx.ready(function(){
+     
+        //分享到朋友圈
+		wx.onMenuShareTimeline({
+    	    title: '在草长“鹰”飞的季节来一场房车亲子游', // 分享标题
+    	    link: 'http://m.mmsfang.com/lxj/toPage.htm', // 分享链接
+    	    imgUrl: 'http://file.88mmmoney.com/23128295-2fbf-4f2c-8632-feb55d11e90a', // 分享图标
+    	    trigger: function (res) {
+             // 不要尝试在trigger中使用ajax异步请求修改本次分享的内容，因为客户端分享操作是一个同步操作，这时候使用ajax的回包会还没有返回
+               //alert('用户点击分享到朋友圈');
+            },
+			success: function (res) {
+               alert('已分享到朋友圈');
+            },
+            cancel: function (res) {
+              alert('已取消分享到朋友圈');
+            }
+		 });
+		 
+		 //分享给好友
+		 wx.onMenuShareAppMessage({
+    	    title: '在草长“鹰”飞的季节来一场房车亲子游', // 分享标题
+    	    desc: '世界那么大，暑假去看看；奶茶飘香，牧歌嘹亮，快乐，自由和爱；这就是宝贝期待的地方，给孩子一次勇敢尝试的的机会。', // 分享描述
+    	    link: 'http://m.mmsfang.com/lxj/toPage.htm', // 分享链接
+    	    imgUrl: 'http://file.88mmmoney.com/23128295-2fbf-4f2c-8632-feb55d11e90a', // 分享图标
+    	    type: '', // 分享类型,music、video或link，不填默认为link
+    	    dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+    	    success: function () { 
+    	        alert('已分享给好友');
+    	    },
+    	    cancel: function () { 
+    	        // 用户取消分享后执行的回调函数
+				alert('已取消分享给好友');
+    	    }
+		});
+});
+	
+	
+
+	
+window.alert = function(name) {
+  	var iframe = document.createElement("IFRAME");
+  	iframe.style.display = "none";
+  	iframe.setAttribute("src", 'data:text/plain,');
+  	document.documentElement.appendChild(iframe);
+  	window.frames[0].window.alert(name);
+ 	iframe.parentNode.removeChild(iframe);
+}		
+</script>
+		
+
+</body>
+</html>

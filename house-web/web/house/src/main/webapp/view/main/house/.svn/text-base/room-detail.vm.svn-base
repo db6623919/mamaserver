@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html>
+
+	<head lang="en">
+		<meta charset="UTF-8">
+		<title>妈妈送房</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="Cache-Control" content="no-cache" />
+		<link rel="stylesheet" href="#springUrl('/assets/css/amazeui.min.css')" />
+		<link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/reset.css')">
+		<link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/index.css')">
+		<!--<link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/room-detail.css')">-->
+		<link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/house-detail.css')">
+		
+		<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<!--[if lt IE 9]> <script src="http://cdn.bootcss.com/html5shiv/r29/html5.js"></script> <![endif]-->
+
+	</head>
+	<body>
+		<div class="body content bc-white">
+			<header style="background-color: #FB394C;">
+				<div class="head">
+					<a class="back ui-link" href="javascript:history.go(-1);" tdata-rel="back">返回</a>
+					<div class="title header_title" id="header-title">房源详情</div>
+				</div>
+			</header>
+			<div class="am-g bc-white">
+				<div style="position:relative;" class="house-detail">
+					<!--深度合作-->
+					<span class="deep-coop">
+    					<img  src="#springUrl('/assets/i/index/flag.png')" />
+						$!{partnership}
+					</span>
+				    #if($!collectFlag == 1)
+						<img onclick="checkColelect(this,$!houseDetailVo.houseId,1)" src="http://file.88mmmoney.com/4f5f0618-9ed0-4a29-a871-af3ba9be0355"  
+						     style="position: absolute; width: 3rem;right: .7rem;top: .7rem;"/>
+					#elseif($!houseinfo.collectFlag != 1)
+					    <img onclick="checkColelect(this,$!houseDetailVo.houseId,0)" src="http://file.88mmmoney.com/c9d46234-f7b9-4614-b09a-5136724009d6"
+					         style="position: absolute; width: 3rem;right: .7rem;top: .7rem;"/>
+					#end
+					<ul data-am-widget="gallery" class="am-gallery am-avg-sm-1 am-gallery-default clearfix" data-am-gallery="{pureview:{weChatImagePreview: false}}">
+					    #set($index = 0)
+					    #foreach ($!image in $!houseDetailVo.imgList)
+						    #set ($index = $index + 1)
+						    #if ($index == 1)
+						    <li>
+								<a href="#">
+									<img class="lazy_load_img" xzsrc="$!{image.imageUrl}!h5i6s"  src="#springUrl('/assets/i/common/lazy_image.jpg')" alt="$!{image.imageName}">
+								</a>
+							</li>
+							#else
+							<li style="display:none;">
+								<a href="#">
+									<img class="lazy_load_img" xzsrc="$!{image.imageUrl}!h5i6s"  src="#springUrl('/assets/i/common/lazy_image.jpg')" alt="$!{image.imageName}">
+								</a>
+							</li>
+							#end
+					    #end
+					</ul>
+					<div class="am-room-amount fs-13 text-color-white">1/$!houseDetailVo.imgList.size()</div>
+				</div>
+				<!--旧的-->
+				<!--<div class="w-100 bc-white border-bottom">
+					<div class="am-img-container-room clearfix">
+						<div class="name-price">
+							<p class="fs-12 text-color am-mg-0">
+								$!{houseDetailVo.name}
+							</p>
+							<p class="fs-1 text-color-fb am-mg-0">¥<span>$!{houseDetailVo.memTotalAmt}</span>起/晚</p>
+						</div>
+						<div class="tags" style="">
+						    #foreach($!tag in $!tagNames)
+						    <span>$!tag</span>
+						    #end
+						</div>
+					</div>
+				</div>-->
+				<!--新的-->
+				<div class="house-detail room-title">	
+    				<div class="title ">
+    					<h3>$!{houseDetailVo.name}</h3>
+    					<!--没有优惠的时候，下面这个不要显示-->
+    					#if($!notNullMarketPrice == 1)
+                        <span>市场价：¥$!{houseDetailVo.market_price}起/晚</span>
+                        #end
+    				</div>
+    				<div class="desc">
+    				
+    					<span class="info">$!{houseDetailVo.roomList.room}室$!{houseDetailVo.roomList.office}厅$!{houseDetailVo.roomList.toilet}卫 $!{houseDetailVo.roomList.beds}床  宜住$!{houseDetailVo.roomList.personNum}人</span>
+     					<span class="discount-cont">
+     					   #if($!notNullMarketPrice == 1)
+     					     <i>$!discount折</i>
+     					   #end  
+    						送房价:
+    						<span class="special-price">¥<strong>$!{houseDetailVo.memTotalAmt}</strong></span>
+    						起/晚
+    					</span>
+    				</div>
+				</div>
+				<!--新的结束-->
+				<div class="fav-container">
+					<div>
+						<img src="http://file.88mmmoney.com/220c0d24-931a-4957-a6cc-fef030ad8df9" />
+						<p>$!{houseDetailVo.roomList.room}居$!{houseDetailVo.roomList.toilet}卫</p>
+					</div>
+					<div>
+						<img src="http://file.88mmmoney.com/fedb2bc7-45f9-4acb-bbd8-6002cb95c236" />
+						<p>$!{houseDetailVo.roomList.beds}张床</p>
+					</div>
+					<div>
+						<img src="http://file.88mmmoney.com/0d8033b7-04a8-4982-9e7a-50e7a69c430a" />
+						<p>宜居$!{houseDetailVo.roomList.personNum}人</p>
+					</div>
+					<div>
+						<img src="http://file.88mmmoney.com/0d2eabc6-53b7-4a82-8f57-6a0dac053994" />
+						<p>$!{houseDetailVo.roomList.area}㎡</p>
+					</div>
+					#if($!{houseDetailVo.supportingList.wifi} == 1)
+					<div>
+						<img src="http://file.88mmmoney.com/cf6b1215-3505-40ec-a6bb-d372efec6f52" />
+						<p>wifi</p>
+					</div>
+					#end
+				</div>
+				
+				<!-- 店铺  -->
+				#if($!shopVo)
+				<div class="master-container">
+					<p><img src="$!{shopVo.bossImage}!h5i6s" /></p>
+					<p class="nick-name">$!{shopVo.shopName}</p>
+					<p>$!{shopVo.shopDesc}</p>
+					<div class="m-op">
+						<a href="tel:4009966633">
+							<div>
+								<span>
+								<img src="#springUrl('/assets/i/house-detail/o-phone.png')" />
+							</span> 联系客服
+							</div>
+						</a>
+						#if ($!isLogin == "1")
+						<a href="tel:$!{shopVo.bossPhone}">
+						#else
+						<a>
+						#end
+							<div>
+								<span>
+								<img src="http://file.88mmmoney.com/d86c7424-e8b9-4f2d-9f86-08f13b566542"/>
+							</span> 找老板
+							</div>
+						</a>
+					</div>
+				</div>
+				#end
+
+				<!--评论详情-->
+				#if($!commentVo)
+				<div class="comment-container">
+					<input id="averageScore" type="hidden" value="$!commentVo.averageScore"/>
+					<div style="text-align: center;font-size: 1.1rem;">
+			            <ul  class="ul-score s-45">
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                        </ul>
+						<div class="comment-intro">
+							<span>$!commentVo.averageScore分</span>
+							<span>$!commentVo.totalCommentsNum条点评</span>
+						</div>
+					</div>
+					<ul class="comment-list">
+						<li>
+<!--							<p></span>19856231235</p> -->
+							<p>$!commentVo.summary</p>
+						</li>
+					</ul>
+					<div class="all-comment">
+						<a href="/house/getAllComments.htm?houseId=$!commentVo.houseId&page=1">
+						    <span ><img src="#springUrl('/assets/i/house/icon-msg.png')" /></span>全部评价
+                        </a>
+					</div>
+				</div>
+				#end
+
+				<div class="w-100 bc-white  mt-15">
+					<div class="am-img-container-room clearfix">
+						<h1 class="tc fs-1 text-color am-mg-0"><span>
+							<img src="#springUrl('/assets/i/house-detail/position.png')"/>
+						</span>$!houseDetailVo.roomList.address</h1>
+					</div>
+					<div data-am-widget="map" class="am-map am-map-default" style="height:12rem;" data-name="$!houseDetailVo.name" data-address="" data-longitude="$!houseDetailVo.geographicalList.longitude" data-latitude="$!houseDetailVo.geographicalList.latitude" data-scaleControl="" data-zoomControl="false" data-setZoom="17" data-icon="http://amuituku.qiniudn.com/mapicon.png">
+						<div id="bd-map"></div>
+					</div>
+				</div>
+				#if ($!roomFacilities && $!roomFacilities.size() > 0)
+				<div class="room-facilities">
+					<p>房间设施</p>
+					<div class="facility-container">
+					    #set($fcount = 0)
+					    #foreach ($!facility in $!roomFacilities)
+					    	#set($fcount = $fcount +1)
+					        #if ($fcount<6)
+					         	<div><img class='lazy_load_img' xzsrc='$!facility.iconUrl' src="#springUrl('/assets/i/house-detail/facility-default.png')" /><p>$!facility.name</p></div>
+						    #else
+						        <div class="more-facility"><img class='lazy_load_img' xzsrc='$!facility.iconUrl' src="#springUrl('/assets/i/house-detail/facility-default.png')" /><p>$!facility.name</p></div>
+					        #end
+						#end
+					  </div>
+					  #if($fcount>5)
+						<p><span class="more-facilities">
+						查看全部
+						</span></p>	
+					  #end
+				</div>
+				#end
+				#if ($!other && ($!other.length() > 0))
+				<div class="other">
+					<p>其它事项</p>
+					<div >
+					    $!other
+					</div>
+				</div>
+				#end
+				
+			</div>
+			<header class="am-topbar am-topbar-inverse am-topbar-fixed-bottom room-version">
+				<div class="am-g">
+					<div class="am-u-sm-12">
+						<h1 class="tc w-100">
+                <a class="w-100" onclick="toOrder('$!houseDetailVo.houseId',$!houseDetailVo.specials_stauts,'$!houseDetailVo.memTotalAmt');_czc.push(['_trackEvent', '房源详情', '房源详情-我要入住', '房源详情-我要入住-点击','14','']);">
+                  #if (($!houseDetailVo.specials_stauts == 1 || $!houseDetailVo.specials_stauts == 2) && (($!houseDetailVo.memTotalAmt - 99) % 100 == 0 )) 
+					<span class="am-room-rent-icon"></span>我要买券
+				  #else
+					<span class="am-room-rent-icon"></span>我要住
+				  #end
+				</a>
+            </h1>
+					</div>
+				</div>
+			</header>
+			<img src="$!imgurl" width="0" height="0"  />
+		</div>
+
+		<input type="hidden" id="checkInTime" value="2016-01-09" />
+		<input type="hidden" id="checkOutTime" value="2016-12-01" />
+		
+		<script type="text/javascript" src="#springUrl('/assets/js/jquery.min.js')"></script>
+		<script type="text/javascript" src="#springUrl('/assets/js/amazeui.min.js')"></script>
+		<script type="text/javascript" src="#springUrl('/assets/js/common.js')"></script>
+		<script type="text/javascript" src="#springUrl('/assets/js/main.js')"></script>
+		<script src="#springUrl('/assets/js/mm-img-lazyload.js?version1608121009')"></script>
+		<script type="text/javascript">
+			var adaptPageClass = "content";
+		</script>
+		<script type="text/javascript">
+			/*  var env = $.environment();var EVENT_TAP = env.isMobile && !jQuery? 'tap' : 'click';*/
+			$(function() {
+				$('.am-slider').flexslider({
+					directionNav: false
+				});
+				$('.am-map').on('click',function(){
+					if('$!{houseDetailVo.geographicalList.longitude}'!=''&&'$!{houseDetailVo.geographicalList.latitude}'!=''){
+						location.href=encodeURI(encodeURI('#springUrl('/house/room-map.htm')' + "?name=$!{houseDetailVo.name}&longitude=$!{houseDetailVo.geographicalList.longitude}&latitude=$!{houseDetailVo.geographicalList.latitude}&address=$!{houseDetailVo.roomList.address}"));
+					}
+				})
+				$('.collection').on("click", function() {
+					var $this = $(this);
+					if($this.hasClass("am-room-collection")) {
+						$this.removeClass("am-room-collection").addClass("am-room-collection-active");
+					} else if($this.hasClass("am-room-collection-active")) {
+						$this.removeClass("am-room-collection-active").addClass("am-room-collection");
+					}
+				});
+				$("#test-href").on("click", function() {
+					location.href = 'room-detail.html';
+				});
+				$("#building-detail").click(function() {
+					$("#my-popup").modal('open');
+				});
+				$("#room-detail").click(function() {
+					$("#device-popup").modal('open');
+				});
+				$("#owner-detail").click(function() {
+					$("#owner-popup").modal('open');
+				});
+				$("#checkin-detail").click(function() {
+					$("#checkin-popup").modal('open');
+				});
+
+				var score = $('#averageScore').val();
+				var cssFlag = getStarCss(score);
+				//设置平均评分的星样式
+				$('.comment-container div ul').attr("class", "ul-score s-" + cssFlag);
+
+				$(".more-facilities").on('click', function() {
+					if($(this).hasClass('show')) {
+						$('.more-facility').hide();
+						$('.facility-container').css('min-height', '4rem');
+						$(this).text('查看更多');
+						$(this).removeClass('show');
+					} else {
+						$('.more-facility').show();
+						$('.facility-container').css('min-height', (Math.ceil($('.facility-container').children().length / 5)) * 4.5 + 'rem');
+						$(this).text('收起');
+						$(this).addClass('show');
+					}
+
+				})
+				var lazyload = {};
+				lazyload.img = function(obj) {
+					var img = typeof(obj) == 'object' ? obj : $(obj);
+					var xz_src = img.attr('xzsrc');
+					if(xz_src && xz_src != 'ok') {
+						img.attr('src', xz_src);
+						img.attr('xzsrc', 'ok');
+					}
+				}
+				var lazy_load_imgs = $('.lazy_load_img');
+				setTimeout(function() {
+					lazy_load_imgs.mmlazyload({
+						replaceImage: false,
+						pxOffset: 50,
+						memorySaver: true
+					});
+
+				}, 300);
+				
+				hideMapPop();
+				function hideMapPop() {
+					var interval = setInterval(function() {
+						if($(".BMap_pop")) {
+							$(".BMap_pop").hide();
+							clearInterval(interval)
+						}
+					}, 1000);
+				}
+			});
+
+			function getStarCss(score) {
+				var scoreInt = Math.round(score);
+				var scoreStr = score + "";
+				var cssFlag = "";
+				if((scoreInt < score) && (scoreInt != score)) {
+					cssFlag = scoreInt + "5";
+				} else if(scoreStr.indexOf(".5") > 0) {
+					cssFlag = Math.floor(score) + "5";
+				} else {
+					cssFlag = scoreInt + "0";
+				}
+
+				return cssFlag;
+			}
+
+			function toOrder(houseId,specialsStauts,memTotalAmt) {
+				
+				var str = memTotalAmt.substring(memTotalAmt.length - 2,memTotalAmt.length);
+				
+				if ((specialsStauts == 1 || specialsStauts == 2) && (str == "99")) {
+					self.location.href = "/my/clickfarm/index.htm?orderType=n99&houseId=" + houseId +"&price=" + memTotalAmt;
+				} else {
+					var startdate = GetDateStr(0);
+					var enddate = GetDateStr(1);
+					self.location.href = "/my/orderDate.htm?houseId=" + houseId + "&startdate=" + startdate + "&enddate=" + enddate + "&totalTime=1";
+				}
+			}
+
+			//收藏或取消      
+			function checkColelect(obj, houseId,status) {
+				var favor = true;
+				if (status == 1) {
+					favor = false;
+				}
+				$.ajax({
+					url: "#springUrl('/collect/addOrDeleCollect.htm')",
+					type: 'post',
+					async: false,
+					data: {
+						"houseId": houseId,"favor":favor
+					},
+					success: function(data) {
+						if(data.code == 0) { 
+							if(status == 1) { //取消收藏
+								$(obj).attr("src", "http://file.88mmmoney.com/c9d46234-f7b9-4614-b09a-5136724009d6");
+								$(obj).attr("onclick","checkColelect(this," + houseId + ",0)" );
+								return;
+							}
+							if(status == 0) { //加入收藏
+								$(obj).attr("src", "http://file.88mmmoney.com/4f5f0618-9ed0-4a29-a871-af3ba9be0355");
+								$(obj).attr("onclick","checkColelect(this," + houseId + ",1)" );
+								return;
+							}
+						}
+						
+						if (data.code == 13) {
+							showTip("房源已收藏");
+							return;
+						}
+						if (data.code == 14) {
+							showTip("房源已取消收藏");
+							return;
+						}
+						if(data.code == 2) { //未登陆
+							location.href = "/my/toLogin.htm";
+							return;
+						}
+						
+						
+					}
+				});
+			}
+			
+			//声明_czc对象:
+			var _czc = _czc || [];
+			//绑定siteid，请用您的siteid替换下方"XXXXXXXX"部分
+			_czc.push(["_setAccount", "1260334725"]);
+			
+			//判断是否APP打开
+			if (navigator.userAgent.indexOf("mmsfang") != -1 || navigator.userAgent.indexOf("mmwallet") != -1) {
+				//title --标题
+				//desc  --描述
+				//imgUrl --分享图标 
+				//url    页面URL
+				var title = "我在妈妈送房上发现了一个超赞的【$!{houseDetailVo.name}】：";
+				var desc = "";
+				var imgUrl = "$!houseDetailVo.shareImg";
+				var url = "$!url";
+				apppay.shareApp(title,desc,imgUrl,url);
+		   		
+		   } else {
+			   
+			   wx.config({
+				      debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+				      appId: '$!appId', // 必填，公众号的唯一标识
+				      timestamp: '$!timestamp', // 必填，生成签名的时间戳
+				      nonceStr: '$!noncestr', // 必填，生成签名的随机串
+				      signature: '$!signature',// 必填，签名，见附录1
+				      jsApiList: [
+				      	'onMenuShareTimeline',
+				 		'onMenuShareAppMessage'
+				      ] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+				});
+
+				wx.ready(function(){
+				        //分享到朋友圈
+						wx.onMenuShareTimeline({
+				    	    title: '我在妈妈送房上发现了一个超赞的【$!{houseDetailVo.name}】：', // 分享标题
+				    	    link: '$!url' , // 分享链接
+				    	    imgUrl: '$!houseDetailVo.shareImg', // 分享图标
+				    	    trigger: function (res) {
+				             // 不要尝试在trigger中使用ajax异步请求修改本次分享的内容，因为客户端分享操作是一个同步操作，这时候使用ajax的回包会还没有返回
+				               //alert('用户点击分享到朋友圈');
+				            },
+							success: function (res) {
+				    	        alert("已分享到朋友圈");
+				            },
+				            cancel: function (res) {
+				              alert('已取消分享到朋友圈');
+				            }
+						 });
+						 
+						 //分享给好友
+						 wx.onMenuShareAppMessage({
+				    	    title: '我在妈妈送房上发现了一个超赞的【$!{houseDetailVo.name}】：', // 分享标题
+				    	    //desc: '妈妈送房暑期冰爽来袭 快来撒欢儿！', // 分享描述
+				    	    link: '$!url', // 分享链接
+				    	    imgUrl: '$!houseDetailVo.shareImg', // 分享图标
+				    	    type: '', // 分享类型,music、video或link，不填默认为link
+				    	    dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+				    	    success: function () { 
+				    	        alter("已分享给好友");
+				    	    },
+				    	    cancel: function () { 
+				    	        // 用户取消分享后执行的回调函数
+								alert('已取消分享给好友');
+				    	    }
+						});
+				});
+		   }	
+			
+			
+			
+		</script>
+	</body>
+</html>

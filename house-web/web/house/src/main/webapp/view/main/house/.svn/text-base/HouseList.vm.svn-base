@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+
+	<head lang="en">
+		<meta charset="UTF-8">
+		<title>房源列表</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="Cache-Control" content="no-cache" />
+		<link rel="stylesheet" href="#springUrl('/assets/css/amazeui.min.css')" />
+		<link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/reset.css')">
+		<link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/house-list.css?version1608121009')">
+		<link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/scrollbar.css')" />
+
+		<!--日历-->
+		<link type="text/css" rel="stylesheet" href="#springUrl('/assets/css/bootstrap.min.css')" />
+		<link media="all" type="text/css" rel="stylesheet" href="#springUrl('/assets/css/daterangepicker.css')" />
+		<!--日历结束-->
+
+		<script type="text/javascript" src="#springUrl('/assets/js/jquery.min.js')"></script>
+		<script type="text/javascript" src="#springUrl('/assets/js/amazeui.min.js')"></script>
+		<script type="text/javascript" src="#springUrl('/assets/js/common.js')"></script>
+		<!--pub-->
+		<script src="#springUrl('/assets/js/zepto.js')" type="text/javascript"></script>
+		<script src="#springUrl('/assets/js/main.js')"></script>
+		<script src="#springUrl('/assets/js/mm-img-lazyload.js?version1608121009')"></script>
+		<!--pub结束-->
+		<!--日历-->
+		<script src="#springUrl('/assets/js/moment.js')" type="text/javascript"></script>
+		<script src="#springUrl('/assets/js/mama-lib.js')" type="text/javascript"></script>
+		<script src="#springUrl('/assets/js/seacrh-daterangepicker.js')" type="text/javascript"></script>
+		<!--下拉刷新-->
+		<script src="#springUrl('/assets/js/pulltorefresh.js?version1608121009')" type="text/javascript" charset="utf-8"></script>
+		<script src="#springUrl('/assets/js/houseListRefresh.js?version1608121009')" type="text/javascript" charset="utf-8"></script>
+		<script  type="text/javascript" charset="utf-8">
+			var adaptPageClass = 'content';
+		     function detail(houseId){
+		         self.location.href="/house/toDetail.htm?houseId="+houseId;
+		     }		     
+		     
+		</script>
+		
+	</head>
+
+	<body>
+
+		<div id="modal_order" class="body content">
+			<header class="bg-red">
+				<div class="head">
+					<a class="back ui-link" href="#springUrl('/search/index.htm')" tdata-rel="back">返回</a>
+					<div class="title header_title" id="header-title">
+					   <input type="hidden" name="cityName" id="cityName" value="$!cityName"/>$!cityName
+					</div>
+				</div>
+			</header>
+			<!--条件-->
+			<ul class="search-condition">
+				<li id="live-date" data-ele="sel-date"><span>入住时段</span></li>
+				<li id="position" data-ele="sel-position"><span>位置区域</span></li>
+				<li id="more" data-ele="sel-more"><span>更多筛选</span></li>
+				<li id="sort"  data-ele="sel-sort"><span>推荐排序</span></li>
+			</ul>																																										
+			
+			
+			<!--各搜索条件-->
+			<div class="unitList">
+				<!--入住时段-->
+				<input type="hidden" id="checkInTime" value="2016-06-13" />
+				<input type="hidden" id="checkOutTime" value="2016-12-31" />
+				<div id="reportrange01" class="sel-part sel-date">
+				</div>
+				<!--位置区域-->
+				<div class="sel-part sel-position">
+					<ul id="tradeAreaId" name="tradeAreaId" value="-1">
+						<li class="m-active" tradeAreaId="-1">不限区域</li>
+						#foreach ($!tradeArea in $!tradeList)
+						 <li tradeAreaId="$!tradeArea.id">$!tradeArea.name</li>
+						#end 
+					</ul>
+				</div>
+				<!--更多筛选-->
+				<div class="sel-part sel-more">
+					<!--价格区间-->
+					<div class="more-container">
+						<p>价格区间</p>
+						<div class="price-container" id="priceRange" name="priceRange" value="-1">
+							<span priceRange="1">200以下</span>
+							<span priceRange="2">200-300</span>
+							<span priceRange="3">300-500</span>
+							<span priceRange="4">500以上</span>
+							<span priceRange="-1">不限</span>
+						</div>
+					</div>
+					
+					<!--人数&&居室-->
+          <div class="more-container count">
+            <div class="count-container" style="position: relative;text-align: center;">
+              <span class="minus"><img src="http://file.88mmmoney.com/44725b3a-d338-4fed-98ba-7796127b5da5"/>
+              </span><span id="person-num">入住人数</span><span class="plus"><img src="http://file.88mmmoney.com/52504ca9-c9f7-4051-be3e-eda1fc82d5b4"/></span>
+            </div>
+            <div class="count-container">
+              <span class="minus"><img src="http://file.88mmmoney.com/44725b3a-d338-4fed-98ba-7796127b5da5"/></span><span id="room-num">居室</span >
+                <span class="plus"><img src="http://file.88mmmoney.com/52504ca9-c9f7-4051-be3e-eda1fc82d5b4"/></span>
+            </div>
+          </div>
+
+					<!--房源特色-->
+					<div class="more-container tag-container">
+						<div class="tags" id="tag" name="tag" value="-1">
+						  #foreach ($!tag in $!tagList1)
+							<div tag="$!tag.id">$!tag.name</div>
+						  #end	
+						</div>
+						<div class="tags" id="tag" name="tag" value="-1">
+						  #foreach ($!tag in $!tagList2)
+							<div tag="$!tag.id">$!tag.name</div>
+						  #end	
+						</div>
+						<div class="tags" id="tag" name="tag" value="-1">
+						  #foreach ($!tag in $!tagList3)
+							<div tag="$!tag.id">$!tag.name</div>
+						  #end	
+						</div>
+					</div>
+
+					<!--关键在搜索-->
+					<p class="key-search">关键字搜索</p>
+					<div class="more-container key-container">
+						<input type="text" name="keyWord" id="keyWord" value="" placeholder="请输入房间名称或商圈名称的关键字" />
+					</div>
+
+					<div class="more-bottom">
+						<div id="clear-more">
+							清除筛选
+						</div>
+						<div id="more-confirm">
+							确定
+						</div>
+					</div>
+				</div>
+				<!--推荐排序-->
+				<div class="sel-part sel-sort" id="sortBy" name="sortBy" value="-1">
+					<ul>
+						<li sortBy="1">推荐排序</li>
+						<li sortBy="3">价格 高-低</li>
+						<li sortBy="2">价格 低-高</li>
+					</ul>
+				</div>
+			</div>
+			<!--房源列表-->
+			#if($!houseInfoList.size() ==0)
+		<div class="w-100 tc no-room-div">
+          <img src="#springUrl('/assets/i/index/no-room.png')">
+          <p>
+		            妈妈家攻城狮正在努力开发<br>
+		            这里的100套房源,敬请期待！
+          </p>
+      </div>
+	 #end	
+	 #if($!houseInfoList.size() !=0)
+			<div id="wrapper">
+				<div id="scroller">
+					<div id="pullDown">
+						<span class="pullDownIcon"></span><span class="pullDownLabel">下拉刷新...</span>
+					</div>
+					<input type="hidden" name="cityId" id="cityId" value="$!cityId"/>
+					<input type="hidden" value="$!pageNum" id="pageNum" name="pageNum"/>
+					
+					<div class="h-list" id="h-list" name="h-list">
+					
+					#foreach ($!houseinfo in $!houseInfoList)
+						<div class="house-item" >
+							<img xzsrc="$!houseinfo.introductionImg[0]!h5i6s" onclick="detail($!houseinfo.houseId);_czc.push(['_trackEvent', '房源详情', '房源详情-房源详情页', '房源详情-房源详情页','24','']);" class="lazy_load_img" src="#springUrl('/assets/i/common/lazy_image.jpg')" />
+							
+							<span class="span-collection" style="cursor:pointer;">
+								#if($!houseinfo.collectFlag == 1)
+						      		<img onclick="checkColelect(this,$!houseinfo.houseId,1)" src="http://file.88mmmoney.com/4f5f0618-9ed0-4a29-a871-af3ba9be0355" />
+					        	#elseif($!houseinfo.collectFlag != 1)
+					        		<img onclick="checkColelect(this,$!houseinfo.houseId,0)" src="http://file.88mmmoney.com/c9d46234-f7b9-4614-b09a-5136724009d6" />
+					        	#end
+					        </span>
+					        
+							<div class="hot-bottom">
+								<p class="price">¥ <span>$!houseinfo.memTotalAmt</span>起/晚</p>
+							</div>
+						</div>
+						<p class="name">$!houseinfo.houseName</p>
+						<div class="house-special">
+						#foreach ($!name in $!houseinfo.tagNameList)
+							<span>$!name</span>
+						#end	
+						</div>
+						<!--<div class="house-comment">
+							<div class="comment-star" style="">
+								<div class="comment-point" style="width:55px;"></div>
+							</div>
+							<span class="bor-left">5.0分</span><span>0条点评</span>
+						</div>-->
+					#end
+					</div>
+					
+					<div id="pullUp" onclick="">
+						<span class="pullUpIcon"></span><span class="pullUpLabel"></span>
+					</div>
+					<img src="$!imgurl" width="0" height="0"  />
+				</div>
+			</div>
+		</div>
+		#end	
+		<script src="#springUrl('/assets/js/startScore.js')" type="text/javascript" charset="utf-8"></script>
+		<script src="#springUrl('/assets/js/house-list.js?version1608121009')" type="text/javascript" charset="utf-8"></script>
+	</body>
+	
+<script type="text/javascript">
+//收藏或取消			
+function checkColelect(obj,houseId,status) {
+	var favor = true;
+	if (status == 1) {
+		favor = false;
+	}
+	$.ajax({
+		url:"#springUrl('/collect/addOrDeleCollect.htm')",
+		type:'post',
+		async: false,
+		data:{"houseId":houseId,"favor":favor},
+		success:function(data) {
+			if (data.code == 0){
+				if (status == 1) { //取消收藏
+					$(obj).attr("src","http://file.88mmmoney.com/c9d46234-f7b9-4614-b09a-5136724009d6");
+					$(obj).attr("onclick","checkColelect(this," + houseId + ",0)" );
+					return ;
+				}
+				if (status == 0) { //加入收藏
+					$(obj).attr("src","http://file.88mmmoney.com/4f5f0618-9ed0-4a29-a871-af3ba9be0355");
+					$(obj).attr("onclick","checkColelect(this," + houseId + ",1)" );
+					return ;
+				}
+				if (data.code == 13) {
+					showTip("房源已收藏");
+					return;
+				}
+				if (data.code == 14) {
+					showTip("房源已取消收藏");
+					return;
+				}
+				return ;
+			}
+			if (data.code == 2) { //未登陆
+				location.href="/my/toLogin.htm";
+				return ;
+			}
+		}
+	});
+}
+</script>
+</html>

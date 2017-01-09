@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>订单</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-cache" />
+  <link rel="stylesheet" href="#springUrl('/assets/css/amazeui.min.css')"/>
+  <link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/reset.css')">
+    <link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/order.css')">
+  <link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/order_3_5.css')">
+  <script type="text/javascript" src="#springUrl('/assets/js/jquery.min.js')"></script>
+  <script type="text/javascript" src="#springUrl('/assets/js/amazeui.min.js')"></script>
+  <script type="text/javascript" src="#springUrl('/assets/js/common.js')"></script>
+  <script type="text/javascript" src="#springUrl('/assets/js/mycontacts.js')"></script>
+  <script type="text/javascript">
+  	var adaptPageClass = "content";
+  	$(document).ready(function(){
+	    	var start = '$!startdate';
+			var end = '$!enddate';
+			var startTime = start.substring(0,4)+'年'+start.substring(4,6)+'月'+start.substring(6,8)+'日';
+			var endTime = end.substring(0,4)+'年'+end.substring(4,6)+'月'+end.substring(6,8)+'日';
+			$("#startTime").html(startTime);
+			$("#endTime").html(endTime);
+			var dif = GetDateDiff(start,end);
+			$("#totalTime").html(dif);
+	   });
+	   function GetDateDiff(startDate,endDate)  
+	{  
+		startDate = startDate.substring(0,4)+"-"+startDate.substring(4,6)+"-"+startDate.substring(6,8);
+		endDate = endDate.substring(0,4)+"-"+endDate.substring(4,6)+"-"+endDate.substring(6,8);
+        var startTime = new Date(Date.parse(startDate.replace(/-/g,   "/"))).getTime();     
+        var endTime = new Date(Date.parse(endDate.replace(/-/g,   "/"))).getTime();     
+        var dates = Math.abs((startTime - endTime))/(1000*60*60*24);     
+        return  dates;    
+	}
+	
+			//声明_czc对象:
+			var _czc = _czc || [];
+			//绑定siteid，请用您的siteid替换下方"XXXXXXXX"部分
+			_czc.push(["_setAccount", "1260334725"]);
+			
+  </script>
+</head>
+<body>
+  <div id="modal"></div>
+  <div id="modal_contacts"></div>
+  <div id="modal_addContacts"></div>
+  
+  <div id="modal_order" class="body content">
+    <header class="bg-red">
+       <div class="head">
+        <a class="back ui-link" href="javascript:void(0);" onclick="goBack()" tdata-rel="back">返回</a>
+        <div class="title header_title" id="header-title">订单</div>
+       </div>
+    </header>
+    <section class="order-main">
+      <form id="form" method="post" action="#springUrl('/my/orderConfirm.htm')">
+      	 <input type="hidden" name="houseId"  value="$!houseInfo.houseId"/>
+		 
+		<input type="hidden" name="name" id="contactsName" value=""/>
+		<input type="hidden" name="phone" id="contactsPhone" value=""/>
+		
+		<input type="hidden" name="startTime" value="$!startdate"/>
+		<input type="hidden" name="endTime" value="$!enddate"/>
+		<input type="hidden" name="memTotalAmt" value=""/>
+		<input type="hidden" name="orderAmt" value=""/>
+		<input type="hidden" name="houseName" value="$!houseInfo.houseName"/>
+		<input type="hidden" name="ammount" value=""/>
+		<input type="hidden" name="prepayment" value=""/>
+		<input type="hidden" name="totalTime" value="">
+		<input type="hidden" name="cityName" value="$!houseInfo.cityName"/>
+		<input type="hidden" name="footerTotalAmt" value=""/>
+		<input type="hidden" name="coupons" value=""/>
+		<input type="hidden" name="discount" value=""/>
+		<input type="hidden" name="total" value=""/>
+		<input type="hidden" name="actual" value=""/>
+		<input type="hidden" name="hotelCouponIds" value=""/>
+		<input type="hidden" name="realInSeasonDays" id="realInSeasonDays" value="0"/>
+		
+		
+		<input type="hidden" name="inSeasonDays" id="inSeasonDays" value=""/>
+		<input type="hidden" name="offSeasonDays" id="offSeasonDays" value=""/>
+	
+		
+		
+        <ul class="list">
+          <li>
+            <div class=" clearfix">
+              <label for='name' class="color-grey pull-left">
+					入住人：
+              </label>
+			  <div class="pull-right">
+                  <span class="color-grey" onclick="selectMyContacts()">选择入住人</span>
+                  <span class="icon-right"></span>
+               </div>
+              <div class="pull-left">
+                <span class="color-black " id="room_info"><input value="$!contactsName" placeholder="" type="text" class="reg_input_1 text-color" rel="name" msgid="error_7" need="need" onblur="dataValidateV2(this);" msg="姓名" id="name">
+                	
+                </span>
+              </div>
+              <div class=" reg_err_div div_hidden fr" id="error_7">
+                <img src="/assets/i/order/icon_err.png" class="err_icon_1">
+                 <font id="error_7_span">入住人不能为空</font>
+              </div>
+              
+            </div>
+          </li>
+          
+          <li>
+            <div class=" clearfix">
+              <label for='phone' class="color-grey pull-left">
+					手机号：
+              </label>
+              <div class="pull-left">
+                <span class="color-black" id="room_info"><input value="$!contactsPhone" placeholder="" type="telephone" class="reg_input_1 text-color" need="need" rel="phone" msgid="error_1" onblur="dataValidateV2(this);" msg="手机号" id="phone" maxlength="11" islogin="isLogin"></span>
+                 
+              </div>
+              <div class=" reg_err_div div_hidden fr" id="error_1">
+                <img src="/assets/i/order/icon_err.png" class="err_icon_1" need="need"/>
+                <font id="error_1_span"></font>
+              </div>   
+            </div>
+          </li>
+        </ul>
+		
+		 
+        <ul class="list">
+          <li>
+            <div>
+              <div class="clearfix mb-08">
+                <div class="color-grey pull-left">
+                  	入住时间：
+                </div>
+                <div class="pull-right">
+                  <span class="time-modify" id="update-time">
+                    		修改
+                  </span>
+                </div>
+              </div>
+              <div class="clearfix">
+                <div class="color-black pull-left">
+                  <span id="start_date"><span id="startTime"></span></span>-<span id="end_date"><span id="endTime"></span></span>
+                </div>
+                <div class="color-red pull-right">
+                  		共<big id="totalTime">1</big>晚
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+
+        <ul class="list">
+          <li>
+            <div class=" clearfix">
+              <div class="color-grey pull-left">
+					房间信息：
+              </div>
+              <div class="pull-right">
+                <span class="color-black" id="room_info">$!houseInfo.houseName</span>
+              </div>
+            </div>
+          </li>
+        </ul>
+
+        <ul class="list">
+          <li>
+            <div class=" clearfix">
+              <div class="color-grey pull-left" >
+					总价：
+              </div>
+              <div class="color-red pull-right">
+					￥
+					#if($!footerTotalAmt)
+						<span  id='footerTotalAmt'>$!footerTotalAmt</span>
+					#else
+						<span  id='footerTotalAmt'>0</span>
+					#end
+              </div>
+            </div>
+          </li>
+          <li>
+            <a href="javaScript:void(0)" onclick="toCoupon()">
+              <div class=" clearfix">
+                <div class="color-grey pull-left">
+					旅居券：
+                </div>
+                <div class="pull-right">
+                  <span class="color-grey" id="coupon">使用旅居券</span>
+                  <span class="icon-right"></span>
+                </div>
+              </div>
+            </a>
+          </li>
+          <li>
+            <div class=" clearfix">
+              <div class="color-grey pull-left">
+					已优惠：
+              </div>
+              <div class="color-black pull-right">
+                                                   ￥<span id="discount">0</span>
+              </div>
+            </div>
+          </li>
+        </ul>
+
+        <ul class="list">
+          <li>
+            <div class="clearfix">
+              <div class="pull-right clearfix right-box full-box">
+                <div class="pull-left right-long">
+                  <span class="color-grey">全款预订：</span>
+                </div>
+                <div class="pull-right right-number">
+        				#if($!total)
+        					<span>￥<span id="total">$!total</span></span>
+        				#else
+        					<span>￥<span id="total">0</span></span>
+        				#end
+					
+                </div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="clearfix">
+              <div class="pull-right clearfix right-box full-box">
+                <div class="pull-left right-short">
+                  <span class="color-grey">实付：</span>
+                </div>
+                <div class="pull-right right-number">
+                  
+                     #if($!actual)
+                         <span class="color-red" >￥<span id="actual">$!actual</span></span>
+                     #else
+                         <span class="color-red" >￥<span id="actual">0</span></span>
+                     #end
+				  
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+        
+        <!--
+		<ul class="list pay-type-list" >
+	        <li class="pay-type-item">
+				<i class="icon icon-weixin"></i>
+				<span>微信支付</span>
+				<input checked id='weixin' class="pay-type" style="visibility:hidden;" type="radio" name="pay_type" value="wxpay"  />
+				<label for='weixin'></label>
+	        </li>
+	        <li class="pay-type-item">
+				<i class="icon icon-alipay"></i>
+				<span>支付宝支付</span>
+				<input id='alipay' class='pay-type' style="visibility:hidden;" type="radio" name="pay_type" value="alipay"  />
+				<label for='alipay'></label>
+	        </li>
+		</ul>-->
+
+		<div class="submit_foot"></div>
+        <a class="btn bg-red submitOrd" id="submitOrd" onclick="_czc.push(['_trackEvent', '订单', '订单-确定按钮提交订单', '订单-确定按钮提交订单 -点击','15','']);" >确定</a>
+      </form>
+    </section>
+    <img src="$!imgurl" width="0" height="0"  />
+  </div>
+  <input type="hidden" id="checkInTime" value="${checkInTime}"/>
+  <input type="hidden" id="checkOutTime" value="${checkOutTime}"/>
+  
+  <script type="text/javascript">
+  		var storage = window.localStorage;
+    $(function() {
+		var initname = storage["cname"];
+		var initphone = storage["cphone"];
+		if (initname != null && initname != '') {
+			$("#name").val(initname);
+		}
+		if (initphone != null && initphone != '') {
+			$("#phone").val(initphone);
+		}
+	
+		var houseId = $!houseInfo.houseId;
+		var memTotalAmt = $!houseInfo.memTotalAmt;
+		var houseName = '$!houseInfo.houseName';
+		var totalRoomNum = $!houseInfo.totalRoomNum;
+		var memFreezeAmt = $!houseInfo.memFreezeAmt;
+    	$.ajax({
+    		url:"#springUrl('/my/getOrderPriceInfo.htm')",
+    		type:'get',
+    		data:"houseId=$!houseInfo.houseId&startDate=$!startDate&endDate=$!endDate",
+    		success:function(data){
+				if (data != null && data.data != null) {
+					ajaxRequest(data);
+        			$("#totalTime").html(data.data.days);
+        			$("#footerTotalAmt").html(data.data.totalAmt);
+        			$("#total").html(data.data.orderFinalAmt);
+        			$("#actual").html(data.data.orderFinalAmt);
+        			$("#inSeasonDays").val(data.data.inSeasonDays);
+        			$("#offSeasonDays").val(data.data.offSeasonDays);
+        			var coupons=data.data.hotelCouponSize;
+        			if(coupons&&coupons>0){
+    					$("#coupon").html("<span class='color-black'>已使用<span class='text-color-fb' id='coupons'>"+coupon+"</span>张劵</span>");
+    				}else{
+    					$("#coupon").html("使用旅居券");
+    				}
+				}
+    		}
+    	});
+        
+        $('#update-time').click(function(){
+			var cname = $("#name").val();
+			var cphone = $("#phone").val();
+			storage["cname"] = cname;  //客户姓名
+			storage["cphone"] = cphone;  //客户手机
+	        var start = '$startdate';
+			var end = '$enddate';
+			var totalTime =$("#totalTime").html();
+			var checkInTime = $("#checkInTime").val();
+   			var checkOutTime = $("#checkOutTime").val();
+	        location.href="#springUrl('/my/orderDate.htm?houseId=')"+houseId+"&startdate="+start+"&enddate="+end+"&totalTime="+totalTime+"&checkInTime="+checkInTime+"&checkOutTime="+checkOutTime;
+        });
+        
+      
+
+        $('#submitOrd').on('click', function() {
+	        var pay_type="";
+			var radio=document.getElementsByName("pay_type");
+			for(var i=0;i<radio.length;i++){
+				if(radio[i].checked==true){
+				pay_type=radio[i].value;
+				break;
+			   }
+			 }  
+			 
+			/*if(''==pay_type){
+			    showTip("请选择支付方式！",3);
+			    return false;
+			}*/
+			
+	        var re;
+		    $(".reg_err_div").each(function(){
+		      var is_rel = $(this).hasClass("div_hidden");
+		      if(is_rel != true){
+		        re=1;
+		      }
+		    });
+		    if(re ==1){
+		    	showTip("请填写 预订人姓名和手机号",3);
+		    	return false;
+		    }
+			var orderAmt = $("#orderTotalAmt").html();
+			var name = $("#name").val();
+			var phone = $("#phone").val();
+			var startTime = $("#startTime").html();
+			var endTime = $("#endTime").html();
+			var ammount = $("#ammount").html();
+			 var prepayment = $("#orderFreezeAmt").html();
+			 var availAmt = $("#availAmt").html();
+			 var totalTime=$("#totalTime").html();
+			 var footerTotalAmt=$("#footerTotalAmt").html();
+			 var coupons=$("#coupons").html();
+			 var discount=$("#discount").html();
+			 var total=$("#total").html();
+			 var actual=$("#actual").text();
+			 if(parseInt(availAmt) < parseInt(prepayment)){
+			 	showTip("您的积分余额不足，请充值",3);
+			 	return false;
+			 }
+			 if(name==''||phone==''){
+			 	showTip("请填写 预订人姓名和手机号",3);
+			 	return false;
+			 }
+			 /*
+			 if(actual!=0){
+			 	showTip("您使用的旅居劵不够",3);
+			 	return false;
+			 }*/
+			 $("input[name='name']").val(name);
+			 $("input[name='phone']").val(phone);
+			 $("input[name='startTime']").val(startTime);
+			 $("input[name='endTime']").val(endTime);
+			 $("input[name='ammount']").val(ammount);
+			 $("input[name='prepayment']").val(prepayment);
+			 $("input[name='orderAmt']").val(orderAmt);
+			 $("input[name='memTotalAmt']").val(orderAmt);
+			 $("input[name='totalTime']").val(totalTime);
+			 $("input[name='footerTotalAmt']").val(footerTotalAmt);
+			 $("input[name='coupons']").val(coupons);
+			 $("input[name='discount']").val(discount);
+			 $("input[name='total']").val(total);
+			 $("input[name='actual']").val(actual);
+			 /*
+			 if(typeof couponList=='undefined'){
+			 	showTip("您没有选择旅居劵",3);
+			 	return false;
+			 }*/
+			 
+			 if(typeof couponList != 'undefined'){
+			 	$("input[name='hotelCouponIds']").val(couponList.join());
+			 }
+			 
+			 //清理缓存信息
+			 localStorage.removeItem("cname");
+			 localStorage.removeItem("cphone");
+			 $("#form").submit();
+          });
+        $('#update-time').click(function(){
+        	var start = '$!startdate';
+			var end = '$!enddate';
+			var totalTime =$("#totalTime").html();
+			var checkInTime = $("#checkInTime").val();
+   			var checkOutTime = $("#checkOutTime").val();
+          location.href="/my/orderDate.htm?houseId="+houseId+"&startdate="+start+"&enddate="+end+"&totalTime="+totalTime+"&checkInTime="+checkInTime+"&checkOutTime="+checkOutTime;;
+        });
+    });
+	
+	function toCoupon(){
+		var startTime='$!{startDate}';
+		if(startTime.indexOf("-") <= 0 ){
+		    startTime = startTime.substring(0,4)+"-"+startTime.substring(4,6)+"-"+startTime.substring(6,8);
+		}
+		
+		var endTime='$!{enddate}';
+		if(endTime.indexOf("-") <= 0 ){
+		    endTime = endTime.substring(0,4)+"-"+endTime.substring(4,6)+"-"+endTime.substring(6,8);
+		}
+		var inSeasonDays=$("#inSeasonDays").val();
+		var offSeasonDays=$("#offSeasonDays").val();
+		var houseId= $("input[name='houseId']").val();
+		if($("#modal").css("display")=="none"){
+			$("#modal").css("display","block");
+		}else{
+			$("#modal").load("#springUrl('/my/choose_coupon.htm?inSeasonDays="+inSeasonDays+"&offSeasonDays="+offSeasonDays+"&houseId="+houseId+"&expireTimeFromStr="+startTime+"&expireTimeFromTo="+endTime+"')");
+		}
+		$("#modal").css("zIndex","999");
+		
+	}
+	
+	function hideModal(){
+		$("#modal").css("display","none");
+	}
+	
+	//返回
+	function goBack() {
+		//清理缓存信息
+		localStorage.removeItem("cname");
+		localStorage.removeItem("cphone");
+		window.history.go(-1);
+	}
+	
+	//显示选择入住人
+	function selectMyContacts() {
+		if($("#modal_contacts").css("display")=="none"){
+			$("#modal_contacts").css("display","block");
+			$("#modal_order").css("display","none");
+		}else{
+			$("#modal_contacts").load("#springUrl('/my/choose_myCoupon.htm')");
+			$("#modal_order").css("display","none");
+		}
+		
+		$("#modal_contacts").css("zIndex","999");
+	}
+  </script>
+</body>
+</html>

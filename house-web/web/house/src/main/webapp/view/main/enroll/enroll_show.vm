@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>妈妈送房网单身趴</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="renderer" content="webkit">
+  <!--缓存处理-->
+  <meta http-equiv="Cache-Control" content="no-cache" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<link rel="stylesheet" href="#springUrl('/assets/css/amazeui.min.css')" />
+	<link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/reset.css')">
+	<link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/singlePa.css')">
+</head>
+
+	<body>
+		<div class="body content">
+			<div class="top">
+				<img src="#springUrl('/assets/i/singlePa/top-banner.png')" width="100%" />
+				<div class="intro">
+					<br/>在单身的这个江湖里，江湖水深，等级严密。<br/> 普通的单身人士都会自称单身贵族，
+					<br/> 成功的单身人士称之为黄金单身，
+					<br/> 站在金字塔顶端的是钻石王老五。
+					<br/> 怕找不到各自的组织。
+					<br/> 想着认识同为黄金贵族的人士，
+					<br/> 却苦于找不到契合的时机，
+					<br/> 那这个周末，妈妈家带你到深圳大鹏体验黄金单身party。
+					<br/><br/>
+				</div>
+				<img src="#springUrl('/assets/i/singlePa/pic1.png')" width="100%" alt="" />
+				<p>以上帅哥美女已报名参加！你还等神马！</p>
+			</div>
+			<form id="enrollForm"  method="post" action="#springUrl('/enroll/toAdd.htm')">
+			<section class="form">
+				<div>
+					<span>
+					姓名：
+					</span>
+					<input type="text" name="name" id="name" placeholder="请输入姓名" />
+				</div>
+				<div>
+					<span>
+					电话：
+					</span>
+					<input type="tel" name="phone" id="phone" placeholder="请输入电话" onkeyup="value=value.replace(/[^\d]/g,'') " maxlength="11"/>
+				</div>
+				<div>
+					<span>
+					微信：
+					</span>
+					<input type="text" name="weChat" id="weChat" placeholder="请输入微信" />
+				</div>
+				<div>
+					<span>
+					年龄：
+					</span>
+					<input type="text" name="age" id="age" placeholder="请输入年龄(18-40)" onkeyup="value=value.replace(/[^\d]/g,'') "/>
+				</div>
+				<div class="sex">
+					<input type="hidden" name="sex" id="sex" value="1"/>
+					<span>性别：</span>
+					<label for="female"><input id="female" type="radio" value="女" name="xb" checked="checked" value="1" onclick="choose(1)"/>女</label>
+					<label for="male"><input id="male" type="radio" value="男" name="xb" value="0" onclick="choose(0)"/>男</label>
+				</div>
+				<div class="grade">
+					<span>
+					学历：
+					</span>
+					<select id="educated" name="educated">
+						<option value="3">本科</option>
+						<option value="4">硕士</option>
+						<option value="5">博士</option>
+					</select>
+				</div>
+				<div class="btn-submit" onclick="sureEnroll()">
+					立即报名
+				</div>
+			</section>
+			</form>
+			<section class="actvity-intro">
+				<p class="act-title">活动详情</p>
+				<p>
+					费用499元/人<br/> 其中包含
+					<br/> 1.餐费：两天中涉及到的早中晚餐
+					<br/> 2.住宿：Here印象旗舰店&深圳官湖彼岸客栈独立房1晚（市场价800元/晚） 备注：所有人员均安排单独一间房，尽享私密住宿空间
+					<br/> 3.交通：往返市内空调大巴接送
+					<br/> 4.精美礼品：由巨匠汇倾情提供手工定制首饰1份（戒指、耳饰等）
+				</p>
+				<div class="actvity-tip">
+					<span>
+						<img src="#springUrl('/assets/i/singlePa/time.png')" />
+					</span>
+					<p>
+						时间<br/>2016年8月20—21日
+					</p>
+				</div>
+				<div class="actvity-tip">
+					<span>
+						<img src="#springUrl('/assets/i/singlePa/positiopn.png')"/>
+					</span>
+					<p>
+						集合时间&地点<br/>
+						深大北门上车时间：8月20日上午10：00<br />
+						深圳体育馆上车时间：8月20日上午10：30
+					</p>
+				</div>
+				<div class="actvity-tip">
+					<span>
+						<img src="#springUrl('/assets/i/singlePa/phone.png')" />
+					</span>
+					<p>
+						电话<br/>欢迎致电：400-9966-633
+					</p>
+				</div>
+				<p>报名须知</p>
+				<p>
+					学历要求：本科，及以上<br/>
+					年龄要求：女士22-35周岁，男士22-35周岁<br/><br/>
+					本活动主办方：妈妈闲居网<br/>
+					本活动协办方：巨匠汇
+				</p>
+				
+				<p class="act-title">活动特色</p>
+				<img src="#springUrl('/assets/i/singlePa/activity-1.png')"/>
+				<p class="act-title">精美礼品</p>
+				<img src="#springUrl('/assets/i/singlePa/activity-2.png')" />
+				
+			</section>
+
+		</div>
+<script type="text/javascript" src="#springUrl('/assets/js/jquery.min.js')"></script>
+<script type="text/javascript" src="#springUrl('/assets/js/mm-img-lazyload.js')" charset="utf-8"></script>
+<script type="text/javascript" src="#springUrl('/assets/js/screen-adapter.js')" charset="utf-8"></script>
+<script type="text/javascript">
+var adaptPageClass = "content";
+
+function checkEnroll() {
+	var name = $("#name").val();
+	if(name == "" || name == null) {
+		alert("请输入姓名");
+		return ;
+	}
+	
+	var phone = $("#phone").val();
+	if(phone == "" || phone == null) {
+		alert("请输入电话");
+		return ;
+	} else {
+		var regPattern_mobile = /^[1][0-9]{10}$/;
+	    if(!regPattern_mobile.test(phone)) {
+	       alert("手机号格式不正确!");
+	       return false;
+	    }
+	}     
+	
+	
+	var weChat = $("#weChat").val();
+	if(weChat == ""  || weChat == null) {
+		alert("请输入微信");
+		return ;
+	}
+	
+	var age = $("#age").val();
+	if(age == "" || age == null) {
+		alert("请输入年龄");
+		return ;
+	} else {
+		if(Number(age) < 18 || Number(age) > 40) {
+			alert("年龄限为18-40");
+			return ;
+		}
+	}
+	var bool = true;
+	$.ajax({
+		url:"#springUrl('/enroll/check.htm')",
+		type:'post',
+		async: false,
+		data:{"phone":phone,"weChat":weChat},
+		success:function(data) {
+			if(data.isCheck == "phone") {
+				alert("该手机已报名！");
+				bool = false;
+			}
+			if(data.isCheck == "weChat") {
+				alert("该微信已报名");
+				bool = false;
+			}
+			
+		}
+	});
+		
+	return bool;
+}
+function sureEnroll() {
+	if(checkEnroll()) {
+		$("#enrollForm").submit();
+		/**$.ajax({
+		url:"#springUrl('/enroll/toAdd.htm')",
+		type:'post',
+		async: false,
+		data:$("#enrollForm").serialize() ,
+		success:function(data) {
+			if(data.code == 0){
+				alert("报名成功!");
+			}
+		}
+		});
+		*/
+	}
+}
+
+function choose(sex) {
+	$("#sex").val(sex);
+}
+</script>
+	</body>
+
+</html>

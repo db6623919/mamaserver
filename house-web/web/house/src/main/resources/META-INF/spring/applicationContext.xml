@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:util="http://www.springframework.org/schema/util"
+    xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://www.springframework.org/schema/context
+            http://www.springframework.org/schema/context/spring-context.xsd
+            http://www.springframework.org/schema/aop
+            http://www.springframework.org/schema/aop/spring-aop.xsd
+            http://www.springframework.org/schema/util
+            http://www.springframework.org/schema/util/spring-util.xsd
+            http://www.springframework.org/schema/mvc
+			http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd"
+    default-autowire="byName">
+
+    <aop:aspectj-autoproxy />
+    <context:annotation-config />
+
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+	        <list>
+	            <value>file:/opt/pay/config/house/web/app.properties</value>
+	            <value>file:/opt/pay/config/house/web/session.properties</value>
+	            <value>file:/opt/pay/config/house/web/sso.properties</value>
+	        </list>
+        </property>
+    </bean>
+    
+    <context:component-scan base-package="com.mmzb.house.web" />
+	
+	<import resource="classpath*:META-INF/spring/**/*-bean.xml"/>
+	<import resource="classpath*:META-INF/spring/house-web-common.xml"/>
+	<import resource="classpath*:META-INF/spring/house-web-ext-integration.xml" /> 
+
+    <bean id="xssFilter" class="com.mmzb.house.web.filter.XssFilter"/>
+    <bean id="ssoFilter" class="com.mmzb.house.web.filter.SsoFilter"/>
+    
+    <bean class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
+        <property name="beanNames">
+            <list>
+                <value>customOrderRepository</value>
+                <value>functionRepository</value>
+                <value>functionContentRepository</value>
+                <!-- <value>memberRepository</value> <value>roleRepository</value> -->
+                <value>industryRepository</value>
+            </list>
+        </property>
+        <property name="interceptorNames">
+            <value>dalLoggerInterceptor</value>
+        </property>
+    </bean>
+
+    <util:properties id="properties" location="file:/opt/pay/config/house/web/app.properties"/>
+    
+    <bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+   		<property name="staticMethod" value="com.mmzb.house.web.util.MsgUtil.setProperties"/>
+   		<property name="arguments" ref="properties" />
+ 	</bean>
+    
+    <bean class="com.mmzb.house.web.listener.ServletContextInitListener">
+    </bean>
+    
+    <bean id="webResource" class="com.mmzb.house.web.filter.WebDynamicResource">
+        <property name="hostAddress" value="${hostAddress}" />
+    </bean>
+    
+    
+    <!-- <mvc:interceptors> 
+ 		<mvc:interceptor>   
+ 			<mvc:mapping path="*.htm"/>   
+ 				<bean class="com.mmzb.house.web.filter.BeanFieldInterceptor"> 
+ 					<property name="hostAddress" value="${hostAddress}"></property> 
+ 			</bean>   
+ 		</mvc:interceptor> 
+     </mvc:interceptors> -->
+     
+     <bean id="sceneQrCodeScanEventHandler" class="com.mmzb.house.web.handler.SceneQrCodeScanEventHandler" />
+     
+     <bean id="weChatMessageDispatcher" class="com.mmzb.house.web.service.impl.WeChatMessageDispatcherImpl">
+     	<property name="callbackMap">
+     		<map>
+				<entry key="scanSceneQrCode" value-ref="sceneQrCodeScanEventHandler" />
+			</map>
+     	</property>
+     </bean>
+
+</beans>

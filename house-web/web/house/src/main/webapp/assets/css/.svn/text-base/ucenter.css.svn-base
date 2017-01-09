@@ -1,0 +1,231 @@
+.am-padding-bottom-xl{
+    padding-bottom: 1.2rem;
+}
+.am-backcolor-f0{
+    background-color: #fbf8ec;
+}
+.am-ucenter-header{
+	color: #ffffff;
+	height: 15rem;
+	background-size:100% 100%;
+	background-image: url(../i/ucenter/ucenterBG.jpg);
+}
+.am-ucenter-header a{
+	color: #ffffff;
+}
+.am-ucenter-uhead{
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url("../i/ucenter/scoreBG.png")
+}
+.am-ucenter-uhead p{
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #f75c52;
+    padding-top: 3rem;
+}
+.am-ucenter-score{
+    padding: 0;
+}
+
+.am-ucenter-bnt{
+	background-color: transparent;
+	color: white;
+	width: 9rem;
+}
+.am-ucenter-icon{
+	width: 2.4rem;
+	height: 2.4rem;
+	margin-bottom: 0.5rem;
+}
+.am-ucenter-title{
+	height: 4rem;
+	line-height: 4rem;
+	border-bottom: 1px solid #e7e7e7;
+    font-size: 1.5rem;
+}
+.am-ucenter-gap{
+	height: 1rem;
+	border-bottom: 1px solid #e7e7e7;
+}
+.am-ucenter-pad0{
+	padding-left: 0;
+}
+  
+.am-ucenter-uicon{
+/*
+	width: 8.5rem;
+	height: 8.5rem;
+*/
+    width: 11rem;
+	height: 11rem;
+    margin-bottom: 0.5rem;
+}
+
+.am-margin-bottom{
+    margin-bottom: 0;
+}
+.am-ucenter-account{
+    background-color: rgba(0, 0, 0, 0.4);
+    font-size: 1rem;
+    height: 2.4rem;
+}
+.am-nickname{
+    line-height: 2.4rem;
+    float: left;
+}
+.am-card{
+    line-height: 2.4rem;
+    float: right;
+}
+.am-ucenter-account-icon{
+    width: 1.5rem;
+    height: 1.5rem;
+}
+.am-ucenter-prenick{
+    vertical-align: middle;
+}
+.am-ucenter-nickname{
+    vertical-align: middle;
+}
+.am-ucenter-info-split{
+    margin-left: .5rem;
+    height: 2.2rem;
+    width: .3rem;
+}
+
+.am-ucenter-prenlevel{
+    margin-left: .5rem;
+    vertical-align: middle;
+}
+.am-ucenter-levelname{
+    vertical-align: middle;
+}
+.am-ucenter-diamonds{
+    vertical-align: middle;
+}
+.am-ucenter-diamond{
+    vertical-align: middle;
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-bottom: .1rem;
+}
+
+
+
+.am-ucenter-h26{
+	height: 26px;
+}
+
+.am-reginster .am-btn-default:hover {
+	background-color: transparent;
+	color: white;
+}
+
+.am-login-status-div .am-status-in{
+	display: block;
+}
+
+.am-login-status-div .am-status-out{
+	display: none;
+}
+
+.am-logout-status-div .am-status-in{
+	display: none;
+}
+
+.am-logout-status-div .am-status-out{
+	display: block;
+}
+
+.am-ucenter-body-list{
+    color: #7f7f7f;
+}
+
+.am-ucenter-head-img{
+	width: 65px;
+	height: 65px;
+}
+
+.am-ucenter-head-title{
+	line-height: 65px;
+}
+.am-ucenter-next{
+    float: right;
+    height: 1.2rem;
+    width: 1.2rem;
+}
+.am-ucenter-next img{
+    margin-bottom: 0.5rem;
+}
+.am-ucenter-new{
+    float: right;
+    margin-right: 1.5rem;
+    height: 2.6rem;
+    width: 2.6rem;
+}
+.am-ucenter-new img{
+    margin-bottom: 0.5rem;
+}
+.am-ucenter-service{
+    float: right;
+    /*margin-bottom: 0.5rem;
+    margin-right: 1.5rem;*/
+}
+
+.am-padding-right-xxl{
+	padding-right: 4rem;
+}
+
+.am-padding-right-xxx{
+	padding-right: 4.5rem;
+}
+
+.am-padding-right-xxs{
+	padding-right: 2.5rem;
+}
+
+.am-ucenter-pwd-img{
+	width: 25px;
+	height: 25px;
+}
+
+.am-margin-top-xx{
+	margin-top: 9rem;
+}
+.am-order-botton{
+	text-align: center;
+    line-height: 1.2;
+    border: 1px solid #cccccc;
+    padding-top: 0.7rem;
+    padding-bottom: 0.7rem;
+    font-size: 1.6rem;
+}
+.am-line-3{
+	line-height: 3;
+}
+.am-line-2{
+	line-height: 2;
+}
+.am-line-2-5{
+	line-height: 2.5;
+}
+.am-ucenter-tip{
+	height: 8rem;
+    margin-top: 2rem;
+}
+
+.am-ucenter-commit{
+    background-color: #f75c52;
+    height: 4.5rem;
+    border-style: none;
+    width: 80%;
+    margin-left: 10%;
+    margin-bottom: 2rem;
+    border-radius: 5px;
+    color: #ffffff;
+}
+.am-w-12{
+    width: 12rem;
+}

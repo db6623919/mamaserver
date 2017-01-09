@@ -1,0 +1,35 @@
+<html>
+	<meta charset="UTF-8">
+	<meta name="viewport"
+	content="width=device-width,height=device-height,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+	<meta name="format-detection" content="telephone=no, email=no"/>
+	<meta name="keywords" content="冬天旅游去哪里，冬天去哪旅游，妈妈美宿，全球冬季热门旅游城市，冬季旅游住宿攻略推荐、短租，民宿，促销，优惠，避冬、海岛游" />
+	<meta name="description" content="冬天旅游去哪里？冬天旅游目的地住宿推荐，妈妈送房盘点19家妈妈美宿精品客栈，全国过暖冬好房只需99元，远离北方寒冷，窝进深圳海景暖房、看海岛艳阳天。不论冬天旅游去哪里，这个冬天妈妈送房与你在一起！" />
+	<title>冬天旅游去哪里-妈妈美宿19家精品海景客栈-妈妈送房</title>
+	<style>
+		a[title='站长统计'] {
+			display: none;
+		}
+	</style>
+	<body>
+		<script src="https://s11.cnzz.com/z_stat.php?id=1260334725&web_id=1260334725" language="JavaScript"></script>
+		<script>
+			var _hmt = _hmt || [];
+			(function() {
+			  var hm = document.createElement("script");
+			  hm.src = "https://hm.baidu.com/hm.js?16bdd41cf636456d27c6dd2c1e2723b3";
+			  var s = document.getElementsByTagName("script")[0];
+			  s.parentNode.insertBefore(hm, s);
+			})();
+		</script>
+		<script>
+			//声明_czc对象:
+			var _czc = _czc || [];
+			//绑定siteid，请用您的siteid替换下方"XXXXXXXX"部分
+			_czc.push(["_setAccount", "1260334725"]);
+		</script>
+
+		<script type="text/javascript" src="#springUrl('/assets/js/mmsf/config.js?v=20161223')"></script>
+		<script type="text/javascript" src="#springUrl('/assets/js/mmsf/bundle.js?v=20161223')"></script>
+	</body>
+</html>

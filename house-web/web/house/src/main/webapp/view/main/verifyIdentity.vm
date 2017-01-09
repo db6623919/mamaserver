@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>身份验证</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-cache" />
+  <link rel="stylesheet" href="#springUrl('/assets/css/amazeui.min.css')"/>
+  <link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/reset.css')">
+  <script type="text/javascript" src="#springUrl('/assets/js/jquery.min.js')"></script>
+  <script type="text/javascript" src="#springUrl('/assets/js/common.js')"></script>
+  <script type="text/javascript" src="#springUrl('/assets/js/count-time.js')"></script>
+  <script type="text/javascript" src="#springUrl('/assets/js/amazeui.min.js')"></script>
+  <script type="text/javascript">
+    var adaptPageClass = "content";
+  </script>
+</head>
+<body class="am-backcolor-f0">
+  <div class="content body">
+    <header data-am-widget="header" class="am-header am-backcolor-ff">
+      <h1 class="am-header-title">
+        <a href="#title-link">
+          身份验证
+        </a>
+      </h1>
+    </header>
+    <div class="am-width-100 am-padding-horizontal-sm am-padding-top am-backcolor-ff">
+	  <form action="">
+      <div class="am-width-100 am-from-div-1 am-border-orange am-font-1-5 am-backcolor-ff">
+        <div class="am-g">
+          <div class="am-u-sm-3">姓名</div>
+          <div class="am-u-sm-9 am-form-div-right">
+            <input class="am-input-phone am-fl am-width-100 am-height-100" type="text" placeholder="真实姓名" maxlength="12" id="name" rel="name" need="need" msg="姓名">
+          </div>
+        </div>
+      </div>
+      <div class="am-width-100 am-margin-top am-from-div-1 am-border-orange am-font-1-5 am-backcolor-ff">
+        <div class="am-g">
+          <div class="am-u-sm-4">身份证号</div>
+          <div class="am-u-sm-8 am-form-div-right">
+            <input class="am-input-phone am-fl am-width-100 am-height-100" type="text" placeholder="身份证号码" maxlength="19" id="idcard" rel="idcard" need="need" msg="身份证号">
+          </div>
+        </div>
+      </div>
+	  <input onclick="checkData();" type="text" value="验证" class="am-width-100 am-margin-top am-from-div-2 am-font-1-5 am-text-center am-cursor-pointer am-border-0 am-margin-bottom-lg" />
+	  </form>
+    </div>
+    <div class="am-width-100 am-under-pic"></div>
+  </div>
+
+  <div class="am-modal am-modal-alert" tabindex="-1" id="my-alert">
+    <div class="am-modal-dialog">
+      <div class="am-modal-hd">提示</div>
+      <div class="am-modal-bd" id="msg"></div>
+      <div class="am-modal-footer">
+        <span class="am-modal-btn">确定</span>
+      </div>
+    </div>
+  </div>
+
+<script type="text/javascript">
+  function checkData(){
+   var name = $("#name").val();
+  	var idCard = $("#idcard").val();
+    var check_re = dataValidate();
+    if(check_re != ''){
+      $("#msg").html(check_re);
+      $('#my-alert').modal('open');
+    }else{
+		$.ajax({
+	        url: "#springUrl('/my/verifyIdentity.htm')" ,
+	        type:'post',
+	        data: "name=" + name + "&idCard="+idCard,
+			success: function(response) {
+			     var obj = eval(response);
+				 //实名验证成功
+                 if(response.code==0) {
+				 	self.location.href='#springUrl('/recharge_offline.htm')';
+				   } else {
+                     $("#msg").html(response.msg);
+  		             $('#my-alert').modal('open');
+  		             return false;
+                 }
+            },
+            error:function(response){
+              $("#msg").html("网络异常");
+  		      $('#my-alert').modal('open');
+              return false;
+            },
+	        dataType:'json'
+	    });
+    }
+  }
+</script>
+</body>
+</html>

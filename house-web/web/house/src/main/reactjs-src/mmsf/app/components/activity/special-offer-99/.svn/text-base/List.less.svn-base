@@ -1,0 +1,102 @@
+@page-color: #fb394c;
+.page {
+  box-sizing: border-box;
+  width: 100%;
+  background-color: #f0f0f0;
+  padding: 0.714rem;
+  // display: flex;
+  // flex-wrap: wrap;
+  // justify-content: space-between;
+}
+.odd {
+  padding-right: 0.357rem;
+}
+
+.even {
+  padding-left: 0.357rem;
+}
+
+.item {
+  display: inline-block;
+  width: 48.5%;
+
+  margin-bottom: 0.714rem;
+  text-decoration: none;
+  color: #383838;
+
+  img {
+    width: 100%;
+  }
+
+  .intro {
+    padding: 0.571rem 0.643rem;
+    background-color: #fff;
+  }
+
+  h2 {
+    box-sizing: border-box;
+    font-size: 1rem;
+    line-height: 1.2em;
+    height:2.4em;
+    overflow: hidden;
+    margin-bottom: 0.714rem;
+  }
+  .priceCont {
+    background-color: #fff;
+    // padding: 0 0.643rem 0.643rem 0.643rem;
+    font-size: 1rem;
+    color: @page-color;
+    strong {
+      margin-left: 3px;
+      font-size: 1.357rem;
+      font-weight: normal !important;
+      color: @page-color;
+    }
+    .discount {
+      vertical-align: bottom;
+      display: inline-block;
+      font-size: 12px;
+      border-radius: 4px;
+      background-color: #ff7b88;
+      color:#fff;
+      width: 3.6rem;
+      height: 1.29rem;
+      padding: 0 2px;
+      text-align: center;
+      line-height: 1.29rem;
+      margin-left: 6px;
+      transform: scale(0.8);
+      letter-spacing: 2px;
+      position: relative;
+      &:after {
+        content: "";
+        display: inline-block;
+        position: absolute;
+        // width: 4px;
+        // height: 4px;
+        left: -3px;
+        // background-color: #ff7b88;
+        top: 50%;
+        margin-top: -4px;
+        box-sizing: border-box;
+        border: 0;
+
+        border-top-style: solid;
+        border-bottom-style: solid;
+        border-right-style: solid;
+        border-left-style: solid;
+
+        border-top-width: 4px;
+        border-bottom-width: 4px;
+        border-left-width: 0;
+        border-right-width: 5px;
+
+        border-right-color: #ff7b88;
+        border-top-color: transparent;
+        border-bottom-color: transparent;
+        border-left-color: transparent;
+
+      }
+    }
+  }
+}

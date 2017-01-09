@@ -1,0 +1,153 @@
+@charset "utf-8";
+body {
+	margin: 0;
+	background: #fff;
+	font-family: "Segoe UI", "Lucida Grande", Helvetica, Arial, "Microsoft YaHei", FreeSans, Arimo, "Droid Sans", "wenquanyi micro hei", "Hiragino Sans GB", "Hiragino Sans GB W3", FontAwesome, sans-serif;
+	font-weight: 400;
+	color: #333;
+	font-size: 1.6rem;
+}
+
+.clear {
+	clear: both;
+}
+
+.wx_top {
+	width: 100%;
+	height: 170px;
+	background: url(../i/wx/top.png) no-repeat;
+	background-size: 100% 100%;
+	position: relative;
+	text-align: center;
+	font-size: 1.3rem;
+	color: #c42210;
+}
+
+.coupon_count {
+	position: absolute;
+	top: 65px;
+	width: 100%;
+}
+
+.coupon_count span {
+	font-weight: 600;
+	font-size: 1.4rem;
+}
+
+.coupon_house {
+	position: absolute;
+	top: 115px;
+	width: 100%;
+}
+
+.wx_middle {
+	width: 100%;
+	min-height: 46px;
+	;
+	background: url(../i/wx/middle.png) no-repeat;
+	background-size: 100% 100%;
+	text-align: center;
+	position: relative;
+}
+.wx_middle_one{
+	
+}
+.wx_middle_two{
+	display: none;
+}
+
+.coupon_status {
+	position: absolute;
+	top: 10px;
+}
+.middle_form{
+	width: 17rem;
+	background-color: #FFFFFF;
+	border-radius: 0.8rem;
+	margin: 0 auto;
+	margin-top:1.2rem;
+	padding-left: 0.8rem;
+	    padding-right: 0.8rem;
+}
+.wx_submit{
+	width: 17rem;
+	height: 3.6rem;
+	line-height: 3.6rem;
+	text-align: center;
+	font-size: 1.1rem;
+	color: #f7503e;
+	background-color: #ffcb52;
+	margin: 0 auto;;
+	border-radius: .8rem;
+	margin-top: 1.1rem;
+	padding-left: 0.8rem;
+	    padding-right: 0.8rem;
+}
+.code{
+	color: #858585;
+	font-size: 1rem;
+	padding-top: 0.4rem;
+	padding-bottom:0.4rem;
+	padding-left: 0.2rem;
+	padding-right: 0.2rem;
+	background-color: #c9c9c9;
+	border-radius: .4rem;
+	min-width: 85px;
+    display: inline-block;
+    text-align: center;
+}
+.coupon_hint {
+	position: absolute;
+	top: 34px;
+}
+.wx_input{
+	border:0;
+	color: #696969;
+	font-size: 1rem;
+}
+.wx_bottom {
+	width: 100%;
+	height: 34px;
+	background: url(../i/wx/bottom.png) no-repeat;
+	background-size: 100% 100%;
+}
+.coupon_list{
+	background-color: #FFFFFF;
+}
+.coupon_item {
+	position: relative;
+	padding-top: 0.8rem;
+	padding-bottom: 0.8rem;
+}
+
+.coupon_item_content {
+	padding-left: 4.8rem;
+	font-size: ;
+}
+
+.coupon_item_icon {
+	position: absolute;
+	top: 0.8rem;
+	left: 0;
+	width: 4rem;
+	height: 4rem;
+	border-radius: 4rem;
+}
+
+.coupon_item_icon img {
+	width: 4rem;
+	height: 4rem;
+	border-radius: 4rem;
+}
+
+.coupon_item_name {}
+
+.coupon_item_time {}
+
+.coupon_item_time {
+	float: right;
+}
+
+#houseName{
+	
+}

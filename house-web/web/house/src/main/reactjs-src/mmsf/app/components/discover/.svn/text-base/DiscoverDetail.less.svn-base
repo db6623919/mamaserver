@@ -1,0 +1,49 @@
+.banner {
+	height: 14.4rem;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+	position:relative;
+}
+
+.share {
+	width: 4.286rem;
+	position:absolute;
+	right:3.205rem;
+	bottom:-2.071rem;
+}
+
+.descPad {
+	background-color:#fff;
+	padding-top: 2.072rem;
+	padding-bottom: 3.1rem;
+	h1 {
+		font-weight: bold;
+		font-size: 1.428rem;
+		text-align:center;
+		margin-bottom:0.5rem;
+		color: #3b424b;
+	}
+	.subtitle {
+		text-align:center;
+		color:#aaa9aa;
+		font-size:1rem;
+	}
+	.separator {
+		width:17px;
+		height:2px;
+		background-color:#FF6F5C ;
+		margin:1rem auto;
+	}
+	.desc {
+		font-size:1rem;
+		text-align:center;
+		text-overflow: none;
+		white-space: normal;
+		overflow: auto;
+		line-height:150%;
+		color:#7e7e7e;
+		padding: 0 1.846rem;
+		margin-top:0;
+	}
+}

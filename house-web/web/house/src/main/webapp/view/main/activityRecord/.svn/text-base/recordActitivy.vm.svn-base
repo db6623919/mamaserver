@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>妈妈送房网天天送房</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="renderer" content="webkit">
+  <!--缓存处理-->
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/recordActivity.css')">
+		
+  <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>				
+<script type="text/javascript" src="#springUrl('/assets/js/jquery.min.js')"></script>
+<script type="text/javascript" src="#springUrl('/assets/js/recordAcitivity.js')"></script>
+
+<script type="text/javascript" src="#springUrl('/assets/js/mm-img-lazyload.js')" charset="utf-8"></script>
+<script type="text/javascript" src="#springUrl('/assets/js/scroll.js')" charset="utf-8"></script>
+<script type="text/javascript" src="#springUrl('/assets/js/screen-adapter.js')" charset="utf-8"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<!--[if lt IE 9]> <script src="http://cdn.bootcss.com/html5shiv/r29/html5.js"></script> <![endif]-->
+<script type="text/javascript">
+  	var adaptPageClass = "content";
+  </script>
+<script type="text/javascript">
+var publishTime="";
+function cancelDiv() {
+	$(".dialog").remove();
+}
+
+/**
+//定时刷新抽奖记录
+setInterval(function() {
+    $.ajax({
+		url:"#springUrl('/activity/showMemberRecord.htm')",
+		type:'post',
+		async: false,
+		data:{},
+		success:function(data){
+			if(data.code==0){
+				if (data != null ) {
+		        	//中奖名单滚动显示
+					$("#record_ul").html("");
+	        		var amrList = data.amrList;
+	        		for(var i=0;i<amrList.length;i++) {
+	        			var memberIdentity = "";
+	        			if(amrList[i].memberIdentity.length == 11) {
+	        				memberIdentity = amrList[i].memberIdentity.substring(0,3) + "****" + amrList[i].memberIdentity.substring(7,11);
+	        			}else{
+	        				memberIdentity = amrList[i].memberIdentity.substring(0,1) + "*" + amrList[i].memberIdentity.substring(2,amrList[i].memberIdentity.length);
+	        			}
+		        		var html = "<li class='award-item'>";
+							html += "<p><span class='phone'>" + memberIdentity +"</span><span class='beans'>抽中"+amrList[i].totalPoint+"颗豆</span></p>";
+							html += "</li>";
+						$("#record_ul").append(html);
+	        		}
+				}
+			}
+		}
+		});
+}, 30000);
+*/
+
+//初始化页面
+function initPage(){
+	//初始化页面配置
+	initRecord();
+	//初始化个人信息
+	initMemberInfo(); 
+}		
+//var shareTime; //分享可抽奖次数
+//初始化页面信息
+function initRecord(){
+	$.ajax({
+		url:"#springUrl('/activity/initPage.htm')",
+		type:'post',
+		async: false,
+		data:{},
+		success:function(data){
+			if(data.code==0){
+				if (data != null ) {
+					//初始化转盘
+					var lbList = data.activityConfig.luckyBeans;
+		        	for(var i=1;i<lbList.length;i++){
+		        		$("#luck_"+i).html(lbList[i].beanNums);
+		        	}
+		        	//shareTime = data.activityConfig.activityShareTimes
+		        	//中奖名单滚动显示
+					$("#record_ul").html("");
+	        		var amrList = data.amrList;
+	        		for(var i=0;i<amrList.length;i++) {
+	        			var memberIdentity = "";
+	        			if(amrList[i].memberIdentity.length == 11) {
+	        				memberIdentity = amrList[i].memberIdentity.substring(0,3) + "****" + amrList[i].memberIdentity.substring(7,11);
+	        			}else{
+	        				memberIdentity = amrList[i].memberIdentity.substring(0,1) + "*" + amrList[i].memberIdentity.substring(2,amrList[i].memberIdentity.length);
+	        			}
+		        		var html = "<li class='award-item'>";
+							html += "<p><span class='phone'>" + memberIdentity +"</span><span class='beans'>抽中"+amrList[i].totalPoint+"颗豆</span></p>";
+							html += "</li>";
+						$("#record_ul").append(html);
+	        		}
+	        		$('.list_history li:even').addClass('lieven');
+	        		$("div.award-list").myScroll({
+							speed: 50, //数值越大，速度越慢
+							rowHeight: 40 //li的高度
+					});
+					if(data.isActivityDate==1){ //是抽奖日
+						
+					}else{ //不是抽奖日
+						$("#total_pint").html(0); //总共积分
+						$("#record_size").html(0);//剩余抽奖次数
+						//$("#start_award").attr("class","end");
+						//$("#start_award").attr("disabled","disabled");
+						//addDialog(0);
+						return;
+					}
+				}
+			}
+			
+		}, 
+		error: function(e) { 
+			alert("网络异常，刷新后再操作!"); 
+		}
+	});
+	
+}
+
+//初始化个人信息
+function initMemberInfo(){
+
+	$.ajax({
+		url:"#springUrl('/activity/initMemberInfo.htm?timestamp="+new Date().getTime()+"')",
+		type:'post',
+		async: false,
+		data:{},
+		success:function(data){
+			if(data.code == 0){
+				if(data.nowDate==0){ //是抽奖时间段
+					//$("#start_award").removeAttr("disabled");
+					if(data.recordSize == 0 && data.isShare == 0) {
+						$("#p_1").hide();
+						$("#p_2").show();
+					}
+					//1:已分享  0:未分享
+					$("#isShare").val(data.isShare);
+				}else{ //非抽奖时间段
+					if(data.status==1) { //抽奖之前进入
+						//$("#start_award").attr("class","unactive");
+						//$("#start_award").attr("disabled","disabled");
+						publishTime = data.publishTime.substring(10,16);
+						$("#isShare").val(1);
+						addDialog(1);
+					}else if(data.status==2){ //抽奖之后进入
+						$("#p_1").hide();
+						$("#p_2").hide();
+						$("#isShare").val(1);
+						$("#start_award").attr("class","end");
+					}
+				}
+				//无抽奖次数
+				//if(data.recordSize == 0 && data.isShare == 1) {
+				//	$("#start_award").attr("class","unactive");
+				//}
+	        	$("#total_pint").html(data.totalPoint); //总共积分
+				$("#record_size").html(data.recordSize);//剩余抽奖次数
+			}
+			
+		}, 
+		error: function(e) { 
+			alert("网络异常，刷新后再操作!"); 
+		} 
+	});
+}
+
+function addDialog(type) {
+	
+	var isShare = $("#isShare").val();
+	
+	var html = "<div class='dialog' style='display: block;'>";
+		html += "<div class='gray-view' onclick='cancelDiv()'></div>";
+	
+	if(isShare == 1 && parseInt($("#record_size").html()) == 0) { //最后一次
+		type = 4;
+		//$("#start_award").attr("class","unactive");
+	}
+	
+	if(isShare == 0 && parseInt($("#record_size").html()) == 0) { // isShare == 0:暂无分享    无抽奖次数	
+		$("#p_1").hide();
+		$("#p_2").show();
+		html += "<div class='share-tip' style='display: block;'>";	
+		html += "<img src='http://file.88mmmoney.com/4c25bed1-9f9e-4109-acc4-e1922e362d48' style='width: 55%;' />";	
+		html += "</div>";	
+	}	
+	
+	if(type == 2) { //活动后
+		html += "<div class='congratulation ";	
+		if(isShare == 0 && parseInt($("#record_size").html()) == 0) {
+			html += "share-more";		
+		}
+		if(isShare == 1 && parseInt($("#record_size").html()) == 0) {//所有次数已用完
+			html += "last-time";	
+			$("#start_award").attr("class","unactive");
+		}
+		html += "' style='display: block;'>";
+		
+		html += "<div class='dialog-content'>";	
+		html += "<p>抽中了<span id='count_bean'></span>颗豆</p>";	
+		html += "<p><span id='note_bean'></span>~~</p>";	
+		html += "</div>";	
+		html += "</div>";	
+	} else if(type == 3) {	
+		html += "<div class='pity' style='display: block;'>";	
+		html += "<div class='dialog-content'>";	
+		html += "<p>抽中了0颗豆</p>";	
+		html += "<p>下次必中哦！</p>";	
+		html += "</div>";	
+		html += "</div>";	
+	} else if(type == 0) {	//不是抽奖日
+		html += "<div class='act-end' style='display: block;'>";	
+		html += "<img src='http://file.88mmmoney.com/a455574c-207c-43ee-861a-15ed318ed55f' width='70%' />";	
+		html += "<img class='cancel' src='http://file.88mmmoney.com/32205e6c-dced-4291-9964-96934afbcbfa' />";	
+		html += "</div>";
+	} else if(type == 1) {	//活动前	
+		html += "<div class='act-start' style='display: block;' onclick='cancelDiv()'>";	
+		html += "<img class='cancel' src='http://file.88mmmoney.com/32205e6c-dced-4291-9964-96934afbcbfa' />";	
+		html += "<img src='http://file.88mmmoney.com/3acc8bf6-b5eb-4be5-9c47-bee5bb12b585' width='70%' />";	
+		html += "<p class='start-time'>活动" + publishTime +"即将开始</p>";	
+		//html += "<p class='start-lable'></p>";	
+		html += "</div>";	
+	} else if(type ==4) {
+		html += "<div class='nochance' >";
+		html += "<img src='http://file.88mmmoney.com/7abb0adf-4b88-4b68-9bea-bcdf8d33b0d1' alt='二维码' width='100%'/>";
+		html += "<div class='nochance-content'>";
+		html += "<p>今天共抽中</p>";
+		html += "<p>" + $("#total_pint").html() +"颗豆，明天再来~</p>";
+		html += "</div>";
+		html += "</div>";
+      
+	}
+	
+		html += "</div>";	
+		$('.content').append(html);
+}
+
+
+
+function getRecord(lottery){
+    $.ajax({
+		url:"#springUrl('/activity/getRandomLuckyBean.htm')",
+		type:'post',
+		async: false,
+		data:{},
+		success:function(data) {
+			if(data.isLogin == 0) {
+		    	window.location.href="/my/toPage.htm";
+		    	return;
+		    }
+		    if(data.isRcordTimes == 0) {
+				alert("当前不是抽奖时间段!");
+				$("#isShare").val(1)
+				return;
+			}
+			if(data.isExceedTimes == 0) {
+				alert("当前时间段内已无抽奖次数!");
+				return;
+			}
+			if(data.isActivityDate == 0){
+				alert("天送房活动已经结束，新的活动正在马不停蹄地向您跑来^_^");
+				return;
+			}
+			$("#record_size").html(data.recordSize);
+			//按钮置灰不可点击
+			$("#start_award").attr("class","unactive");
+			num = data.luckyIndex;
+			lottery.speed = 100;
+			lottery.prize = num; //中奖项
+			$("#note").val(data.note);
+			$("#totalPint").val(data.beanNums);
+			roll();
+			isRolled = true;
+		}, 
+		error: function(e) { 
+			alert("网络异常，请刷新后进行抽奖!"); 
+		}
+	});
+	
+}
+
+
+	
+	
+	
+wx.config({
+      debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+      appId: '$!appId', // 必填，公众号的唯一标识
+      timestamp: '$!timestamp', // 必填，生成签名的时间戳
+      nonceStr: '$!noncestr', // 必填，生成签名的随机串
+      signature: '$!signature',// 必填，签名，见附录1
+      jsApiList: [
+      	'onMenuShareTimeline',
+ 		'onMenuShareAppMessage'
+      ] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+});
+
+wx.ready(function(){
+        //分享到朋友圈
+		wx.onMenuShareTimeline({
+    	    title: '妈妈送房暑期冰爽来袭 快来撒欢儿！', // 分享标题
+    	    link: 'http://m.mmsfang.com/activity/toPage.htm' , // 分享链接
+    	    imgUrl: 'http://file.88mmmoney.com/e9ec5925-6f77-486d-8468-9944f53225eb', // 分享图标
+    	    trigger: function (res) {
+             // 不要尝试在trigger中使用ajax异步请求修改本次分享的内容，因为客户端分享操作是一个同步操作，这时候使用ajax的回包会还没有返回
+               //alert('用户点击分享到朋友圈');
+            },
+			success: function (res) {
+    	        doShare();
+            },
+            cancel: function (res) {
+              alert('已取消分享到朋友圈');
+            }
+		 });
+		 
+		 //分享给好友
+		 wx.onMenuShareAppMessage({
+    	    title: '5城海景靓房 天天免费送住', // 分享标题
+    	    desc: '妈妈送房暑期冰爽来袭 快来撒欢儿！', // 分享描述
+    	    link: 'http://m.mmsfang.com/activity/toPage.htm', // 分享链接
+    	    imgUrl: 'http://file.88mmmoney.com/e9ec5925-6f77-486d-8468-9944f53225eb', // 分享图标
+    	    type: '', // 分享类型,music、video或link，不填默认为link
+    	    dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+    	    success: function () { 
+    	        doShare();
+    	    },
+    	    cancel: function () { 
+    	        // 用户取消分享后执行的回调函数
+				alert('已取消分享给好友');
+    	    }
+		});
+});
+	
+	
+//分享后回调
+//function doTest(){
+//	doShare();	
+//}
+
+//增加分享次数
+function doShare(){
+	$.ajax({
+		url:"#springUrl('/activity/doShare.htm')",
+		type:'post',
+		async: false,
+		data:{},
+		success:function(data) {
+			if(data.code == 0){
+				var isShare = $("#isShare").val();
+				var recordSize = $("#record_size").html();
+				if(isShare == 0) {
+					$("#p_2").hide();
+					$("#p_1").show();
+					$("#record_size").html(parseInt(recordSize)+1);
+					$("#isShare").val(data.isShare);
+					//alert("恭喜你增加一次抽奖机会哦!");
+				}
+				return;
+			}
+		}
+	});
+}
+
+//判断是否登陆
+function checkLogin() {
+    var isLogin = false;
+	$.ajax({
+		url : "#springUrl('/activity/checkLogin.htm')",
+		type : 'post',
+		data : {},
+		async: false,
+		success : function(data) {
+			if (data.isLogin == 1) {
+				isLogin = true;
+			} 
+		},
+	});
+	return isLogin;
+}
+
+//调试用，显示URL
+function showUrl() {
+	alert(window.location.href + "  " + isRolled);
+}	
+
+window.alert = function(name) {
+  	var iframe = document.createElement("IFRAME");
+  	iframe.style.display = "none";
+  	iframe.setAttribute("src", 'data:text/plain,');
+  	document.documentElement.appendChild(iframe);
+  	window.frames[0].window.alert(name);
+ 	iframe.parentNode.removeChild(iframe);
+}		
+</script>
+
+
+</head>
+<body onload="initPage()">
+<input type="hidden" value="" id="isShare"/>
+<input type="hidden" value="" id="totalPint"/>
+<input type="hidden" value="" id="note"/>
+<input type="hidden" value="$!friendcode" id="friendcode"/>
+<!--<input type="button" value="分享" onclick="doTest()"/> -->
+	<div class="content">
+		<div class="head" style="">
+				<img src="http://file.88mmmoney.com/17001888-db20-4036-8a75-4585d66e971d" width="80%" style="margin-left:10%;" alt="mmsf-banner" />
+				<div class="total-bean-container">
+					<span style="">今日累积：</span>
+					<div class="bean">x</div>
+					<span id="total_pint" class="total-bean">0</span>
+					<span style="">颗豆</span>
+				</div>
+				<img src="http://file.88mmmoney.com/c3d47e03-8451-46a8-9c7c-3c65e8c72766" style="width: 100%; height: auto;margin-top: 60px;" />
+						<div class="main-content">
+							<div id="lottery">
+								<table border="0" cellpadding="0" cellspacing="3" width="100%">
+							<tr>
+								<td class="lottery-unit lottery-unit-0">
+									<div>
+										<div class="leavel-one">
+											<img src="http://file.88mmmoney.com/c7efa508-cb18-462d-8168-8508193da484" alt="" />
+										</div>
+									</div>
+								</td>
+								<td class="lottery-unit lottery-unit-1">
+									<div>
+										<span id="luck_1"></span>
+										<div>
+											<img src="http://file.88mmmoney.com/d950b422-96e7-4372-aad3-92689fce7ac3" />
+										</div>
+									</div>
+								</td>
+								<td class="lottery-unit lottery-unit-2">
+									<div>
+										<span id="luck_2"></span>
+										<div>
+											<img src="http://file.88mmmoney.com/d950b422-96e7-4372-aad3-92689fce7ac3" />
+										</div>
+									</div>
+								</td>
+								<td class="lottery-unit lottery-unit-3">
+									<div>
+										<span id="luck_3"></span>
+										<div>
+											<img src="http://file.88mmmoney.com/d950b422-96e7-4372-aad3-92689fce7ac3" />
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td class="lottery-unit lottery-unit-11">
+									<div>
+										<span id="luck_11"></span>
+										<div>
+											<img src="http://file.88mmmoney.com/d950b422-96e7-4372-aad3-92689fce7ac3" />
+										</div>
+									</div>
+								</td>
+								<td id="start" colspan="2" rowspan="2">
+									<!-- end unactive -->
+									<button id="start_award" class="" style="display: block;"></button>
+									<!--unactive when:没有抽奖机会或活动解释提示  other： 去掉-->
+									<p class="btn-tips unactive" id="p_1">还有<span id="record_size">3</span>次机会</p>
+									<p class="btn-tips unactive" style="display:none;" id="p_2">分享后多1次机会</p>
+								</td>
+								<td class="lottery-unit lottery-unit-4">
+									<div>
+										<span id="luck_4"></span>
+										<div>
+											<img src="http://file.88mmmoney.com/d950b422-96e7-4372-aad3-92689fce7ac3" />
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td class="lottery-unit lottery-unit-10">
+									<div>
+										<span id="luck_10"></span>
+										<div>
+											<img src="http://file.88mmmoney.com/d950b422-96e7-4372-aad3-92689fce7ac3" />
+										</div>
+									</div>
+								</td>
+								<td class="lottery-unit lottery-unit-5">
+									<div>
+										<span id="luck_5"></span>
+										<div>
+											<img src="http://file.88mmmoney.com/d950b422-96e7-4372-aad3-92689fce7ac3" />
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td class="lottery-unit lottery-unit-9">
+									<div>
+										<span id="luck_9"></span>
+										<div>
+											<img src="http://file.88mmmoney.com/d950b422-96e7-4372-aad3-92689fce7ac3" />
+										</div>
+									</div>
+								</td>
+								<td class="lottery-unit lottery-unit-8">
+									<div>
+										<span id="luck_8"></span>
+										<div>
+											<img src="http://file.88mmmoney.com/d950b422-96e7-4372-aad3-92689fce7ac3" />
+										</div>
+									</div>
+								</td>
+								<td class="lottery-unit lottery-unit-7">
+									<div>
+										<span id="luck_7"></span>
+										<div>
+											<img src="http://file.88mmmoney.com/d950b422-96e7-4372-aad3-92689fce7ac3" />
+										</div>
+									</div>
+								</td>
+								<td class="lottery-unit lottery-unit-6">
+									<div>
+										<span id="luck_6"></span>
+										<div>
+											<img src="http://file.88mmmoney.com/d950b422-96e7-4372-aad3-92689fce7ac3" />
+										</div>
+									</div>
+								</td>
+							</tr>
+						</table>
+					</div>
+					<div style="margin-top: -13%;margin-left: -25px;margin-right: -10px;">
+						<span class="stone" style="float: left;">
+							<img src="http://file.88mmmoney.com/d532baea-770b-457f-81d3-6cbea0883a2c" style="width: 60px;margin-top: -5px;" alt=""/>
+						</span>
+						<span class="stone" style="float: right;">
+							<img src="http://file.88mmmoney.com/ba602f26-445e-4710-82d9-0545b3b2d07d" style="width: 40px;" alt=""/>
+						</span>
+					</div>
+				</div>
+			</div>
+			
+		<div class="more-info">
+				<div class="to-rule">
+					<a href="#rule">活动详情</a>
+				</div>
+				<div class="list_history">
+					<p class="award-ad">
+						中奖<br/>播报
+					</p><span><img src="http://file.88mmmoney.com/43216aa3-be9f-4740-b8f2-af4c3ec3ae0a" style="width: 1.5px;vertical-align: middle; margin-bottom: 20px;margin-left: 10px;"/></span>
+					<div class="award-list">
+						<ul id="record_ul" style="text-align: center;width: 100%;">
+							<li class="award-item">
+								<p>
+									</span>
+									<span class="phone">136****1123</span><span class="beans">抽中1721颗豆</span>
+								</p>
+							</li>
+						</ul>
+					</div>
+
+				</div>
+
+				<div class="lsit-award">
+					<div class="title">
+						<i class="line"></i>
+						<p>天天送房<span><img src="http://file.88mmmoney.com/6b7f2d6b-efc3-4249-ac39-1ddb31ef6d80"/></span>免费入住</p><i class="line"></i>
+					</div>
+					<ul>
+						<li>
+							<a href="http://m.mmsfang.com/toDetail.htm?houseId=468"><img src="http://file.88mmmoney.com/cbdf8ef7-1fc2-4160-99e1-244b17026213" width="100%" alt="" /></a>
+							<!--<p class="hotel-name">大理双廊致家客栈</p>-->
+						</li>
+						<li>
+							<a href="http://m.mmsfang.com/toDetail.htm?houseId=145"><img src="http://file.88mmmoney.com/302c6e59-4811-4252-a8ba-c66638e6f266" width="100%" alt="" /></a>
+							<!--<p class="hotel-name">三亚吉吉岛度假洋房别墅</p>-->
+						</li>
+						<li>
+							<a href="http://m.mmsfang.com/toDetail.htm?houseId=286"><img src="http://file.88mmmoney.com/95a27d24-76ff-4ead-9ed1-98b7aa972111" width="100%" alt="" /></a>
+							<!--<p class="hotel-name">深圳HERE印象海滨客栈旗舰店</p>-->
+						</li>
+						<li>
+							<a href="http://m.mmsfang.com/toDetail.htm?houseId=261"><img src="http://file.88mmmoney.com/ce0199c2-1126-4d66-b282-a5a209bbbf9d" width="100%" alt="" /></a>
+							<!--<p class="hotel-name">凤凰坡山.雅园客栈</p>-->
+						</li>
+						<li>
+							<a href="http://m.mmsfang.com/toDetail.htm?houseId=512"><img src="http://file.88mmmoney.com/2233db9b-b805-43dd-870c-65d394e6a473" width="100%" alt="" /></a>
+							<!--<p class="hotel-name">阳朔西街清莲江景客栈</p>-->
+						</li>
+					</ul>
+				</div>
+
+			</div>
+			<section class="rule-container">
+				<div class="rules" id="rule">
+				<img src="http://file.88mmmoney.com/d4fa749a-16b5-4d54-a1ba-f25d970b1294" style="width: 100%;" />
+				<ul>
+					<li>1.嗨翻24小时：每天24小时抢豆不停歇</li>
+					<li>2.每天高达6次机会：每个用户登录即可获3次抽奖机会，每分享给朋友(圈)1次多1次抽奖机会，<span class="rule-light">每天最多抽6次</span>
+					</li>
+					<li>3.<span class="rule-light">抢豆得房幸运连连：按当天抽取的幸运豆数累计，获奖者可获美景靓房1晚免费住（指定房源5选1）</span></li>
+					<li>【幸运奖】累计豆数最多</li>
+					<li>【安慰奖】累计豆数最少（抽完6次）</li>
+					<li>【跪拜奖】累计豆数8888颗</li>
+				</ul>
+				<img src="http://file.88mmmoney.com/ac8f2c4a-f4b6-44f4-a8f1-710c30771eac" style="width: 100%;margin-top: 20px;" />
+				<ul>
+					<li>中奖名单请关注<span class="rule-light">"妈妈送房网"</span> 微信公众号</li>
+					<li>奖品在公布获奖结果之日起60日内消费有效</span>
+					</li>
+					<li>幸运豆积分仅当天有效，次日零点自动清零
+					</li>
+					<li>本次活动最终解释权归妈妈送房网所有
+					</li>
+				</ul>
+			</div>
+			<div class="barcode">
+				<img src="http://file.88mmmoney.com/9925ee65-ab57-493b-8149-d20320591576" width="145px" alt="barcode" onclick="showUrl()"/>
+				<p style="font-size:12px;"><B>扫码关注·不错过大奖</B></p>
+			</div>
+			<img src="$!imgurl" width="0" height="0"  />
+			</section>
+			
+	</div>	
+
+</body>
+</html>

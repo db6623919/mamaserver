@@ -1,0 +1,46 @@
+@import './variable.less';
+.onePxBottom (@color:#c3c3c3){
+	position: relative;
+	&:after {
+		content: '';
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		height: 1px;
+		width: 100%;
+		transform: scaleY(0.5);
+		background-color: @color;
+	}
+}
+
+
+.h2 {
+	font-size: 0.929rem;
+	color: #606060;
+	padding: 0.8rem 0 0.7rem 1.4rem;
+	background-color: #f0f0f0;
+	font-weight: bold;
+}
+
+strong {
+	color:@highlight-color;
+	font-weight: bold !important;
+	font-size: 1rem;
+}
+
+// 文字超出显示省略号
+.textEllipsis {
+	overflow: hidden;
+	text-overflow:ellipsis;
+	white-space: nowrap;
+}
+
+// 激活态
+.active {
+	background-color: @primary-color;
+	color:#fff;
+}
+
+.contentContainer {
+	padding-bottom: 3.3rem;
+}

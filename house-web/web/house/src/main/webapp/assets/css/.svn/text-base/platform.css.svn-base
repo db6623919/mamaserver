@@ -1,0 +1,343 @@
+/*common for merge*/
+.title{font-size: 1.4rem;}
+.body{background-color: #fff;}
+.pl-25{padding-left: 2.5rem;}
+.pr-25{padding-right: 2.5rem;}
+/*style begin*/
+.reg_login{
+    padding-right: .5rem;
+    height: 48px;
+    display: inline-block;
+    color: #ffffff;
+    text-align: center;
+    line-height: 48px;
+    font-size: 1.2rem;
+}
+/*切换列表*/
+.hd .on a{color:#F63F61;}
+.hd .on a::before {
+    border-bottom: 2px solid #F63F61;
+    bottom: -7px;
+    left:0;
+    content: "";
+    height: 0;
+    position: absolute;
+    width: 100%;}
+.hd{background:#f5f5f5;width:100%; z-index: 99;/*border-bottom: 2px solid #dfdfdf;*/padding: 5px 0;margin-bottom: 10px;}
+.hd ul li{ width:33.3%; height: 40px;float:left; text-align:center; font-size:1.3rem;border-collapse: collapse;list-style: none;position: relative;}
+.hd ul li a{ color:#757575;height: 40px; line-height:40px; display:inline-block;width:100%;}
+.bd{background: #fff;}
+.bd ul{margin: 0 10px;padding: 0;}
+.hd ul{margin: 0 2.5rem;padding:0;}
+
+.coupon-container {position: relative;}
+.coupon-container img{ width: 100%;}
+.coupon-content {position: absolute;left: 0;top: 0;}
+.coupon-content em{font-style: normal;}
+
+.coupon-icon{position: absolute;right: 1.6rem;bottom: .9rem;display: inline-block;width: 6rem;height: 1.8rem;border-radius: 4px;background-color: #f75259;line-height: 1.8rem;font-size: 1rem;}
+.transform{position: absolute;right: 5.5rem;top: -1.85rem;display: inline-block;width: 3.7rem;height: 3.7rem;background-image: url(../i/travel/transform.png);background-size: cover;}
+
+/*我的优惠券*/
+.hidden
+{
+    display: none;
+}
+
+.coupon-list li
+{
+    margin-bottom: 1rem;
+}
+
+.bg-blue
+{
+    background-color: #edf9fe;
+}
+
+.coupon-wrapper
+{
+    position: relative;
+}
+
+.travel-coupon, .mama-coupon
+{
+    border: 1px solid #fff;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 97%;
+    margin: .3rem;
+}
+
+.travel-coupon > *
+{
+    padding: 0;
+}
+
+.coupon-left
+{
+    position: relative;
+    text-align: center;
+}
+
+.coupon-right
+{
+    font-size: .9rem;
+    padding: .3rem 0 0 .5rem;
+}
+
+.travel-coupon .coupon-right .coupon-row
+{
+    margin-bottom: .3rem;
+}
+
+.coupon-right .coupon-row > *, .invite-coupon > *
+{
+    padding: 0;
+}
+
+.coupon-right p, .detail-block p
+{
+    margin: 0;
+}
+
+.text-color-999
+{
+    color: #999;
+}
+
+.coupon-right .coupon-text
+{
+    color: #666;
+    height: 2.2rem;
+}
+
+.coupon-left-title
+{
+    position: absolute;
+    top: .5rem;
+    left: .5rem;
+    font-size: 1.1rem;
+    color: #757575;
+}
+
+.text-color-red
+{
+    color: #f75c52 !important;
+}
+
+.travel-coupon .coupon-right .coupon-text img
+{
+    margin-left: .5rem;
+}
+
+.coupon-left-title img, .travel-coupon .coupon-right .item-content img
+{
+    width: 1rem;
+}
+
+.travel-coupon .coupon-right .item-content img
+{
+    margin-left: .3rem;
+}
+
+.expire-date
+{
+    font-size: .8rem;
+    color: #999;
+    position: absolute;
+    bottom: .1rem;
+    left: .5rem;
+}
+
+.travel-coupon .coupon-left > img
+{
+    width: 90%;
+}
+
+.coupon-price
+{
+    position: absolute;
+    top: 40%;
+    left: 30%;
+    color: #f75259;
+    font-size: 2rem;
+}
+
+.travel-coupon .coupon-detail
+{
+    padding-top: .5rem;
+}
+
+.detail-top
+{
+    background: url(../i/travel/detail_bg_s.png);
+    background-repeat-y: no-repeat; 
+    height: .4rem;
+}
+
+.detail-title
+{
+    margin: 0 0 .5rem 1rem;
+    border-left: .5rem solid #c3d8f1;
+    padding: 1px 0 1px .5rem;
+}
+
+.detail-block
+{
+    margin-left: 1.7rem;
+}
+
+.detail-subtitle
+{
+    padding: 1rem 0;
+    margin-right: 1.7rem !important; 
+}
+
+.detail-content
+{
+    padding: 1rem 1.7rem 1.5rem 0;
+}
+
+.detail-row
+{
+    margin-bottom: 1rem;
+}
+
+.detail-row:last-child
+{
+    margin-bottom: 0;
+}
+
+.detail-point
+{
+    width: .5rem;
+    height: .5rem;
+    border-radius: 50%;
+    background-color: #c3d8f1;
+    display: inline-block;
+}
+
+.expired-icon
+{
+    position: absolute;
+    top: 1.5rem;
+    right: 4rem;
+    width: 3.75rem;
+}
+
+.item-label
+{
+    color: #999;
+}
+
+.item-content
+{
+    padding-right: .5rem !important;
+    color: #666;
+}
+
+.icon-rotate
+{
+    animation: rotation .5s linear;
+    -webkit-animation: rotation .5s linear;
+}
+
+.alter-rotate
+{
+    animation-direction: alternate;
+    -webkit-animation-direction: alternate;
+}
+
+@-webkit-keyframes rotation
+{
+    from
+    {
+        transform: rotate(0);
+        -webkit-transform: rotate(0);
+    }
+    to
+    {
+        transform: rotate(180deg);
+        -webkit-transform: rotate(180deg);
+    }
+}
+
+/*妈妈券*/
+.mama-coupon
+{
+    margin: 0;
+    border: none;
+}
+
+.mama-coupon .coupon-left-title
+{
+    color: #f75259;
+}
+
+.mama-coupon .coupon-right, .coupon-used .coupon-right
+{
+    padding: 3rem .5rem 0 1rem;
+}
+
+.mama-coupon .coupon-right .coupon-row, .coupon-used .coupon-right .coupon-row
+{
+    margin-bottom: .5rem;
+}
+/*妈妈券*/
+
+.invite-wrapper
+{
+    background: url(../i/travel/invite_bg.png) no-repeat;
+    background-size: 100% 100%;
+}
+
+.invite-block, .invite-price-wrapper
+{
+    position: relative;
+}
+
+.invite-left, .invite-right
+{
+    text-align: center;
+}
+
+.invite-left img
+{
+    width: 80%;
+    margin-top: 1.5rem;
+}
+
+.invite-left .price
+{
+    font-size: 1.5rem;
+    position: absolute;
+    top: 3.5rem;
+    left: 2rem;
+}
+
+.invite-left .expire-date
+{
+    position: initial;
+    margin-top: 3.5rem;
+    color: #fff;
+}
+
+.invite-middle
+{
+    padding: 3rem 0 0 3rem;
+    font-size: .9rem;
+}
+
+.invite-middle p
+{
+    margin: 0 0 1rem 0;
+}
+
+.invite-right img
+{
+    margin-top: 2rem;
+    width: 70%;
+}
+
+/*我的优惠券*/

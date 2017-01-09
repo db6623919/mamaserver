@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>妈妈送房</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-cache" />
+  <link rel="stylesheet" href="#springUrl('/assets/css/amazeui.min.css')"/>
+  <link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/reset.css')">
+  <link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/register_v2.css')">
+  <script type="text/javascript" src="#springUrl('/assets/js/jquery.min.js')"></script>
+  <script type="text/javascript" src="#springUrl('/assets/js/amazeui.min.js')"></script>
+  <script type="text/javascript" src="#springUrl('/assets/js/common.js')"></script>
+  <script type="text/javascript" src="#springUrl('/assets/js/count-time.js')"></script>
+  <script type="text/javascript">
+  	var adaptPageClass = "content";
+  </script>
+  <style>
+
+  </style>
+</head>
+<body>
+	      
+       <script type="text/javascript">
+	        //window.location.href = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx9edd5171a7a05a0a&redirect_uri=http%3A%2F%2Ftest.mmsfang.com%2Fhouse-web%2Ftest%2FtoCharge.htm&response_type=code&scope=snsapi_base&state=123#wechat_redirect";
+			//测试
+			//window.location.href = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx9edd5171a7a05a0a&redirect_uri=http%3A%2F%2Ftest.mmsfang.com%2Fhouse-web%2Fmy%2Frecharge_online.htm&response_type=code&scope=snsapi_base&state=123#wechat_redirect";
+	        //正式
+			window.location.href = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx9edd5171a7a05a0a&redirect_uri=http%3A%2F%2Fm.mmsfang.com%2Fmy%2Fweixin_pay%2ForderInfo.htm&response_type=code&scope=snsapi_base&state=123#wechat_redirect";
+	   </script>
+		   
+</body>
+</html>

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+	<head lang="en">
+		<meta charset="UTF-8">
+		<title>赠送旅居劵</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="Cache-Control" content="no-cache" />
+		
+		<link rel="stylesheet" href="#springUrl('/assets/css/amazeui.min.css')" />
+		<link rel="stylesheet" href="#springUrl('/assets/css/reset.css')" />
+		<link rel="stylesheet" href="#springUrl('/assets/css/order_what.css')">
+		<link rel="stylesheet" href="#springUrl('/assets/css/trade.css')" />
+		
+		<script type="text/javascript" src="#springUrl('/assets/js/jquery.min.js')"></script>
+		<script type="text/javascript" src="#springUrl('/assets/js/amazeui.min.js')"></script>
+		<script type="text/javascript" src="#springUrl('/assets/js/common.js?_v=1')"></script>
+		<script type="text/javascript" src="#springUrl('/assets/js/TouchSlide.1.0.source.js')"></script>
+		<script type="text/javascript">
+			var adaptPageClass = "content";
+		</script>
+	</head>
+	<body class="bg-ee">
+		<div id="modal"></div>
+		<div class="body content ">
+			<header class="header clearfix">
+		       	<div class="head">
+		        	<a class="back ui-link" href="javascript:void(0);" onClick="javascript :history.go(-1);" tdata-rel="back">返回</a>
+		        	<div class="title header_title" id="header-title">赠送旅居劵</div>
+		       	</div>
+	    		<div class="menumask" style="display:none;z-index:9;width:100%;position:absolute;top:0;left:0;bottom: 0;height:100%;background-colorT:red;opacity:0.01"></div>
+	    	</header>
+
+			<div class="w-100 bc-white border-top-default border-bottom-default">
+				<div class="am-img-container-room clearfix" onclick="changeTranvel()">
+					<p class="fs-11 text-color pl-15 am-mg-0">选择旅居劵<span class="fr fs-12  pr-15 "><span class="travel_name"></span><span class="gt"></span></span>
+					</p>
+				</div>
+			</div>
+
+
+			<div class="am-g  fs-1 text-color bc-white   bc-white am-img-container-room border-bottom-default">
+				<div class="fl fs-11 pl-15 h-22">总共赠送人数</div>
+				<div class="fr pr-10 h-22">
+					<input type="text" class="give_input "  placeholder="填写人数" name="people" /><span class="h-22">人</span>
+				</div>
+			</div>
+
+			<div class="am-g  fs-1 text-color bc-white   bc-white am-img-container-room border-bottom-default">
+				<div class="fl fs-11 pl-15 h-22">每人领取数量</div>
+				<div class="fr pr-10 ">
+					<input type="text" class="give_input " placeholder="旅居劵张数数" name="count" /><span>张</span>
+				</div>
+			</div>
+
+			<div class="am-g  fs-1 text-color bc-white pt-10 pb-10  bc-white  border-bottom-default">
+				<div class=" fs-11 pl-15 ">赠言</div>
+				<div class=" fs-11 pl-15 h-48 w-100 pr-15 mt-10 ">
+					<textarea placeholder="一点心意，希望你喜欢" name="blessing" class="w-100 h-48 bg-e8 border-0 resize "></textarea>
+				</div>
+			</div>
+			
+			<div class="am-g  fs-1 text-color bc-white   bc-white am-img-container-room border-bottom-default">
+				<div class="fl fs-11 pl-15 h-22">旅居劵</div>
+				<div class="fr pr-10 ">
+					<input type="text" class="give_input text-color-fb" readonly="readonly" name="total"  placeholder="0" /><span>张</span>		
+				</div>
+			</div>
+			
+
+				<div class="w-100 pl-10 pr-10  fs-12 text-color-white line-h-32 tc mt-20 give_submit" onclick="toSubmit()">
+					<div class="w-100 bg-fb am-radius">下一步，生成赠券</div>
+				</div>
+				
+				<div class="w-100 pl-10 pr-10  fs-12 text-color-white line-h-32 tc mt-20 give_wx" id="give_wx"  >
+					<div class="w-100 bg-fb am-radius">赠送给微信好友</div>
+				</div>
+			
+			<!--可以使用的 最大的劵的数量-->
+			<input type="hidden" value="0" name="maxNumber" />
+			<!--劵的id列表-->
+			<input type="hidden" value="" name="couponId"/>
+			<input type="hidden" id="url">
+			<div class="pl-10 fs-1 mt-20 explain" >
+				<p >赠券说明</p>
+				<p >1.生成赠券后，该赠券将被冻结</p>
+				<p >2.好友未领取，可撤销赠券</p>
+				<p >3.好友已领取时，赠券不可撤销</p>
+			</div>
+		</div>
+		<script>
+			
+			onload=function(){
+				
+				 $(".give_input").bind("blur",function(){
+				 	
+					  $("[name='total']").val(getTotal());
+				 });
+			}
+			
+			function getTotal(){
+					 var people= $("[name='people']");
+					 var count=$("[name='count']");
+					 var total=people.val()*count.val();
+					 console.log(total)
+					return total==NaN?0:total;
+			}
+		
+			function changeTranvel() {
+				if ($("#modal").css("display") == "none") {
+					$("#modal").css("display", "block");
+				} else {
+					$("#modal").load("#springUrl('/my/exchange/choose_coupon.htm')");
+				}
+				$("#modal").css("zIndex", "999");
+			}
+			function initCoupon(){
+				$("[data-number='selected']").html(0);
+				$("[data-click='minus']").addClass("unactive");;
+				$("[data-click='add']").removeClass("unactive");;
+				
+			}
+			function hideModal() {
+				$("#modal").css("display", "none");
+			}
+			
+			
+			function toSubmit(){
+				if($("[name='couponId']").val()==''){
+					myAlert('友情提示', '请选择旅居劵');
+					return false;
+				}
+				if(getTotal()<=0){
+					myAlert('友情提示', '请填写赠送的人数和每人领取的数量');
+					return false;
+				}
+				if(getTotal()>$("[name='maxNumber']").val()){
+					myAlert('友情提示', '旅居劵数量不够');
+					return false;
+				}
+				
+				//使用的劵的数量和劵的id列表
+				
+				var couponId=$("[name='couponId']").val();
+				var couponIdList=couponId.split(",").slice(0,getTotal()).join(",");
+				var blessing=$("[name='blessing']").val();
+				var count=$("[name='people']").val();
+				
+				$.ajax({
+					url:'#springUrl("/my/give/add.htm")',
+					type:'post',
+					data:'hotelCouponIds='+couponIdList+'&msg='+blessing+'&copiesCount='+count,
+					success:function(data){
+						console.log(data);
+						if(data.code==0){
+							myAlert('友情提示', '发布成功',function(){
+								$("#url").val(data.data);
+								$(".give_submit").hide();
+								$(".give_wx").show();
+								
+								$(".give_wx").click(function(){
+									myAlert('长按复制链接，快分享给你的微信好友吧！',data.data);
+								});
+								
+							});
+						}else{
+							myAlert('友情提示', '系统繁忙，请稍后重试');
+						}
+					}
+				});
+			}
+			
+			
+			 function debugstr(msg) {
+		        var p = document.createElement('p');
+		        p.innerHTML = msg;
+		       	 $('d_debug').appendChild(p);
+		   	 }
+			
+		</script>
+		
+	</body>
+</html>

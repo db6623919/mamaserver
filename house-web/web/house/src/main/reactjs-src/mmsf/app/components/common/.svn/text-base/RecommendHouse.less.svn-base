@@ -1,0 +1,157 @@
+@import './variable.less';
+
+.container {
+	background-color:white;
+	padding: 1.358rem 0.929rem;
+	h2 {
+		font-size:1.285rem;
+		margin:0;
+		margin-bottom:0.929rem;
+		text-align:left;
+	}
+	.toSpecial{
+		position: relative;
+		display: inline-block;
+
+		width: 100%;
+		img {
+			width: 100%;
+			height:13.4rem;
+		}
+		.placeholder {
+			width:100%;
+			// height:10rem;
+			// background: url('/assets/i/mmsf/lazy_image.jpg') no-repeat center;
+			// background-size: cover;
+		}
+	}
+	.item {
+		margin-bottom: 2rem;
+	}
+	.partnership {
+		padding:0 0.7rem;
+		position:absolute;
+		top:1rem;
+		left:1.2rem;
+		display:inline-block;
+		height:2rem;
+		background-color:rgba(255,111,92,0.6);
+		text-align:center;
+		line-height:2rem;
+		font-size:1rem;
+		color:white;
+		border-radius: 1rem;
+		img {
+			vertical-align: middle;
+			width:0.786rem;
+			height:1rem;
+			margin-right: 3px;
+		}
+	}
+	.title {
+		position:relative;
+		height:1.857rem;
+		line-height:1.857rem;
+		margin-top:0.836rem;
+		h3 {
+			font-size:1.143rem;
+			color:#474747;
+			margin-bottom:0;
+			text-align:left;
+			width:14.857rem;
+			white-space:nowrap;
+			overflow:hidden;
+			text-overflow:ellipsis;
+		}
+		span {
+			display:inline-block;
+			position:absolute;
+			color:#979797;
+			top:0;
+			right:0;
+			font-size:0.857rem;
+			text-decoration:line-through;
+		}
+	}
+	.desc {
+		font-size:0;
+		position: relative;
+		height:2.043rem;
+		line-height:2.043rem;
+		text-align:left;
+		margin-bottom:0;
+		.info {
+			height:100%;
+			margin:0;
+			padding:0;
+			font-size:0.926rem;
+			color:#8b8b8b;
+			display:inline-block;
+			width:14.857rem;
+			white-space:nowrap;
+			overflow:hidden;
+			text-overflow:ellipsis;
+			margin-top: 0.2rem;
+			li {
+				margin-top: 5px;
+				display: inline-block;
+				color: #ff8818;
+				border: 1px solid #ff8818;
+				width: 4.429rem;
+				height:1.286rem;
+				line-height:1.207rem;
+				border-radius:0.643rem;
+				text-align:center;
+				font-size:0.714rem;
+				margin-right: 5px;
+			}
+		}
+		.discountCont {
+			font-size: 0.926rem;
+			position:absolute;
+			display:inline-block;
+			right:0;
+			top:0;
+			height:2.043rem;
+			i {
+				font-style: normal;
+				font-size:12px;
+				font-style:normal;
+				display:inline-block;
+				width:34px;
+				height:18px;
+				line-height:18px;
+				background-color:#ffbc26;
+				color:white;
+				text-align:center;
+				position:relative;
+				margin-right:10px;
+				&:after {
+					box-sizing:border-box;
+					content:'';
+					display:inline-block;
+					position:absolute;
+					top:0;
+					right:-18px;
+					width:8px;
+					height:18px;
+					border-style:solid;
+					border-width:9px;
+					border-left-color:#ffbc26;
+					border-top-color:transparent;
+					border-right-color:transparent;
+					border-bottom-color:transparent;
+				}
+			}
+		}
+		.specialPrice {
+			font-size:1rem;
+			color:@primary-color !important;
+			strong {
+				margin-left: 5px;
+				font-size:1.5rem;
+				font-weight:normal;
+			}
+		}
+	}
+}

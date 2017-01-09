@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>妈妈送房</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-cache" />
+ <link rel="stylesheet" href="#springUrl('/assets/css/amazeui.min.css')"/>
+  <link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/reset.css')">
+  <link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/card.css')">
+  <script type="text/javascript" src="#springUrl('/assets/js/jquery.min.js')"></script>
+  <script type="text/javascript" src="#springUrl('/assets/js/amazeui.min.js')"></script>
+  <script type="text/javascript" src="#springUrl('/assets/js/common.js')"></script>
+  <script type="text/javascript">
+  	var adaptPageClass = "content";
+  </script>
+  <style>
+
+  </style>
+</head>
+<body>
+  <div class="body content">
+    <header class="header clearfix">
+       <div class="head">
+        <a class="back ui-link" href="javascript:void(0);" onClick="javascript :history.go(-1);" tdata-rel="back">返回</a>
+        <div class="title header_title" id="header-title">关于任我行</div>
+        <div class="more_wraper header-menu-btn">
+         #if($!isLogin == 1)
+         	<a class="reg_login" href="#springUrl('/my/myvip.htm')">我的会员卡</a>
+        #end 
+        </div>
+       </div>
+
+    </header>
+    <div class="am-g bg-fbf">
+        <div class="card-info ml-10 mr-10 mt-15">
+          <img src="#springUrl('/assets/i/card-des/card-des.png')">
+        </div>
+        <div class="w-100 pl-15 pr-15 mt-10">
+	       	<p class="am-mg-0 mt-5 text-color-red fs-15 tc"> 
+	       	 一卡在手，想走就走<br>
+			美景靓房，低价有送<br>
+			亲朋共享，美好生活<br>
+        	</p>
+                <p class="am-mg-0 fs-12 text-color-75">
+                <span class="am-title-border"></span>
+                    “任我行”会员卡是一款由妈妈送房联合全国多家知名房地产开发商、酒店运营商共同推出的旅行生活消费产品。
+                </p>
+                <p class="am-mg-0 mt-5 text-color-75 fs-12">
+                <span class="am-title-border"></span>
+                   	 消费者在妈妈送房网免费注册即可成为会员，并持有“任我行”会员卡（电子卡）。
+                </p>
+                <p class="am-mg-0 mt-5 text-color-75 fs-12">
+                <span class="am-title-border"></span>
+                   	充值，有赠送，多充多送；<br>
+                   	<span class="am-title-border"></span>
+                   	消费，有低价，另加返利；<br>
+                   	<span class="am-title-border"></span>
+                   	可共享，可转让，可买房，具体内容请点击详情。
+                </p>
+        </div>
+        <div class="reg_button a_hand mt-10 mb-15" onclick="location.href='http://mp.weixin.qq.com/s?__biz=MzI5ODAzNjczNA==&mid=400226264&idx=4&sn=fd1578215783b3fde94c072dee58546c&scene=1&srcid=1031KYqSDVwbw2m9AkyTJurs#wechat_redirect'">任我行卡详情</div>
+          #if($!isLogin != 1)
+        <div class="reg_button a_hand mt-10 mb-15" onclick="location.href='#springUrl('/toRegister.htm')'">立即办卡</div>
+         #end    
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapping PUBLIC "-//EXOLAB/Castor Mapping DTD Version 1.0//EN" "http://castor.org/mapping.dtd">
+<mapping>
+	<!-- 消息基类 -->
+	<class name="com.mmzb.house.web.model.BaseMessage">
+		<field name="toUserName" type="string">
+			<bind-xml name="ToUserName" node="element" />
+		</field>
+		<field name="fromUserName" type="string">
+			<bind-xml name="FromUserName" node="element" />
+		</field>
+		<field name="msgType" type="string">
+			<bind-xml name="MsgType" node="element" />
+		</field>
+		<field name="createTime" type="long">
+			<bind-xml name="CreateTime" node="element" />
+		</field>
+	</class>
+	
+	<!-- 事件基类 -->
+	<class name="com.mmzb.house.web.model.BaseEventMessage"
+		auto-complete="true" extends="com.mmzb.house.web.model.BaseMessage">
+		<map-to xml="xml" />
+		<field name="event" type="string">
+			<bind-xml name="Event" node="element" />
+		</field>
+	</class>
+	
+	<!-- 扫描带参数二维码事件 -->
+	<class name="com.mmzb.house.web.model.SceneQrCodeScanEventMessage"
+		auto-complete="true" extends="com.mmzb.house.web.model.BaseEventMessage">
+		<map-to xml="xml" />
+		<field name="eventKey" type="string">
+			<bind-xml name="EventKey" node="element" />
+		</field>
+		<field name="ticket" type="string">
+			<bind-xml name="Ticket" node="element" />
+		</field>
+	</class>
+</mapping>

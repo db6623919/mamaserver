@@ -1,0 +1,10 @@
+body {
+  background-color: #ebebeb;
+}
+.body {
+  border-bottom: solid 1px #eee;
+}
+div {
+  border-bottom: solid 1px #eee;
+}
+/*# sourceMappingURL=test.css.map */

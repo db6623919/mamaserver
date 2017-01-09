@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+
+	<head lang="en">
+		<meta charset="UTF-8">
+		<title>个人中心</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="Cache-Control" content="no-cache" />
+		<link rel="stylesheet" href="#springUrl('/assets/css/amazeui.min.css')" />
+		<link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/reset.css')">
+		<link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/order_3_5.css')">
+		<link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/order_what.css')" />
+		<script type="text/javascript" src="#springUrl('/assets/js/jquery.min.js')"></script>
+		<script type="text/javascript" src="#springUrl('/assets/js/amazeui.min.js')"></script>
+		<script type="text/javascript" src="#springUrl('/assets/js/common.js')"></script>
+		<script src="#springUrl('/assets/js/TouchSlide.1.0.source.js')"></script>
+		<script type="text/javascript">
+			var adaptPageClass = "content";
+			
+			//声明_czc对象:
+			var _czc = _czc || [];
+			//绑定siteid，请用您的siteid替换下方"XXXXXXXX"部分
+			_czc.push(["_setAccount", "1260334725"]);
+		</script>
+	</head>
+
+	<body class="bg-ee">
+		<!--底部导航栏-->
+		#parse("/menu_inc.vm")
+		
+		<div class="body content">
+			<header class="am-header-body">
+				<div class="am-header-head fl mt-10 ml-10">
+					<img src="#springUrl('/assets/i/order/head_default.png')">
+				</div>
+				<div class="am-header-user fl ml-10 fs-1-36 fw-bd text-color-white">
+					$!userInfo.nickName
+				</div>
+				
+			</header>
+
+			<div class="am-g">
+				<div class="w-100 bc-white border-top border-bottom mt-08"  onclick="myOrder()"> 
+					<div class="am-img-container-room clearfix">
+						<p class="fs-11 text-color pl-15 am-mg-0"><img src="#springUrl('/assets/i/order/user_order.png')" class="am-user-icon-size">我的订单<span class="fr fs-12  pr-15"><span class="gt"></span></span></p>
+
+					</div>
+				</div>
+				<div class="w-100 bc-white border-top border-bottom mt-08"  onclick="myCoupon()"> 
+					<div class="am-img-container-room clearfix">
+						<p class="fs-11 text-color pl-15 am-mg-0"><img src="#springUrl('/assets/i/order/user_coupon.png')" class="am-user-icon-size">电子房券<span class="fr fs-12  pr-15"><span class="gt"></span></span></p>
+
+					</div>
+				</div>
+				<!--
+				<div class="w-100 bc-white border-top border-bottom mt-08" onclick="location.href='#springUrl("/my/coupon/list.htm")'">
+					<div class="am-img-container-room clearfix">
+						<p class="fs-11 text-color pl-15 am-mg-0"><img src="#springUrl('/assets/i/order/user_lxr.png')" class="am-user-icon-size">我的旅居劵<span class="fr fs-12  pr-15"><span class="gt"></span></span></p>
+
+					</div>
+				</div>
+				-->
+				<div class="w-100 bc-white border-top border-bottom mt-08" onclick="location.href='#springUrl("/my/getMyContacts.htm")'">
+					<div class="am-img-container-room clearfix">
+						<p class="fs-11 text-color pl-15 am-mg-0"><img src="#springUrl('/assets/i/order/contacts.png')" class="am-user-icon-size">我的联系人<span class="fr fs-12  pr-15"><span class="gt"></span></span></p>
+
+					</div>
+				</div>
+
+				<div class="w-100 bc-white border-top border-bottom mt-08" onclick="location.href='#springUrl("/my/getCollects.htm")'">
+					<div class="am-img-container-room clearfix">
+						<p class="fs-11 text-color pl-15 am-mg-0"><img src="#springUrl('/assets/i/order/user_roll.png')" class="am-user-icon-size">我的收藏<span class="fr fs-12  pr-15"><span class="gt"></span></span></p>
+
+					</div>
+				</div>
+				
+				<div class="w-100 bc-white border-top border-bottom mt-08" onclick="location.href='http://m.88mmmoney.com/toTrends.htm'">
+                                        <div class="am-img-container-room clearfix">
+                                                <p class="fs-11 text-color pl-15 am-mg-0"><img src="#springUrl('/assets/i/order/company_state.png')" class="am-user-icon-size">公司动态<span class="fr fs-12  pr-15"><span class="gt"></span></span></p>
+
+                                        </div>
+                                </div>
+			
+				<!--
+				<div class="w-100 bc-white border-top border-bottom mt-08" onclick="location.href='#springUrl("/my/wallet_new.htm")'">
+					<div class="am-img-container-room clearfix">
+						<p class="fs-11 text-color pl-15 am-mg-0"><img src="#springUrl('/assets/i/order/user_money.png')" class="am-user-icon-size">我的妈妈钱包<span class="fr fs-12  pr-15"><span class="fs-11 text-color-91 pr-5">查看余额/充值</span><span class="gt"></span></span></p>
+
+					</div>
+				</div>
+				<div class="w-100 bc-white border-top border-bottom mt-08" onclick="changePassword()">
+					<div class="am-img-container-room clearfix">
+						<p class="fs-11 text-color pl-15 am-mg-0"><img src="#springUrl('/assets/i/order/user_pwd.png')" class="am-user-icon-size">修改登录密码<span class="fr fs-12  pr-15"><span class="gt"></span></span></p>
+
+					</div>
+				</div>
+				-->
+				<div class="w-100 bc-white border-top border-bottom mt-08" onclick="phone()">
+        			<div class="am-img-container-room  clearfix">
+         			 <p class="fs-11 text-color pl-15 am-mg-0"><img src="#springUrl('/assets/i/order/user_phone.png')" class="am-user-icon-size">客服电话
+         			 <a href="tel:4009966633" onclick="_czc.push(['_trackEvent', '个人中心', '个人中心-拨打客服电话', '个人中心-拨打客服电话','21','']);" class="fr fw-bd text-color-fb pr-15 fs-12  ml-15">400-9966-633</a></p>
+        			</div>  
+     			 </div>
+     			 
+     			<!--
+				<div class=" w-10 ml-10 mr-10 line-h-32 fs-12 text-color-white bg-fb tc border-radian mt-40 ls-2 mb-15" onclick="toIndex()">
+					返回首页
+				</div>-->
+     			 
+     			 <div class=" w-10 mt-40 ml-10 mr-10 line-h-32 fs-12 text-color-white bg-fb tc border-radian  ls-2 mb-15" onclick="loginOut()">
+					退出登录
+				</div>
+				
+			</div>
+			<img src="$!imgurl" width="0" height="0"  />
+		</div>
+		
+<script type="text/javascript">
+    function myVip(){
+       self.location.href='#springUrl('/my/myvip.htm')';
+     }
+     function myCardTotal(){
+       self.location.href='#springUrl('/renwoxing.htm')';
+     }
+     function personalData(){
+       self.location.href='#springUrl('/my/personalData.htm')';
+     }
+	 function oldFriends(){
+      self.location.href='#springUrl('/oldFriends.htm')';
+    }
+     function myOrder(){
+      self.location.href='#springUrl('/my/getOrders.htm?page=1&type=0')';
+    }
+ 	function myCoupon(){
+      self.location.href='#springUrl('/my/coupon/list.htm')';
+    }
+     function recharge_offline(){
+      self.location.href='#springUrl('/my/recharge_index.htm')';
+    }
+	function myCollection(){
+      self.location.href='#springUrl('/my/getCollects.htm')';
+    }
+	
+	function loginOut(){
+      self.location.href='#springUrl('/toLogout.htm')';
+  }
+  
+  function scoreRecord(){
+      self.location.href='#springUrl('/my/scoreRecord.htm')';
+  }
+  
+  function phone(){
+      self.location.href="tel:4006688558";
+  }
+  
+  function recharge(){
+      self.location.href='#springUrl('/my/recharge.htm')';
+  }
+  function changePassword(){
+       self.location.href='#springUrl('/my/changePassword.htm')';
+  }
+  function toIndex(){
+   	location.href='#springUrl('/index.htm')';
+  }
+ 
+  </script>	
+		
+	</body>
+
+</html>

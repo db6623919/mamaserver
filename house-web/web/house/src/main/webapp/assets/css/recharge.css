@@ -1,0 +1,342 @@
+
+body{
+	overflow-x: hidden;
+}
+.reg_login{
+    padding-right: .5rem;
+    height: 48px;
+    display: inline-block;
+    color: #ffffff;
+    text-align: center;
+    line-height: 48px;
+    font-size: 1.5rem;
+}
+/*注册协议*/
+.am-reg-border{
+    border:1px solid #e7e7e7;border-radius:6px;background-color:#ffffff;
+}
+.am-title-border
+{
+    display: inline-block;
+    width: 0.3rem;
+    height: 1.2rem;
+    line-height: 1.2rem;
+    background:url(../i/common/title_border.png) no-repeat;
+    background-size: 100%;
+}
+.reg-border-bottom{
+    border-bottom:1px solid #e7e7e7;
+}
+.am-reg-border p{
+    margin: 0;
+    padding: .5rem 0 .5rem .5rem;
+    font-size: 1.2rem;
+    color: #757575;
+    line-height: 1.7rem;
+}
+.reg_botton{
+    background-color: #f75c52;
+    color: #ffffff;
+    margin-left: 2.2rem;
+    margin-right: 2.2rem;
+    border-radius: 5px;
+    line-height: 4rem;
+    text-align: center;
+    font-size: 1.7rem;
+}
+.reg_botton a{
+    color: #ffffff;
+}   
+.a_hand{
+    cursor: pointer;
+}
+
+/*充值有奖励*/
+.am-price{
+
+}
+.am-price p{
+    margin: 0;
+    padding: .5rem 0 .5rem .5rem;
+    font-size: 1.2rem;
+    color: #757575;
+    line-height: 1.7rem;
+}
+table{
+      border-collapse:inherit;
+}
+table td,table th{
+    text-align: center;
+    font-size: 1.1rem;
+    font-weight: normal;
+    line-height: 2.5rem;
+}
+table th{
+    color: #fff;
+    background: #f75c52;
+    border-bottom: 1px solid #FFF;
+    border-right: 1px solid #fff;
+}
+table tr.white{
+    background: #fff;
+}
+table tr.grey{
+    background: #f2f2f2;
+}
+table td{
+    border-right: 1px solid #c7c7c7;
+    border-left: 1px solid #c7c7c7;
+}
+table td.border-left-none{
+    border-left:none;
+}
+table th.border-right{
+    border-right:1px solid #f75c52;
+}
+table td.bor-bottom{
+    border-bottom: 1px solid #c7c7c7;
+}
+.warn-icon{
+    display: inline-block;
+    background: url(../i/common/warn-icon.png) no-repeat;
+    background-size: 1.1rem 1.15rem;
+    width: 1.15rem;
+    height: 1.2rem;
+    line-height: 1.7rem;
+}
+.am-warn-p{
+    margin: 0;
+    padding: .5rem 0 .5rem .5rem;
+    font-size: 1.2rem;
+    color: #757575;
+    line-height: 1.7rem;
+}
+
+/*首次充值、后续充值说明页*/
+
+.am-ucenter-next{
+    float: right;
+    height: 1.2rem;
+    width: 1.2rem;
+}
+.am-ucenter-title{
+    height: 4.4rem;
+    line-height: 4.4rem;
+    font-size: 1.4rem;
+    color:#757575;
+
+}
+.am-safe-icon{
+    display: inline-block;
+    width: 0.9rem;
+    height: 1.1rem;
+    line-height: 1.1rem;
+    vertical-align:-10%;
+    background-image:url(../i/recharge/safe-icon.png);
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+/* 在线支付*/
+.div_hidden{
+    /*visibility: hidden;*/
+    display:none;
+}
+.reg_icon1{
+    width: 2.3rem;
+    margin-left: 12px;
+    margin-right: 12px;
+}
+.reg_div_1{
+    margin-left: 1rem;
+    margin-right: 1.5rem;
+    height: 4rem;
+    line-height: 3.5rem;
+    background-color: #ffffff;
+    border-radius: 5px;
+    border: 1px solid #cbcbcb;
+}
+.reg_div_1 span{
+    line-height: 3.8rem;
+}
+.reg_input_1{
+    background-color: transparent;
+    border: none;
+    outline: none;
+    font-size: 1.4rem;
+    color: #757575;
+    vertical-align: 0 !important;
+    width: 70%;
+    text-indent: 1rem;
+    text-align: right;
+}
+.err_icon_1{
+    width: 1.5rem;
+    height: 1.5rem;
+}
+.reg_err_div{
+    padding-left: 3rem;
+    color: #fc5752;
+    font-size: 1.1rem;
+    line-height: 2rem;
+}
+.reg_err_div img{
+    vertical-align: -15%;
+    line-height: 2rem;
+}
+.pay-info{
+    line-height: 1.8rem;
+}
+.am-ucenter-icon{
+    width: 3.7rem;
+    height: 3.7rem;
+    margin-bottom: 0.3rem;
+}
+.select-icon{
+    display: inline-block;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    width: 1.75rem;
+    height: 1.75rem;
+    vertical-align: middle;
+    line-height: 4.4rem;
+}
+.selected{
+    background-image: url(../i/recharge/selected.png);
+}
+.select{
+    background-image: url(../i/recharge/select.png);
+}
+.am-select-area{
+    float: right;
+    height: 4.4rem;
+    line-height: 4.4rem;
+}
+.am-select-area span{
+    
+}
+.recharge-way{
+    float: left;
+    font-size: 1.4rem;
+    color: #757575;
+    line-height:1.4rem;
+    margin-top:.8rem;
+}
+.recharge-way i{
+    font-style:normal;
+    color:#c5c5c5;
+}
+
+.rec_text{
+	width: 8rem;
+    height: 48px;
+    display: inline-block;
+    text-align: center;
+    line-height: 48px;
+    font-size: 1.2rem;
+}
+
+.rec_text:link {color: #ffffff;}     /* 未被访问的链接 */
+.rec_text:visited {color: #ffffff;}  /* 已被访问过的链接 */
+.rec_text:hover {color: #ffffff;}    /* 鼠标悬浮在上的链接 */
+.rec_text:active {color: #ffffff;}   /* 鼠标点中激活链接 */ 
+
+.rec_banner{
+    color: #ffffff;
+    font-size: 1.2rem;
+    height: 11rem;
+    background-size: 100% 100%;
+    background-image: url(../i/recharge/bg.png);
+}
+.rec-font-3{
+    font-size: 3rem;
+}
+.rec-banner-left{
+    text-align: center;
+    border-right: 2px solid #ffffff;
+}
+.rec-banner-div{
+    padding-top: 3rem;
+}
+.rec-bar{
+    height: 1.3rem;
+    width: 0.4rem;
+    background-color: #f75c52;
+    float: left;
+    margin-left: 1rem;
+    margin-right: 0.5rem;
+    margin-top: 0.6rem;
+}
+.rec-title{
+    color: #7f7f7f;
+    font-size: 1.2rem;
+    line-height: 2.5rem;
+}
+.rec-list-div{
+    border-top: 1px solid #e7e7e7;
+    border-bottom: 1px solid #e7e7e7;
+    background-color: #ffffff;
+    margin-bottom: 1rem;
+}
+.rec-list-div .rec-list-1{
+    margin-left: 0px;
+    margin-right: 0px;
+    padding-top: 1rem;
+    padding-bottom: 0.6rem;
+    font-size: 1.2rem;
+}
+.rec-list-icon{
+    width: 3.3rem;
+}
+.rec-list-text{
+    line-height: 1.5rem;
+}
+.color-eee{
+    color: #dadada;
+}
+.color-f75{
+    color: #f75c52;
+}
+.color-9e9{
+    color: #9e9e9e;
+}
+.rec-list-money{
+    height: 3.3rem;
+    line-height: 3.3rem;
+}
+.rec-border-b{
+    border-bottom: 1px solid #e7e7e7;
+    margin-left: 5rem;
+}
+.rec-more{
+    text-align: center;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+}
+.rec-more-icon{
+    width: 1rem;
+    margin-right: 0.5rem;
+    margin-bottom: 0.3rem;
+}
+.rec-padl-0{
+    padding-left: 0px;
+}
+/*score record*/
+.fc-50c329{
+    color: #50c329;
+}
+.sr-table{
+    width: 70%;
+    height: 2.65rem;
+    margin: 1rem auto;
+    border: 1.5px solid #f75c52;
+    color: #f75c52;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+.sr-table .sr-table-normal{
+    border-right: 1.5px solid #f75c52;
+}
+.sr-table .sr-table-cur{
+    color: #fbf7ec;
+    background-color: #f75c52;
+}

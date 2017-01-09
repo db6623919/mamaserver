@@ -1,0 +1,22 @@
+@import './variable';
+.btn {
+	display: block;
+	width: 84.3%;
+	text-align: center;
+	padding: 1rem 0rem 0.8rem 0rem;
+	color:white;
+	margin: 0 auto;
+	background-color: @primary-color;
+	border: none;
+	font-size: 1.286rem;
+	border-radius: 2rem;
+	font-weight: bold;
+}
+
+.btn:active {
+	background-color: @primary-btn-active;
+}
+
+.btn[disabled] {
+	background: #dbdbdb;
+}

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>妈妈送房网单身趴</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="renderer" content="webkit">
+  <!--缓存处理-->
+  <meta http-equiv="Cache-Control" content="no-cache" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<link rel="stylesheet" href="#springUrl('/assets/css/amazeui.min.css')" />
+	<link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/reset.css')">
+	<link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/singlePa.css')">
+</head>
+
+	<body>
+		<div class="body content pb-15">
+			<p class="suc-tip"><span><img src="#springUrl('/assets/i/singlePa/tip-suc.png')"/></span>恭喜您，报名成功！</p>
+			<section class="sec-info">
+				<div class="suc-info">
+					<p>个人信息</p>
+					<p>姓名：<span>$!activityEnroll.name </span></p>
+					<p>电话：<span>$!activityEnroll.phone </span></p>
+					<p>微信：<span>$!activityEnroll.weChat </span></p>
+					<p>年龄：<span>$!activityEnroll.age </span></p>
+					<p>性别：<span>
+						#if($!activityEnroll.sex == 1)
+							女
+						#else
+							男
+						#end 
+					
+					</span></p>
+					<p>学历：<span>
+						#if($!activityEnroll.educated == 1 )  高中   #end
+							
+						#if($!activityEnroll.educated == 2 )  大专   #end
+						
+						#if($!activityEnroll.educated == 3 )  本科  #end
+						
+						#if($!activityEnroll.educated == 4 )  硕士   #end
+						
+						#if($!activityEnroll.educated == 5 )  博士   #end
+					</span></p>
+				</div>
+				
+				<div class="suc-info">
+					<p>活动信息</p>
+					<p>活动时间：<span>李四</span></p>
+					<p>活动地点：<span>1523235464512</span></p>
+					<p>客服电话：<span>25</span></p>
+					<p>妈妈小管家：<span>女</span></p>
+					<p>联系微信号：<span>本科</span></p>
+				</div>
+				<div class="barcode btop">
+					<p class="mt-0 mb-0 color-title">活动费用：¥499</p>
+					<img src="#springUrl('/assets/i/singlePa/barcode.png')"/>
+					<p class="mt-0 mb-0">微信扫一扫立即转账<br/>长按可识别支付</p>
+				</div>
+			</section>
+		</div>
+
+         <script type="text/javascript" src="#springUrl('/assets/js/jquery.min.js')"></script>
+         <script type="text/javascript" src="#springUrl('/assets/js/mm-img-lazyload.js')" charset="utf-8"></script>
+         <script type="text/javascript" src="#springUrl('/assets/js/screen-adapter.js')" charset="utf-8"></script>
+         <script type="text/javascript">
+          	var adaptPageClass = "content";
+         </script>
+	</body>
+
+</html>

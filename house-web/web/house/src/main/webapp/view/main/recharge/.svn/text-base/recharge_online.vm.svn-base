@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>微信支付确认</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-cache" />
+  <link rel="stylesheet" href="#springUrl('/assets/css/amazeui.min.css')"/>
+  <link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/reset.css')">
+  <link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/order-suc.css')">
+  <script type="text/javascript" src="#springUrl('/assets/js/jquery.min.js')"></script>
+  <script type="text/javascript" src="#springUrl('/assets/js/common.js')"></script>
+  <script type="text/javascript" src="#springUrl('/assets/js/amazeui.min.js')"></script>
+  <script type="text/javascript">
+    var adaptPageClass = "content";
+  </script>
+
+</head>
+<body class="">
+  <div class="content body" style="background-color:#fbf7ec;">
+    <header class="header clearfix">
+       <div class="head">
+        <a class="back ui-link" href="javascript:void(0);" onClick="javascript :history.go(-1);" tdata-rel="back">返回</a>
+        <div class="title header_title" id="header-title">微信支付确认</div>
+       </div>
+    </header>
+    <div class="am-g">
+      <div class="w-100 bc-white pb-15">
+        <div class="am-width-100 am-backcolor-ff">
+          <div class="am-g tc clearfix pt-25 pb-15 reg-border-bottom" style="margin:0 4.5rem;">
+              <p class="fs-15 text-color-75 am-mg-0 mt-5">
+                本次充值金额
+              </p>
+              <p class="fs-3  fw-bd text-color-75 am-mg-0 mt-5">
+                ￥$!rechargeBean.money
+				<input type="hidden"  id="charge_money"  value="$!rechargeBean.money"  />
+              </p>
+          </div>
+          <div class="am-g tc mt-15 line-h-2">
+              <p class="fs-12 text-color-75 am-mg-0">本次奖励积分<span class="text-color-red mr-2">$!rechargeBean.rewardMoney</span>积分</p>
+              <p class="fs-12 text-color-75 am-mg-0">合计到账积分<span class="text-color-red mr-2">$!rechargeBean.totalVirtual</span>积分</p>
+          </div>
+        </div>
+      </div>
+      <div class="w-100 pt-15 pb-15 reg-border-top">
+        <div class="recharge_suc a_hand" onclick="recharge()">微信支付</div>
+      </div>
+    </div>
+   
+	 <input type="hidden"  value="${openid}"  name="jsopenid" id="jsopenid" />
+        
+  </div>
+  <script type="text/javascript">
+           var appId = "";
+		   var timeStamp = "";
+		   var nonceStr  = "";
+		   var package   = "";
+		   var signType  = "";
+		   var paySign   = "";
+		   
+     function recharge(){
+	       var money = '$!rechargeBean.money';
+		   var openid = '$!openid';
+		   if($.trim(money)=="" || isNaN(money) ){
+			      alert("请输入充值金额");
+				  return false;
+		   }
+		   if(parseInt(money)< 1){
+		        alert("充值金额需大于1元且为整数");
+				return false;
+		   }
+		   
+		 $.ajax({//ajax开始
+	        url: "#springUrl('/my/recharge_process.htm')" ,
+	        type:'post',
+	        data: "money=" + money + "&jsopenid="+openid+"&productCode=wxpay",
+	        beforeSend:function(){
+				//alert("提交前");
+			},
+			success: function(response) {
+				   //alert(response.success);
+				   //alert(response.message);
+				   if(response.success){
+				     appId = response.data.appId;
+					 timeStamp = response.data.timeStamp;
+					 nonceStr  = response.data.nonceStr;
+					 package  = response.data.package;
+					 paySign  = response.data.paySign;
+					// alert("预支付号："+package);
+					 
+					 onBridgeReady(appId , timeStamp , nonceStr , package , paySign);
+				   }
+
+            },
+            error:function(response){
+                   alert("失败");
+            },
+	        dataType:'json'
+	        });//ajax结束
+	   
+	 }
+	 
+	 	 //调用微信H5支付	   
+	function onBridgeReady(appId ,timeStamp , nonceStr , package ,  paySign){
+            WeixinJSBridge.invoke(
+         'getBrandWCPayRequest', {
+           "appId":appId,     //公众号名称，由商户传入     
+           "timeStamp": timeStamp,         //时间戳，自1970年以来的秒数     
+           "nonceStr" : nonceStr, //随机串     
+           "package" : package,     
+           "signType" : "MD5",         //微信签名方式：     
+           "paySign" : paySign//微信签名 
+       },
+       function(res){     
+           if(res.err_msg == "get_brand_wcpay_request:ok" ) {//支付成功
+		      //alert("支付成功");
+			  var money = $("#charge_money").val();
+			  self.location.href="#springUrl('/my/recharge_success.htm')?money="+money;
+		   }   
+       }
+       ); 
+     }//调用微信H5支付结束
+  </script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+.order-detail{
+	color: #757575;
+	padding: 0;
+}
+
+.order-info{
+	background-color: #ffffff;
+}
+.order-info-item{
+	height: 2.6rem;
+    line-height: 2.6rem;
+    margin-left: 1rem;
+}
+.order-info-bar{
+	height: 1.3rem;
+    width: 0.4rem;
+    background-color: #f75c52;
+    float: left;
+    margin-right: 0.5rem;
+    margin-top: 0.6rem;
+}
+.order-border-bottom{
+	border-bottom: 1px solid #e7e7e7;
+}
+.order-border-top{
+	border-top: 1px solid #e7e7e7;
+}
+.order-text-right{
+	float: right;
+	margin-right: 1rem;
+}
+.order-text-number{
+	color: #f75c52;
+}
+
+.order-room{
+	margin-top: 1rem;
+	background-color: #ffffff;
+}
+.order-arrow-r{
+	float: right;
+    height: 1.2rem;
+    width: 1.2rem;
+    margin-right: 1rem;
+}
+
+.order-person{
+	margin-top: 1rem;
+	background-color: #ffffff;
+}
+.order-padding-left-1{
+	padding-left: 1rem;
+}
+.order-padding-left-2{
+	padding-left: 2rem;
+}
+
+.order-status{
+	border-radius:5px 0px 0px 5px;
+	color: #ffffff;
+    height: 2rem;
+    line-height: 2rem;
+    margin-top: .25rem;
+}
+.order-status-confirming{
+	background-color: #0bc5ba;
+}
+
+.order-rule{
+	margin-top: 1rem;
+	padding-left: 1rem;
+	padding-right: 1rem;
+}

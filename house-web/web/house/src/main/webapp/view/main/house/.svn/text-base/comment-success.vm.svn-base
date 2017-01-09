@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>评分</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-cache"/>
+
+    <link rel="stylesheet" href="#springUrl('/assets/css/amazeui.min.css')"/>
+    <link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/reset.css')">
+    <link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/comment-success.css')">
+
+	<script type="text/javascript" src="#springUrl('/assets/js/jquery.min.js')"></script>
+    <script type="text/javascript" src="#springUrl('/assets/js/zepto.js')"></script>
+    <script type="text/javascript" src="#springUrl('/assets/js/amazeui.min.js')"></script>
+    <script type="text/javascript" src="#springUrl('/assets/js/common.js?_v=1')"></script>
+    <script type="text/javascript">
+        var adaptPageClass = "content";
+    </script>
+</head>
+
+<body>
+<div class="content">
+    <header>
+        <div class="head">
+            <a class="back ui-link" href="javascript:void(0);" onclick="javascript:history.go(-1);" tdata-rel="back">返回</a>
+
+            <div class="comment-title title header_title" id="header-title">评论结果</div>
+            <a class="to-home" href="/index.htm">首页</a>
+        </div>
+    </header>
+
+    <section id="secSuccess">
+        <div id="iconSuccess"></div>
+        <p>评论提交成功</p>
+        <p>感谢您的评价</p>
+    </section>
+
+    <section id="secComment">
+        <a href="/house/getAllComments.htm?houseId=$!{houseId}&page=1">
+            查看酒店评论
+            <i class="icon-arrow"></i>
+        </a>
+    </section>
+</div>
+</body>
+
+</html>

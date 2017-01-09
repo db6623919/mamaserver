@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+	<head lang="en">
+		<meta charset="UTF-8">
+		<title>发布换券需求</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="Cache-Control" content="no-cache" />
+		
+		<link rel="stylesheet" href="#springUrl('/assets/css/amazeui.min.css')" />
+		<link rel="stylesheet" href="#springUrl('/assets/css/reset.css')" />
+		<link rel="stylesheet" href="#springUrl('/assets/css/order_what.css')">
+		<link rel="stylesheet" href="#springUrl('/assets/css/trade.css')" />
+		<link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/index.css')">
+		<script type="text/javascript" src="#springUrl('/assets/js/jquery.min.js')"></script>
+		<script type="text/javascript" src="#springUrl('/assets/js/amazeui.min.js')"></script>
+		<script type="text/javascript" src="#springUrl('/assets/js/common.js')"></script>
+		<script type="text/javascript" src="#springUrl('/assets/js/TouchSlide.1.0.source.js')"></script>
+		<script type="text/javascript">
+			var adaptPageClass = "content";
+		</script>
+	</head>
+	<body>
+	
+		<div class="body content bg-ee" style="min-height: 979px;">
+			<header class="header clearfix">
+				<div class="head">
+					<a class="back ui-link" onclick="hideModal()" tdata-rel="back">返回</a>
+					<div class="title header_title" id="header-title">选择旅居劵</div>
+				</div>
+			</header>
+			<div class="am-g " id="couponList">
+			</div>
+			
+		</div>
+		<script>
+			(function(){
+				var jsonData=${hotelCoupons};
+				var html="";
+				 
+				if(jsonData.hotelCouponGroups.length ==0){
+				    html += '<div class="am-u-sm-6">' + 
+					        '  <p class="am-text-center fs-0-9 text-color-91">您暂无旅居券</p>' +
+				            '</div>';
+				}
+				
+				var status=[];
+					//status.push({id:0,type:getLocalTime(e.expireTime)});
+					status.push({id:1,type:'未生效'});
+					status.push({id:2,type:'已冻结'});
+					status.push({id:11,type:'已使用'});
+					status.push({id:12,type:'已过期'});
+				var getStatus=function(id){
+					if(id==0){
+						return 0;
+					}
+					for(var i=0;i<status.length;i++){
+						if(status[i].id==id){
+							return status[i].type;
+						}
+					}
+					
+					return "";
+				}	
+				
+				$.each(jsonData.hotelCouponGroups,function(i,e){
+					html+='<div class="w-100  mt-12 pl-10 pr-10 pos-relative " onclick="toDetail(\''+e.hotelCouponIds+'\',\''+e.name+'\','+e.count+','+e.expireTime+')">'+
+						'	<div  class="tranvel_blue height-70">'+
+						'		<div class="am-travel">'+
+						'			<div class="am-u-sm-7" >'+
+						'				<p class="fs-12 text-color-6 fw-bd mt-0 mb-0">'+e.name+'</p>'+
+						'				<p class="fs-0-9 text-color-91 mt-5 mb-0" >&nbsp;</p>'+
+						'			</div>'+
+						'			<div class="am-u-sm-5 tr text-color-white fs-12 tr" >'+
+						'				<span class="fw-bd fs-2-64">'+e.count+'</span>张'+
+						'			</div>'+
+						'			<div class="clear"></div>'+
+						'			<div class="mt-5">'+
+						'				<div class="am-u-sm-6">'+
+						'					<p class="fs-0-9 text-color-91">'+(e.inSeason==true?"旺季入住":"平季入住")+'平季入住</p>'+
+						'				</div>'+
+						'				<div class="am-u-sm-6 tr">'+
+						'					<p class="fs-0-9 text-color-91">'+(getStatus(e.status)==0?getLocalTime(e.expireTime)+"到期":getStatus(e.status))+'</p>'+
+						'				</div>'+
+						'			</div>'+
+						'		</div>'+
+						'	</div>'+
+						'</div>';
+				});
+				$("#couponList").html(html);
+				
+			})();
+		
+		
+			function toDetail(travelId,name,count,time){
+				//type: 1:去劵详情页面，0去换劵详情页面
+				var type="0";
+				if(type==0){
+					initCoupon();
+					$(".travel_name").html(name);
+					$("[name='couponId']").val(travelId);
+					$("[name='maxNumber']").val(count);
+					$("[name='createTime']").val(time);
+					hideModal();
+				}
+			}
+		</script>
+	</body>
+</html>

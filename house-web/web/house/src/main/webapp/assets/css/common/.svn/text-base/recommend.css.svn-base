@@ -1,0 +1,95 @@
+.recommend-container {
+	background-color:white;
+	padding: 1.462rem 1rem;
+}
+.recommend-container h2{
+	font-size:1.231rem;
+	margin:0;
+	margin-bottom:1rem;
+	text-align:left;
+}
+
+/*每一个特价房*/
+.item {
+	margin-bottom: 2rem; 
+}
+.recommend-container .title {
+	position:relative;
+	height:2rem;
+	line-height:2rem;
+	margin-top:0.9rem;
+}
+
+.recommend-container .title h3{
+	font-size:1.231rem;
+	color:#474747;
+	margin-bottom:0;
+	text-align:left;
+	width:16rem;
+	white-space:nowrap; 
+	overflow:hidden; 
+	text-overflow:ellipsis;
+}
+
+.recommend-container .title span {
+	display:inline-block;
+	position:absolute;
+	color:#979797;
+	top:0;
+	right:0;
+	font-size:0.923rem;
+	text-decoration:line-through;
+}
+
+.recommend-container .desc  {
+	font-size:0;
+	position: relative;
+	height:2.2rem;
+	line-height:2.2rem;
+	text-align:left;
+	margin-bottom:0;
+}
+
+
+.recommend-container .desc .discount-cont {
+	font-size:1rem;
+	position:absolute;
+	display:inline-block;
+	right:0;
+	top:0;
+	height:2.2rem;
+}
+.recommend-container .desc .info {
+	height:100%;
+	margin:0;
+	padding:0;
+	font-size:1rem;
+	color:#8b8b8b;
+	display:inline-block;
+	width:16rem;
+	white-space:nowrap; 
+	overflow:hidden; 
+	text-overflow:ellipsis;
+}
+
+.recommend-container .desc .info li {
+	display: inline-block;
+	color: #ff8818;
+	border: 1px solid #ff8818;
+	width: 4.77rem;
+	height:1.385rem;
+	line-height:1.3rem;
+	border-radius:0.692rem;
+	text-align:center;
+	font-size:0.769rem;
+}
+
+.recommend-container .desc .special-price {
+	font-size:1rem;
+	color:#ff6f5c !important;
+}
+.recommend-container .desc .special-price strong {
+	font-size:1.5rem;
+	font-weight:normal;
+	color:#ff6f5c !important;
+}

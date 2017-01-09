@@ -1,0 +1,42 @@
+@import '../common/variable';
+
+.header {
+	height:3.1rem;
+	line-height: 3.2rem;
+	text-align: center;
+	width: 100%;
+	font-size: 1.256rem;
+	background-color: @bg-color;
+	position: relative;
+	font-weight: bold;
+}
+
+.back,.cancel,.ok {
+	display: inline-block;
+	height: 3.2rem;
+	position: absolute;
+}
+
+.back {
+	left: 1.4rem;
+	width: 1.7rem;
+	background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADQAAAAeCAYAAABjTz27AAAABGdBTUEAALGPC/xhBQAAAzNJREFUWAntmF9IFEEcx2d2V06zQoOC0BUiEiMiqIdzvTsh8A68U0PhghDBB32zh3rrwbfoLXqIfIoiiHo46I+eYpnkv7s9E+sh0Ertn6cIUZKlqefu9J1Lj1PTu4PS3Wge9mZnfr/d72d/M/ObG0L+sSKmylNo81Tk5Bx6kifnfw2HR16k6v+37aVUXlBU5K7RdXYDPvCjGan4bpWtkOyLFKWsQdPJLcaIRIlwUVX915L13Uq7pICsiqdRZ/pVLowScj4U8jdupchU3gV9GxfGGFWKyi7j9xylVGOU1vcH/Tc39tj+ng2BvF6vOD4+d50RVou4LFKRnAkFWu9tv+TNFfwWqLT0rGV6+u0dwFTBfZaIUmV/oLlj80cZo3cdkMtVkznz7csDDLMSDLNpURDcgUBLyBhyE6tYBWS3e7IjS6wNboUYZlMClVyq+vBl4scYxyK2yjkcVfuXNNKzDPNOFNLsZoPhnzUaoeLi8gOLEa0DOeYg2oYkUXIGAs2T3MBsRbDZyo8sRvQ+DkMpGdiZaSk2Kwz/+JKmaz2A2YNgPU237Kjo7PR9N1tU4vVSa6GboWEW0ZmK7zBXnSLDsKZQqO3KyuY0c3n+mIsjppbxxcDKbyXkmo/IOXkYcsNCWlot1cjnmJ1JKhImTnd383uwECndYrHNLyxghWOHWSRymwrMGQy2fTAJS0wmh+ElenU4vHsjS3PtgDqOtrBARaeqtryKWpjsEk2svb2+T9lZWScJpTyx5uKvQq/V7jlhMpao3F9xWlauKN4Mncz5sGJ40DSDSFUgUt1mAottfbhoVfX9OHY0pxKRuovb3Yxo7YpSXmYmoHWHJIODg3p9XfX9sdHJfUhQCqHstCwXjIXDb0yxSV015NZGwqq4LxFGLqCdEYE29Adbm9baGO1+XYTiBU6ERzpxXDWLSLmA5JFz8yM4uuqNtzFafVMgLhYAQTm3YAJVzCVWAqhdaHtsNJAVPQmBuCHmz3NEahgbjFOAcshyvlxXV+3v6uri+0BDlaSAuGJEZQhQA4DCOQOzjo5NzGNI9hmKBmJWLduJxKlq6yOBEie2Gc8EIrxOZP+//w98gZ9T+xm2AvgFSgAAAABJRU5ErkJggg==);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: contain;
+}
+
+.cancel {
+	text-align: center;
+	left:0;
+	padding-left: 1rem;
+	font-size: 1rem;
+}
+
+.ok {
+	color: @primary-color;
+	text-align: center;
+	font-size: 1rem;
+	right:0;
+	padding-right: 1rem;
+}

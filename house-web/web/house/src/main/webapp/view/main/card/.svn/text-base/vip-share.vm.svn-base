@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>妈妈送房</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-cache" />
+  <link rel="stylesheet" href="#springUrl('/assets/css/amazeui.min.css')"/>
+  <link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/reset.css')">
+  <link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/card.css')">
+  <script type="text/javascript" src="#springUrl('/assets/js/jquery.min.js')"></script>
+  <script type="text/javascript" src="#springUrl('/assets/js/amazeui.min.js')"></script>
+  <script type="text/javascript" src="#springUrl('/assets/js/common.js')"></script>
+  <script type="text/javascript">
+  	var adaptPageClass = "content";
+  </script>
+</head>
+<body>
+  <div class="body content">
+    <header class="header clearfix">
+       <div class="head">
+        <a class="back ui-link" href="javascript:void(0);" onClick="javascript :history.go(-1);" tdata-rel="back">返回</a>
+        <div class="title header_title" id="header-title">可共享有情感</div>
+       </div>
+    </header>
+    <div class="w-100 bg-share">
+      <img src="#springUrl('/assets/i/card-des/bg-share.png')">
+      <div class="bg-share-content">
+        <h1 class="fs-13 am-mg-0 text-color-75 pt-5 pb-5 pr-15" >
+              <span class="am-title-border"></span>
+              	一人有卡，亲朋共享，只需在订房时正确提供您或您的亲友的姓名和手机号，即可为其预订相应的居住及旅行服务。
+          </h1>
+          <h1 class="fs-13 am-mg-0 text-color-75 pt-5 pb-5 pr-15" >
+              <span class="am-title-border"></span>
+              	您也可以购买后直接赠送亲朋。
+          </h1>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

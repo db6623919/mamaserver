@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+	<head lang="en">
+		<meta charset="UTF-8">
+		<title>妈妈送房</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="Cache-Control" content="no-cache" />
+		<link rel="stylesheet" href="#springUrl('/assets/css/amazeui.min.css')" />
+		<link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/reset.css')">
+		<link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/index.css')">
+		<script type="text/javascript" src="#springUrl('/assets/js/jquery.min.js')"></script>
+		<script type="text/javascript" src="#springUrl('/assets/js/amazeui.min.js')"></script>
+		<script type="text/javascript" src="#springUrl('/assets/js/common.js')"></script>
+
+		<script type="text/javascript">
+			var adaptPageClass = "content";
+		</script>
+		<style>
+		footer{background-color: #F8F8F8;padding-top: 1.2rem;padding-bottom: 1.2rem;color: #474747;font-size: .9rem}
+		footer div:last-child{margin-top: .8rem;}
+		footer div span{padding-left: .8rem;}
+		footer img{width: 1.2rem;margin-top: -2px;}
+		footer div a{color: #ff5858;}
+		</style>
+	</head>
+
+	<body>
+		<div class="content">
+			<header style="background-color: #FB394C;">
+				<div class="head">
+					<a class="back ui-link" href="javascript:history.go(-1);" tdata-rel="back">返回</a>
+					<div class="title header_title" id="header-title">关于</div>
+				</div>
+			</header>
+			<img src="http://file.88mmmoney.com/3cb5aa15-fb6b-4a64-a12c-9b7f60661e69" style="width: 100%;" alt="about us" />
+			<footer>
+				<div >
+					<span >
+						<img src="http://file.88mmmoney.com/ac89f2a3-d535-4f0c-9342-08d9ee59b4d5"/>
+					</span>
+					<span>预订电话</span>
+					<span><a href="tel:4009966633">400-9966-633</a></span>
+				</div>
+				<div>
+					<span >
+						<img src="http://file.88mmmoney.com/734d4d00-b135-4d5b-a2dc-e858b58853dd"/>
+					</span>
+					<span>地址：深圳市南山区滨海大道3012号三诺大厦15F</span>
+				</div>
+			</footer>
+		</div>
+	</body>
+
+</html>

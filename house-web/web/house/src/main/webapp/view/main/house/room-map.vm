@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+	<head lang="en">
+		<meta charset="UTF-8">
+		<title>妈妈送房</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="Cache-Control" content="no-cache" />
+		<link rel="stylesheet" href="#springUrl('/assets/css/amazeui.min.css')" />
+		<link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/reset.css')">
+		<link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/index.css')">
+			<link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/house-map.css')">
+	</head>
+	<body>
+		<div class="content">
+			<header style="background-color: #FB394C;">
+				<div class="head">
+					<a class="back ui-link" href="javascript:void(0);" onClick="javascript:history.go(-1);" tdata-rel="back">返回</a>
+					<div class="title header_title" id="header-title">房屋地图</div>
+				</div>
+			</header>
+			<div class="search">
+				<span>景点</span>
+				<span>购物</span>
+				<span>美食</span>
+			</div>
+			<div id="allmap"></div>
+			<div class="house-location">
+				房屋位置
+			</div>
+		</div>
+		<script src="#springUrl('/assets/js/jquery.min.js')" type="text/javascript" charset="utf-8"></script>
+        <script src="#springUrl('/assets/js/common.js')" type="text/javascript" charset="utf-8"></script>
+        <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=lo0DuzXkNj9U6iWNUkYU579BTSKfF5Yl"></script>
+        <script type="text/javascript">
+        	var adaptPageClass = "content";
+        	$(function() {
+        		var sHeight = window.innerHeight - 113;
+        		$('#allmap').css('height', sHeight);
+        		$('.house-location').on('click', function() {
+        				if($('.BMap_pop')) {
+        					$('.BMap_pop').show();
+        				}
+        			})
+        			// 百度地图API功能
+        		var map = new BMap.Map("allmap");
+        		var bottom_right_control = new BMap.NavigationControl({
+        			anchor: BMAP_NAVIGATION_CONTROL_ZOOM
+        		});
+        		var bottom_left_control = new BMap.ScaleControl({
+        			anchor: BMAP_ANCHOR_BOTTOM_LEFT
+        		});
+        		map.addControl(bottom_right_control);
+        		map.addControl(bottom_left_control);
+        		var point = new BMap.Point($!{longitude}, $!{latitude});
+        		var myIcon = new BMap.Icon("#springUrl('/assets/i/house-detail/marker.png')", new BMap.Size(23, 25), {
+        			anchor: new BMap.Size(10, 25),
+        			infoWindowAnchor: new BMap.Size(10, 5),
+        			imageOffset: new BMap.Size(5, 0)
+        		});
+        		var marker = new BMap.Marker(point, {
+        			icon: myIcon
+        		});
+        
+        		map.addOverlay(marker); // 将标注添加到地图中
+        		map.centerAndZoom(point, 18);
+        		var opts = {
+        			width: 200, // 信息窗口宽度
+        			height: 80, // 信息窗口高度
+        			title:'$!{name}', // 信息窗口标题
+        		}
+        		var infoWindow = new BMap.InfoWindow("地址："+ '$!{address}', opts); // 创建信息窗口对象 
+        		marker.addEventListener("click", function() {
+        			map.openInfoWindow(infoWindow, point); //开启信息窗口
+        		});
+        		map.openInfoWindow(infoWindow, point);
+        		$('.search span').on('click', function() {
+        			var sKey = $(this).text() || "";
+        			map.clearOverlays();
+        			var local = new BMap.LocalSearch(map, {
+        				renderOptions: {
+        					map: map,
+        					autoViewport: false
+        				}
+        			});
+        			local.searchNearby(sKey, point, 1000);
+        			map.addOverlay(marker); // 将标注添加到地图中
+        			map.centerAndZoom(point, 18);
+        		})
+        
+        		$('.house-location').on('click', function() {
+        			map.centerAndZoom(point, 18);
+        			map.openInfoWindow(infoWindow, point);
+        		});
+        
+        	})
+        </script>
+	</body>
+</html>

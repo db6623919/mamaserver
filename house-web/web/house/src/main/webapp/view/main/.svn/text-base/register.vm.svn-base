@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>妈妈送房</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-cache" />
+  <link rel="stylesheet" href="#springUrl('/assets/css/amazeui.min.css')"/>
+  <link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/reset.css')">
+  <link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/register_v2.css')">
+  <link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/index.css')">
+  <link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/lastLoad.css')">
+  <script type="text/javascript" src="#springUrl('/assets/js/jquery.min.js')"></script>
+  <script type="text/javascript" src="#springUrl('/assets/js/amazeui.min.js')"></script>
+  <script type="text/javascript" src="#springUrl('/assets/js/common.js')"></script>
+  <script type="text/javascript" src="#springUrl('/assets/js/count-time.js')"></script>
+  <script type="text/javascript">
+  	var adaptPageClass = "content";
+  </script>
+  <style>
+
+  </style>
+</head>
+<body>
+  <div class="body content">
+    <header class="header clearfix">
+       <div class="head">
+        <a class="back ui-link" href="#springUrl('/index.htm')" tdata-rel="back">返回</a>
+        <div class="title header_title" id="header-title">注册</div>
+        <div class="more_wraper header-menu-btn">
+         <a class="reg_login" href="#springUrl('/my/toLogin.htm')">登录</a>
+        </div>
+       </div>
+    </header>
+    <div class="am-g bg-fbf">
+      <form>
+        <div class="font_1_3">
+          <div class="reg_div_1 margin_top_2">
+            <img src="#springUrl('/assets/i/register_v2/icon_phone.png')" class="reg_icon1"/>
+            <input value="" placeholder="请输入您的手机号" type="telephone" class="reg_input_1" need="need" rel="phone" msgid="error_1" onblur="dataValidateV2(this, '#springUrl('/sendVerifyCode.htm')');" id="phone" maxlength="11" autocomplete="off"/>
+          </div>
+          <div class="am-container reg_err_div div_hidden" id="error_1">
+            <img src="#springUrl('/assets/i/register_v2/icon_err.png')" class="err_icon_1"/>
+            <span id="error_1_span"></span>
+          </div>
+
+          <div class="am-g">
+            <div class="am-u-sm-9 reg_padr_0">
+              <div class="reg_div_1  mt-5">
+                <img src="#springUrl('/assets/i/register_v2/icon_code.png')" class="reg_icon1"/>
+                <input value="" placeholder="请输入短信验证码" type="text" class="reg_input_1 reg_input_code" need="need" rel="code" msgid="error_2" onblur="dataValidateV2(this);" id="code" maxlength="6"/>
+              </div>
+            </div>
+            <div class="am-u-sm-3 reg_padl_0 mt-5">
+              <div class="reg_send_botton buttonClickStatus" onclick="countTime(this, '#springUrl('/sendVerifyCode.htm')',1)">发送短信</div>
+            </div>
+          </div>
+          <div class="am-container reg_err_div div_hidden" id="error_2">
+            <img src="#springUrl('/assets/i/register_v2/icon_err.png')" class="err_icon_1"/>
+			<span id="error_2_span"></span>
+          </div>
+
+          <div class="reg_div_1  mt-5">
+            <img src="#springUrl('/assets/i/register_v2/icon_pwd.png')" class="reg_icon1"/>
+            <input value="" placeholder="请输入6-12位登录密码" type="password" class="reg_input_1" rel="newpassword" msgid="error_3" need="need" onblur="dataValidateV2(this);" id="newpassword" maxlength="12"/>
+          </div>
+          <div class="am-container reg_err_div div_hidden" id="error_3">
+            <img src="#springUrl('/assets/i/register_v2/icon_err.png')" class="err_icon_1" need="need"/>
+				<span id="error_3_span"></span>
+          </div>
+
+          <div class="reg_div_1  mt-5">
+            <img src="#springUrl('/assets/i/register_v2/icon_pwd.png')" class="reg_icon1"/>
+            <input value="" placeholder="请再输入一次登录密码" type="password" class="reg_input_1" need="need" rel="repassword" msgid="error_4" onblur="dataValidateV2(this);" id="repassword" maxlength="12"/>
+          </div>
+          
+          <div class="am-container reg_err_div div_hidden" id="error_4">
+            <img src="#springUrl('/assets/i/register_v2/icon_err.png')" class="err_icon_1"/>
+          <span id="error_4_span"></span>
+          </div>
+          
+          <div class="reg_botton a_hand margin_top_2 buttonClickStatus" onclick="checkdata();">注册即送50元</div>
+
+          <div class="reg_a color_f75 a_hand" onclick="showInfo()">点击查看 《消费者会员入会协议书》</div>
+
+          <div class="reg_err_div_2 div_hidden" id="errorMsg">
+          </div>
+          
+          <input value="$!friendCode" type="hidden" name="friendCode" id="friendCode" />
+          <input value="$!openId" type="hidden" name="openId" id="openId" />
+          
+        </div>
+      </form>
+    </div>
+	<footer class="reg-footer">
+    	<img src="#springUrl('/assets/i/register_v2/reg-banner.jpg')">
+  	</footer>
+  </div>
+  <div class="am-modal am-modal-alert" tabindex="-1" id="my-alert">
+      <div class="am-modal-dialog">
+        <div class="am-modal-bd">
+           <div class="img">
+              <label id="check-text">换一个</label>
+              <img id="verifyImage" src="#springUrl('/randomcode')">
+          </div>
+          <input class="input" type="text" id="verifycode" name="verifycode" placeholder="请输入图片中的验证码">
+        </div>
+        <div class="am-modal-footer">
+          <span class="am-modal-btn" data-am-modal-confirm>确定</span>
+        </div>
+      </div>
+    </div>
+ <script type="text/javascript">
+	 $(function() {
+		$("#verifyImage").click(function(){
+			$("#verifyImage").attr("src", "#springUrl('/randomcode?time=')"+new Date().getTime());
+		});
+		$("#check-text").click(function(){
+			$("#verifyImage").attr("src", "#springUrl('/randomcode?time=')"+new Date().getTime());
+		});
+	});
+ function checkdata () {
+    var re = 0; 
+    $(".reg_err_div").each(function(){
+      var is_rel = $(this).hasClass("div_hidden");
+      if(is_rel != true){
+        re = 1;
+        return false;
+      }
+    });
+    $("input[need='need']").each(function(){
+      var val = $(this).val();
+      if(val == ''){
+        re = 1;
+        return false;
+      }
+    });
+    //验证通过
+    if(re == 0){
+    	var phone = $("#phone").val();	
+      	var code = $("#code").val();
+		var password = $('#newpassword').val();
+		var friendCode = $('#friendCode').val();
+		var openId = $('#openId').val();
+	  $.ajax({
+	        url: "#springUrl('/checkVerifyCode.htm')" ,
+	        type:'post',
+			async: false,
+	        data: "phone=" + phone + "&type=1" + "&verifyCode=" +code,
+			success: function(response) {
+                 if(response.code==0) {
+				 	 $.ajax({
+                	        url: "#springUrl('/register.htm')" ,
+                	        type:'post',
+							async: false,
+                	        data: "phone=" + phone + "&password="+ password+ "&verifyCode=" +code + "&friendCode=" + friendCode+ "&openId=" + openId,
+                			success: function(response) {
+                                 if(response.code==0) {
+                						  self.location.href="#springUrl('/share.htm?friendCode=')"+phone;
+                                 }else {
+                	                     $("#errorMsg").removeClass("div_hidden");
+                                         $("#errorMsg").html(response.msg);
+                      		             return false;
+                  		          }
+                            },
+                            error:function(){
+                               $("#errorMsg").removeClass("div_hidden");
+                               $("#errorMsg").html("网络异常");
+                               return false;
+                            },
+                	        dataType:'json'
+                	    });	
+				 
+				 
+                 } else {
+                     $("#errorMsg").removeClass("div_hidden");
+                     $("#errorMsg").html(response.msg);
+  		             return false;
+                 }
+            },
+            error:function(){
+			  $("#errorMsg").removeClass("div_hidden");
+              $("#errorMsg").html("网络异常");
+              return false;
+            },
+	        dataType:'json'
+	    });
+    }
+ }
+ 
+ function showInfo(){
+ 	self.location.href="#springUrl('/register-info.htm')";	
+ }
+ </script>
+</body>
+</html>

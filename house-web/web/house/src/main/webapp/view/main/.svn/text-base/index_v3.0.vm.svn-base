@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html>
+
+	<head lang="en">
+		<meta charset="UTF-8">
+		<title>妈妈送房</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="Cache-Control" content="no-cache" />
+		<link rel="stylesheet" href="#springUrl('/assets/css/amazeui.min.css')" />
+		<link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/reset.css')">
+		<link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/index.css')">
+		<link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/index_2.0.css?version1608121009')">
+		<script type="text/javascript" src="#springUrl('/assets/js/jquery.min.js')"></script>
+		<script src="#springUrl('/assets/js/mm-img-lazyload.js?version1608121009')"></script>
+		<script type="text/javascript" src="#springUrl('/assets/js/amazeui.min.js')"></script>
+		<script type="text/javascript" src="#springUrl('/assets/js/common.js?_v=1')"></script>
+		<script src="#springUrl('/assets/js/jquery.slides.min.js')" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" src="#springUrl('/assets/js/TouchSlide.1.0.source.js')"></script>
+		<script>
+			var _hmt = _hmt || [];
+			(function() {
+			  var hm = document.createElement("script");
+			  hm.src = "https://hm.baidu.com/hm.js?16bdd41cf636456d27c6dd2c1e2723b3";
+			  var s = document.getElementsByTagName("script")[0];
+			  s.parentNode.insertBefore(hm, s);
+			})();
+		</script>
+		<script type="text/javascript">
+			var adaptPageClass = "content";
+
+			//声明_czc对象:
+			var _czc = _czc || [];
+			//绑定siteid，请用您的siteid替换下方"XXXXXXXX"部分
+			_czc.push(["_setAccount", "1260334725"]);
+		
+		</script>
+	</head>
+
+	<body>
+		<div class="body content">
+			<header class="w-100">
+				<div class="am-slider am-slider-a1" style="position: relative;">
+					<ul class="am-slides">
+					   #foreach ($banner in $banners)
+						<li><a href="$banner.link" onclick="_czc.push(['_trackEvent', '首页', '首页-banner', '首页-banner点击','2','']);">
+						      <img class="lazy_load_img"  xzsrc="$banner.img_url"  src="#springUrl('/assets/i/common/lazy_image.jpg')" >
+						    </a>
+						</li>
+				      #end
+					</ul>
+				</div>
+				<div class="top-main">
+					<div class="main-search" onclick="_czc.push(['_trackEvent', '首页', '首页-搜索', '首页-搜索','1','']);" >
+						<span id="">
+								<img src="#springUrl('/assets/i/index/search-icon.png')" />
+						</span>想去哪儿玩？
+					</div>
+					#parse("/menu_inc.vm")
+					
+				</div>
+				<div class="more_wraper header-menu-btn">
+						<!--<a class="more_R menu_action" data-menuaction="switch" href="#"></a>-->
+   						 <div class="more_pop hMenulist" style="">
+    						
+					</div>
+				</div>
+			</header>
+			
+	    <!--每日特价房-->
+	    #if($!specialsHouse.houseId >0)
+			<section class="house-detail">
+				<div class="lable">
+					<p class="pull-left hotcity">妈妈美宿N99任我行</p>
+					<p class="pull-right more"><a href="#springUrl('/activity/special_offer_99/index.htm')">更多<span><img src="#springUrl('/assets/i/index/left.png')"/></span></a></p>
+				</div>
+				<a class="to-special" href="/house/toDetail.htm?houseId=$!specialsHouse.houseId" onclick="_czc.push(['_trackEvent', '首页', '首页-每日特价房', '首页-每日特价房','13','']);" />
+				  <img class='lazy_load_img' src="#springUrl('/assets/i/common/lazy_image.jpg')" xzsrc="$!specialsHouse.imageUrl!h5i6s" />
+				  #if($!specialsHouse.partnership)
+    				  <span class="deep-coop">
+    					<img  src="#springUrl('/assets/i/index/flag.png')" />
+    					$!specialsHouse.partnership
+    				  </span>
+				  #end
+				</a>
+				<div class="title">
+					<h3>$!specialsHouse.houseName</h3>
+                    <span>市场价：¥$!specialsHouse.market_price起/晚</span>
+				</div>
+				<div class="desc">
+					<span class="info">$!specialsHouse.room室$!specialsHouse.office厅$!specialsHouse.toilet卫 $!specialsHouse.beds床 宜住$!specialsHouse.personNum人</span>
+					<span class="discount-cont">
+						<i>$!specialsHouse.discount折</i>
+						送房价:
+						<span class="special-price">¥<strong>$!specialsHouse.memTotalAmt</strong></span>
+						起/晚
+					</span>
+				</div>
+			</section>
+		#end
+			
+			<!--热门城市-->
+			<section class="hotcities" style="position: relative;">
+				<div class="lable">
+					<p class="pull-left hotcity">热门城市</p>
+					<p class="pull-right more"><a href="#springUrl('/search/index.htm')">更多<span><img src="#springUrl('/assets/i/index/left.png')"/></span></a></p>
+				</div>
+				<div class="citys">
+					<div class="img-line">
+						<a onclick="toList(3,'大理');_czc.push(['_trackEvent', '首页', '首页-热门城市', '首页-热门城市-大理','3','']);"> 
+						  <img class="img-first lazy_load_img" xzsrc="http://file.88mmmoney.com/bdb8a3f5-3c44-455b-8e21-62acbefb129c" src="#springUrl('/assets/i/common/lazy_image.jpg')"   />
+						</a>
+						<a onclick="toList(3,'凤凰');_czc.push(['_trackEvent', '首页', '首页-热门城市', '首页-热门城市-凤凰','4','']);">
+						  <img class="img-second lazy_load_img" xzsrc="http://file.88mmmoney.com/b8019585-11c7-4ad5-bb7e-a9d44d24e332" src="#springUrl('/assets/i/common/lazy_image.jpg')"  />
+						</a>
+					</div>
+					<div class="img-line mt-10">
+						<a onclick="toList(1,'三亚');_czc.push(['_trackEvent', '首页', '首页-热门城市', '首页-热门城市-三亚','5','']);">
+						  <img class="img-first lazy_load_img" xzsrc="http://file.88mmmoney.com/d723e2c4-f414-4445-9079-e3aa06f9c15e"  src="#springUrl('/assets/i/common/lazy_image.jpg')"  />
+						</a>
+						<a onclick="toList(37,'桂林');_czc.push(['_trackEvent', '首页', '首页-热门城市', '首页-热门城市-桂林','6','']);">
+						  <img class="img-second lazy_load_img" xzsrc="http://file.88mmmoney.com/3013de0a-c5c2-4092-bcbf-ae6ae8cec443"  src="#springUrl('/assets/i/common/lazy_image.jpg')" />
+						</a>
+					</div>
+				</div>
+			</section>
+			<!--热房推荐-->
+			<section class="hot-hotels">
+				<div class="lable hot-lable" style="position: relative;">
+					<p>热房推荐 <img src="#springUrl('/assets/i/index/hot.png')"style="width: 35px;margin-top: -20px;"/></p>
+					<div class="hd">
+						<span id="summer" class="hot-tab active">暖冬首选</span>
+						<div class="line"></div>
+						<span id="children" class="hot-tab">亲子乐园</span>
+						<div class="line second"></div>
+						<span id="travel" class="hot-tab">山水之间</span>
+					</div>
+				</div>
+				<div id="tab-container" style="margin-top: .5rem;" class="bd">
+					<ul class="summer">
+						<li>
+							<div class="hot-item">
+								<a href="#springUrl('/house/toDetail.htm?houseId=339')" onclick="_czc.push(['_trackEvent', '首页', '首页-热房点击', '首页-热房点击','7','']);" />
+								  <img src="http://file.88mmmoney.com/6bc5750e-cb74-4568-8efb-d187479702cd!h5i6s" /></a>
+								<!-- <span class="span-collection" style="cursor:pointer;">
+								<img class="lazy_load_img" onClick="checkColelect(this,9)" src="http://file.88mmmoney.com/c9d46234-f7b9-4614-b09a-5136724009d6" alt="" />
+								</span> -->
+								<div class="hot-bottom">
+									<p class="price">¥ <span>540</span>/晚起</p>
+									<p class="slogon">不止艳遇，更有风月</p>
+								</div>
+							</div>
+							<p class="name" >大理双廊青云客栈海景大床房</p>
+							<p class="intro" >1室0厅1卫 1床 宜住2人</p>
+						</li>
+					<li>
+							<div class="hot-item">
+								<a href="#springUrl('/house/toDetail.htm?houseId=396')" onclick="_czc.push(['_trackEvent', '首页', '首页-热房点击', '首页-热房点击','7','']);" />
+								  <img class="lazy_load_img" xzsrc="http://file.88mmmoney.com/35998829-df35-41c9-bb38-d222a7020da7!h5i6s"  src="#springUrl('/assets/i/common/lazy_image.jpg')" /></a>
+								<!-- <span class="span-collection" style="cursor:pointer;">
+								<img class="lazy_load_img" onClick="checkColelect(this,1)" src="http://file.88mmmoney.com/c9d46234-f7b9-4614-b09a-5136724009d6"  alt="" />
+								</span> -->
+								<div class="hot-bottom">
+									<p class="price">¥ <span>488</span>/晚起</p>
+									<p class="slogon">丽江古城核心地段，远眺雪山，对饮小酌</p>
+								</div>
+							</div>
+							<p class="name" style="">丽江雍舍客栈豪华阳光大床房</p>
+							<p class="intro" style="">1室0厅1卫 1床 宜住2人</p>
+						</li>
+						<li>
+							<div class="hot-item">
+								<a href="#springUrl('/house/toDetail.htm?houseId=490')" onclick="_czc.push(['_trackEvent', '首页', '首页-热房点击', '首页-热房点击','7','']);" />
+								  <img class="lazy_load_img" xzsrc="http://file.88mmmoney.com/c81f45a2-e5d9-4842-96f6-3907ac65750b!h5i6s"  src="#springUrl('/assets/i/common/lazy_image.jpg')" /></a>
+								<!-- <span class="span-collection" style="cursor:pointer;">
+								<img class="lazy_load_img" onClick="checkColelect(this,11)" xzsrc="http://file.88mmmoney.com/c9d46234-f7b9-4614-b09a-5136724009d6" src="#springUrl('/assets/i/common/lazy_image.jpg')"  alt="" />
+								</span> -->
+								<div class="hot-bottom">
+									<p class="price">¥ <span>680</span>/晚起</p>
+									<p class="slogon">远离城市纷扰，品海鲜、吹海风、踏海浪</p>
+								</div>
+							</div>
+							<p class="name" style="">海洋微风度假民宿双床房</p>
+							<p class="intro" style="">1室0厅1卫 2床 宜住2人</p>
+						</li>
+					</ul>
+
+					<ul class="children" style="display: none;">
+						<li>
+							<div class="hot-item">
+								<a href="#springUrl('/house/toDetail.htm?houseId=224')" onclick="_czc.push(['_trackEvent', '首页', '首页-热房点击', '首页-热房点击','7','']);"/>
+								 <img class="lazy_load_img" xzsrc="http://file.88mmmoney.com/fe7128fa-3ebb-40c6-b0ef-09090c2c556f!h5i6s" src="#springUrl('/assets/i/common/lazy_image.jpg')" /></a>
+								<!-- <span class="span-collection" style="cursor:pointer;">
+								<img class="lazy_load_img" onDblClick="checkColelect(this)" src="http://file.88mmmoney.com/c9d46234-f7b9-4614-b09a-5136724009d6" />
+								</span> -->
+								<div class="hot-bottom">
+									<p class="price">¥ <span>268</span>/晚起</p>
+									<p class="slogon">广州长隆景区旁，最居家的复式套房</p>
+								</div>
+							</div>
+							<p class="name" style="">澜渤湾公寓长隆店家庭套房</p>
+							<p class="intro" style="">2室1厅1卫 2床 宜住4人</p>
+						</li>
+						<li>
+							<div class="hot-item">
+								<a href="#springUrl('/house/toDetail.htm?houseId=363')" onclick="_czc.push(['_trackEvent', '首页', '首页-热房点击', '首页-热房点击','7','']);" />
+								<img class="lazy_load_img" xzsrc="http://file.88mmmoney.com/5a2c486c-f9ce-4b3c-823a-0e8c4f99085c!h5i6s" src="#springUrl('/assets/i/common/lazy_image.jpg')" /></a>
+								<!-- <span class="span-collection" style="cursor:pointer;">
+								<img class="lazy_load_img" onDblClick="checkColelect(this)" src="http://file.88mmmoney.com/c9d46234-f7b9-4614-b09a-5136724009d6" alt="" />
+								</span> -->
+								<div class="hot-bottom">
+									<p class="price">¥ <span>869</span>/晚起</p>
+									<p class="slogon">设计师客栈，深圳海边家庭聚会首选</p>
+								</div>
+							</div>
+							<p class="name" style="">深圳官湖花木蓝客栈-木楼两房一厅</p>
+							<p class="intro" style="">2室1厅2卫 2床 宜住4人</p>
+						</li>
+						<li>
+							<div class="hot-item">
+								<a href="#springUrl('/house/toDetail.htm?houseId=259')" onclick="_czc.push(['_trackEvent', '首页', '首页-热房点击', '首页-热房点击','7','']);" />
+								  <img class="lazy_load_img" xzsrc="http://file.88mmmoney.com/0a27984d-6cd8-451e-8eec-8ae862ecfa7b!h5i6s" src="#springUrl('/assets/i/common/lazy_image.jpg')" /></a>
+								<!-- <span class="span-collection" style="cursor:pointer;">
+								<img class="lazy_load_img" onDblClick="checkColelect(this)" src="http://file.88mmmoney.com/c9d46234-f7b9-4614-b09a-5136724009d6" alt="" />
+								</span> -->
+								<div class="hot-bottom">
+									<p class="price">¥ <span>328</span>/晚起</p>
+									<p class="slogon">凤凰古城核心位置，品读青山碧水</p>
+								</div>
+							</div>
+							<p class="name" style="">凤凰坡山公馆梅大床房</p>
+							<p class="intro" style="">1室0厅1卫 1床 宜住2人</p>
+						</li>
+					</ul>
+					<ul class="travel" style="display: none;">
+						<li>
+							<div class="hot-item">
+								<a href="#springUrl('/house/toDetail.htm?houseId=306')" onclick="_czc.push(['_trackEvent', '首页', '首页-热房点击', '首页-热房点击','7','']);" />
+								 <img class="lazy_load_img" xzsrc="http://file.88mmmoney.com/2c066e03-343b-4f32-b19f-e9c0199a8b9b!h5i6s" src="#springUrl('/assets/i/common/lazy_image.jpg')" /></a>
+								<!-- <span class="span-collection" style="cursor:pointer;">
+								<img class="lazy_load_img" onDblClick="checkColelect(this)" src="http://file.88mmmoney.com/c9d46234-f7b9-4614-b09a-5136724009d6" alt="" />
+								</span> -->
+								<div class="hot-bottom">
+									<p class="price">¥ <span>780</span>/晚起</p>
+									<p class="slogon">苍洱之间，让心灵住下</p>
+								</div>
+							</div>
+							<p class="name" style="">海西海景酒店海景双标房</p>
+							<p class="intro" style="">1室0厅1卫 2床 宜住2人</p>
+						</li>
+						<li>
+							<div class="hot-item">
+								<a href="#springUrl('/house/toDetail.htm?houseId=474')" onclick="_czc.push(['_trackEvent', '首页', '首页-热房点击', '首页-热房点击','7','']);" />
+								  <img class="lazy_load_img" xzsrc="http://file.88mmmoney.com/7d444fe1-1aa0-4fa0-939e-049572b8bba6!h5i6s" src="#springUrl('/assets/i/common/lazy_image.jpg')" /></a>
+								<!-- <span class="span-collection" style="cursor:pointer;">
+								<img class="lazy_load_img" onDblClick="checkColelect(this)" src="http://file.88mmmoney.com/c9d46234-f7b9-4614-b09a-5136724009d6" alt="" />
+								</span> -->
+								<div class="hot-bottom">
+									<p class="price">¥ <span>158</span>/晚起</p>
+									<p class="slogon">阳朔西街美房，饱览漓江美景</p>
+								</div>
+							</div>
+							<p class="name" style="">阳朔西街江景楼观景大床房</p>
+							<p class="intro" style="">1室0厅1卫 1床 宜住2人</p>
+						</li>
+						<li>
+							<div class="hot-item">
+								<a href="#springUrl('/house/toDetail.htm?houseId=143')" onclick="_czc.push(['_trackEvent', '首页', '首页-热房点击', '首页-热房点击','7','']);" />
+								  <img class="lazy_load_img" xzsrc="http://file.88mmmoney.com/f5cab3c8-e19c-4d6f-909d-3d30426b8df3!h5i6s" src="#springUrl('/assets/i/common/lazy_image.jpg')" /></a>
+								<!-- <span class="span-collection" style="cursor:pointer;">
+								<img class="lazy_load_img" onDblClick="checkColelect(this,11)" src="http://file.88mmmoney.com/c9d46234-f7b9-4614-b09a-5136724009d6" alt="" />
+								</span> -->
+								<div class="hot-bottom">
+									<p class="price">¥ <span>338</span>/晚起</p>
+									<p class="slogon">亚龙湾度假区，您的专属度假洋房</p>
+								</div>
+							</div>
+							<p class="name" style="">亚龙湾吉吉岛度假洋房别墅私密一室一厅</p>
+							<p class="intro" style="">1室1厅1卫 1床 宜住2人</p>
+						</li>
+					</ul>
+				</div>
+			</section>
+
+			<!--旅居理财-->
+			<section class="travel-invest" >
+				<div class="lable">
+					<p class="hotcity">旅居理财</p>
+				</div>
+				<div class="licai">
+					<div class="img-line">
+						<a href="http://m.88mmmoney.com/travelList.htm" onclick="_czc.push(['_trackEvent', '首页', '首页-旅居宝', '首页-旅居宝','8','']);" >
+						  <img  class="img-first lazy_load_img" xzsrc="http://file.88mmmoney.com/cb45792a-d597-4ab4-b976-dc3e7fe2f1d6" src="#springUrl('/assets/i/common/lazy_image.jpg')" />
+						</a>
+						<a href="#springUrl('/waiting.htm?type=筹生活')" onclick="_czc.push(['_trackEvent', '首页', '首页-愁生活', '首页-愁生活','9','']);">  
+						  <img  class="img-second lazy_load_img" xzsrc="http://file.88mmmoney.com/85c57c6c-0e94-4253-93e1-134fd284b240" src="#springUrl('/assets/i/common/lazy_image.jpg')" />
+						</a>  
+					</div>
+				</div>
+			</section>
+
+			<!--达人同行-->
+			<section class="travel-diary" >
+				<div class="lable">
+					<p >达人同行</p>
+				</div>
+				<div class="diary">
+					<div class="img-line">
+						<a href="#springUrl('/travels.htm')"
+						 onclick="_czc.push(['_trackEvent', '首页', '首页-手记', '首页-手记','10','']);" >
+							<img class="img-first lazy_load_img" xzsrc="http://file.88mmmoney.com/637089dc-fb91-4b26-b8e6-07c29365721d" src="#springUrl('/assets/i/common/lazy_image.jpg')" />
+						</a>
+						<a href="#springUrl('/lxj/toPage.htm')" onclick="_czc.push(['_trackEvent', '首页', '首页-专线', '首页-专线','11','']);" >
+						  <img class="img-second lazy_load_img" xzsrc="http://file.88mmmoney.com/1ed8bb2a-0e28-4fae-aafe-1e3b80f44153" src="#springUrl('/assets/i/common/lazy_image.jpg')" /></a>
+					</div>
+				</div>
+			</section>
+
+			<footer class="w-100">
+				<div class="href-container" style="">
+				    <span class="about-us"><a href="#springUrl('/about_us.htm')">关于</a></span>
+				    <div class="line bottom"></div>
+					<span style=""><a href="view/main/newer_guide.vm">新手</a></span>
+					<div class="line bottom second"></div>
+					<span ><a href="tel:4009966633">热线</a></span>
+					<div class="line bottom third"></div>
+					<!--<span onclick="location.href='#springUrl('/my/usercenter.htm')'">账户</span>-->
+					<!--<div class="line bottom last"></div>-->
+					<span onclick="location.href='http://m.88mmmoney.com/index.htm'">妈妈家</span>
+				</div>
+				深圳妈妈送房网络科技有限公司&copy;2016
+			</footer>
+			<img src="$!imgurl" width="0" height="0" style="position: absolute;"  />
+		</div>
+		
+		<script type="text/javascript" src="#springUrl('/assets/js/mm-img-lazyload.js')"></script>
+		<script type="text/javascript">
+		  function toList(cityId,cityName){
+  			cityName = encodeURI(encodeURI(cityName));
+  			location.href="#springUrl('/city/searchHouseByName.htm?cityId=')"+cityId+"&name="+cityName;
+		  }
+			
+			$(function() {
+				$('.am-slider').flexslider();
+			
+			
+				var lazyload = {};
+				lazyload.img = function(obj) {
+					var img = typeof(obj) == 'object' ? obj : $(obj);
+					var xz_src = img.attr('xzsrc');
+					if(xz_src && xz_src != 'ok') {
+						img.attr('src', xz_src);
+						img.attr('xzsrc', 'ok');
+						var lineHeight=	$('.img-line img').height();
+						if(lineHeight!=0){
+							$('.img-line').height(lineHeight);
+						}
+						
+						if($('.clone')) {
+							$('.clone').each(function() {
+						        $(this).find('img').attr('src', xz_src);
+						    })
+						}
+					}
+				}
+				var lazy_load_imgs = $('.lazy_load_img');
+				setTimeout(function() {
+					lazy_load_imgs.mmlazyload({
+						replaceImage: true,
+						pxOffset: 50,
+						memorySaver: true
+					});
+					
+				}, 300);
+				/**
+				 *计算图片高度 
+				 */
+				//var lineHeight=	$('.img-line img').height();
+				//if(lineHeight!=0){
+				//	$('.img-line').height(lineHeight);
+				//}
+				
+				
+
+				$(".main-search").on("click", function() {
+					location.href = '/search/index.htm';
+				});
+			
+				$(".index-close").on("click", function() {
+					$(".fc").hide();
+				});
+
+				$("#summer").on('click', function() {
+					$(this).addClass("active");
+					$("#travel").removeClass("active");
+					$("#children").removeClass("active");
+					$(".summer").show();
+					$(".children").hide();
+					$(".travel").hide();
+				});
+				$("#travel").on('click', function() {
+					$(this).addClass("active");
+					$("#summer").removeClass("active");
+					$("#children").removeClass("active");
+					$(".summer").hide();
+					$(".children").hide();
+					$(".travel").show();
+				});
+				$("#children").on('click', function() {
+					$(this).addClass("active");
+					$("#summer").removeClass("active");
+					$("#travel").removeClass("active");
+					$(".summer").hide();
+					$(".children").show();
+					$(".travel").hide();
+				});
+
+			});
+
+		//收藏或取消			
+		function checkColelect(obj,houseId) {
+			$.ajax({
+				url:"#springUrl('/collect/addOrDeleCollect.htm')",
+				type:'post',
+				async: false,
+				data:{"houseId":houseId},
+				success:function(data) {
+					if(data.code == 0){
+						if(data.removed == 0) { //取消收藏
+							$(obj).attr("src","http://file.88mmmoney.com/c9d46234-f7b9-4614-b09a-5136724009d6");
+							return ;
+						}
+						if(data.removed == 1) { //加入收藏
+							$(obj).attr("src","http://file.88mmmoney.com/4f5f0618-9ed0-4a29-a871-af3ba9be0355");
+							return ;
+						}
+						return ;
+					}
+					if(data.code == 2) { //未登陆
+						location.href="/my/toLogin.htm";
+						return ;
+					}
+				}
+			});
+		}		
+
+		
+		</script> 
+
+	</body>
+
+</html>

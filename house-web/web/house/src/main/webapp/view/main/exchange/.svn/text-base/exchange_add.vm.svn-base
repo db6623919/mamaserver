@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+	<head lang="en">
+		<meta charset="UTF-8">
+		<title>发布换券需求</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="Cache-Control" content="no-cache" />
+		
+		<link rel="stylesheet" href="#springUrl('/assets/css/amazeui.min.css')" />
+		<link rel="stylesheet" href="#springUrl('/assets/css/reset.css')" />
+		<link rel="stylesheet" href="#springUrl('/assets/css/order_what.css')">
+		<link rel="stylesheet" href="#springUrl('/assets/css/trade.css')" />
+		
+		<script type="text/javascript" src="#springUrl('/assets/js/jquery.min.js')"></script>
+		<script type="text/javascript" src="#springUrl('/assets/js/amazeui.min.js')"></script>
+		<script type="text/javascript" src="#springUrl('/assets/js/common.js?_v=1')"></script>
+		<script type="text/javascript" src="#springUrl('/assets/js/TouchSlide.1.0.source.js')"></script>
+		<script type="text/javascript">
+			var adaptPageClass = "content";
+		</script>
+	</head>
+	<body class="bg-ee">
+		<div id="modal"></div>
+		<div class="body content ">
+			<header class="header clearfix">
+		       	<div class="head">
+		        	<a class="back ui-link" href="javascript:void(0);" onClick="javascript :history.go(-1);" tdata-rel="back">返回</a>
+		        	<div class="title header_title" id="header-title">发布换券需求</div>
+		       	</div>
+	    		<div class="menumask" style="display:none;z-index:9;width:100%;position:absolute;top:0;left:0;bottom: 0;height:100%;background-colorT:red;opacity:0.01"></div>
+	    	</header>
+
+			<div class="w-100 bc-white border-top-default border-bottom-default mt-15">
+				<div class="am-img-container-room clearfix" onclick="changeTranvel()">
+					<p class="fs-11 text-color pl-15 am-mg-0">选择旅居劵<span class="fr fs-12  pr-15 "><span class="travel_name"></span><span class="gt"></span></span>
+					</p>
+				</div>
+			</div>
+
+			<div class="am-g  fs-1 text-color bc-white   bc-white am-img-container-room-05 border-bottom-default">
+				<div class="fl fs-11 pl-15 h-22">旅居劵张数</div>
+				<div class="fr capsule ">
+					<div class="capsule-btn minus fl unactive" data-click="minus">
+						<img src="#springUrl('/assets/i/neworder_3_5/minus.png')">
+					</div>
+					<div class="selector fl" data-number="selected">
+						0
+					</div>
+					<div class="capsule-btn add fl" data-click="add">
+						<img src="#springUrl('/assets/i/neworder_3_5/add2.png')">
+					</div>
+				</div>
+			</div>
+
+			<div class="w-100 bc-white border-top-default border-bottom-default mt-15">
+				<div class="am-img-container-room clearfix">
+					<p class="fs-11 text-color-34 pl-15 am-mg-0 pb-15 ">交换意向：（必填）</p>
+					<p class="fs-11 text-color-91 pl-15 am-mg-0 pr-15 pb-15 tj">
+						<input id="intention" type="text" placeholder="请输入您想要交换的酒店地址，入住时间天数：如，三亚亲和源 2016-03-04，共3晚" class="reg_input"  />
+					</p>
+				</div>
+			</div>
+
+			<div class="w-100 bg-fb fs-12 text-color-white line-h-40 tc foot " onclick="tradeToSubmit()">
+				确定发布
+			</div>
+
+			<!--可以使用的 最大的劵的数量-->
+			<input type="hidden" value="0" name="maxNumber" />
+			<!--劵的id列表-->
+			<input type="hidden" value="" name="couponId"/>
+		</div>
+		<script src="#springUrl('/assets/js/changeNumber.js')"></script>
+		<script type="text/javascript">
+			$(document).ready(function() {
+				$('[data-click="minus"]').on('click', function() {
+					maxNumber = $("[name='maxNumber']").val();
+					if (checkTravel(maxNumber)) {
+						return;
+					}
+					changeNumber.minus(this, maxNumber);
+				});
+				$('[data-click="add"]').on('click', function() {
+					maxNumber = $("[name='maxNumber']").val();
+					if (checkTravel(maxNumber)) {
+						return;
+					}
+					changeNumber.add(this, maxNumber);
+				})
+			});
+
+			function tradeToSubmit() {
+				var couponNumber=$("[data-number='selected']").text();
+				if ($(".travel_name").html() == ''||couponNumber <= 0||$("#intention").val() == '') {
+					//myConfirm('', '<div class="mb-2">请填写完整信息再发布</div>1.旅居劵张数不能为空<br/>2.交换意向不能为空');
+					myAlert('', '<div class="mb-2">请填写完整信息再发布</div>1.旅居劵张数不能为空<br/>2.交换意向不能为空');
+					return;
+				}
+				//使用的劵的数量和劵的id列表
+				
+				var couponId=$("[name='couponId']").val();
+				
+				var couponIdList=couponId.split(",").slice(0,couponNumber).join(",");
+				$.ajax({
+					url:'#springUrl("/my/exchange/add.htm")',
+					type:'post',
+					data:'hotelCouponIds='+couponIdList+'&intention='+$('#intention').val(),
+					success:function(data){
+						if(data.code==0){
+							myAlert('友情提示', '发布成功',function(){
+								location.href="#springUrl('/exchange/item-"+data.data+".htm')";
+							});
+						}else{
+							myAlert('友情提示', '系统繁忙，请稍后重试');
+						}
+					}
+				});
+				
+			}
+
+			function checkTravel(maxNumber) {
+				if ($(".travel_name").html() == '') {
+					myAlert("友情提示", "请选择旅居劵");
+					return true;
+				}
+				if (maxNumber <= 0) {
+					myAlert("友情提示", "旅居劵数量不足");
+					return true;
+				}
+				return false;
+			}
+
+			function changeTranvel() {
+				if ($("#modal").css("display") == "none") {
+					$("#modal").css("display", "block");
+				} else {
+					$("#modal").load("#springUrl('/my/exchange/choose_coupon.htm')");
+				}
+				$("#modal").css("zIndex", "999");
+			}
+			function initCoupon(){
+				$("[data-number='selected']").html(0);
+				$("[data-click='minus']").addClass("unactive");;
+				$("[data-click='add']").removeClass("unactive");;
+				
+			}
+			function hideModal() {
+				$("#modal").css("display", "none");
+			}
+		</script>
+	</body>
+</html>

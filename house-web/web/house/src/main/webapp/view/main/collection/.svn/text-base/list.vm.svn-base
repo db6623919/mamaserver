@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>妈妈送房</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-cache" />
+  <link rel="stylesheet" href="#springUrl('/assets/css/amazeui.min.css')"/>
+  <link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/reset.css')">
+  <link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/house-list.css')">
+  <link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/scrollbar.css')" />
+  
+  
+
+  <script type="text/javascript">
+  	var adaptPageClass = "content";
+  </script>
+  
+<style type="text/css">
+			img {
+	vertical-align: middle;
+}
+
+.clearfix {
+	*zoom: 1;
+}
+
+.clearfix:before,
+.clearfix:after {
+	display: table;
+	line-height: 0;
+	content: "";
+}
+
+.clearfix:after {
+	clear: both;
+}
+
+.pull-left {
+	float: left;
+	min-width: 20%;
+}
+
+.pull-right {
+	float: right;
+}
+
+.mb-08 {
+	margin-bottom: .8rem;
+}
+
+.color-red {
+	color: #fb394c;
+}
+
+.color-grey {
+	color: #919191;
+}
+
+.color-black {
+	color: #333;
+}
+
+.body {
+	background-color: #fff;
+}
+
+.btn {
+	width: 100%;
+	height: 4rem;
+	line-height: 4rem;
+	color: #fff;
+	text-align: center;
+	font-size: 1.44rem;
+	display: block;
+}
+
+.bg-red {
+	background-color: #fb394c;
+}
+
+.menu_action.title {
+	font-size: 1.2rem;
+	padding-right: .8rem;
+}
+
+.header_title.title {
+	font-size: 1.36rem;
+}
+#wrapper {
+	position: absolute;
+	z-index: 1;
+	top: 48px;
+	bottom: 0;
+	background-color: #fff;
+	left: -9999px;
+	width: 100%;
+	overflow: auto;
+}
+
+#scroller {
+	position: absolute;
+	z-index: 1;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	width: 100%;
+	padding: 0;
+}
+
+#pullDown,
+#pullUp {
+	display: none;
+}
+.hidden {
+	display: none;
+}
+.house-detail {
+	margin-bottom: 10px;
+	padding: 1rem;
+}
+
+		</style>
+</head>
+<body>
+<div id="modal_order" class="body content">
+	<header class="bg-red">
+		<div class="head">
+			<a class="back ui-link" href="#springUrl('/my/usercenter.htm');"  tdata-rel="back">返回</a>
+			<div class="title header_title" id="header-title">我的收藏</div>
+		</div>
+	</header>
+	<input type="hidden" id="pageNum" name="pageNum" value="1"/>
+	
+	 #if($!houseInfoList.size() !=0)
+	<div id="wrapper">
+		<div id="scroller">
+		<div id="pullDown">
+						<span class="pullDownIcon"></span><span class="pullDownLabel">下拉刷新...</span>
+					</div>
+			<!--房源列表-->
+			
+				<div class="h-list" style="margin-bottom:10px;"  id="h-list">
+					
+					#foreach ($!houseinfo in $!houseInfoList)
+					<div id="div_$!houseinfo.houseId" class="house-detail">
+    					<div class="house-item to-special" >
+    						<img class="lazy_load_img" src="#springUrl('/assets/i/common/lazy_image.jpg')" xzsrc="$!houseinfo.imageUrl!h5i6s"  onclick="roomDetail($!houseinfo.houseId)"/>
+    						<span class="span-collection">
+    							<img src="http://file.88mmmoney.com/a076edf3-9950-4431-862e-b2bfbe6ef4ed" onclick="removeHouse($!houseinfo.houseId)"/>
+    						</span>
+							#if($!houseinfo.specialTag)
+    							<span class="deep-coop">
+                					<img  src="#springUrl('/assets/i/index/flag.png')" />
+                					$!houseinfo.specialTag
+    							</span>
+							#end
+    						<!--
+							<div class="hot-bottom">
+    							<p class="price">¥ <span>$!houseinfo.price</span>/晚起</p>
+							</div>-->
+    					</div>
+						
+						<div class="title">
+        					<h3>$!houseinfo.name</h3>
+							#if($!houseinfo.marketPrice > 0)
+                            <span>市场价：¥$!houseinfo.marketPrice起/晚</span>
+							#end
+        				</div>
+						
+						<div class="desc">
+        					<span class="info">$!houseinfo.description</span>
+        					<span class="discount-cont">
+								#if($!houseinfo.discountDescription)
+        						<i>$!houseinfo.discountDescription</i>
+								#end
+        						送房价:
+        						<span class="special-price">¥<strong>$!houseinfo.price</strong></span>
+        						起/晚
+        					</span>
+        				</div>
+						<!--
+    					<p class="name">$!houseinfo.name</p>
+    					<div class="house-special">
+    						#foreach ($!tagName in $!houseinfo.tagNameList)
+    							<span>$!tagName</span>
+    						#end
+						</div>-->
+					</div>
+					#end
+					
+				</div>
+				<div id="pullUp" onclick="">
+					<span class="pullUpIcon"></span><span class="pullUpLabel"></span>
+				</div>
+		</div>	
+	 #end
+	 
+	 #if($!houseInfoList.size() ==0)
+		<div class="w-100 tc no-collect-div">
+          <img src="http://file.88mmmoney.com/b972774f-790e-4a37-967e-1000652c0915">
+			<p>您还没有收藏</p>
+      </div>
+	 #end
+	</div>	
+</div>
+
+<script type="text/javascript" src="#springUrl('/assets/js/jquery.min.js')"></script>
+<script type="text/javascript" src="#springUrl('/assets/js/amazeui.min.js')"></script>
+<script type="text/javascript" src="#springUrl('/assets/js/common.js')"></script>
+<script src="#springUrl('/assets/js/pulltorefresh.js?version1608121009')" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" src="#springUrl('/assets/js/collectsListRefresh.js')"></script> 
+<script src="#springUrl('/assets/js/mm-img-lazyload.js?version1608121009')"></script>
+  
+  
+<script type="text/javascript">
+
+
+
+  $(function() {
+    $('.am-slider').flexslider({
+      directionNav: false 
+    });
+    
+    reloadData();
+    
+  });
+
+ //删除收藏 
+function removeHouse_bak(houseId) {
+	$.ajax({
+        url: '#springUrl('/my/removeCollect.htm')' ,
+        type:'post',
+        data: {"houseId":houseId,"favor":false},
+		success: function(response) {
+		     var obj = eval(response);
+		    
+             if(response.code==0) {
+				$("#div_"+houseId).remove();
+				myScroll.refresh();
+				showTip("房源已移出您的收藏列表",3);
+				reloadData();
+             } else {
+             	showTip("取消收藏失败",3);
+             }
+        },
+        error:function(response) {
+		  alert("网络异常");
+        },
+        dataType:'json'
+	});
+}
+
+ //删除收藏 
+ function removeHouse(houseId) {
+	$.ajax({
+		url:"#springUrl('/collect/addOrDeleCollect.htm')",
+		type:'post',
+		async: false,
+		data:{"houseId":houseId,"favor":false},
+		success:function(data) {
+			if(data.code == 0) { //取消收藏
+				$("#div_"+houseId).remove();
+				showTip("房源已移出您的收藏列表",3);
+				myScroll.refresh();
+				reloadData();
+			}
+		}
+	});
+} 
+	
+function roomDetail(houseId){
+	self.location.href="#springUrl('/house/toDetail.htm?houseId=')"+houseId;	
+}
+	
+</script>  
+</body>
+</html>

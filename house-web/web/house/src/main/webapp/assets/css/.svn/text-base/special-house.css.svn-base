@@ -1,0 +1,107 @@
+.body {
+	background-color: #eff2f7;
+}
+
+.back {
+    background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADQAAAAeCAYAAABjTz27AAAABGdBTUEAALGPC/xhBQAAAzNJREFUWAntmF9IFEEcx2d2V06zQoOC0BUiEiMiqIdzvTsh8A68U0PhghDBB32zh3rrwbfoLXqIfIoiiHo46I+eYpnkv7s9E+sh0Ertn6cIUZKlqefu9J1Lj1PTu4PS3Wge9mZnfr/d72d/M/ObG0L+sSKmylNo81Tk5Bx6kifnfw2HR16k6v+37aVUXlBU5K7RdXYDPvCjGan4bpWtkOyLFKWsQdPJLcaIRIlwUVX915L13Uq7pICsiqdRZ/pVLowScj4U8jdupchU3gV9GxfGGFWKyi7j9xylVGOU1vcH/Tc39tj+ng2BvF6vOD4+d50RVou4LFKRnAkFWu9tv+TNFfwWqLT0rGV6+u0dwFTBfZaIUmV/oLlj80cZo3cdkMtVkznz7csDDLMSDLNpURDcgUBLyBhyE6tYBWS3e7IjS6wNboUYZlMClVyq+vBl4scYxyK2yjkcVfuXNNKzDPNOFNLsZoPhnzUaoeLi8gOLEa0DOeYg2oYkUXIGAs2T3MBsRbDZyo8sRvQ+DkMpGdiZaSk2Kwz/+JKmaz2A2YNgPU237Kjo7PR9N1tU4vVSa6GboWEW0ZmK7zBXnSLDsKZQqO3KyuY0c3n+mIsjppbxxcDKbyXkmo/IOXkYcsNCWlot1cjnmJ1JKhImTnd383uwECndYrHNLyxghWOHWSRymwrMGQy2fTAJS0wmh+ElenU4vHsjS3PtgDqOtrBARaeqtryKWpjsEk2svb2+T9lZWScJpTyx5uKvQq/V7jlhMpao3F9xWlauKN4Mncz5sGJ40DSDSFUgUt1mAottfbhoVfX9OHY0pxKRuovb3Yxo7YpSXmYmoHWHJIODg3p9XfX9sdHJfUhQCqHstCwXjIXDb0yxSV015NZGwqq4LxFGLqCdEYE29Adbm9baGO1+XYTiBU6ERzpxXDWLSLmA5JFz8yM4uuqNtzFafVMgLhYAQTm3YAJVzCVWAqhdaHtsNJAVPQmBuCHmz3NEahgbjFOAcshyvlxXV+3v6uri+0BDlaSAuGJEZQhQA4DCOQOzjo5NzGNI9hmKBmJWLduJxKlq6yOBEie2Gc8EIrxOZP+//w98gZ9T+xm2AvgFSgAAAABJRU5ErkJggg==') no-repeat 10px center;
+    background-size: auto 1.3rem;
+    text-indent: -9999px;
+    display: inline-block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 3.38rem;
+    height: 3.38rem;
+}
+
+.special-house-title {
+    font-size: 1.38rem;
+    color: #474747;
+    height: 3.38rem;
+    line-height: 3.38rem;
+    text-align:center;
+}
+
+.special .banner {
+	position:relative;
+	width:100%;
+	height:15.615rem;
+	background: url('../i/house/special-house-banner.png') no-repeat center;
+	background-size:cover;
+	color:#fff;
+	padding-top: 3.846rem;
+	margin-bottom: 10px;
+}
+
+.special .banner .related {
+	display:inline-block;
+	font-size:1rem;
+	color:white;
+	position:absolute;
+	top:1.345rem;
+	left:1.538rem;
+}
+
+.special .banner .related img {
+	width: 1.231rem;
+	height:1.538rem;
+}
+
+.special .banner .home-icon {
+	width: 3.231rem;
+	height: 3.010rem;
+	display:block;
+	margin:0 auto;
+}
+
+.special .banner h2 {
+	font-size:1.231rem;
+	text-align:center;
+	margin: 0.8rem 0;
+}
+
+.special .banner .desc {
+	font-size:1rem;
+	text-align:center;
+	margin-bottom:0.8rem;
+}
+
+.special .desc strong {
+	color: #ffd600;
+	font-weight:normal;
+}
+
+.recommend-container {
+	background-color:white;
+	padding: 1.462rem 1rem;
+}
+.recommend-container h2{
+	font-size:1.231rem;
+	margin:0;
+	margin-bottom:1rem;
+	text-align:left;
+}
+
+/*每一个特价房*/
+.item {
+	margin-bottom: 2rem; 
+}
+
+#wrapper {
+	position:absolute;
+    z-index: 1;
+    top: 3.846rem;
+    bottom: 0;
+    left:0;
+    right:0;
+ 	max-width:640px;
+    overflow: auto;
+}
+#scroller {
+    position: absolute;
+    z-index: 1;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    width: 100%;
+    padding: 0;
+}
+

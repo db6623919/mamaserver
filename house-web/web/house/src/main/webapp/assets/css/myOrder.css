@@ -1,0 +1,62 @@
+.mo-title{
+    color: #7f7f7f;
+    font-size: 1.2rem;
+    line-height: 2.5rem;
+}
+.fc-50c329{
+    color: #50c329;
+}
+.sr-table{
+    width: 70%;
+    height: 2.65rem;
+    margin: 1rem auto;
+    border: 1.5px solid #f75c52;
+    color: #f75c52;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+.sr-table .sr-table-normal{
+    border-right: 1.5px solid #f75c52;
+}
+.sr-table .sr-table-cur{
+    color: #fbf7ec;
+    background-color: #f75c52;
+}
+.table-left{
+	-webkit-border-radius: 4px 0px 0px 4px;
+    border-radius:  4px 0px 0px 4px;
+}
+.table-right{
+	-webkit-border-radius: 0px 4px 4px 0px;
+    border-radius: 0px 4px 4px 0px;
+}
+
+.myorder-list{
+	color: #757575;
+	padding: 0;
+}
+
+.myorder-status{
+	color: #ffffff;
+	background-color: #49bdcc;
+}
+.myorder-margin-top-1{
+	margin-top: 1rem;
+}
+.myorder-info-bigitem{
+	height: 10rem;
+}
+.myorder-info-down{
+	line-height: 1.7rem;
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+}
+.myorder-detail{
+	background-color: #f75c52;
+	-webkit-border-radius: 5px;
+    border-radius: 5px;
+    color: #ffffff;
+    height: 2.5rem;
+    line-height: 2.5rem;
+    margin-top: 3.5rem;
+}

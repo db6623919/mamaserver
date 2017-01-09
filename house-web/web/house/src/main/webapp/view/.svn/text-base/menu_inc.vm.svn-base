@@ -1,0 +1,50 @@
+
+<!--旧导航栏-->
+<!--<div class="more_wraper header-menu-btn">
+	<a class="more_R menu_action" data-menuaction="switch" href="#"></a>
+    <div class="more_pop hMenulist" style="display: none;">
+    	<span class="pop_tri"></span>
+        	<ul class="more_ul" style="display: none;">
+		   	 	<li class="" onclick="location.href='#springUrl('/index.htm')'"><a  class="text-color-white"><span class="home"></span>首页</a></span></li>
+				<li class="" onclick="location.href='#springUrl('/discover/index.htm')'"><a  class="text-color-white"><span class="discover"></span>发现</a></span></li>
+				<!--<li class="" onclick="location.href='#springUrl('/search/index.htm')'"><a  class="text-color-white"><span class="search"></span>搜索</a></span></li>-->
+            	<!--<li class="" onclick="location.href='#springUrl('/my/coupon/list.htm')'"><a class="text-color-white"><span class="coupon"></span>我的旅居券</a></li>-->
+            	<!--<li class="" onclick="location.href='#springUrl('/my/getOrders.htm?page=1&type=0')'"><a  class="text-color-white"><span class="travel"></span>我的订单</a></span></li>-->
+        	<!--#if($!isLogin==1)
+				<li class="" onclick="location.href='#springUrl('/my/usercenter.htm')'"><a  class="text-color-white"><span class="mmsf-personal"></span>个人中心</a></li>
+            	<li class="no_bor1" onclick="location.href='#springUrl('/toLogout.htm')'"><a  class="text-color-white"><span class="mmsf-logout"></span>退出</a></li>
+			#else
+				<li class=""><a href="/my/toLogin.htm"  class="text-color-white"><span class="login"></span>登录/注册</a></li>
+				##<li class="no_bor1" onclick="location.href='$!{registerAddress}'"><a class="text-color-white"><span class="register"></span>注册</a></li>##
+			#end
+		</ul>
+	</div>
+</div>-->
+
+<!-- 新导航栏 -->
+<ul class="nav-bottom">
+    <li>
+      <a id='navHome' href='/index.htm' class="nav-link">
+        <i class='home-icon'></i>
+        <span>首页</span>
+      </a>
+    </li>
+    <li>
+      <a href='/discover/index.htm' class="nav-link">
+        <i class='discover-icon'></i>
+        <span>发现</span>
+      </a>
+    </li>
+    <li>
+      <a href='/search/index.htm' class="nav-link">
+        <i class='search-icon'></i>
+        <span>搜索</span>
+      </a>
+    </li>
+    <li>
+      <a id='navMe'href='/my/usercenter.htm' class="nav-link">
+        <i class='me-icon'></i>
+        <span>我的</span>
+      </a>
+    </li>
+</ul>

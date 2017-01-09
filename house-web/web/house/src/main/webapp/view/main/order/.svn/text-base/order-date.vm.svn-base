@@ -1,0 +1,175 @@
+<html>
+ <head> 
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+  <meta charset="utf-8" /> 
+  <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0" /> 
+  <meta name="apple-mobile-web-app-capable" content="yes" /> 
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" /> 
+  <meta name="format-detection" content="telephone=no" /> 
+  <meta content="妈妈送房网" name="description" /> 
+  <!--日历--> 
+  <link type="text/css" rel="stylesheet" href="#springUrl('/assets/css/bootstrap.min.css')" /> 
+  <link media="all" type="text/css" rel="stylesheet" href="#springUrl('/assets/css/daterangepicker.css')" /> 
+  <!--日历结束--> 
+  <!--pub--> 
+  <script src="#springUrl('/assets/js/zepto.js')" type="text/javascript"></script> 
+  <script src="#springUrl('/assets/js/main.js')"></script> 
+  <!--pub结束--> 
+  <!--日历--> 
+  <script src="#springUrl('/assets/js/moment.js')" type="text/javascript"></script> 
+  <script src="#springUrl('/assets/js/mama-lib.js')" type="text/javascript"></script> 
+  <script src="#springUrl('/assets/js/daterangepicker.js')" type="text/javascript"></script> 
+  <!--日历结束--> 
+  <style>
+.table-condensed tr td {
+    line-height: normal;
+}
+header nav{ background:#f3f3f3;}
+</style>
+  <title>妈妈送房网</title> 
+ </head> 
+ <body> 
+<div class="am-fixed">
+    <header class="header">
+       <div class="head">
+        <a class="back ui-link" href="javascript:void(0);" onclick="javascript :history.go(-1);" tdata-rel="back"></a>
+        <div class="title header_title" id="header-title">选择入住日期</div>
+        <div class="more_wraper header-menu-btn">
+         <a class="reg_login" id="confirm-datehear">确定</a>
+        </div>
+       </div>
+    </header>
+            <div class="room-detail clearfix">
+				<input type="hidden" id="houseId" value="${houseId}">
+                <aside class="sched room leave">
+                  <div id="reportrange01" class="btn">
+                    <ul class="calendar-btn-ul">
+                       <li>
+                        <b>
+                            <font>入住：</font>
+							<br>
+                            <em id="startdate"></em>
+                        </b>
+                       </li>
+                       <li>
+                          <b>
+                            <font>离开：</font>
+							<br>
+                            <em id="enddate"></em>
+                          </b>
+                       </li>
+					   <li class="show-w">
+							总共:<br><big id="totalDays"></big>晚
+                       </li>
+                    </ul>
+                    </div>
+                </aside> 
+            </div> 
+</div>
+<input type="hidden" id="checkInTime" value="${checkInTime}"/>
+<input type="hidden" id="checkOutTime" value="${checkOutTime}"/>
+
+ <script type="text/javascript">
+ var startDate = '${startdate}';
+ var endDate = '${enddate}';
+ startDate = startDate.substring(0,4)+"-"+startDate.substring(4,6)+"-"+startDate.substring(6,8);
+ endDate = endDate.substring(0,4)+"-"+endDate.substring(4,6)+"-"+endDate.substring(6,8);
+ $(document).ready(function(){
+	selectdate(startDate,endDate);
+ });
+ 
+var today = new Date();
+/*用来查询结束月份*/
+var priceEndDate = new Date(today.getFullYear(), (today.getMonth() + 5), today.getDate());
+var dateData=${dateData};
+	var special;
+
+special = (dateData && dateData.data) ? showPrice(dateData.data.items) : new Object;
+        function showPrice(d) {
+            var special = new Object;
+            for (var i = 0; i < d.length; i++) {
+                (d[i].stock <= 0 || !d[i].isRent) ? special[d[i].date] = {"price":(d[i].price)+"元","state":"已租","show":true}:special[d[i].date] ={"price":(d[i].price)+"元","state":"","show":false};
+            }
+            return special;
+        }
+showClendar();
+var noBanner =''; 
+function showClendar(){
+
+  var bg=startDate;
+  var ed=endDate;
+  if(bg!=''){
+    bg=startDate;
+  }
+  else{
+  	bg='';
+  }
+  if(ed!=''){
+    ed=endDate;
+  }
+  else
+  {
+  	ed='';
+  }
+  var m = {sBegin:  bg,
+       sEnd:  ed};
+  var options = {
+           startDate:bg,
+           endDate:ed,
+           veiwType:'view',
+           noBanner:noBanner,
+           mindays:1,
+           special:special,
+           enterFun:function(){$("#indexPage").hide();},
+           backFun:function(){
+             $("#dayprice").text($(".table-condensed .start-date .perice-off input").val());
+             $("#indexPage").show(); 
+           }};
+  $('#reportrange01').daterangepicker(options,selectdate);
+   
+  
+  //获取日期差
+
+    
+  var evt = document.createEvent("MouseEvents");
+  evt.initEvent("click",true,true);
+  document.getElementById("reportrange01").dispatchEvent(evt); 
+}
+
+
+//日历日期选择后日期与晚数赋值
+function selectdate(startdate,enddate){
+  $("#startdate").html(startdate);
+  $("#enddate").html(enddate);
+  var startObj=moment(startdate, this.format);
+  var endObj=moment(enddate, this.format);
+  var totalDays=parseInt((endObj-startObj)/1000/60/60/24);
+  if(totalDays>=1)
+  {
+    $("#totalDays").html(totalDays);
+  }
+  else{
+    $("#totalDays").html("");
+  }
+  $(".show-w").show();
+} 
+
+//替换指定参数数值
+function replaceParamVal(url, paramName, replaceWith) {
+    var re = eval('/('+ paramName+'=)([^&]*)/gi');
+    var newUrl = url.replace(re,paramName+'='+replaceWith);
+    return newUrl;
+}
+
+$(function() {
+$("#confirm-datehear").click(function(){
+   var startdate = $("#startdate").html();
+   var enddate = $("#enddate").html();
+   var houseId = $("#houseId").val();
+   location.href="#springUrl('/my/toOrder.htm?startdate=')"+startdate+"&enddate="+enddate+"&houseId="+houseId;
+ });
+ });
+</script> 
+  <!--图片滚动结束-->
+</body>
+</html>

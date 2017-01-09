@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>评分</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-cache"/>
+
+    <link rel="stylesheet" href="#springUrl('/assets/css/amazeui.min.css')"/>
+    <link rel="stylesheet" href="#springUrl('/assets/css/sm.min.css')"/>
+    <link rel="stylesheet" href="#springUrl('/assets/css/sm-extend.min.css')"/>
+    <link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/reset.css')">
+    <link rel="stylesheet" type="text/css" href="#springUrl('/assets/js/slick/slick.css')">
+    <link rel="stylesheet" type="text/css" href="#springUrl('/assets/js/slick/slick-theme.css')">
+    <link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/comment-list.css')">
+
+    <script type="text/javascript" src="#springUrl('/assets/js/zepto.js')"></script>
+    <script type="text/javascript" src="#springUrl('/assets/js/jquery.min.js')"></script>
+    <script type="text/javascript" src="#springUrl('/assets/js/jquery-migrate.min.js')"></script>
+    <script type="text/javascript" src="#springUrl('/assets/js/amazeui.min.js')"></script>
+    <script type="text/javascript">
+        var adaptPageClass = "comment-content";
+    </script>
+</head>
+
+<body>
+<div class="comment-content">
+    <input type="hidden" id="averageScore" value="$!summary.averageScore"/>
+    <header>
+        <div class="head">
+            <a class="back ui-link" href="javascript:void(0);" onclick="javascript :history.go(-1);" tdata-rel="back">返回</a>
+
+            <div class="comment-title header_title" id="header-title">全部评价</div>
+        </div>
+    </header>
+    <section id="secSummray">
+        <ul class="ul-score s-20">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+        <p class="grade">
+            <span class="score">$!summary.averageScore分</span>
+            <span calss="comments">$!summary.totalCommentsNum条评论</span>
+        </p>
+    </section>
+
+	<div id="commentList">
+		#foreach($!result in $!results)
+        <section class="group">
+    		#if($!result.recommendTime > 0)
+            <div class="top"><span>精华</span></div>
+    		#end
+            <div class="head">
+                <span class="tel">$result.userPhone</span>
+                <span class="time">$result.createTime</span>
+                <ul id="$!result.id" data-score="$!result.score"  class="ul-score s-45">
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                </ul>
+            </div>
+            <div class="comment">
+                <span>$result.comments</span>
+            </div>
+    		#if(($!result.images) && ($!{result.images.size()} != 0))
+            <div class="gallery">
+    			#foreach($!image in $!result.images)
+                <div class="img">
+                    <img data-lazy="$!image" alt=""/>
+                </div>
+    			#end
+            </div>
+    		#end
+        </section>
+    	#end
+	</div>
+	
+	<div id="footer" class="am-text-center am-font-1-3 am-padding-top am-padding-bottom"></div>
+</div>
+    <script type="text/javascript" src="#springUrl('/assets/js/sm.min.js')"></script>
+    <script type="text/javascript" src="#springUrl('/assets/js/sm-extend.min.js')"></script>
+    <script type="text/javascript" src="#springUrl('/assets/js/slick/slick.min.js')"></script>
+    <script type="text/javascript" src="#springUrl('/assets/js/common.js?_v=1')"></script>
+    <script type="text/javascript" src="#springUrl('/assets/js/comment-list.js')"></script>
+</body>
+
+</html>

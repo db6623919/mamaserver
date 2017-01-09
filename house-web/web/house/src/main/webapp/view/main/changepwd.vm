@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>修改密码</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-cache" />
+  <link rel="stylesheet" href="#springUrl('/assets/css/amazeui.min.css')"/>
+  <link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/reset.css')">
+  <script type="text/javascript" src="#springUrl('/assets/js/jquery.min.js')"></script>
+  <script type="text/javascript" src="#springUrl('/assets/js/common.js')"></script>
+  <script type="text/javascript" src="#springUrl('/assets/js/count-time.js')"></script>
+  <script type="text/javascript" src="#springUrl('/assets/js/amazeui.min.js')"></script>
+  <script type="text/javascript">
+    var adaptPageClass = "content";
+  </script>
+</head>
+<body class="am-backcolor-f0">
+  <div class="content body">
+    <header data-am-widget="header" class="am-header am-backcolor-ff">
+      <h1 class="am-header-title">
+        <a href="#title-link">
+          修改密码
+        </a>  
+      </h1>
+    </header>
+    <div class="am-width-100 am-padding-horizontal-sm am-padding-top am-backcolor-ff">
+    	<form action="">
+          <div class="am-width-100 am-from-div-1 am-border-orange am-font-1-5 am-backcolor-ff">
+            <div class="am-g">
+              <div class="am-u-sm-4">当前密码</div>
+              <div class="am-u-sm-8 am-form-div-right">
+                <input class="am-input-phone am-fl am-width-100 am-height-100" type="password" placeholder="输入您当前的登录密码" maxlength="12" id="oldpassword" rel="password" need="need" msg="当前密码" autocomplete="off">
+              </div>
+            </div>
+          </div>
+          <div class="am-width-100 am-margin-top am-from-div-1 am-border-orange am-font-1-5 back-color-ff">
+            <div class="am-g">
+              <div class="am-u-sm-4">新密码</div>
+              <div class="am-u-sm-8 am-form-div-right">
+                <input class="am-input-phone am-fl am-width-100 am-height-100" type="password" placeholder="设置新登录密码" maxlength="12" id="newpassword" rel="newpassword" need="need" msg="新密码" autocomplete="off">
+              </div>
+            </div>
+          </div>
+    	  <div class="am-width-100 am-margin-top am-from-div-1 am-border-orange am-font-1-5 back-color-ff">
+            <div class="am-g">
+              <div class="am-u-sm-4">确认密码</div>
+              <div class="am-u-sm-8 am-form-div-right">
+                <input class="am-input-phone am-fl am-width-100 am-height-100" type="password" placeholder="再输一遍新登录密码" maxlength="12" id="repassword" rel="repassword" need="need" msg="确认密码" autocomplete="off">
+              </div>
+            </div>
+          </div>
+    	  <input type="text" value="完成" class="am-width-100 am-margin-top am-from-div-2 am-font-1-5 am-text-center am-cursor-pointer am-border-0 am-margin-bottom-lg" onclick="checkData();"/>
+    	</form>
+    </div>
+    <div class="am-width-100 am-under-pic"></div>
+  </div>
+
+  <div class="am-modal am-modal-alert" tabindex="-1" id="my-alert">
+    <div class="am-modal-dialog">
+      <div class="am-modal-hd">提示</div>
+      <div class="am-modal-bd" id="msg"></div>
+      <div class="am-modal-footer">
+        <span class="am-modal-btn">确定</span>
+      </div>
+    </div>
+  </div>
+
+<script type="text/javascript">
+  function checkData(){
+    var check_re = dataValidate();
+	var newpassword = $("#newpassword").val();	
+  	var repassword = $("#repassword").val();
+    if(check_re != ''){
+      $("#msg").html(check_re);
+      $('#my-alert').modal('open');
+    }else{
+      $.ajax({
+	        url: "#springUrl('/changePassword.htm')" ,
+	        type:'post',
+	        data: "newpassword=" + newpassword + "&repassword="+repassword,
+			success: function(response) {
+			     var obj = eval(response);
+                 if(response.code==0) {
+					 self.location.href="/usercenter.htm";
+  		             return false;
+                 } else {
+                     $("#msg").html(response.msg);
+  		             $('#my-alert').modal('open');
+  		             return false;
+                 }
+            },
+            error:function(response){
+              $("#msg").html("网络异常");
+  		      $('#my-alert').modal('open');
+              return false;
+            },
+	        dataType:'json'
+	    });
+    }
+  }
+</script>
+</body>
+</html>

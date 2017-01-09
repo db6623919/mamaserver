@@ -1,0 +1,200 @@
+.top-fixed
+{
+	position:fixed;
+	top: 0;
+	z-index: 100;
+	width: 100%;
+}
+
+.title-logo
+{
+	display:block;
+	width:25%;
+	margin:0 auto; 
+	height: 48px;
+	line-height: 43px;
+}
+
+.location-head, .location-head > *
+{
+	height: 40px;
+	line-height: 40px !important;
+}
+
+.location-title
+{
+	text-align: center;
+    font-size: 1.3rem;
+    line-height: 48px;
+}
+
+.user-icon
+{
+	background-image: url(../i/common/user.png);
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+
+.category-wrapper
+{
+	padding: 0 1rem;
+}
+
+.category-block
+{
+	height: 60px;
+	padding: 0;
+	/*margin-left: 1rem;*/
+	/*line-height: 60px;*/
+}
+
+.category-block img
+{
+	width: 1.8rem;
+	height: 1.8rem;
+	margin: 7px 0 3px;
+}
+
+.category-block p
+{
+	margin: 0;
+	line-height: normal;
+}
+
+.category-block .active
+{
+	color: #f74f5d;
+}
+
+.category-block.active
+{
+	border-bottom: 2px solid #f74f5d;
+}
+
+.info-list
+{
+	margin: .5rem 0;
+	padding: 0 0 0 1rem;
+	color: #fff;
+}
+
+.info-list > span
+{
+	display: inline-block;
+	line-height: 1.3rem;
+	text-indent: 0;
+	padding: .3rem 1rem;
+	border-top-left-radius: 15px;
+	border-bottom-left-radius: 15px;
+	border-top-right-radius: 15px;
+	border-bottom-right-radius: 15px;
+}
+
+.info-list .room
+{
+	background-color: #7da8ca;
+}
+
+.info-list .people
+{
+	background-color: #72c3bc;
+}
+
+.info-list .set
+{
+	background-color: #96bf23;
+}
+
+.new-collection
+{
+	background-image: url(../i/common/new_before_collect.png);
+}
+
+.new-collection-active
+{
+	background-image: url(../i/common/new_after_collect.png);
+}
+
+.hidden
+{
+	display: none;
+}
+
+.btn
+{
+	border-radius: 2px;
+	height: 3rem;
+	line-height: 3rem;
+	font-size: 1.3rem;
+	width: 9rem;
+	margin: 0 auto;
+	color: #fff;
+}
+
+.btn-danger
+{
+	background-color: #f75258;
+}
+
+.ad-tips
+{
+	color: #f75258;
+	margin-top: .2rem;
+}
+
+.pos-relative
+{
+	position: relative;
+}
+
+.pos-absolute
+{
+	position: absolute;
+}
+
+.pos-right-10
+{
+	right: 1rem;
+}
+
+.text-delete
+{
+	text-decoration: line-through;
+}
+
+/*重写类覆盖样式*/
+.border-bottom-gray
+{
+	border-bottom: 1px solid #d5d5d5;
+}
+
+.red-back
+{
+	background-image: url(../i/common/title_back_red.png) !important;
+}
+
+.text-color-newred
+{
+	color: #f75258;
+}
+
+.text-color-newgray
+{
+	color: #5b5b5b;
+}
+
+.text-color-dimred
+{
+	color: #f69a9e;
+}
+
+.mt-148
+{
+	margin-top: 148px;
+}
+
+.new-bg-index
+{
+	background-color: #eff9fd;
+}

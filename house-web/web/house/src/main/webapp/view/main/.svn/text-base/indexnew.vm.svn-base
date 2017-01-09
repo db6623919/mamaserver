@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>妈妈送房</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-cache" />
+  <link rel="stylesheet" href="../assets/css/amazeui.min.css"/>
+  <link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/reset.css?_v=2')">
+  <link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/index.css?_v=2')">
+  <link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/index_2.0.css')">
+  <script type="text/javascript" src="#springUrl('/assets/js/jquery.min.js')"></script>
+  <script type="text/javascript" src="#springUrl('/assets/js/amazeui.min.js')"></script>
+  <script type="text/javascript" src="#springUrl('/assets/js/common.js?_v=1')"></script>
+  <script type="text/javascript" src="#springUrl('/assets/js/TouchSlide.1.0.source.js')"></script>
+  <script type="text/javascript">
+  	var adaptPageClass = "content";
+  </script>
+</head>
+<body>
+  <div class="body content">
+    <header class="w-100">
+      <div class="header clearfix w-100">
+        <div class="head">
+          <a href="#springUrl('/index.htm')" data-ajax="false" class="logolink"><img src="#springUrl('/assets/i/common/mmsf-logo.png')" /></a>
+            <div class="am-select">
+              <span class="am-select-text">搜索城市/目的地</span>
+              <span class="am-select-icon">
+                <img src="#springUrl('/assets/i/index/search.png')">
+              </span>
+            </div>
+          <div class="title header_title" id="header-title"></div>
+        </div>
+      </div>
+
+      <div class="am-slider am-slider-a1"  >
+        <ul class="am-slides">
+          #foreach ($banner in $banners)
+			<li><a href="$banner.link"><img src="$banner.img_url"></a></li>
+	      #end
+        </ul>
+      </div>
+    </header>
+	
+      <!-- 发现美房 -->
+      <div class="travel-block booking">
+        <p class="title">
+          <!-- <img src="../assets/i/index/booking.png"> -->
+          <span class="main">发现美房</span>
+          <span class="sub"><img src="http://file.88mmmoney.com/29064339-edc3-4c7d-b2e2-27534fef9412"></span>
+        </p>
+        <!-- -->
+        <div class="inner-blocks clearfix" style="display:none">
+          <div class="img-block pull-left hotel" onclick="location.href='#springUrl('/listall.htm')'">
+            <div class="text">
+              <img src="../assets/i/index/quote.png" class="quote">
+              公寓
+              <img src="../assets/i/index/quote.png" class="quote anti-quote">
+            </div>
+          </div>
+          <div class="img-block pull-right self-owner" onclick="location.href='http://mp.weixin.qq.com/s?__biz=MzI5ODAzNjczNA==&mid=402955944&idx=1&sn=78951fdf791717370ffd03e68eddbca7&scene=0#wechat_redirect'">
+            <div class="text">
+              <img src="../assets/i/index/quote.png" class="quote">
+              民宿
+              <img src="../assets/i/index/quote.png" class="quote anti-quote">
+            </div>
+          </div>
+        </div>
+
+        <div class="tabBox" id="cities">
+          <div class="bd">
+            
+          </div>
+          <div class="hd">
+            <ul>
+            </ul>
+          </div>
+        </div>
+      </div>
+<a href="#springUrl('/activity/toPage.htm')">进入抽奖界面</a>
+	  <div class="bottom_banner">
+        <a href="http://m.88mmmoney.com/travelList.htm"><img src="http://file.88mmmoney.com/593f116f-66fa-4c91-a5af-c6a3afd65f58" /></a>
+        <a href="http://mp.weixin.qq.com/s?__biz=MzI5ODAzNjczNA==&mid=504083665&idx=1&sn=d8e5d8cf57baf13cdaed500604b964d9#rd"><img src="http://file.88mmmoney.com/ef392664-3d20-4b37-93e8-35d0b433c9d2" /></a>
+      </div>
+	  
+      <div class="ad" >
+      	<a href="tel:400-9966-633">
+        	<img src="http://file.88mmmoney.com/8df02086-b84f-4b26-8692-e0a84cc5ecf0">
+			<p class="rgy-ding">
+				人工预订　400-9966-633
+            </p>
+        </a>
+      </div>
+
+    <footer class="w-100">
+          深圳妈妈送房网络科技有限公司@2015
+    </footer>
+  </div>
+  <div class="fc" style="display: none;">
+      <div class="fc-main"></div>
+      <a class="reg-now" href="../index/search.html">
+        <div class="fc-text">
+            <i class="lucky-money"></i>
+            <mark>
+              <b>注册即送50元!</b>
+                居家出行最暖的选择
+            </mark>
+            <div class="fc-btn">立即注册</div>      
+        </div>
+      </a>
+      <div class="index-close">
+        <i></i>
+      </div>
+    </div>
+  </div>       
+<script type="text/javascript" src="../assets/js/mm-img-lazyload.js"></script>
+<script type="text/javascript">
+  $(function(){
+   $('.am-slider').flexslider();
+    
+    $(".am-select").on("click",function(){
+        location.href='#springUrl('/getHotCities.htm')';
+    });
+    var lazyload = {};
+    lazyload.img = function(obj){
+        var img = typeof(obj) == 'object' ? obj : $(obj);
+        var xz_src = img.attr('xz_src');
+        if (xz_src && xz_src != 'ok') {
+            img.attr('src',xz_src);
+            img.attr('xz_src','ok');
+        }
+    }
+    var lazy_load_imgs = $('.lazy_load_img');
+        setTimeout(function () {
+            lazy_load_imgs.mmlazyload({replaceImage:false,pxOffset:50, memorySaver:true});
+        },300);
+    $(".index-close").on("click",function(){
+        $(".fc").hide();
+    });
+    
+     var citys = ${citys};
+     var html="";
+			    		var data_length=citys.length;
+			    		var ul_size=Math.ceil(data_length/8);
+			    		var ul_index=0;
+			    		var ul;
+			    		var li;
+			    		var outer_div;
+			    		var inner_div;
+			    		var img_div;
+			    		var img;
+			    		var text;
+			    		var p;
+			    		$.each(citys, function(i,e) {
+			    					if(i%8==0){
+			    							ul=document.createElement("ul");
+			    							li=document.createElement("li");
+			    							$(ul).append(li);
+			    					}
+			    					if(i%4==0){
+			    							outer_div=document.createElement("div");
+			    							outer_div.className="inner-blocks clearfix cities";
+			    							$(li).append(outer_div);
+			    					}
+			    					if(i%2==0){
+			    						inner_div=document.createElement("div");
+			    						if((i/2)%2==0){
+			    							inner_div.className="img-group pull-left clearfix";
+			    						}else{
+			    							inner_div.className="img-group pull-right clearfix";
+			    						}
+			    						$(outer_div).append(inner_div);
+			    					}
+			    					img_div=document.createElement("div");
+			    					if(i%2==0){
+			    						img_div.className="img-block pull-left";
+			    					}else{
+			    						img_div.className="img-block pull-right";
+			    					}
+			    					$(inner_div).append(img_div);
+			    					
+			    					var img_a=document.createElement("a");
+			    					img_a.href="#springUrl('/city/list.htm?cityId="+e.cityId+"&cityName="+e.cityName+"&1=1')";
+			    					$(img_div).append(img_a);
+			    					
+			    					img=document.createElement("img");
+			    					img.src=e.imgUrl;
+			    					
+			    					text=document.createElement("div");
+			    					text.className="text";
+			    					$(img_a).append(img).append(text);
+			    					
+			    					p=document.createElement("p");
+			    					p.className="reset main";
+			    					p.innerHTML=e.cityName;
+			    					$(text).append(p);
+			    					
+			    					p=document.createElement("p");
+			    					//p.className="reset sub";
+			    					//p.innerHTML=e.description;
+			    					//$(text).append(p);
+			    					
+			    					$(".bd").append(ul);
+			    					
+			    		});
+			    					var h="";
+			    					for(var i=0;i<ul_size;i++){
+			    						h+="<li><div class='nav'></div></li> ";
+			    					}
+			    					$(".hd ul").html(h);
+			    		TouchSlide({ slideCell:"#cities" });
+			    		
+			    		
+    
+  });
+  
+  
+</script> 
+</body>
+</html>

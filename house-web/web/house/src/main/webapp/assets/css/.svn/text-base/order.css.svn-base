@@ -1,0 +1,150 @@
+/* order index */
+.content{background: #fbf7ec;}
+/* pointer left*/
+
+.w-100 p{
+	padding-right: 1.5rem;
+	color:#757575;
+	margin: 0;
+}
+.w-100 span{line-height: 2.9rem;}
+
+.am-u-sm-minus{
+	background: url(../i/order/minus.png) no-repeat;
+	background-size: 100%;
+	display: inline-block;
+	width: 2.9rem;
+	height: 2.9rem;
+	vertical-align: middle;
+	cursor: pointer;
+
+}
+.am-u-sm-plus{
+	background: url(../i/order/plus.png) no-repeat;
+	background-size: 100%;
+	display: inline-block;
+	width: 2.9rem;
+	height: 2.9rem;
+	vertical-align: middle;
+	cursor: pointer;
+
+}
+.w-100-ul {
+	margin: 0 auto 1rem auto;
+}
+.w-100-ul li{
+	float: left;
+	width: 33.3%;
+	line-height: 2.9rem;
+	vertical-align: middle;
+	cursor: pointer;
+}
+.am-u-order-ul{
+	padding-left: 1.5rem;
+}
+.am-u-order-ul li{
+	line-height: 1.7rem;
+}
+
+/* 2015-10-14 新版订单页*/
+.am-title-border
+{
+    display: inline-block;
+    width: 0.3rem;
+    height: 1.2rem;
+    line-height: 1.2rem;
+    vertical-align: -5%;
+    background:url(../i/common/title_border.png) no-repeat;
+    background-size: 100%;
+}
+.modify-icon{
+	display: inline-block;
+    width: 1.8rem;
+    height: 1.6rem;
+    line-height: 2.8rem;
+    vertical-align: -10%;
+    background:url(../i/order/modify-icon.png) no-repeat;
+    background-size: 100%;
+}
+.time-icon{
+	display: inline-block;
+    width: 1.35rem;
+    height: 1.4rem;
+    line-height: 2.8rem;
+    vertical-align: -10%;
+    background:url(../i/order/time-icon.png) no-repeat;
+    background-size: 100%;
+}
+.user-icon{
+
+}
+.am-order-amount{
+	border: 1px solid #f75c52;
+	border-radius: 6px;
+	padding:.5rem 1rem;
+
+}
+.am-recharge-now{
+    border-radius: 6px;
+    background-color: #f75c52;
+    padding: .3rem 1rem;
+    color:#ffffff;
+    font-size: 1.2rem;
+}
+
+.div_hidden{
+	/*visibility: hidden;*/
+    display:none;
+}
+.reg_icon1{
+	width: 2.3rem;
+    margin-left: 12px;
+    margin-right: 12px;
+}
+.reg_div_1{
+	margin-left: 1rem;
+    margin-right: 1.5rem;
+    height: 4rem;
+    line-height: 3.5rem;
+    background-color: #ffffff;
+    border-radius: 5px;
+    border: 1px solid #cbcbcb;
+}
+.reg_div_1 span{
+    line-height: 3.8rem;
+}
+.reg_input_1{
+	background-color: transparent;
+    border: none;
+    outline: none;
+    font-size: 1.2rem;
+    color: #757575;
+    vertical-align: 0 !important;
+        width: 9rem;
+}
+.err_icon_1{
+	width: 1.3rem;
+    height: 1.3rem;
+}
+.reg_err_div{
+	padding-left: 3rem;
+    color: #fc5752;
+    font-size: 1.1rem;
+   
+}
+.reg_err_div img{
+    vertical-align: -15%;
+}
+.reg_botton{
+    background-color: #f75c52;
+    color: #ffffff;
+    margin-left: 2.2rem;
+    margin-right: 2.2rem;
+    border-radius: 5px;
+    line-height: 4rem;
+    text-align: center;
+    font-size: 1.5rem;
+}
+.a_hand{
+    cursor: pointer;
+}

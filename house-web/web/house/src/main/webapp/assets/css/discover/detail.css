@@ -1,0 +1,58 @@
+.discover {
+	background-color:#fff !important;
+}
+.discover .banner {
+	height: 15.538rem;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+	position:relative;
+}
+
+.elderly {
+	background-image: url('../../i/discover/banner.png');
+}
+
+.discover .share {
+	width: 4.615rem;
+	position:absolute;
+	right:3.462rem;
+	bottom:-2.231rem;
+}
+
+.desc-pad {
+	background-color:#fff;
+}
+
+.desc-pad h1 {
+	font-size: 1.538rem;
+	text-align:center;
+	margin-top:2.231rem;
+	margin-bottom:0.5rem;
+}
+
+.desc-pad .subtitle {
+	text-align:center;
+	color:#aaa9aa;
+	font-size:1rem;
+}
+
+.desc-pad .separator {
+	width:17px;
+	height:2px;
+	background-color:#FF6F5C ;
+	margin:1rem auto;
+}
+
+.desc-pad .desc {
+	font-size:1rem;
+	text-align:center;
+    text-overflow: none;
+    white-space: normal;
+    overflow: auto;
+    line-height:150%;
+    color:#7e7e7e;
+    padding: 0 1.846rem;
+    margin-top:0;
+    margin-bottom:2rem;
+}

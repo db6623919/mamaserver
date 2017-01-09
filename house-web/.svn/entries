@@ -1,0 +1,83 @@
+10
+
+dir
+1573
+svn://192.168.10.30/mmsfang/Code/branches/Java/house_20161229/house-web
+svn://192.168.10.30/mmsfang
+
+
+
+2016-12-26T02:07:54.176469Z
+1530
+youxingzhi
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+5d6182f7-c8b7-4957-9ebf-4b6ed0194177
+
+core
+dir
+
+domain
+dir
+
+domainservice
+dir
+
+ext
+dir
+
+facade
+dir
+
+house-app-parent
+dir
+
+pom.xml
+file
+
+
+
+
+2016-12-27T03:21:33.997000Z
+25f68c52ff8dfe936d217b3887d03670
+2016-12-21T09:38:24.931881Z
+1483
+lihaifeng
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+12559
+
+web
+dir
+

@@ -1,0 +1,126 @@
+@import '../common/common';
+@import '../common/variable';
+
+.page {
+	position: relative;
+}
+
+.header {
+	box-sizing: border-box;
+	height: @header-height;
+	line-height: @header-height;
+	text-align: left;
+	width: 100%;
+	font-size: 1.256rem;
+	background-color: @primary-color;
+	position: relative;
+	font-weight: bold;
+	padding: 0 0.7rem;
+	color:#fff;
+	font-weight: normal;
+	font-size: 1.1rem;
+}
+
+.inputCont {
+	position: relative;
+	vertical-align: middle;
+	width: 84%;
+	border-radius: 3px;
+	box-sizing: border-box;
+	// margin-top: ((@header-height)-2.5rem)/2;
+	padding-left: 2.5rem;
+	padding-right: 2.5rem;
+	margin-right: 15px;
+	display: inline-block;
+	height: 2.5rem;
+	background: #fff url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAACaElEQVRYR+2W3VHbUBCFvyM7z3EqiKkAUgFQQeCNMZ7BKSBGriBOBZGcAkJmZCZvKB2YCuxUEDqAPGO0GUk2GCzrx56EF+6rRne/e3b37IpnPnrm+LwAlFbA3NYOphNgD7QzS90NMMEIcaY/5f24qprSQoA0sPMlDQwYv4A4cHpkO6DXs299nLov7+zhewFRLoC5rc4seAPDx5l6Wa80t31AhIvYBZugu8OyaqwESC41LsD+INuTdz4pktc+Hrs4itW6QfWtMkpkAph71MTqYzChV80yF83hZqp9A0byg/0i6GyAbnuUyKnoXZmXPw1i3baHOEXRB3nnZ3kQSwCzohtj9l2DYafoBVnfze00sNu4I67lD7eqATzQr/X6+1SUvGdZgW57AtbQYNhc5/ULtRC37xjjswZBf9VdywCnbcO41CBI+36DY8ld+alcBeBrELgbxE59qcRjVgCsX4CL0BsAbJ6CtBOm19VroHscIu3KD95skoJ7Jy3wguUUzO1UHMoLwnUhrHt8hnSCplt5cyHDiOYmonEZK802osTKf5fpplVW3Ed8IrKevg69qipY7CViG7EvLxhVcsKkfeICiqbxPNgu4+ePKn8uvVGqlXPG8VGTqDZCeotRuGikE7R28WhbUrRfNMwKFpIFJbArTB5OdLl4aVrt9h6UDq5kcSHELIzXJRT18iZi4UqWpqTVIVI/UWPVMS5x6M9zPtshR8m6ltOKpQAeDZjIOQAaQLyYjjC7oXYXZq9qcRrrYVJLmCd/2HvKXwmgajcsFXRGYf5zgAeIWw/UfDpl/wtAZR9YR+p1/3lR4C8hjEMwLcvyzQAAAABJRU5ErkJggg==') no-repeat;
+	background-position: 0.3rem center;
+	background-size: 2rem;
+	.clear {
+		position: absolute;
+		display: inline-block;
+		width: 1.6rem;
+		height: 1.6rem;
+		background: #fff url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAACzElEQVRYR82X4XHUQAyFnysAKiCpAFIBRwXkKiBUgKggpIJTB5AKSCogHRAqSNIBVADzGa1nz2dbdgwz7Iz/2N7V2yfpSWq0YJnZqaQ3ko4kPZX0MrbfSvoh6b5pmqvdbnc999gm+9HMMHYuCeMY/SkJg8UoRxQwAHoSYK4kfXB3gI2uSQBm9lHSe0n895nH3TE8uswMEGfx/JLk7n4xtmEQgJlxo69B8aUky27SNxBnuKS3wdbroTMOAMQNMM63U3e/ydyUMLKRhDtgAxB7DO4BCNR3kh7C+P0a42VvXAoXPpd0XDPRAahoP4Z6d/8rxnsgYPPO3U/K+xoAAUe0Q9Mq2sdYMzPcgXsv3B17rZ8VqfZN0rW7E8H/bJkZrkBLWlcUALwkz4+WRvtSpOFq3HvFZQsAxIIctySiSatRLYhgI3640JRWtOnp7s+akNcvkk6mRMbM2IQoAfYgnar0RUPeTYGIf3H5FgAt/e7OxkzhCM4itR2InnGkejNDMVvWAdBGvLsToZMrDO2BiA1EdqkTqfEI/NYuAFCmm8z/A/lcmODTIuMBAJe+AgAS2eVlxkJspuAUJng1i/b67Ch052sAFNo5dzAwk5hqhe+xLqh9jp2DwMyYjKzaPCYI9wIuDA1mR8JAF4StNCIKM9JwMNqHsmNJGiLBc4SIGvFpLOB6IDIhKkVpu1SKAXE7druFUnyG+NXFqKtQWQCt+d6vvAUAQtJVqDUGsr1F+kvl/T8akkpmkWX6toNql90s+14VrAd3LwPNn46oAlBcQWNKJE/OAJnRXv0gg0h1+oVuWBlryxEJasR2bX8YfSBpTr2g7I+35T0mAPEiJqJ0xOqzUY10pO736BEOxrQ5oxltGmygmJeZW+LGpDSGOZ/RrO2Ah9ac4ZS4oHajmKXoTA2npTdgGkpHuhRAL0gBgYwSxRjCRSwoht7S3GB81voNFkOVLWTr+h4AAAAASUVORK5CYII=') no-repeat center;
+		background-size: contain;
+		top: 50%;
+		margin-top: -0.8rem;
+		right:0.3rem;
+	}
+	input {
+		font-size: 1rem;
+		outline: none;
+		height: 100%;
+		width:100%;
+		border:none;
+	}
+}
+
+.searchRes {
+	z-index: @floor1;
+	position: absolute;
+	top: @header-height;
+	width:100%;
+	overflow-y: scroll;
+	background-color: #fff;
+	a {
+		text-decoration: none;
+	}
+	.row {
+		line-height: 3rem;
+		height: 3rem;
+	}
+}
+
+.smallTitle {
+	padding-left: 1.1rem;
+	height: 2.1rem;
+	line-height: 2.1rem;
+	font-size: 0.929rem;
+	color:#8e8e8e;
+	background-color: #f5f4f9;
+}
+
+.row {
+	color: #555;
+	display: block;
+	background-color: #fff;
+	padding-left: 1.1rem;
+	height:3.4rem;
+	line-height: 3.4rem;
+	&:active {
+		.active();
+	}
+	img {
+		// margin-left: -0.5rem;
+		vertical-align: middle;
+	}
+}
+
+.hotCities {
+	background-color: #fff;
+	padding: 1rem 1.3rem 2.1rem 1.3rem;
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap ;
+}
+
+.city {
+	display: inline-block;
+	width: 5.2rem;
+	height: 2.3rem;
+	line-height: 2.3rem;
+	.textEllipsis();
+	text-align: center;
+	border:1px solid #e4e4e4;
+	border-radius: 2px;
+	margin-top: 1.1rem;
+	background-color: #fff;
+	&:active {
+		.active();
+	}
+}
+
+.cityContainer {
+	overflow-y: scroll;
+}

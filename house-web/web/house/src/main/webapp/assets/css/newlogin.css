@@ -1,0 +1,158 @@
+.body, .bg-fbf
+{
+	background-color: #eff9fd;
+}
+
+/*新版登录*/
+.certify-code
+{
+	width: 7rem;
+	border: 1px solid #f75259;
+	position: absolute;
+	right: 1rem;
+	top: .5rem;
+}
+
+.forget-pw
+{
+	padding-right: 2.5rem;
+	margin-top: 2rem;
+	font-size: 1rem;
+	color: #999;
+}
+
+.login-other
+{
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	padding-bottom: 1rem;
+}
+
+.bottom-title
+{
+	font-size: 1rem;
+	color: #cbcbcb;
+	text-align: center;
+	padding: 0 1rem;
+	margin-bottom: 2rem;
+}
+
+.bottom-line
+{
+	border-bottom: 1px solid #cbcbcb;
+	padding: 0;
+	padding-top: .6rem;
+}
+
+.other-group, .top
+{
+	text-align: center;
+}
+
+.other-group img
+{
+	width: 3.75rem;
+}
+/*新版登录*/
+
+/*第三方登录*/
+.top-banner
+{
+	margin-bottom: 1.5rem;
+}
+
+.top-banner p, .authority-text p, .top p
+{
+	margin: 0;
+}
+
+.top-img
+{
+	padding: 1.5rem 5rem .5rem 5rem;
+}
+
+.top-text
+{
+	font-size: 1.2rem;
+	color: #333;
+	text-align: center;
+}
+
+.authority-text
+{
+	padding: 0 2rem;
+}
+
+.authority-text .authority-title
+{
+	font-size: 1.2rem;
+	color: #757575;
+	margin-bottom: 1.3rem;
+}
+
+.authority-text .authority-content
+{
+	font-size: 1rem;
+	color: #757575;
+	margin-bottom: 1rem;
+}
+
+.authority-text .authority-content img
+{
+    width: 1.4rem;
+    vertical-align: top;
+}
+/*第三方登录*/
+
+/*第三方登录成功*/
+.tips
+{
+	margin: 1.2rem 2rem 1rem 2rem;
+	font-size: 1rem;
+	color: #757575;
+}
+/*第三方登录成功*/
+
+/*密码设置成功*/
+.top
+{
+	margin-top: 5rem;
+}
+
+.top img
+{
+	width: 7rem;
+}
+
+.top-title
+{
+	font-size: 1.8rem;
+	color: #757575;
+}
+
+.top-subtitle
+{
+	font-size: 1.2rem;
+	color: #cbcbcb;
+	padding-top: .5rem;
+}
+
+.set-pwd.tips
+{
+	margin-top: 5rem;
+}
+
+.qrcode
+{
+	margin-top: 1.75rem;
+	text-align: center;
+}
+
+.qrcode img
+{
+	width: 13rem;
+}
+/*密码设置成功*/
+
+

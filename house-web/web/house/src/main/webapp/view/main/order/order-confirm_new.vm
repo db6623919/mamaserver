@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>确认订单</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-cache" />
+  <link rel="stylesheet" href="#springUrl('/assets/css/amazeui.min.css')"/>
+  <link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/reset.css')">
+  <link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/order_3_5.css')">
+  <script type="text/javascript" src="#springUrl('/assets/js/jquery.min.js')"></script>
+  <script type="text/javascript" src="#springUrl('/assets/js/amazeui.min.js')"></script>
+  <script type="text/javascript" src="#springUrl('/assets/js/common.js')"></script>
+  <script type="text/javascript">
+  	var adaptPageClass = "content";
+  	
+  	        //声明_czc对象:
+			var _czc = _czc || [];
+			//绑定siteid，请用您的siteid替换下方"XXXXXXXX"部分
+			_czc.push(["_setAccount", "1260334725"]);
+			
+  </script>
+</head>
+<body>
+  <div class="body content">
+    <header class="bg-red">
+       <div class="head">
+        <a class="back ui-link" href="javascript:void(0);" onclick="javascript :history.go(-1);" tdata-rel="back">返回</a>
+        <div class="title header_title" id="header-title">确认订单</div>
+       </div>
+    </header>
+    <section class="order-confirm">
+      <form>
+        <ul class="list"><input type="hidden" name="pay_type" value="$!pay_type"/>
+          <li>
+            <div class="list-title color-red">
+              基本信息
+            </div>
+            <div class="item-detail">
+              <div class="item clearfix">
+                <div class="color-grey pull-left w-20">
+                 入住人
+                </div>
+                <div class="color-black pull-left">
+                  <span id="name">$!name</span>
+                  <span id="phone">$!phone</span>
+                </div>
+              </div>
+
+              <div class="item clearfix">
+                <div class="color-grey pull-left w-20">
+                  入住时间
+                </div>
+                <div class="color-black pull-left">
+                  <span id="start_date">$!startTime</span>-<span id="end_date">$!endTime</span>
+                </div>
+                <div class="color-red pull-right">
+                  <span id="nights">${totalTime}</span>晚
+                </div>
+              </div>
+
+              <div class="item clearfix">
+                <div class="color-grey pull-left w-20">
+                  房间名称
+                </div>
+                <div class="color-black pull-left">
+                  <span id="room_name">$!houseName</span>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+
+        <ul class="list">
+          <li>
+            <div class="list-title color-red">
+              费用及优惠
+            </div>
+            <div class="item-detail">
+              <div class="item clearfix">
+                <div class="color-grey pull-left w-20">
+                  总价
+                </div>
+                <div class="color-black pull-left">
+                  ￥<span id="total">$!{footerTotalAmt}</span>
+                </div>
+              </div>
+
+              <div class="item clearfix">
+                <div class="color-grey pull-left w-20">
+                  旅居券
+                </div>
+                <div class="color-black pull-left">
+                  使用<span id="coupon">$!{coupons}</span>张旅居券
+                </div>
+              </div>
+
+              <div class="item clearfix">
+                <div class="color-grey pull-left w-20">
+                  已优惠
+                </div>
+                <div class="color-black pull-left">
+                                                           ￥<span id="discount">$!{discount}</span>
+                </div>
+              </div>
+
+              <div class="item clearfix">
+                <div class="color-grey pull-left w-20">
+                  全款预订
+                </div>
+                <div class="color-black pull-left">
+                  ￥<span id="nocount">$!{total}</span>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+
+        <div class="btn actual-pay">
+          <span class="color-grey">实际支付：</span>
+          <span class="color-red">￥<span id="actual_pay">$!{actual}</span></span>
+        </div>
+
+        <a class="btn bg-red confirm-btn confirm-pay" onclick="createrOrder();_czc.push(['_trackEvent', '订单', '订单-订单确认页 提交订单', '订单-订单确认页 提交订单-点击','16','']);">提交订单</a>
+      </form>
+    </section>
+    <img src="$!imgurl" width="0" height="0"  />
+  </div>
+  
+  
+   <script type="text/javascript">
+   
+  	function createrOrder(){
+    	var houseId =$!{houseId};
+    	var name ='$!{name}';
+    	var phone =$!{phone};
+    	var startTime ='$!{startTime}';
+    	var endTime ='$!{endTime}';
+    	var memTotalAmt ='$!{total}';
+    	var orderAmt =$!{footerTotalAmt};
+    	var houseName ='$!{houseName}';
+    	var ammount =1;
+    	var prepayment ='$!{actual}';
+    	
+    	var footerTotalAmt=$!{footerTotalAmt};
+    	var coupons='$!{coupons}';
+    	var discount='$!{discount}';
+    	var total='$!{total}';
+    	var actual='$!{actual}';
+    	var hotelCouponIds='$!{hotelCouponIds}';
+    	var pay_type = '$!{pay_type}';
+    	var realInSeasonDays = $!{realInSeasonDays};
+		$.ajax({
+        	        url: '#springUrl('/my/createOrder.htm')' ,
+        	        type:'post',
+        	        data: 'hotelCouponIds='+hotelCouponIds+'&houseId='+ houseId+"&name="+name+"&phone="+phone+"&startTime="
+							+startTime+"&endTime="+endTime+"&memTotalAmt="+memTotalAmt
+							+"&orderAmt="+orderAmt+"&houseName="+houseName+"&ammount="+ammount+"&prepayment="+prepayment
+							+"&footerTotalAmt="+footerTotalAmt+"&coupons="+coupons+"&discount="+discount+"&total="+total+"&actual="+actual+"&pay_type="+pay_type+"&realInSeasonDays="+realInSeasonDays,
+        			success: function(response) {
+                         if(response.code==0) {
+    						  location.href="#springUrl('/my/orderSuccess.htm')";
+    						  
+    						  // 调用微信支付--getCode
+    						  // window.location.href = "/my/weixin_pay/getCode.htm";
+                         } else {
+						 	   showTip(response.msg,3);
+          		               return false;
+                         }
+                    },
+                   error:function(XMLHttpRequest, textStatus, errorThrown){
+    				       showTip("网络异常",3);
+          		             return false;
+                    },
+        	        dataType:'json'
+    	    	});
+	}
+  
+  
+  </script>
+</body>
+</html>

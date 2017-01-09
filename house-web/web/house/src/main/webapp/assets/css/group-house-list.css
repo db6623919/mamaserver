@@ -1,0 +1,192 @@
+*,
+ul {
+	margin: 0;
+	padding: 0;
+	font-family: "微软雅黑";
+}
+
+img {
+	vertical-align: middle;
+}
+
+.clearfix {
+	*zoom: 1;
+}
+
+.clearfix:before,
+.clearfix:after {
+	display: table;
+	line-height: 0;
+	content: "";
+}
+
+.clearfix:after {
+	clear: both;
+}
+
+.pull-left {
+	float: left;
+	min-width: 20%;
+}
+
+.pull-right {
+	float: right;
+}
+
+.mb-08 {
+	margin-bottom: .8rem;
+}
+
+.color-red {
+	color: #fb394c;
+}
+
+.color-grey {
+	color: #919191;
+}
+
+.color-black {
+	color: #333;
+}
+
+.body {
+	background-color: #fff;
+}
+
+.btn {
+	width: 100%;
+	height: 4rem;
+	line-height: 4rem;
+	color: #fff;
+	text-align: center;
+	font-size: 1.44rem;
+	display: block;
+}
+
+.bg-red {
+	background-color: #fb394c;
+}
+
+.menu_action.title {
+	font-size: 1.2rem;
+	padding-right: .8rem;
+}
+
+.header_title.title {
+	font-size: 1.36rem;
+}
+
+.hidden {
+	display: none;
+}
+p{
+	margin: 0;
+}
+.h-list >p{
+	margin-top: .5rem;
+	padding-left: .6rem;
+	color: #333;
+	font-size: 1rem;
+	letter-spacing: 1px;
+	line-height: 1.5rem;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+
+.h-list >.data-item:not(:first-child){
+	margin-top: 1rem;
+}
+.h-list >.data-item:last-child{
+	margin-bottom: 1rem;
+}
+.house-item {
+	position: relative;
+	padding: 0;
+}
+
+.hot-bottom {
+	position: absolute;
+	bottom: 0;
+	height: 40px;
+	width: 100%;
+	color: #fff;
+}
+
+.span-collection {
+	position: absolute;
+	top: .5rem;
+	right: .5rem;
+}
+
+.span-collection>img {
+	width: 3rem;
+}
+
+.name-price{position: relative;font-size: 1.2rem;height: 3rem;line-height: 3rem;margin-top: .5rem;}
+.name-price .name{position: absolute;left: .7rem;margin: 0;padding: 0;max-width: 70%;word-break: break-word;word-wrap: break-word;text-overflow: ellipsis;padding-bottom: 3px;}
+.name-price .price{position: absolute;font-size: .9rem; right: .7rem;color: #FF5858;}
+.price >span{
+	font-size:1.5rem;
+}
+.slogon {
+	float: left;
+	background-color: rgba(255, 88, 88, .8);
+	height: 40px;
+	width: 75%;
+	text-align: left;
+	padding-left: 1rem;
+	margin-top: 0;
+	font-size: .9rem;
+	line-height: 40px;
+}
+
+.name {
+	color: #474747;
+	font-size: 1.2rem;
+	margin-top: 1.1rem;
+	margin-bottom: 0;
+	padding-left: .7rem;
+}
+
+.house-special,
+.house-comment {
+	color: #a0a0a0;
+	font-size: .8rem;
+	
+}
+
+.house-comment {
+	margin-top:1rem;
+	padding-left: .7rem;margin-top: 1rem;
+}
+
+.house-special span {
+	margin-left: .7rem;
+	margin-right: .7rem;
+}
+
+.house-comment span {
+	margin-left: .7rem;
+}
+
+.house-comment > span.bor-left {
+	padding-right: .7rem;
+	border-right: solid 1px #a0a0a0;
+}
+
+.comment-star {
+	display: inline-block;
+	background: url(../img/house/starky.png);
+	height: 11px;
+	background-size: auto 11px;
+	width: 55px;
+}
+
+.comment-point {
+	background: url(../img/house/starsy.png);
+	height: 11px;
+	background-size: auto 11px;
+	width: 11px;
+}

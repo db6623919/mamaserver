@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>个人中心</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-cache" />
+  <link rel="stylesheet" href="#springUrl('/assets/css/amazeui.min.css')"/>
+  <link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/reset.css')">
+  <link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/ucenter.css')">
+  <link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/lastLoad.css')">
+  <script type="text/javascript" src="#springUrl('/assets/js/jquery.min.js')"></script>
+  <script type="text/javascript" src="#springUrl('/assets/js/common.js')"></script>
+  <script type="text/javascript">
+    var adaptPageClass = "content";
+  </script>
+</head>
+<body class="am-backcolor-f0">
+  <div class="content body">
+  	<header class="header clearfix">
+       <div class="head">
+        <!-- <a href="index.html" data-ajax="false" class="logolink"><img width="80" height="40" src="../assets/i/common/mmsf-logo.png" /></a> -->
+        <a class="back ui-link" href="#springUrl('/index.htm')" tdata-rel="back">返回</a>
+        <div class="title header_title" id="header-title">个人中心</div>
+        <div class="more_wraper header-menu-btn">
+         <a class="more_R menu_action" data-menuaction="switch" href="#"></a>
+         <div class="more_pop hMenulist" style="display: none;">
+          <span class="pop_tri"></span>
+          <ul class="more_ul" style="display: none;">
+           <li class="menu_action"><span class="mmsf-index"></span><a href="#springUrl('/index.htm')" class="text-color-red">首页</a></li>
+            <li class="menu_action"><span class="mmsf-order"></span><a href="#springUrl('/getHotCities.htm')" class="text-color-red">发现</a></li>
+          </ul>
+         </div>
+        </div>
+       </div>
+    </header>
+    <div class="am-width-100 am-ucenter-header am-login-status-div">
+<!--class:am-login-status-div 表示已登录状态  class:am-logout-status-div 表示未登录状态 切换该class显示不同的页面效果-->
+    	<div class="am-status-in">
+    		
+			<div class="am-g">
+<!--	        	<img src="../assets/i/ucenter/scoreBG.png" class="am-ucenter-uicon am-center"/>-->
+                <div class="am-ucenter-uicon am-center am-ucenter-uhead am-margin-top-sm">
+                    <p style="font-weight: 100;">
+                    积分余额<br />
+                    <span style="font-size:1.5rem;">$!response.data.userCardInfo.availAmt</span></p>
+                </div>
+	      	</div>
+	        <div class="am-width-100 am-text-center am-margin-bottom am-ucenter-account">
+	      		<span class="am-nickname">
+                    <img src="#springUrl('/assets/i/ucenter/nickname.png')" class="am-ucenter-account-icon" />
+                    <span class="am-ucenter-prenick">昵称：</span>
+                    <span class="am-ucenter-nickname">$!response.data.userInfo.nickName</span>
+                </span>
+                <span class="am-card">
+                    <span class="am-ucenter-prenlevel">级别 :</span>
+                    <span class="am-ucenter-levelname">$!response.data.userInfo.level</span>
+                    <span class="am-ucenter-diamonds">
+						#if($!response.data.userCardInfo.level == 1)
+                        <img src="#springUrl('/assets/i/ucenter/levelDiamond-1.png')" class="am-ucenter-diamond" />
+						<img src="#springUrl('/assets/i/ucenter/levelDiamond-2.png')" class="am-ucenter-diamond" />
+                        <img src="#springUrl('/assets/i/ucenter/levelDiamond-2.png')" class="am-ucenter-diamond" />
+						<img src="#springUrl('/assets/i/ucenter/levelDiamond-2.png')" class="am-ucenter-diamond" />
+                        <img src="#springUrl('/assets/i/ucenter/levelDiamond-2.png')" class="am-ucenter-diamond" />
+						#elseif($!response.data.userCardInfo.level == 2)
+                        <img src="#springUrl('/assets/i/ucenter/levelDiamond-1.png')" class="am-ucenter-diamond" />
+                        <img src="#springUrl('/assets/i/ucenter/levelDiamond-1.png')" class="am-ucenter-diamond" />
+						<img src="#springUrl('/assets/i/ucenter/levelDiamond-2.png')" class="am-ucenter-diamond" />
+                        <img src="#springUrl('/assets/i/ucenter/levelDiamond-2.png')" class="am-ucenter-diamond" />
+						<img src="#springUrl('/assets/i/ucenter/levelDiamond-2.png')" class="am-ucenter-diamond" />
+						#elseif($!response.data.userCardInfo.level == 3)
+						<img src="#springUrl('/assets/i/ucenter/levelDiamond-1.png')" class="am-ucenter-diamond" />
+                        <img src="#springUrl('/assets/i/ucenter/levelDiamond-1.png')" class="am-ucenter-diamond" />
+						<img src="#springUrl('/assets/i/ucenter/levelDiamond-1.png')" class="am-ucenter-diamond" />
+                        <img src="#springUrl('/assets/i/ucenter/levelDiamond-2.png')" class="am-ucenter-diamond" />
+                        <img src="#springUrl('/assets/i/ucenter/levelDiamond-2.png')" class="am-ucenter-diamond" />
+						#elseif($!response.data.userCardInfo.level == 4)
+						<img src="#springUrl('/assets/i/ucenter/levelDiamond-1.png')" class="am-ucenter-diamond" />
+                        <img src="#springUrl('/assets/i/ucenter/levelDiamond-1.png')" class="am-ucenter-diamond" />
+						<img src="#springUrl('/assets/i/ucenter/levelDiamond-1.png')" class="am-ucenter-diamond" />
+						<img src="#springUrl('/assets/i/ucenter/levelDiamond-1.png')" class="am-ucenter-diamond" />
+						<img src="#springUrl('/assets/i/ucenter/levelDiamond-2.png')" class="am-ucenter-diamond" />
+						#else
+						<img src="#springUrl('/assets/i/ucenter/levelDiamond-1.png')" class="am-ucenter-diamond" />
+                        <img src="#springUrl('/assets/i/ucenter/levelDiamond-1.png')" class="am-ucenter-diamond" />
+						<img src="#springUrl('/assets/i/ucenter/levelDiamond-1.png')" class="am-ucenter-diamond" />
+						<img src="#springUrl('/assets/i/ucenter/levelDiamond-1.png')" class="am-ucenter-diamond" />	
+						<img src="#springUrl('/assets/i/ucenter/levelDiamond-1.png')" class="am-ucenter-diamond" />
+						#end
+                    </span>
+                </span>
+    	</div>
+
+    	<div class="am-status-out">
+	        <header data-am-widget="header" class="am-header">
+		        <h1 class="am-header-title">
+		        	<a href="#title-link">用户中心</a>
+		        </h1>
+	        </header>
+	        <div class="am-width-100 am-text-center am-margin-top-sm am-margin-bottom">	
+	      		欢迎登陆妈妈送房
+	        </div>
+	        <div class="am-g">
+	        	<div class="am-u-sm-6 am-reginster">
+		          	<button type="button" class="am-btn am-btn-default am-round am-fr am-ucenter-bnt">
+		          		登陆
+		          	</button>
+	        	</div>
+	        	<div class="am-u-sm-6 am-reginster">
+	          		<button type="button" class="am-btn am-btn-default am-round am-ucenter-bnt">
+	          		注册
+	          		</button>
+	        	</div>
+	      	</div>
+        </div>
+    </div>
+    <div class="am-g am-ucenter-gap"></div>
+	<div class="am-container am-padding-bottom-xl am-ucenter-body-list">
+		<div class="am-g am-ucenter-title bc-white listClickStatus" onclick="myOrder()">
+			<div class="am-u-sm-2">
+			  <img src="#springUrl('/assets/i/ucenter/myOrder.png')" class="am-ucenter-icon">
+			</div>
+			<div class="am-u-sm-10 am-ucenter-pad0">
+			  我的订单
+            <div class="am-ucenter-next">
+                <img src="#springUrl('/assets/i/ucenter/next.png')" />
+            </div>
+            #if($!response.data.isOrder ==1)
+	            <div class="am-ucenter-new">
+	                <img src="#springUrl('/assets/i/ucenter/new.png')" />
+	            </div>
+            #end
+			</div>
+
+		</div>
+<!--		<div class="am-g am-ucenter-gap"></div>-->
+		<div class="am-g am-ucenter-title bc-white listClickStatus" onclick="myCollection()">
+			<div class="am-u-sm-2">
+			  <img src="#springUrl('/assets/i/ucenter/wishList.png')" class="am-ucenter-icon">
+			</div>
+			<div class="am-u-sm-10 am-ucenter-pad0">
+			  我的心愿
+            <div class="am-ucenter-next">
+                <img src="#springUrl('/assets/i/ucenter/next.png')" />
+            </div>
+            #if($!response.data.isCollect == 1)
+	            <div class="am-ucenter-new">
+	                <img src="#springUrl('/assets/i/ucenter/new.png')" />
+	            </div>
+            #end
+			</div>
+		</div>
+	<!--<div class="am-g am-ucenter-title bc-white">
+			<div class="am-u-sm-2">
+			  <img src="#springUrl('/assets/i/ucenter/myFriends.png')" class="am-ucenter-icon">
+			</div>
+			<div class="am-u-sm-10 am-ucenter-pad0">
+			  我的好友
+            <div class="am-ucenter-next">
+                <img src="#springUrl('/assets/i/ucenter/next.png')" />
+            </div>
+			</div>
+		</div>-->
+		<div class="am-g am-ucenter-gap"></div>
+		<div class="am-g am-ucenter-title bc-white listClickStatus" onclick="personalData()">
+			<div class="am-u-sm-2">
+			  <img src="#springUrl('/assets/i/ucenter/personalInfo.png')" class="am-ucenter-icon">
+			</div>
+			<div class="am-u-sm-10 am-ucenter-pad0">
+			  个人信息
+            <div class="am-ucenter-next">
+                <img src="#springUrl('/assets/i/ucenter/next.png')" />
+            </div>
+			</div>
+		</div>
+		<div class="am-g am-ucenter-title bc-white listClickStatus" onclick="scoreRecord()">
+			<div class="am-u-sm-2">
+			  <img src="#springUrl('/assets/i/ucenter/scoreRecord.png')" class="am-ucenter-icon">
+			</div>
+			<div class="am-u-sm-10 am-ucenter-pad0">
+			  积分记录
+            <div class="am-ucenter-next">
+                <img src="#springUrl('/assets/i/ucenter/next.png')" />
+            </div>
+             #if($!response.data.isRecharge == 1)
+	            <div class="am-ucenter-new">
+	                <img src="#springUrl('/assets/i/ucenter/new.png')" />
+	            </div>
+            #end
+			</div>
+		</div>
+        <div class="am-g am-ucenter-title bc-white listClickStatus" onclick="recharge_offline()">
+			<div class="am-u-sm-2">
+			  <img src="#springUrl('/assets/i/ucenter/showMeMoney.png')" class="am-ucenter-icon">
+			</div>
+			<div class="am-u-sm-10 am-ucenter-pad0">
+			  我要充值
+            <div class="am-ucenter-next">
+                 <img src="#springUrl('/assets/i/ucenter/next.png')" />
+            </div>
+			</div>
+		</div>        
+        <div class="am-g am-ucenter-title bc-white listClickStatus" onclick="recharge()">
+			<div class="am-u-sm-2">
+			  <img src="#springUrl('/assets/i/ucenter/chargeRecord.png')" class="am-ucenter-icon">
+			</div>
+			<div class="am-u-sm-10 am-ucenter-pad0">
+			  充值记录
+            <div class="am-ucenter-next">
+                <img src="#springUrl('/assets/i/ucenter/next.png')" />
+            </div>
+			</div>
+		</div>
+		  <div class="am-g am-ucenter-title bc-white listClickStatus" onclick="myVip()">
+			<div class="am-u-sm-2">
+			  <img src="#springUrl('/assets/i/ucenter/myvip.png')" class="am-ucenter-icon" style="width:2rem;height:1.5rem;margin-left:0.3rem;">
+			</div>
+			<div class="am-u-sm-10 am-ucenter-pad0">
+			 我的会员卡
+            <div class="am-ucenter-next">
+                <img src="#springUrl('/assets/i/ucenter/next.png')" />
+            </div>
+			</div>
+		</div>
+		<div class="am-g am-ucenter-gap"></div>
+        <div class="am-g am-ucenter-title bc-white listClickStatus" onclick="myCardTotal()">
+			<div class="am-u-sm-2">
+			  <img src="#springUrl('/assets/i/ucenter/aboutRWX.png')" class="am-ucenter-icon">
+			</div>
+			<div class="am-u-sm-10 am-ucenter-pad0">
+			  关于任我行
+            <div class="am-ucenter-next">
+                <img src="#springUrl('/assets/i/ucenter/next.png')" />
+            </div>
+			</div>
+		</div>
+		<div class="am-g am-ucenter-title bc-white listClickStatus" onclick="phone()">
+			<div class="am-u-sm-2">
+			  <img src="#springUrl('/assets/i/ucenter/serviceCall.png')" class="am-ucenter-icon">
+			</div>
+			<div class="am-u-sm-10 am-ucenter-pad0">
+			  客服电话 
+            <div class="am-ucenter-next">
+                <img src="#springUrl('/assets/i/ucenter/next.png')" />
+            </div>
+            <div class="am-ucenter-service">
+					400-9966-633
+            </div>
+			</div>
+		</div>
+	</div>
+        <button class="am-ucenter-commit buttonClickStatus" onclick="loginOut()">退出登录</button>
+  </div>
+   <script type="text/javascript">
+    function myVip(){
+       self.location.href='#springUrl('/my/myvip.htm')';
+     }
+     function myCardTotal(){
+       self.location.href='#springUrl('/renwoxing.htm')';
+     }
+     function personalData(){
+       self.location.href='#springUrl('/my/personalData.htm')';
+     }
+	 function oldFriends(){
+      self.location.href='#springUrl('/oldFriends.htm')';
+    }
+     function myOrder(){
+      self.location.href='#springUrl('/my/getOrders.htm?page=1&type=0')';
+    }
+     function recharge_offline(){
+      self.location.href='#springUrl('/my/recharge_index.htm')';
+    }
+	function myCollection(){
+      self.location.href='#springUrl('/my/getCollects.htm')';
+    }
+	
+	function loginOut(){
+      self.location.href='#springUrl('/my/loginOut.htm')';
+  }
+  
+  function scoreRecord(){
+      self.location.href='#springUrl('/my/scoreRecord.htm')';
+  }
+  
+  function phone(){
+      self.location.href="tel:4009966633";
+  }
+  
+  function recharge(){
+      self.location.href='#springUrl('/my/recharge.htm')';
+  }
+  </script>
+</body>
+</html>

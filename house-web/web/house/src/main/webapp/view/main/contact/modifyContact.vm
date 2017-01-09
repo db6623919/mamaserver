@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>我的任我行会员卡</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="format-detection" content="telephone=no">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-cache" />
+  <link rel="stylesheet" href="#springUrl('/assets/css/amazeui.min.css?_v=1')"/>
+  <link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/reset.css?_v=1')">
+  <link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/ucenter.css?_v=1')">
+  <script type="text/javascript" src="#springUrl('/assets/js/jquery.min.js?_v=1')"></script>
+  <script type="text/javascript" src="#springUrl('/assets/js/common.js?_v=1')"></script>
+  <script type="text/javascript" src="#springUrl('/assets/js/count-time.js?_v=1')"></script>
+  <script type="text/javascript" src="#springUrl('/assets/js/amazeui.min.js?_v=1')"></script>
+  <script type="text/javascript">
+    var adaptPageClass = "content";
+    function addContact(){
+       var contactName=$('#contactName').val();
+       var contactIdCard=$('#contactIdCard').val();
+       var contactPhone=$('#contactPhone').val();
+       if(contactName==''){
+          $("#msg").html('联系人姓名不能为空');
+	      $('#my-alert').modal('open');
+	      return false;
+       }
+        if(contactIdCard==''){
+          $("#msg").html('联系人卡号不能为空');
+	      $('#my-alert').modal('open');
+	      return false;
+       }
+        if(contactPhone==''){
+          $("#msg").html('联系人手机号不能为空');
+	      $('#my-alert').modal('open');
+	      return false;
+       }
+       $.ajax({
+	        url: "#springUrl('/my/modifyContact.htm')" ,
+	        type:'post',
+	        data: "contactName=" +contactName + "&contactIdCard="+contactIdCard+"&contactPhone="+contactPhone,
+			success: function(response) {
+			    $("#loginbutton").html("登录");
+			     var obj = eval(response);
+                 if(response.code==0) {
+					 self.location.href="#springUrl('/index.htm')";
+  		             return false;
+                 } else {
+                     $("#msg").html(response.msg);
+  		             $('#my-alert').modal('open');
+  		             return false;
+                 }
+            },
+            error:function(response){
+            $("#loginbutton").html("登录");
+              $("#msg").html("网络异常");
+  		      $('#my-alert').modal('open');
+              return false;
+            },
+	        dataType:'json'
+	    });
+    }
+  </script>
+</head>
+<body>
+  <div class="content body">
+    <header data-am-widget="header" class="am-header am-backcolor-ff am-border-bottom">
+      <h1 class="am-header-title">
+        <a href="#title-link">
+          任我行会员卡
+        </a>
+      </h1>
+    </header>
+    <div class="am-padding-left am-font-1-5">
+      <div class="am-g am-border-bottom am-padding-vertical-sm">
+        <div class="am-u-sm-6">姓名</div>
+        <div class="am-u-sm-6 am-text-right am-padding-right-xxs">
+          <input class="am-input-phone am-width-100" type="text" id="contactName" value="$!response.data.contactInfo.contactName">
+        </div>
+      </div>
+
+      <div class="am-g am-border-bottom am-padding-vertical-sm">
+        <div class="am-u-sm-3">卡号</div>
+        <div class="am-u-sm-9 am-text-right am-padding-right-xxs">
+          <input class="am-input-phone am-width-100" type="text" id="contactIdCard" value="$!response.data.contactInfo.contactIdCard">
+        </div>
+      </div>
+
+      <div class="am-g am-border-bottom am-padding-vertical-sm">
+        <div class="am-u-sm-6">手机号</div>
+        <div class="am-u-sm-6 am-text-right am-padding-right-xxs">
+          <input class="am-input-phone am-width-100" type="text" id="contactPhone" value="$!response.data.contactInfo.contactPhone">
+        </div>
+      </div>
+    </div>
+    <div class="am-container am-text-center am-margin-top-sm am-padding-bottom-sm am-border-bottom">
+      <a href="javascript:addContact();" class="am-btn am-btn-warning am-radius am-outline">保存</a>
+    </div>
+   
+  </div>
+
+</body>
+</html>

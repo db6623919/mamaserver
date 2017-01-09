@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>妈妈送房</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-cache" />
+  <link rel="stylesheet" href="#springUrl('/assets/css/amazeui.min.css')"/>
+  <link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/reset.css')">
+  <link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/register_v2.css')">
+  <script type="text/javascript" src="#springUrl('/assets/js/jquery.min.js')"></script>
+  <script type="text/javascript" src="#springUrl('/assets/js/amazeui.min.js')"></script>
+  <script type="text/javascript" src="#springUrl('/assets/js/common.js')"></script>
+  <script type="text/javascript" src="#springUrl('/assets/js/count-time.js')"></script>
+  <script type="text/javascript">
+  	var adaptPageClass = "content";
+  </script>
+  <style>
+
+  </style>
+</head>
+<body>
+  <div class="body content">
+    <header class="header clearfix">
+       <div class="head">
+        <a class="back ui-link" href="javascript:void(0);" onClick="javascript :history.go(-1);" tdata-rel="back">返回</a>
+        <div class="title header_title" id="header-title">我的会员卡</div>
+       </div>
+    </header>
+    <div class="am-g bg-fbf pb-15">
+      <div class="tc">
+        <h1 class="am-mg-0 pl-15 pr-15 fs-16 mt-15 text-color-red">
+           	一卡在手，想走就走<br>
+			美景靓房，低价有送<br>
+			亲朋共享，美好生活<br>
+        </h1>
+      </div>
+	  #if($!response.data.userCardInfo.level == 1)
+	  <div class="pl-15 pr-15 mt-3 w-100">
+        <img src="#springUrl('/assets/i/card-des/card-yunyou.png')">
+      </div>
+	  <div class="pl-15 pr-15 mt-3 w-100">
+        <img src="#springUrl('/assets/i/card-des/card-hj.png')">
+      </div>
+	  <div class="pl-15 pr-15 mt-3 w-100">
+        <img src="#springUrl('/assets/i/card-des/card-tm.png')">
+      </div>
+	  <div class="pl-15 pr-15 mt-3 w-100">
+        <img src="#springUrl('/assets/i/card-des/card-xy.png')">
+      </div>
+       <div class="pl-15 pr-15 mt-3 w-100">
+        <img src="#springUrl('/assets/i/card-des/card-ty-active.png')" onclick="uplevel($!response.data.userCardInfo.level)">
+      </div>
+		#elseif($!response.data.userCardInfo.level == 2)
+       <div class="pl-15 pr-15 mt-3 w-100">
+        <img src="#springUrl('/assets/i/card-des/card-yunyou.png')">
+      </div>
+	  <div class="pl-15 pr-15 mt-3 w-100">
+        <img src="#springUrl('/assets/i/card-des/card-hj.png')">
+      </div>
+	  <div class="pl-15 pr-15 mt-3 w-100">
+        <img src="#springUrl('/assets/i/card-des/card-tm.png')">
+      </div>
+	  <div class="pl-15 pr-15 mt-3 w-100">
+        <img src="#springUrl('/assets/i/card-des/card-xy-active.png')" onclick="uplevel($!response.data.userCardInfo.level)">
+      </div>
+       <div class="pl-15 pr-15 mt-3 w-100">
+        <img src="#springUrl('/assets/i/card-des/card-ty.png')">
+      </div>
+		#elseif($!response.data.userCardInfo.level == 3)
+		<div class="pl-15 pr-15 mt-3 w-100">
+        <img src="#springUrl('/assets/i/card-des/card-yunyou.png')">
+      </div>
+	  <div class="pl-15 pr-15 mt-3 w-100">
+        <img src="#springUrl('/assets/i/card-des/card-hj.png')">
+      </div>
+	  <div class="pl-15 pr-15 mt-3 w-100">
+        <img src="#springUrl('/assets/i/card-des/card-tm-active.png')" onclick="uplevel($!response.data.userCardInfo.level)">
+      </div>
+	  <div class="pl-15 pr-15 mt-3 w-100">
+        <img src="#springUrl('/assets/i/card-des/card-xy.png')">
+      </div>
+       <div class="pl-15 pr-15 mt-3 w-100">
+        <img src="#springUrl('/assets/i/card-des/card-ty.png')">
+      </div>
+		#elseif($!response.data.userCardInfo.level == 4)
+		<div class="pl-15 pr-15 mt-3 w-100">
+        <img src="#springUrl('/assets/i/card-des/card-yunyou.png')">
+      </div>
+	  <div class="pl-15 pr-15 mt-3 w-100">
+        <img src="#springUrl('/assets/i/card-des/card-hj-active.png')" onclick="uplevel($!response.data.userCardInfo.level)">
+      </div>
+	  <div class="pl-15 pr-15 mt-3 w-100">
+        <img src="#springUrl('/assets/i/card-des/card-tm.png')">
+      </div>
+	  <div class="pl-15 pr-15 mt-3 w-100">
+        <img src="#springUrl('/assets/i/card-des/card-xy.png')">
+      </div>
+       <div class="pl-15 pr-15 mt-3 w-100">
+        <img src="#springUrl('/assets/i/card-des/card-ty.png')">
+      </div>
+		#else
+		<div class="pl-15 pr-15 mt-3 w-100">
+        <img src="#springUrl('/assets/i/card-des/card-yunyou-active.png')">
+      </div>
+	  <div class="pl-15 pr-15 mt-3 w-100">
+        <img src="#springUrl('/assets/i/card-des/card-hj.png')">
+      </div>
+	  <div class="pl-15 pr-15 mt-3 w-100">
+        <img src="#springUrl('/assets/i/card-des/card-tm.png')">
+      </div>
+	  <div class="pl-15 pr-15 mt-3 w-100">
+        <img src="#springUrl('/assets/i/card-des/card-xy.png')">
+      </div>
+       <div class="pl-15 pr-15 mt-3 w-100">
+        <img src="#springUrl('/assets/i/card-des/card-ty.png')">
+      </div>
+		#end
+    </div>
+
+  </div>
+ <script type="text/javascript">
+	function uplevel(level){
+		if(level == 5){
+			self.location.href='#springUrl('/my/recharge_index.htm')';
+		}else{
+       		self.location.href='#springUrl('/my/uplevel.htm?level=')'+level;
+       	}
+     }
+ </script>
+</body>
+</html>

@@ -1,0 +1,485 @@
+.am-gallery{padding: 0;}
+.am-gallery-bordered>li, .am-gallery-default>li, .am-gallery-imgbordered>li, .am-gallery-overlay>li {
+    padding: 0;
+}
+.am-img-container-room {
+    padding: 1rem 0;
+}
+
+.name-price {
+	position: relative;
+	height: 2rem;
+	line-height: 2rem;
+}
+
+.name-price p:first-child {
+	position: absolute;
+	left: 0;
+}
+
+.name-price p:last-child {
+	position: absolute;
+	right: 0;
+}
+
+.name-price p>span {
+	font-size: 1.5rem;
+	font-weight: 400;
+	margin-left: .3rem;
+	margin-right: .3rem;
+}
+
+.tags {
+	margin-left: .7rem;
+}
+
+.tags span {
+	padding: .2rem 1rem;
+	color: #7A7A7A;
+	font-size: .8rem;
+	border: solid 1px #E3E3E3;
+	-webkit-border-radius: 1.3rem;
+	-moz-border-radius: 1.3rem;
+	border-radius: 1.3rem;
+}
+
+
+/*
+ * 特色
+ */
+
+.fav-container,
+.master-container {
+	margin: 1.5rem;
+	border-bottom: solid 1px #D3D3D3;
+	min-height: 7rem;
+}
+
+.fav-container>div {
+	float: left;
+	width: 20%;
+	font-size: 1rem;
+	color: #484848;
+	text-align: center;
+}
+
+.fav-container div>img {
+	width: 3rem;
+	height:3rem;
+}
+
+.fav-container div>p {
+	margin-top: 1.1rem;
+}
+
+
+/**
+ *房东&&房间 信息 
+ */
+
+.master-container {
+	text-align: center;
+	color: #7A7A7A;
+	font-size: .9rem;
+}
+
+.master-container p>img {
+	width: 8rem;
+	height:8rem;
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	border-radius: 50%;
+}
+
+.master-container p {
+	margin-top: .5rem;
+	margin-bottom: 0;
+	 white-space: inherit;
+}
+
+p.nick-name {
+	color: #4E4E4E;
+	font-size: 1.1rem;
+}
+
+.m-room span {
+	position: relative;
+	padding-left: 1rem;
+}
+
+.m-room span:before {
+	content: "";
+	position: absolute;
+	height: .9rem;
+	top: .2rem;
+	width: 1px;
+	background-color: #7A7A7A;
+	left: .5rem;
+}
+
+.m-op a div {
+	display: inline-block;
+	width: 32%;
+	height: 2.5rem;
+	line-height: 2.5rem;
+	margin-top: 1.5rem;
+	border: solid 1px #FF5858;
+	font-size: 1.1rem;
+	color: #FF5858;
+	text-align: center;
+	margin-bottom: 2.5rem;
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+	border-radius: 6px;
+}
+
+.m-op>a:first-child div {
+	margin-right: 1.5rem;
+}
+
+.m-op>a:last-child div {
+	margin-left: 1.5rem;
+}
+
+.m-op img {
+	width: 2rem;
+	vertical-align: middle;
+	margin-bottom: .3rem;
+}
+
+
+/*评论信息*/
+
+.comment-star {
+	display: inline-block;
+	background: url(../img/house/starky.png);
+	height: 15px;
+	background-size: auto 15px;
+	width: 75px;
+}
+
+.comment-point {
+	background: url(../img/house/starsy.png);
+	height: 15px;
+	background-size: auto 15px;
+	width: 65px;
+}
+
+.comment-container {
+	margin-top: 1.5rem;
+	margin-left: 1.5rem;
+	margin-right: 1.5rem;
+	border-bottom: solid 1px #D3D3D3;
+}
+
+.comment-container>div {
+	text-align: center;
+	font-size: 1.1rem;
+}
+
+.comment-intro {
+	margin-top: 1rem;
+}
+
+.comment-intro span:last-child {
+	position: relative;
+	margin-left: .5rem;
+	padding-left: .8rem;
+}
+.comment-list li>p {
+	margin-top: .5rem;
+	margin-bottom: 0;
+	white-space: normal;
+	font-size: 1.1rem;
+	color: #7A7A7A;
+	line-height: 1.7rem;
+}
+
+.comment-list li p:first-child {
+	color: #4e4e4e;
+}
+
+.comment-list li img {
+	width: 4rem;
+	margin-right: 1rem;
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	border-radius: 50%;
+}
+
+.all-comment {
+	width: 32%;
+	height: 2.5rem;
+	line-height: 2.5rem;
+	margin-left: 35%;
+	margin-top: 1.5rem;
+	border: solid 1px #FF5858;
+	font-size: 1.1rem;
+	color: #FF5858;
+	text-align: center;
+	margin-bottom: 2.5rem;
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+	border-radius: 6px;
+}
+
+.all-comment img {
+	width: 2rem;
+	vertical-align: middle;
+	margin-bottom: .3rem;
+	margin-right: .5rem;
+}
+
+
+/*地理位置*/
+
+.am-img-container-room {
+	margin-left: 1rem;
+	margin-right: 1rem;
+}
+
+.am-img-container-room h1 {
+	text-align: left;
+}
+
+.am-img-container-room img {
+	width: 1.5rem;
+}
+
+.am-map {
+	padding-left: 1.5rem;
+	padding-right: 1.5rem;
+}
+
+.map-op {
+	position: relative;
+	color: #7A7A7A;
+	font-size: 1rem;
+	margin-left: 1.5rem;
+	margin-right: 1.5rem;
+	margin-bottom: 2.5rem;
+}
+
+.map-op span {
+	position: absolute;
+	width: 50%;
+	height: 2.5rem;
+	line-height: 2.5rem;
+	text-align: center;
+	border-bottom: solid 1px #EAEAEA;
+}
+
+.map-op span:first-child {
+	left: 0;
+	border-left: solid 1px #EAEAEA;
+	border-right: solid 1px #EAEAEA;
+}
+
+.map-op span:last-child {
+	left: 50%;
+	border-right: solid 1px #EAEAEA;
+}
+
+
+/*房间设施*/
+
+.room-facilities {
+	margin-left: 1.5rem;
+	margin-right: 1.5rem;
+	margin-top: 5rem;
+	padding-top: 2rem;
+	padding-bottom: 1rem;
+	border-top: solid 1px #EAEAEA;
+	border-bottom: solid 1px #EAEAEA;
+	color: #717171;
+	text-align: center;
+}
+
+.room-facilities>p {
+	width: 100%;
+	font-size: 1.1rem;
+	color: #4D4D4D;
+}
+
+.room-facilities>p:last-child {
+	font-size: 1rem;
+	color: #717171;
+}
+
+.room-facilities p span {
+	position: relative;
+	padding-right: 2rem;
+}
+
+.room-facilities> p span:after {
+	content: "";
+	display: block;
+	width: .8rem;
+	height: .8rem;
+	position: absolute;
+	right: .8rem;
+	top: 50%;
+	border: 1px solid #999;
+	border-width: 0 1px 1px 0;
+	margin-top: -0.5rem;
+	-webkit-transform: rotate(45deg);
+	transform: rotate(45deg);
+}
+
+.room-facilities> p span.show:after {
+	margin-top: 0;
+	-webkit-transform: rotate(225deg);
+	transform: rotate(225deg);
+}
+
+.facility-container {
+	position: relative;
+	min-height: 4rem;
+}
+
+.facility-container>div {
+	float: left;
+	width: 20%;
+	font-size: .8rem;
+	color: #484848;
+	text-align: center;
+}
+
+.facility-container div>img {
+	width: 2rem;
+}
+
+.facility-container div>p {
+	margin-top: .5rem;
+}
+
+.more-facility{display: none;}
+/*其它事项*/
+
+.other {
+	margin: 1.5rem;
+}
+
+.other p {
+	font-size: 1.1rem;
+	color: #4D4D4D;
+	text-align: center;
+}
+
+.other>div {
+	font-size: 1rem;
+	color: #717171;
+}
+
+.am-topbar-fixed-bottom,
+.am-topbar-fixed-top {
+	left: auto;
+	right: auto;
+	text-align: center;
+	width: 100%;
+	max-width: 640px;
+}
+.ul-score {
+    font-size: 0;
+    padding: 0;
+    width: 6.8rem;
+    height: 1.2rem;
+    margin: 0 auto;
+}
+.ul-score li {
+    display: inline-block;
+    width: 1.2rem;
+    height: 1.2rem;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url('../i/house/star-gray.png');
+    background-size: contain;
+}
+/*5*/
+.ul-score.s-50 li:nth-child(-n+5){
+    background-image: url('../i/house/star-yellow.png') ;
+}
+/*4.5*/
+.ul-score.s-45 li:nth-child(-n+4){
+    background-image: url('../i/house/star-yellow.png') ;
+}
+.ul-score.s-45 li:nth-child(5){
+    background-image: url('../i/house/star-half.png') ;
+}
+/*4*/
+.ul-score.s-40 li:nth-child(-n+4){
+    background-image: url('../i/house/star-yellow.png') ;
+}
+/*3.5*/
+.ul-score.s-35 li:nth-child(-n+3){
+    background-image: url('../i/house/star-yellow.png') ;
+}
+.ul-score.s-35 li:nth-child(4){
+    background-image: url('../i/house/star-half.png') ;
+}
+/*3*/
+.ul-score.s-30 li:nth-child(-n+3){
+    background-image: url('../i/house/star-yellow.png') ;
+}
+/*2.5*/
+.ul-score.s-25 li:nth-child(-n+2){
+    background-image: url('../i/house/star-yellow.png') ;
+}
+.ul-score.s-25 li:nth-child(3){
+    background-image: url('../i/house/star-half.png') ;
+}
+/*2*/
+.ul-score.s-20 li:nth-child(-n+2){
+    background-image: url('../i/house/star-yellow.png') ;
+}
+/*1.5*/
+.ul-score.s-15 li:nth-child(-n+1){
+    background-image: url('../i/house/star-yellow.png') ;
+}
+.ul-score.s-15 li:nth-child(2){
+    background-image: url('../i/house/star-half.png') ;
+}
+/*1*/
+.ul-score.s-10 li:nth-child(-n+1){
+    background-image: url('../i/house/star-yellow.png') ;
+}
+/*0.5*/
+.ul-score.s-5 li:nth-child(1){
+    background-image: url('../i/house/star-half.png') ;
+}
+.comment-container{
+	padding:1.5rem 1.5rem 2rem 1.5rem;
+	background-color:white;
+}
+.comment-intro{margin-top: 1rem;}
+.comment-intro span:last-child{border-left: solid 1px #4D4D4D;margin-left: .5rem;padding-left: .5rem;}
+.comment-list {
+	padding:0;
+}
+.comment-list li >p{margin-top: .5rem;margin-bottom: 0;white-space: normal;font-size: 1.1rem;color: #7A7A7A;line-height: 1.7rem;}
+.comment-list li p:first-child{color: #4e4e4e;}
+.comment-list li img{width: 4rem;margin-right: 1rem;-webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;}
+.all-comment{width: 40%;height: 2.5rem;line-height: 2.5rem;margin-left: 35%;margin-top: 2.5rem;border: solid 1px #FF5858;
+	font-size: 1.1rem;
+	color: #FF5858;
+	text-align: center;
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+	border-radius: 6px;
+}
+.all-comment img{width: 2rem; vertical-align: middle;margin-bottom: .3rem;margin-right: .5rem;}
+.all-comment a {
+	color: #FF5858;
+}
+
+
+/*新的标题、价格*/
+
+.room-title {
+	padding:0 0.8rem;
+	margin-top:0.9rem;
+}
+
+
+
+

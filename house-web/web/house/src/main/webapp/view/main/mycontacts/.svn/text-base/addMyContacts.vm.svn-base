@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>添加联系人</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-cache" />
+  <link rel="stylesheet" href="#springUrl('/assets/css/amazeui.min.css')"/>
+  <link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/reset.css')">
+    <link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/order.css')">
+  <link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/order_3_5.css')">
+  <script type="text/javascript" src="#springUrl('/assets/js/jquery.min.js')"></script>
+  <script type="text/javascript" src="#springUrl('/assets/js/amazeui.min.js')"></script>
+  <script type="text/javascript" src="#springUrl('/assets/js/common.js')"></script>
+  <script type="text/javascript" src="#springUrl('/assets/js/mycontacts.js')"></script>
+  <script type="text/javascript">
+  	var adaptPageClass = "content";
+  	$(document).ready(function(){
+	    	var start = '$!startdate';
+			var end = '$!enddate';
+			var startTime = start.substring(0,4)+'年'+start.substring(4,6)+'月'+start.substring(6,8)+'日';
+			var endTime = end.substring(0,4)+'年'+end.substring(4,6)+'月'+end.substring(6,8)+'日';
+			$("#startTime").html(startTime);
+			$("#endTime").html(endTime);
+			var dif = GetDateDiff(start,end);
+			$("#totalTime").html(dif);
+	   });
+	   function GetDateDiff(startDate,endDate)  
+	{  
+		startDate = startDate.substring(0,4)+"-"+startDate.substring(4,6)+"-"+startDate.substring(6,8);
+		endDate = endDate.substring(0,4)+"-"+endDate.substring(4,6)+"-"+endDate.substring(6,8);
+        var startTime = new Date(Date.parse(startDate.replace(/-/g,   "/"))).getTime();     
+        var endTime = new Date(Date.parse(endDate.replace(/-/g,   "/"))).getTime();     
+        var dates = Math.abs((startTime - endTime))/(1000*60*60*24);     
+        return  dates;    
+	}
+  </script>
+</head>
+<body>
+  <div id="modal"></div>
+  
+  <div class="body content">
+    <header class="bg-red">
+       <div class="head">
+        <a class="back ui-link" href="javascript:void(0);" onclick="javascript :history.go(-1);" tdata-rel="back">返回</a>
+        <div class="title header_title" id="header-title">添加联系人</div>
+       </div>
+    </header>
+    <section class="order-main">
+      <form >
+		
+        <ul class="list">
+          <li>
+            <div class=" clearfix">
+              <div class="color-grey pull-left">
+					姓名：
+              </div>
+              <div class="pull-left">
+                <span class="color-black " id="s_contactsName">
+					<input id="contactsName" placeholder="姓名" type="text" class="reg_input_1 text-color" rel="name" msgid="error_7" need="need"  msg="姓名" >
+                </span>
+              </div>
+              <div class=" reg_err_div div_hidden fr" id="error_7">
+                <img src="/assets/i/order/icon_err.png" class="err_icon_1">
+                 <font id="error_7_span">姓名不能为空</font>
+              </div>
+            </div>
+          </li>
+          
+          <li>
+            <div class=" clearfix">
+              <div class="color-grey pull-left">
+					手机号：
+              </div>
+              <div class="pull-left">
+                <span class="color-black" id="room_info">
+					<input id="contactsPhone" placeholder="手机号" type="telephone" class="reg_input_1 text-color" need="need" rel="phone" msgid="error_1" msg="手机号"  maxlength="11" islogin="isLogin"></span>
+              </div>
+              <div class=" reg_err_div div_hidden fr" id="error_1">
+                <img src="/assets/i/order/icon_err.png" class="err_icon_1" need="need"/>
+                <font id="error_1_span"></font>
+              </div>   
+            </div>
+          </li>
+        </ul>
+
+		<div class="submit_foot"></div>
+        <a class="btn bg-red submitOrd" type="button" class="button"  id="saveBtn" >确定</a>
+      </form >
+    </section>
+  </div>
+  
+</body>
+</html>

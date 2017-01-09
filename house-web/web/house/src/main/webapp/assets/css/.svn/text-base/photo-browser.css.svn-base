@@ -1,0 +1,43 @@
+.photo-browser .bar-nav:after {
+    height: 0;
+}
+.content {
+    position: absolute;
+}
+.photo-browser {
+    position: fixed;
+}
+.photo-browser .title {
+    color: white;
+    font-size: 1.2rem;
+    height: 3.1rem;
+    line-height: 3.1rem;
+}
+.bar {
+    height: 3.1rem;
+    background-color: #2e2e2e;
+}
+.bar .icon {
+    /*top: 50%;*/
+    /*transform: translateY(-50%);*/
+    color: #fff;
+   	position: absolute;
+	left:0;
+	top:0;
+	width:3.1rem !important;
+	height:3.1rem !important;
+}
+
+.bar .icon:before {
+	left:30%;
+	top:50%;
+	margin-top:-0.5rem;
+}
+.icon-left:before {
+    top:0;
+    left:0;
+    position: absolute;
+}
+.photo-browser-out {
+    display: none !important;
+}

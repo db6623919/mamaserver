@@ -1,0 +1,11 @@
+<script>
+var isLogin=false;
+var user;
+#if($SESSION_ATTR_NAME_CURRENT_USER)
+	user=${SESSION_ATTR_NAME_CURRENT_USER};
+	isLogin=true;
+#else
+	user={};
+	user.uid=-1;
+#end
+</script>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+	<head lang="en">
+		<meta charset="UTF-8">
+		<title>妈妈送房</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="Cache-Control" content="no-cache" />
+		  <link rel="stylesheet" type="text/css" href="/assets/css/weui.min.css">
+		<link rel="stylesheet" href="/assets/css/amazeui.min.css"/>
+  <link rel="stylesheet" type="text/css" href="/assets/css/reset.css">
+  <link rel="stylesheet" type="text/css" href="/assets/css/index.css">
+
+  <link rel="stylesheet" type="text/css" href="/assets/css/newer_guide.css">
+		
+  <script type="text/javascript" src="/assets/js/jquery.min.js"></script>
+  <script type="text/javascript" src="/assets/js/amazeui.min.js"></script>
+  <script type="text/javascript" src="/assets/js/common.js"></script>
+  <script type="text/javascript" src="/assets/js/TouchSlide.1.0.source.js"></script>
+		<script type="text/javascript">
+			var adaptPageClass = "content";
+		</script>
+	</head>
+
+	<body>
+	<div class="container">
+		<div>
+			<img src="http://file.88mmmoney.com/12e7a7b7-203f-4abb-86e9-501ce412d104" alt="">
+		</div>
+		<div id='middle'>
+			<img src="http://file.88mmmoney.com/e34766e2-da29-48bf-9243-2025090aebac" alt="">
+			<div class='ul-container'>
+				<ul>
+					<span class='title'>
+						<h3>旅居创业</h3>
+					</span>
+					<li class='row'>
+						<a id='btn-0' class='btn btn-default' href="javascript:;">资产：闲置房源对接</a>
+					</li>
+					<li class='row'>
+						<a id='btn-1' class='btn btn-default' href="javascript:;">资金：成长金融服务</a>
+					</li>
+					<li class='row'>
+						<a id='btn-2' class='btn btn-default' href="javascript:;">知识：民宿经营交流</a>
+						<a id='btn-3' class='btn btn-last' href="javascript:;">客源：品宣营销合作</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div>
+			<img src="http://file.88mmmoney.com/cb41e28c-9477-4a9f-913e-08103ded90ba" alt="">
+		</div>
+	</div>
+	<script>
+
+		var list = [
+		            {
+		            	title:'资产：闲置房源对接',
+		            	content:'厦门、深圳、广州：蔡小姐13554798284</br>'+
+		            		'海南、贵州、广西：钟先生13631415264</br>'+
+		            		'湖南：陈先生17774339555</br>'+
+		            		'云南：于先生18520879131'
+		            },
+		            {
+		            	title:'资金：成长金融服务',
+		            	content:'民宿贷：为优秀的民宿业主提供小额资金扶持</br>'+
+		    			//'业务联系人：陈先生17774339555</br>'+
+		    			'民宿基金：为民宿行业的快速发展提供资金支持</br>'+
+		    			//'业务联系人：陈先生17774339555</br>'+
+		    			'众筹：让更多爱好生活喜欢民宿的朋友参与精美民宿的搭建</br>'+
+		    			'业务联系人：陈先生17774339555'
+		            	
+		            },
+				     {
+						title:'知识：民宿经营交流',
+						content:'20位民宿大咖访谈全记录---《民宿访谈录》'
+				     },
+				     {
+				    	 title:'客源：品宣营销合作',
+				    	 content:'微信公众号专栏推荐、微博推送、论坛传播、网络广告等</br>'+
+							'业务联系人：林小姐18620598490'
+				     }
+        ];
+		$(function(){
+
+			$('.btn').on('click',function() {
+				var index = $(this).attr('id').split('-')[1];
+				var content = list[index].content.replace(/([0-9]{11})/g,function($0){
+					return '<a href="tel:'+$0+'">'+$0+'</a>';
+				});
+				console.log(content);
+				$.wx.dialog({
+					title:list[index].title,
+					content: content,
+					buttons:[]
+				})
+			})
+
+		})
+	</script>
+	</body>
+
+</html>

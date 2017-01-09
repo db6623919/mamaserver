@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+	<head lang="en">
+		<meta charset="UTF-8">
+		<title>妈妈送房</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="Cache-Control" content="no-cache" />
+		<link rel="stylesheet" href="/assets/css/amazeui.min.css"/>
+  <link rel="stylesheet" type="text/css" href="/assets/css/reset.css">
+  <link rel="stylesheet" type="text/css" href="/assets/css/index.css">
+  
+		
+  <script type="text/javascript" src="/assets/js/jquery.min.js"></script>
+  <script type="text/javascript" src="/assets/js/amazeui.min.js"></script>
+  <script type="text/javascript" src="/assets/js/common.js"></script>
+  <script type="text/javascript" src="/assets/js/TouchSlide.1.0.source.js"></script>
+
+		<script type="text/javascript">
+			var adaptPageClass = "content";
+		</script>
+		<style>
+			body{background-color: #EBEBEB;}
+		</style>
+	</head>
+
+	<body>
+		<div class="content">
+			<header style="background-color: #FB394C;">
+				<div class="head">
+					<a class="back ui-link" href="javascript:void(0);" tdata-rel="back">返回</a>
+					<div class="title header_title" id="header-title">新手指引</div>
+				</div>
+			</header>
+			<img src="http://file.88mmmoney.com/88d49172-ad0f-4952-921a-700e034d748a" style="width: 100%;" alt=""/>
+		</div>
+	</body>
+
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+	<head lang="en">
+		<meta charset="UTF-8">
+		<title>我的妈妈钱包</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="Cache-Control" content="no-cache" />
+		<link rel="stylesheet" href="#springUrl('/assets/css/amazeui.min.css')" />
+		<link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/reset.css')">
+		<link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/order_what.css')" />
+		<script type="text/javascript" src="#springUrl('/assets/js/jquery.min.js')"></script>
+		<script type="text/javascript" src="#springUrl('/assets/js/amazeui.min.js')"></script>
+		<script type="text/javascript" src="#springUrl('/assets/js/common.js')"></script>
+		<script src="#springUrl('/assets/js/TouchSlide.1.0.source.js')"></script>
+		<script type="text/javascript">
+			var adaptPageClass = "content";
+		</script>
+	</head>
+
+	<body class="bg-ee">
+		<div class="body content">
+			<header class="bg-fb">
+				<div class="head">
+					<a class="back ui-link" href="javascript:void(0);" onclick="javascript :history.go(-1);" tdata-rel="back">返回</a>
+					<div class="title header_title" id="header-title">我的妈妈钱包</div>
+				</div>
+			</header>
+			<div class="w-100 bc-white border-top border-bottom mt-15">
+				<div class="am-img-container-room clearfix">
+					<p class="fs-11 text-color pl-15 am-mg-0">余额<span class="fr fs-12  pr-15 text-color-fb">$!wallet元</span></p>
+
+				</div>
+			</div>
+			<div class="w-100 bc-white  border-bottom " onclick="location.href='#springUrl("/my/recharge_index.htm")'">
+				<div class="am-img-container-room clearfix">
+					<p class="fs-11 text-color pl-15 am-mg-0">充值<span class="fr fs-12  pr-15">&gt;</span></p>
+
+				</div>
+			</div>
+		</div>
+	</body>
+
+</html>

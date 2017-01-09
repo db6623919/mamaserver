@@ -1,0 +1,23 @@
+@import './variable';
+.btn {
+	display: block;
+	width: 100%;
+	text-align: center;
+	height:3rem;
+	line-height: 3rem;
+	color:white;
+	margin: 0 auto;
+	background-color: @primary-color;
+	border: none;
+	font-size: 1.286rem;
+	border-radius: 4px;
+	font-weight: normal;
+}
+
+.btn:active {
+	background-color: @primary-btn-active;
+}
+
+.btn[disabled] {
+	background: @common-gray;
+}

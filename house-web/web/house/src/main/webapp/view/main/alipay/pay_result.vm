@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>在线支付成功</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-cache" />
+  <link rel="stylesheet" href="#springUrl('/assets/css/amazeui.min.css')"/>
+  <link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/reset.css')">
+  <link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/order-suc.css')">
+  <script type="text/javascript" src="#springUrl('/assets/js/jquery.min.js')"></script>
+  <script type="text/javascript" src="#springUrl('/assets/js/common.js')"></script>
+  <script type="text/javascript" src="#springUrl('/assets/js/amazeui.min.js')"></script>
+  <script type="text/javascript">
+    var adaptPageClass = "content";
+    function index(){
+	     self.location.href="#springUrl('/index.htm')";
+	}
+	function toOrderList(){
+	     // self.location.href="#springUrl('/index.htm')";
+	     self.location.href="#springUrl('/my/getOrders.htm?page=1&type=0')";
+	}
+  </script>
+
+</head>
+<body class="">
+  <div class="content body" style="background-color:#fbf7ec;">
+    <header class="header clearfix">
+       <div class="head">
+        <a class="back ui-link" href="javascript:void(0);" onClick="toOrderList();" tdata-rel="back">返回</a>
+        <div class="title header_title" id="header-title">在线支付结果</div>
+       </div>
+    </header>
+    <div class="am-g">
+      <div class="w-100">
+        <div class="am-width-100 am-backcolor-ff">
+          <div class="am-g tc clearfix pt-35">
+              <span class="am-recharge-ok"></span>
+              <p class="fs-2 text-color-red am-mg-0 mt-5">
+                恭喜您,<br>订单支付成功！
+              </p>
+          </div>
+          <div class="am-g tc mt-15 line-h-2">
+              <p class="fs-12 text-color-75 am-mg-0">亲，请凭验证码：<span class="text-color-red mr-2">$!houseCode</span>入住哦！</p>
+          </div>
+        </div>
+        <div class="w-100 pb-25">
+          <div class="recharge_suc a_hand mt-10" onclick="index()">返回首页</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

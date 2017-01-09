@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>选择联系人</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-cache" />
+  <link rel="stylesheet" href="#springUrl('/assets/css/amazeui.min.css')"/>
+  <link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/reset.css')">
+  <link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/order_3_5.css')">
+  <script type="text/javascript" src="#springUrl('/assets/js/jquery.min.js')"></script>
+  <script type="text/javascript" src="#springUrl('/assets/js/amazeui.min.js')"></script>
+  <script type="text/javascript" src="#springUrl('/assets/js/common.js')"></script>
+  
+  <script type="text/javascript">
+  	var adaptPageClass = "content";
+  </script>
+  <style type="text/css">
+			.add-contact {
+				text-align: center;
+				font-size: 1.22rem;
+				height: 3.5rem;
+				line-height: 3.5rem;
+				background-color: #fff;
+			}
+			
+			.add-contact span img {
+				width: 25px;
+				margin-right: .5rem;
+				vertical-align: middle;
+				margin-bottom: .3rem;
+			}
+			
+			#contacts {
+				position: absolute;
+				margin-top: 1rem;
+				background-color: #fff;
+				height: 82%;
+				width: 100%;
+			}
+			
+			.contact-item {
+				font-size: 1.2rem;
+				color: #474747;
+				padding-top: .7rem;
+				border-bottom: solid 1px #D3D3D3;
+				background: url(http://file.88mmmoney.com/f325ff20-a669-43ef-98fb-f88f5436e531) no-repeat 98% 50%;
+				background-size: 10px auto;
+				margin-left: 1rem;
+			}
+			
+			.contact-item p {
+				margin: 0;
+			}
+			
+			.contact-item .name {
+				font-weight: 700;
+			}
+			
+			.contact-item .phone {
+				margin-top: .2rem;
+				font-size: 1rem;
+				padding-bottom: .7rem;
+			}
+		</style>
+</head>
+<body>
+  <div class="body content">
+    <header class="bg-red">
+       <div class="head">
+        <a class="back ui-link"  tdata-rel="back" onclick="hiedeModelContans()">返回</a>
+        <div class="title header_title" id="header-title">选择入住人</div>
+        <div class="more_wraper">
+         <a class="menu" data-menuaction="switch" id="confirm"  onclick="sure();">确定</a> 
+        </div>
+       </div>
+    </header>
+    <div class="add-contact" onclick="showAddContact()">
+		<span><img src="http://file.88mmmoney.com/9730c742-fea5-4c84-82d9-30d44840e2f2"/></span>添加联系人
+	</div>
+    <section class="choose-person">
+      <form id="show_list">
+        #foreach($!contactsList in $!contactsList)
+        <ul class="list">
+          <li>
+			
+            <div class="clearfix" data-info="person">
+              <div class="color-black pull-left">
+                <span class="name" data-info="name" id="name_$!contactsList.contactsId">入住人:$!contactsList.contactsName</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <span class="number" data-info="number" id="number_$!contactsList.contactsId">手机号:$!contactsList.contactsPhone</span>
+              </div>
+              <div class="pull-right icon-select">
+                <img id="$!contactsList.contactsId" sign="select" contactsName="$!contactsList.contactsName" contactsPhone="$!contactsList.contactsPhone" src="../assets/i/neworder_3_5/select.png" data-selector="img">
+              </div>
+            </div>
+          </li>
+        </ul>
+        #end
+      </form>
+    </section>
+	
+  </div>
+  <script type="text/javascript" src="#springUrl('/assets/js/neworder_3_5.js')"></script>
+  <script type="text/javascript">
+    var contactsId = "";
+    $('[data-selector="img"]').on('click', function() {
+   	  contactsId = $(this).attr("id");
+      cp.selectToggle($(this))
+    })
+    
+    var init = function() {
+      var info = localStorage.mmsfangPerson;
+      if(info) {
+        info = JSON.parse(info);
+        $('input[name="person"]').each(function(i) {
+          var _this = $(this);
+          if(Number(_this.attr('value')) == info.value)
+          {
+            _this.siblings('[data-selector="img"]').trigger('click');
+          }
+        })
+      }
+    }();
+      
+	function sure(){
+		if(contactsId != "" ) {
+			 var nameStr = $("#name_"+contactsId).html();
+	         var numberStr = $("#number_"+contactsId).html();
+	         $("#name").val(nameStr.split(":")[1]);
+	         $("#phone").val(numberStr.split(":")[1]);
+			 // 隐藏错误提示
+			 $('#error_1').addClass('div_hidden');
+			 $('#error_7').addClass('div_hidden');
+			 
+			 $("#modal_contacts").css("display","none");
+			 $("#modal_order").css("display","block");
+		}else{
+			showTip("请选择入住人!",3);
+		}
+         
+    }
+	
+	 function hiedeModelContans() {
+	 	 $("#modal_contacts").css("display","none");
+		 $("#modal_order").css("display","block");
+	 }
+	
+	function showAddContact() {
+		$("#modal").css("display","none");
+		$("#modal_contacts").css("display","none");
+		$("#modal_addContacts").css("display","block");	
+		$("#modal_addContacts").load("#springUrl('/view/main/order/add_myContacts.vm')");
+		$("#modal_addContacts").css("zIndex","999");	
+	}
+  </script>
+</body>
+</html>

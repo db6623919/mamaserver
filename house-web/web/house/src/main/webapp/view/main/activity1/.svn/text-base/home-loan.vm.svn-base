@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport"
+	content="width=device-width,height=device-height,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+	<title>妈妈民宿经营贷</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="renderer" content="webkit">
+  <!--缓存处理-->
+  <meta http-equiv="Cache-Control" content="no-cache" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<link rel="stylesheet" href="#springUrl('/assets/css/activity/home-loan.css')">
+</head>
+<body>
+	<header>
+		<div class='banner'></div>
+		<span>
+			<strong>“妈妈民宿经营贷”</strong>
+			是妈妈资本利用互联网金融业务资源，特针对民宿行业推出的一款“互联网+金融+民宿”创新产品，旨在帮助民宿行业经营者扩大经营规模、提升经营效率。
+		</span>
+	</header>
+
+	<section>
+		<h2 class="title">产品优势</h2>
+		<ul class="ul-advantage">
+			<li class="advantage">
+				<img src="#springUrl('/assets/i/homeLoan/icon1.png')" alt="额度高"/>
+				<h3>额度高</h3>
+				<span>最高授信</br>200万</span>
+			</li>
+			<li class="advantage">
+				<img src="#springUrl('/assets/i/homeLoan/icon2.png')" alt="放款快"/>
+				<h3>放款快</h3>
+				<span>资料齐全</br>3天放款</span>
+			</li>
+			<li class="advantage">
+				<img src="#springUrl('/assets/i/homeLoan/icon3.png')" alt="利息灵活"/>
+				<h3>利息灵活</h3>
+				<span>现金利息年化</br>9%-15%</br>+房屋居住权</span>				
+			</li>
+		</ul>
+	</section>
+
+	<section>
+		<h2 class="title">我们提供</h2>
+		<ul class="ul-provide">
+			<li class="provide">
+				<div class="cont">
+					<h3>品牌宣传</h3>
+					<span>免费提供多渠道品牌推广</span>
+				</div>
+			</li>
+			<li class="provide">
+				<div class="cont">
+					<h3>用户导流</h3>
+					<span>细分用户进行精准导流</span>
+				</div>
+			</li>
+			<li class="provide">
+				<div class="cont">
+					<h3>人才培训</h3>
+					<span>提供专业培训与指导</span>
+				</div>
+			</li>
+		</ul>
+	</section>
+
+	<section>
+		<h2 class="title">适合人群</h2>
+		<ul class="ul-fit">
+			<li class="fit">
+				<span>民宿位于热门旅游景区，实际经营民宿的经验达一年以上</span>
+			</li>
+			<li class="fit">
+				<span>民宿升级更新、筹备开新店，有资金需求的民宿业主</span>
+			</li>
+			<li class="fit">
+				<span>物业租赁至少距离合同期还有3年以上，且租赁合同具有可转让权利</span>
+			</li>
+		</ul>
+	</section>
+	<a href="http://form.mikecrm.com/Qpt8Vv" class="apply-btn">立即申请</a>
+	<footer>
+		<img src="#springUrl('/assets/i/homeLoan/footer.png')" alt="妈妈资本和你一起落地民宿情怀梦">
+	</footer>
+</body>
+</html>

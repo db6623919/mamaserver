@@ -1,0 +1,613 @@
+/*list页*/
+.top-fixed
+{
+	position:fixed;
+	top: 0;
+	z-index: 100;
+	width: 100%;
+}
+
+.title-logo
+{
+	display:block;
+	width:25%;
+	margin:0 auto; 
+	height: 48px;
+	line-height: 43px;
+}
+
+.location-head, .location-head > *
+{
+	height: 40px;
+	line-height: 40px !important;
+}
+
+.location-title
+{
+	text-align: center;
+    font-size: 1.3rem;
+    line-height: 48px;
+}
+
+.user-icon
+{
+	background-image: url(../i/common/user.png);
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+
+.category-wrapper
+{
+	padding: 0 1rem;
+}
+
+.category-block
+{
+	height: 60px;
+	padding: 0;
+	/*margin-left: 1rem;*/
+	/*line-height: 60px;*/
+}
+
+.category-block img
+{
+	width: 1.8rem;
+	height: 1.8rem;
+	margin: 7px 0 3px;
+}
+
+.category-block p
+{
+	margin: 0;
+	line-height: normal;
+}
+
+.category-block .active
+{
+	color: #f74f5d;
+}
+
+.category-block.active
+{
+	border-bottom: 2px solid #f74f5d;
+}
+
+.info-list
+{
+	margin: .5rem 0;
+	padding: 0 0 0 1rem;
+	color: #fff;
+}
+
+.info-list > span
+{
+	display: inline-block;
+	line-height: 1.3rem;
+	text-indent: 0;
+	padding: .3rem .5rem;
+	border-top-left-radius: 15px;
+	border-bottom-left-radius: 15px;
+	border-top-right-radius: 15px;
+	border-bottom-right-radius: 15px;
+}
+
+.info-list .room
+{
+	background-color: #7da8ca;
+}
+
+.info-list .people
+{
+	background-color: #72c3bc;
+}
+
+.info-list .set
+{
+	background-color: #96bf23;
+}
+
+.info-list .total
+{
+	background-color: #ed6a51;
+}
+
+.info-list .expected
+{
+	background-color: #f86c63;
+}
+
+.info-list .free
+{
+	background-color: #f89b63;
+}
+
+.info-list .limitation
+{
+	background-color: #f8c963;
+}
+
+.new-collection
+{
+	background-image: url(../i/common/new_before_collect.png);
+}
+
+.new-collection-active
+{
+	background-image: url(../i/common/new_after_collect.png);
+}
+
+.hidden
+{
+	display: none;
+}
+
+.btn
+{
+	border-radius: 2px;
+	height: 3rem;
+	line-height: 3rem;
+	font-size: 1.3rem;
+	width: 9rem;
+	margin: 0 auto;
+	color: #fff;
+}
+
+.btn-danger
+{
+	background-color: #f75258;
+}
+
+.ad-tips
+{
+	color: #f75258;
+	margin-top: .2rem;
+}
+
+.pos-relative
+{
+	position: relative;
+}
+
+.pos-absolute
+{
+	position: absolute;
+}
+
+.pos-right-10
+{
+	right: 1rem;
+}
+
+.text-delete
+{
+	text-decoration: line-through;
+}
+
+/*旅居宝*/
+.collect-amount
+{
+	position: absolute;
+	left: 1rem;
+	top: .5rem;
+	color: #fff;
+}
+
+.project-progress
+{
+	background-color: rgba(0,0,0,.6);
+	width: 5rem;
+	height: 6.5rem;
+	position: absolute;
+	top: 0;
+	right: 1rem;
+	border-bottom-left-radius: 3rem;
+	border-bottom-right-radius: 3rem;
+}
+
+.project-progress p
+{
+	margin-bottom: .3rem;
+}
+
+.project-progress .progress-text
+{
+	position: absolute;
+	top: 1.5rem;
+	left: 1rem;
+	color:#fff;
+	font-size: 1.1rem;
+}
+
+.progress-bar-cover
+{
+	width: 4.2rem;
+	height: 4.2rem;
+	border-radius: 50%;
+	/*margin: .5rem auto;*/
+	background-color: #c6c6c6;
+	background: -webkit-radial-gradient(transparent 1.7rem, #f75c52 1.7rem);
+	background: radial-gradient(transparent 1.7rem, #f75c52 1.7rem);
+	background: -moz-radial-gradient(transparent 1.7rem, #f75c52 1.7rem);
+	background: -ms-radial-gradient(transparent 1.7rem, #f75c52 1.7rem);
+	background: -o-radial-gradient(transparent 1.7rem, #f75c52 1.7rem);
+	position: absolute;
+	left: .4rem;
+}
+
+.progress-bar-outer-left, .progress-bar-outer-right
+{
+	width: 4.2rem;
+	height: 4.2rem;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+.progress-bar-outer-left, .progress-bar-inner-left
+{
+	clip: rect(0, 2.1rem, auto, 0);
+}
+
+.progress-bar-outer-right, .progress-bar-inner-right
+{
+	clip: rect(0, auto, auto, 2.1rem);
+}
+
+.progress-bar-inner-left, .progress-bar-inner-right
+{
+	width: 4.2rem;
+	height: 4.2rem;
+	border-radius: 50%;
+	background-color: #c6c6c6;
+	background: -webkit-radial-gradient(50% 50%, transparent 1.7rem, #c6c6c6 
+		1.7rem);
+	background: radial-gradient(50% 50%, transparent 1.7rem, #c6c6c6 1.7rem);
+	background: -moz-radial-gradient(50% 50%, transparent 1.7rem, #c6c6c6 1.7rem);
+	background: -ms-radial-gradient(50% 50%, transparent 1.7rem, #c6c6c6 1.7rem);
+	background: -o-radial-gradient(50% 50%, transparent 1.7rem, #c6c6c6 1.7rem);
+	position: absolute;
+}
+
+/*旅居宝*/
+/*list页*/
+/*首页*/
+.subtitle-icon
+{
+	width: 2rem;
+	height: 2rem;
+	vertical-align: bottom;
+}
+
+.more-icon
+{
+	width: 1.5rem;
+	height: 1.5rem;
+	vertical-align: bottom;
+}
+
+.i-invest
+{
+	background-image: url(../i/index/i-invest.png);
+}
+
+.i-booking
+{
+	background-image: url(../i/index/i-booking.png);
+}
+
+.i-trade
+{
+	background-image: url(../i/index/i-trade.png);
+}
+/*首页*/
+
+/*旅居宝详情*/
+.mt-0
+{
+	margin-top: 0 !important;
+}
+
+.mb-0
+{
+	margin-bottom: 0 !important;
+}
+
+.ti-0
+{
+	text-indent: 0 !important;
+}
+
+.detail-top .project-progress
+{
+	height: 4rem;
+}
+
+.circle-text
+{
+	color: #999;
+}
+
+.travel-detail .text-group
+{
+	height: 7rem;
+	background: url(../i/common/circle.png) no-repeat 50% 50%;
+}
+
+.travel-detail > div
+{
+	padding: 0 !important;
+}
+
+.block-title > p
+{
+	border-left: .8rem solid #f75c52;
+	margin: 1rem 0;
+}
+
+.block-content
+{
+	padding: 1rem 2rem;
+}
+
+.block-list > li > .block-list-li
+{
+	border-bottom: 1px solid #cbcbcb;
+}
+
+.block-list > li:last-child > .block-list-li
+{
+	border: none;
+}
+
+.block-list > li p
+{
+	margin: 0;
+	line-height: 1.5rem;
+}
+
+.btn-group button.btn-single
+{
+	background-color: #f75c52;
+	color: #fff;
+	text-align: center;
+	border-radius: .3rem;
+	border: 1px solid #f75c52;
+	height: 3rem;
+	width: 9rem;
+	font-size: 1.4rem;
+}
+/*旅居宝详情*/
+
+/*重写类覆盖样式*/
+.border-bottom-gray
+{
+	border-bottom: 1px solid #d5d5d5;
+}
+
+.red-back
+{
+	background-image: url(../i/common/title_back_red.png) !important;
+}
+
+.text-color-newred
+{
+	color: #f75258;
+}
+
+.text-color-newgray
+{
+	color: #5b5b5b;
+}
+
+.text-color-dimred
+{
+	color: #f69a9e;
+}
+
+.text-color-82
+{
+	color: #828282;
+}
+
+.text-color-d9
+{
+	color: #d9d9d9;
+}
+
+.text-color-cb
+{
+	color: #cbcbcb;
+}
+
+.bg-c6
+{
+	background-color: #c6c6c6;
+}
+
+.new-bg-index
+{
+	background-color: #eff9fd;
+}
+
+.pt-20
+{
+	padding-top: 2rem;
+}
+
+.pb-20
+{
+	padding-bottom: 2rem;
+}
+
+.pl-20
+{
+	padding-left: 2rem;
+}
+
+.pr-20
+{
+	padding-right: 2rem;
+}
+
+/*旅居券表单*/
+.head-logo
+{
+	float: none !important;
+	margin: auto !important;
+}
+/*success*/
+.success-icon img
+{
+	width: 7rem;
+}
+
+.success-btn/*, .confirm-btn*/
+{
+	position: absolute;
+	bottom: 1rem;
+}
+
+.success-btn > button, .confirm-btn > button
+{
+	width: 100% !important;
+}
+/*success*/
+
+/*表单*/
+.emulate-select, .emulate-input
+{
+	height: 3rem;
+	line-height: 3rem;
+	border: 1px solid #cbcbcb;
+	padding: 0 .5rem;
+	font-size: 1.2rem;
+	margin: 0 1.2rem 1.2rem 6rem;
+	color: #757575;
+	position: relative;
+}
+
+input[type=number]::-webkit-inner-spin-button
+{    
+	-webkit-appearance: none;
+}
+
+.emulate-input input
+{
+	height: 100%;
+    border: none;
+    position: absolute;
+}
+
+.emulate-list
+{
+	border: 1px solid #cbcbcb;
+	position: absolute;
+	top: 2.9rem;
+	left: 0;
+	z-index: 1;
+	padding-left: .5rem;
+	max-height: 10rem;
+	overflow: scroll;
+	background-color: #fbf7ec;
+}
+
+.emulate-list p
+{
+	line-height: 3rem;
+	margin: 0;
+}
+
+.emulate-list p:not(:last-child)
+{
+	border-bottom: 1px solid #cbcbcb;
+}
+
+.emulate-count
+{
+	width: 12.8rem;
+	height: 3rem;
+	line-height: 3rem;
+	border: 1px solid #cbcbcb;
+	margin: 0 1.2rem 1.2rem 6rem;
+}
+
+.emulate-count > .emulate-minus, .emulate-count > .emulate-plus
+{
+	width: 3.2rem;
+	font-size: 1.5rem;
+	float: left;
+	text-align: center;
+	color: #cbcbcb;
+}
+
+.emulate-count > .emulate-number
+{
+	width: 6.2rem;
+	text-align: center;
+	font-size: 1.2rem;
+	float: left;
+	border-left: 1px solid #cbcbcb;
+	border-right: 1px solid #cbcbcb;
+	color: #757575;
+}
+
+.form-block .form-content-group:first-child
+{
+	margin-top: 1.2rem;
+}
+
+.form-label
+{
+	height: 3rem;
+	line-height: 3rem;
+}
+
+.form-select-more
+{
+	position: absolute;
+	top: 1rem;
+	right: 1rem;
+	width: 1rem;
+	transform: rotate(90deg);
+	transform: -webkit-rotate(90deg);
+	transform: -moz-rotate(90deg);
+	transform: -ms-rotate(90deg);
+	transform: -o-rotate(90deg);
+}
+
+.form-calendar
+{
+	width: 1.5rem;
+	top: .75rem;
+	transform: initial;
+}
+
+.form-content-text
+{
+	font-size: 1.2rem;
+	height: 3rem;
+	line-height: 3rem;
+	color: #757575;
+	margin-left: 6rem;
+}
+
+.btn-group.form-btn
+{
+	margin-bottom: 1rem;
+}
+
+.btn-group.form-btn > button
+{
+	width: 100%;
+}
+
+.form-tips
+{
+	position: absolute;
+	top: .7rem;
+	right: 2.5rem;
+}
+
+/*表单*/
+/*旅居券表单*/

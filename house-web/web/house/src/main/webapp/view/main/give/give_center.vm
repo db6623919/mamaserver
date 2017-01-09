@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+
+	<head lang="en">
+		<meta charset="UTF-8">
+		<title>赠送旅居劵</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="Cache-Control" content="no-cache" />
+		<link rel="stylesheet" href="#springUrl('/assets/css/amazeui.min.css')" />
+		<link rel="stylesheet" href="#springUrl('/assets/css/reset.css')" />
+		<link rel="stylesheet" href="#springUrl('/assets/css/order_3_5.css')">
+		<script type="text/javascript" src="#springUrl('/assets/js/jquery.min.js')"></script>
+		<script type="text/javascript" src="#springUrl('/assets/js/amazeui.min.js')"></script>
+		<script type="text/javascript" src="#springUrl('/assets/js/common.js?_v=1')"></script>
+		<script type="text/javascript" src="#springUrl('/assets/js/TouchSlide.1.0.source.js')"></script>
+		<script type="text/javascript">
+			var adaptPageClass = "content";
+		</script>
+	</head>
+	<body>
+		<div class="body content">
+			<header class="header clearfix">
+		       	<div class="head">
+		        	<a class="back ui-link" href="javascript:void(0);" onClick="javascript :history.go(-1);" tdata-rel="back">返回</a>
+		        	<div class="title header_title" id="header-title">赠送旅居劵</div>
+		        	<div class="more_wraper2" onclick="location.href='#springUrl("/my/give/add.htm")'">
+						发布赠券
+					</div>
+		       	</div>
+	    		<div class="menumask" style="display:none;z-index:9;width:100%;position:absolute;top:0;left:0;bottom: 0;height:100%;background-colorT:red;opacity:0.01"></div>
+	    	</header>
+			<section class="order-detail">
+				<div class="slider" id="selectC_tab">
+					<div class="hd clearfix">
+						<ul>
+							<li>
+								<a class="color-grey" href="javascript:void(0);">我送朋友</a>
+							</li>
+							<li><a class="color-grey" href="javascript:void(0);">朋友送我</a></li>
+						</ul>
+					</div>
+					<div id="list" class="bd">
+						<ul></ul>
+						<ul></ul>
+					</div>
+				</div>
+			</section>
+		</div>
+		
+		<script type="text/template" id="tpl">
+		    <%if(datas.length==0){%>
+			    <div  style="text-align: center;">
+					<p class="am-text-center fs-0-9 text-color-91"><h2>您暂无旅居券</h2></p>
+				</div>
+			<%}%>
+			<%_.each(datas,function(item,i){%>
+				<%var detail=JSON.parse(item.showDetail)%>
+				<li class="item" data-id="<%-item.id%>">
+					
+					<div class="item-content clearfix">
+						<span class="am-u-sm-4 pl-0 pr-0">
+							<img src="#springUrl('/assets/i/travel/give-desc.png')" class="h-5">
+						</span>
+						<span class="am-u-sm-8">
+	  						<p>
+	         					<span class="labels color-grey">名称</span>
+								<span class="text"><%-detail.houseName%></span>
+							</p>
+							<p>
+								<span class="labels color-grey">份数</span>
+								<span class="text"><%-detail.copiesCount%>份</span>
+							</p>
+							<p>
+								<span class="labels color-grey">总数</span>
+								<span class="text"><%-detail.total%>张</span>
+							</p>
+						</span>
+					</div>
+					
+					<%if(type==0){%>
+						<div class="item-center clearfix color-grey">
+							<div class="pull-left">
+								<span>领取状态：</span><%-item.receivedCount%>人已领
+							</div>
+							<div class="pull-right ">
+								<%-(detail.total-item.receivedCount)%>人未领
+							</div>
+						</div>
+					<%}else{%>
+						<div class="item-center clearfix text-color-6">
+							<div class="pull-left">
+								<span >赠送人</span>
+							</div>
+							<div class="pull-right ">
+								<%-cutOut(item.memberId)%>
+							</div>
+						</div>
+						<div class="item-footer clearfix text-color-6">
+							<div class="pull-left">
+								<span>领取时间</span>
+							</div>
+							<div class="pull-right text-color-grey">
+								<%-getLocalTime(item.createTime)%>
+							</div>
+						</div>
+					<%}%>
+				</li>
+			<%})%>
+		</script>
+		<script type="text/javascript" src="#springUrl('/assets/js/underscore-min.js')"></script>
+		<script type="text/javascript">
+			onload=function(){
+				TouchSlide({
+					slideCell: "#selectC_tab",
+					startFun:function(i,c){
+						$.ajax({
+							type:'get',
+							url:"#springUrl('/my/give/getData/"+(i+1)+".htm')",
+							success:function(data){
+								if(data.code==0){
+									console.log(data)
+										var render=_.template($('#tpl').html());
+										var html=render({datas:JSON.parse(data.data).hotelCouponGives,type:i});
+								$('#list>ul').eq(i).html(html);
+								}else{
+									myAlert('友情提示', '系统繁忙，请稍后重试');
+								}
+								
+							}
+						});
+					}
+					
+				});
+				
+				$("#list>ul").delegate('li','click',function(e){
+					location.href="#springUrl('/give/item-"+$(this).data("id")+".htm')";
+				});
+			}
+		</script>
+	</body>
+
+</html>

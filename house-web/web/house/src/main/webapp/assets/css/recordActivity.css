@@ -1,0 +1,555 @@
+@charset "utf-8";
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr,
+p,
+blockquote,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+pre,
+form,
+fieldset,
+legend,
+button,
+input,
+textarea,
+th,
+td {
+	margin: 0;
+	padding: 0
+}
+
+body {
+	background-size: 100% 100%;
+	font-family: "微软雅黑";
+}
+
+ul,
+li {
+	list-style: none
+}
+.content{
+	background: -webkit-linear-gradient(-180deg, #ffeb7e 100%, #ffde47 100%);
+	background: -o-linear-gradient(-180deg, #ffeb7e 100%, #ffde47 100%);
+	background: -moz-linear-gradient(-180deg, #ffeb7e 100%, #ffde47 100%);
+	background: linear-gradient(-180deg, #ffeb7e 100%, #ffde47 100%);
+	
+}
+.head{position: relative;}
+.total-bean-container {
+	position: relative;
+	width: 80%;
+	height: 65px;
+	line-height: 65px;
+	margin-left: 10%;
+	margin-top: -7%;
+	padding-top: 20px;
+	text-align: center;
+	color: #8d5709;
+	font-size: 14px;
+	text-align: center;
+	font-weight: bold;
+    background-image: url(http://file.88mmmoney.com/00543c15-48d6-4ce5-aa2a-add21b332185);
+    background-size: 100% auto;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.total-bean-container>span {
+	vertical-align: middle;
+}
+
+.bean {
+	display: inline-block;
+	color: #ff2a10;
+	font-size: 16px;
+	font-weight: 400;
+	background: url(http://file.88mmmoney.com/33f2c469-3493-489c-8144-399048db4452) no-repeat 0 50%;
+	background-size: 25px auto;
+	/*margin-right: 5px;*/
+	padding-left: 28px;
+}
+
+.total-bean {
+	font-size: 20px;
+	color: #ff2a10;
+	margin-right: 5px;
+	font-weight: bold;
+}
+
+
+.main-content {
+	margin-left: 10%;
+	margin-right: 10%;
+}
+
+.award-line {
+	position: absolute;
+	top: 36.5%;
+	left: 33%;
+	color: #0b204d;
+	font-size: 16px
+}
+
+.award-line .count {
+	color: #f31d1f;
+	font-weight: 600
+}
+
+.bean-line {
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	margin-top: -40px;
+	color: #d27021;
+	font-size: 13px;
+}
+
+.bean-line span {
+	vertical-align: middle;
+}
+
+.bean-line .beans-left {
+	color: #fff;
+	font-size: 18px;
+	margin-right: 5px;
+	padding-left: 27px;
+	background: url(http://file.88mmmoney.com/67dced9c-03f5-498f-adce-e015c720248d) no-repeat;
+	background-size: 25px auto;
+}
+
+.bean-line .total-beans {
+	color: #fff;
+	font-size: 23px;
+	margin-left: 3px;
+	margin-right: 10px;
+	padding-top: 2px;
+}
+
+.aw-act {
+	color: #f31d1f
+}
+
+.img-bean {
+	position: absolute;
+	z-index: 2;
+	top: 33%;
+	width: 68px;
+	right: 12%
+}
+
+#lottery {
+	text-align: center;
+	background: url(http://file.88mmmoney.com/78a797fe-23e5-43c6-b55c-6ec9c3c00e8e) no-repeat;
+	background-size: 100% auto;
+	padding: 17px 15px
+}
+
+#lottery table td {
+	width: 25%;
+	text-align: center;
+	font-size: 12px;
+	font-weight: bold;
+	color: #6b2f26;
+	background: url(http://file.88mmmoney.com/6fa00b93-b356-407e-be9c-83de41483368) no-repeat;
+	background-size: 100% auto
+}
+
+#lottery table td button {
+	width: 100%;
+	height: 50px;
+	line-height: 70px;
+	display: block;
+	text-decoration: none;
+	border: 0
+}
+
+#lottery table #start {
+	background: 0
+}
+
+#start {
+	position: relative;
+}
+
+#start button {
+	background: url(http://file.88mmmoney.com/183a86eb-6659-413f-9e4d-bdb756df79e8) no-repeat;
+	background-size: 100% auto
+}
+
+#start button:active {
+	background: url(http://file.88mmmoney.com/183a86eb-6659-413f-9e4d-bdb756df79e8) no-repeat;
+	background-size: 100% auto
+}
+
+#start button.end {
+	background: url(http://file.88mmmoney.com/dbfff08b-5b0d-469a-a811-ba5edb1d07ff) no-repeat;
+	background-size: 100% auto
+}
+
+#start button.unactive {
+	background: url(http://file.88mmmoney.com/a0f32d86-4548-4027-bf46-860e0c8247e4) no-repeat;
+	background-size: 100% auto
+}
+
+#start p{
+	position: absolute;bottom: 7px;width: 100%;color: #ffe401;font-size: 12px;
+}
+#start p.unactive{color: #fff;}
+
+
+#lottery table td.active {
+	background: url(http://file.88mmmoney.com/774d6ebb-5518-4eab-b026-b414089210d4) no-repeat;
+	background-size: 100% auto
+}
+
+.lottery-unit> div {
+	margin-top: -3px;
+	color: #6b2726;
+	font-size: 17px;
+	font-weight: bold;
+}
+
+.lottery-unit div img {
+	width: 25px;
+}
+
+.lottery-unit .leavel-one img {
+	width: 35px;
+	height: auto;
+}
+
+.lottery-unit p {
+	font-size: 12px
+}
+
+.luckdraw-time {
+	text-align: center;
+	color: #fff;
+	font-size: 16px;
+	letter-spacing: 1px
+}
+
+.luckdraw-time span {
+	font-size: 24px
+}
+
+.more-info {
+	padding-left: 15px;
+	padding-right: 15px;
+	background: url(http://file.88mmmoney.com/6790dbc7-ad29-41e3-a942-0dd0c4fc4a77) no-repeat;
+	background-size: 100% 100%;
+	padding-bottom: 20px;
+}
+
+.act-rule {
+	text-align: center;
+	position: relative;
+	margin-bottom: 15px;
+}
+
+.act-rule>a {
+	text-decoration: none;
+}
+
+.act-rule a> p {
+	height: 35px;
+	line-height: 35px;
+	margin-left: 10%;
+	margin-right: 10%;
+	background-color: #fda019;
+	color: #fff;
+	border-radius: 8px;
+}
+
+.to-rule {
+	font-size: 14px;
+	text-align: right;
+	/*margin-top: 35px;*/
+	margin-right: 20px;
+	padding-right: 15px;
+	background: url(http://file.88mmmoney.com/324b08cf-1e05-4b9b-9678-af6ac7d916ca) no-repeat 100% 50%;
+	background-size: 10px auto;
+}
+
+.to-rule a {
+	color: #b86d00;
+	text-decoration: none;
+}
+
+.list_history {
+	height: 50px;
+	font-size: 16px;
+	color: #ffe401;
+	margin-top: 15px;
+	background-color: #B86D00;
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+	border-radius: 6px;
+}
+
+.award-ad {
+	display: inline-block;
+	margin-left: 10px;
+}
+
+.award-list {
+	display: inline-block;
+	width: 75%;
+}
+
+
+.award-list {
+	color: #fff;
+	height: 40px;
+	overflow: hidden;
+}
+
+.award-item {
+	height: 40px;
+	line-height: 40px;
+	color: #fff;
+}
+
+.award-item p img {
+	width: 18px;
+	height: auto;
+	vertical-align: middle
+}
+
+
+/*.award-item .phone {
+	margin-left: 20px
+}
+*/
+
+.award-item .beans {
+	margin-left: 20px
+}
+
+.title {
+	text-align: center;
+	color: #fff;
+	margin-top: 20px;
+	margin-bottom: 12px
+}
+
+.title span img {
+	width: 20px;
+	margin-left: 10px;
+	margin-right: 10px;
+	margin-bottom: 5px;
+	vertical-align: middle;
+}
+
+.title p {
+	width: 33.33%;
+	display: inline-block;
+	font-weight: bold
+}
+
+.line {
+	background-color: #B86D00;
+	height: 1px;
+	display: inline-block;
+	vertical-align: middle
+}
+
+.lsit-award {
+	margin-bottom: 50px;
+}
+
+.lsit-award ul li {
+	margin-bottom: 35px;
+	margin-left: 40px;
+	margin-right: 40px;
+}
+
+.lsit-award> .title p {
+	width: 70%;
+	color: #B86D00;
+	font-size: 18px;
+}
+
+.lsit-award> .title .line {
+	width: 14%;
+}
+
+.hotel-name {
+	color: #fff;
+	text-align: center;
+	margin-top: 5px;
+	margin-bottom: 25px;
+	font-size: 18px;
+	font-weight: 800
+}
+.rule-container{
+	background-color: #f8d849;
+	padding-bottom: 20px;
+	padding-left: 15px;
+	padding-right: 15px;
+}
+.rules {
+	padding-bottom: 40px;
+	margin-bottom: 20px;
+	color: #8d5709;
+	font-size: 12px;
+}
+
+.rules ul li {
+	margin-top: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+.rules> p {
+	padding-left: 10px;
+	padding-right: 10px;
+	text-align: justify;
+}
+
+.rule-light {
+	color: #e24711
+}
+
+.barcode {
+	text-align: center;
+	margin-bottom: 20px
+}
+
+.gray-view {
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.8);
+	position: fixed;
+	z-index: 11;
+	top: 0
+}
+
+.share-tip {
+	position: fixed;
+	top: 10px;
+	right: 15px;
+	z-index: 1111;
+	text-align: right;
+}
+
+.congratulation,
+.pity {
+	position: fixed;
+	z-index: 12;
+	top: 10%;
+	background: url(http://file.88mmmoney.com/99594ccc-3a29-4d79-810b-6791fc1646e8) no-repeat;
+	background-size: 100% auto;
+	width: 100%;
+	height: 65%
+}
+
+.share-more{
+	background: url(http://file.88mmmoney.com/92ae92dd-8183-46b5-94cc-5384d82571c1) no-repeat;
+	background-size: 100% auto;
+}
+
+.last-time{
+  background: url(http://file.88mmmoney.com/d480a2f5-0375-421e-8a3b-ad9502812107) no-repeat;
+  background-size: 100% auto;
+}
+
+.nochance {
+	position: fixed;
+	top: 10%;
+	z-index: 11111;
+}
+
+.pity{
+	background: url(http://file.88mmmoney.com/06340bcd-63f9-4aca-8137-f317a68f173d) no-repeat;
+	background-size: 100% auto;
+}
+
+.dialog-content,
+.nochance-content {
+	width: 100%;
+	text-align: center;
+	color: #641f03;
+	font-size: 15px;
+}
+
+.nochance .nochance-content {
+	font-size: 12px
+}
+
+.cancel {
+	position: absolute;
+	right: 0;
+	top: -15%;
+	width: 30px
+}
+
+.share {
+	position: absolute;
+	width: 100%;
+	text-align: center;
+	top: -25%;
+	color: #ffc939;
+	font-size: 19px
+}
+
+.share span {
+	color: #ff341a;
+	font-size: 29px
+}
+
+.act-end,
+.act-start {
+	display: block;
+	position: fixed;
+	top: 25%;
+	z-index: 12;
+	text-align: center
+}
+
+.act-end {
+	display: none
+}
+
+.act-end .cancel {
+	right: 15%
+}
+
+.start-time {
+	position: absolute;
+	z-index: 14;
+	width: 100%;
+	text-align: center;
+	top: 45%;
+	color: #fdf001;
+	font-size: 20px
+}
+
+.start-time span {
+	font-size: 28px
+}
+
+.start-lable {
+	position: absolute;
+	z-index: 14;
+	width: 100%;
+	text-align: center;
+	top: 65%;
+	color: #fff;
+	font-size: 20px;
+	margin-top: 15px
+}
+
+.act-start .cancel {
+	right: 15%
+}

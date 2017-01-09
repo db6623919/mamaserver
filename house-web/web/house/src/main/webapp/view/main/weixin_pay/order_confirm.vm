@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>支付订单</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-cache"/>
+
+    <link rel="stylesheet" href="#springUrl('/assets/css/amazeui.min.css')"/>
+    <link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/reset.css')">
+    <link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/weui.min.css')">
+    <link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/order/pay-order.css')">
+
+    <script type="text/javascript" src="#springUrl('/assets/js/zepto.js')"></script>
+    <script type="text/javascript" src="#springUrl('/assets/js/amazeui.min.js')"></script>
+    <script type="text/javascript" src="#springUrl('/assets/js/circles.min.js')"></script>
+    <script type="text/javascript" src="#springUrl('/assets/js/common.js?_v=1')"></script>
+    <script type="text/javascript" src="#springUrl('/assets/js/order/pay-order.js')"></script>
+    <script type="text/javascript">
+        var adaptPageClass = "content";
+    </script>
+</head>
+<body>
+<div class="content">
+	<input id="confirmOrderId" type="hidden" value="$!orderId"  />
+	<input id="confirmProductCode" type="hidden" value="$!productCode"  />
+	<input id="confirmTradeType" type="hidden" value="$!tradeType"  />
+    <header>
+        <div class="head">
+            <a class="back ui-link" href="javascript:void(0);" onclick="goBack()" tdata-rel="back">返回</a>
+
+            <div class="order-title header_title" id="header-title">支付订单</div>
+        </div>
+    </header>
+    
+    <section>
+        <div class="circle-container">
+            <div id="countDown"></div>
+        </div>
+        <p class="animate-text">正在尝试打开微信客户端</p>
+    </section>
+
+    <section class="section-notes">
+        <p>1.如果已完成支付，请点击 [支付完成] ;</p>
+        <p>2.如果未打开微信客户端或未完成支付，请点击 [重新支付]</br>以选择其他支付方式</p>
+    </section>
+
+    <section class="section-btn">
+        <a id="rePay" href="javascript:;">重新支付</a>
+        <a id="complete" href="javascript:;">支付完成</a>
+    </section>
+</div>
+</body>
+</html>

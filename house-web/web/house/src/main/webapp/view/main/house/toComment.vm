@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>评分</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-cache"/>
+
+    <link rel="stylesheet" href="#springUrl('/assets/css/amazeui.min.css')"/>
+    <link rel="stylesheet" href="#springUrl('/assets/css/sm.min.css"')/>
+    <link rel="stylesheet" href="#springUrl('/assets/css/sm-extend.min.css')"/>
+    <link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/reset.css')">
+    <link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/to-comment.css')">
+
+	<script type="text/javascript" src="#springUrl('/assets/js/jquery.min.js')"></script>
+    <script type="text/javascript" src="#springUrl('/assets/js/zepto.js')"></script>
+    <script type="text/javascript" src="#springUrl('/assets/js/amazeui.min.js')"></script>
+</head>
+
+<body>
+<form action="" method="post" >
+<div id="commentContent" class="content">
+	<input type="hidden" id="houseId" name="houseId" value="$!result.houseId" />
+	<input type="hidden" id="orderId" name="orderId" value="$!orderId" />
+
+    <header>
+        <div class="head">
+            <a class="back ui-link" href="javascript:void(0);"  onclick="javascript: history.go(-1);" tdata-rel="back">返回</a>
+
+            <div class="comment-title title header_title" id="header-title">评分</div>
+        </div>
+    </header>
+
+    <section class="section-title">
+        <div class="house-pic" style="background: url($!result.imgUrl) no-repeat center;background-size: cover">
+        </div>
+        <div class="house-desc">
+            <h2>$!result.houseName</h2>
+            <p class="grade">
+                <span class="score">$!result.averageScore分</span>
+                <span calss="comments">$!result.totalCommentsNum条评论</span>
+            </p>
+        </div>
+    </section>
+
+    <section class="section-score">
+        <span>选择评分：</span>
+        <input type="hidden" id="score" name='score' value="0" />
+        <ul id="ulScore" class="ul-score">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </section>
+
+    <section>
+        <textarea name="comment" id="comment" cols="30" rows="10" placeholder="分享一下您对这家酒店的环境、服务和价格的感受" maxlength="500"></textarea>
+    </section>
+
+    <section class="section-upload">
+        <div id="imgList">
+            <div id="uploadBox" class="box upload-box" >
+				<label id='uploadBtn' for="uploadInput">
+					<input type="file" id="uploadInput" multiple="multiple"/>
+				</label>
+            </div>
+        </div>
+
+        <div class="notes">
+			最多可以上传10张图
+        </div>
+    </section>
+
+</div>
+</form>
+<input type="button" id="submit" onclick="addComments();" value="提交评论"/>
+<script type="text/javascript" src="#springUrl('/assets/js/sm.min.js')"></script>
+<script type="text/javascript" src="#springUrl('/assets/js/sm-extend.min.js')"></script>
+<script type="text/javascript" src="#springUrl('/assets/js/common.js?_v=1')"></script>
+<script type="text/javascript" src="#springUrl('/assets/js/lrz.all.bundle.min.js')"></script>
+<script type="text/javascript" src="#springUrl('/assets/js/to-comment.js')"></script>
+</body>
+
+</html>

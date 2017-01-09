@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head lang="en">
+    <meta charset="UTF-8">
+    <title>妈妈送房</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-cache" />
+    <link rel="stylesheet" href="../assets/css/amazeui.min.css"/>
+    <link rel="stylesheet" type="text/css" href="../assets/css/reset.css?_v=2">
+    <link rel="stylesheet" type="text/css" href="../assets/css/register_v2.css?_v=2">
+    <link rel="stylesheet" type="text/css" href="../assets/css/newlogin.css">
+    <script type="text/javascript" src="../assets/js/jquery.min.js"></script>
+    <script type="text/javascript" src="../assets/js/amazeui.min.js"></script>
+    <script type="text/javascript" src="../assets/js/common.js?_v=1"></script>
+    <script type="text/javascript" src="../assets/js/count-time.js?_v=1"></script>
+    <script type="text/javascript">
+    	var adaptPageClass = "content";
+    </script>
+    <style>
+
+    </style>
+  </head>
+  <body>
+    <div class="body content">
+      <header class="header clearfix">
+       <div class="head">
+        <a class="back ui-link" href="javascript:void(0);" onClick="javascript :history.back(-1);" tdata-rel="back">返回</a>
+        <div class="title header_title" id="header-title">密码设置成功</div>
+       </div>
+      </header>
+      <div class="am-g bg-fbf">
+        <div class="top">
+          <p>
+            <img src="../assets/i/register_v2/success_icon.png">
+          </p>
+          <p class="top-title">
+            您已成功设置登录密码
+          </p>
+          <p class="top-subtitle">
+            欢迎来到妈妈送房
+          </p>
+        </div>
+
+        <p class="tips set-pwd">
+          请扫描下图或者长按下图通过识别二维码关注我们的订阅号“妈妈送房网”，下次您可以方便通过订阅号使用妈妈送房的服务！
+        </p>
+
+        <p class="qrcode">
+          <img src="../assets/i/register_v2/qrcode.png">
+        </p>
+
+        <div class="reg_botton a_hand margin_top_2" style="margin-bottom:2rem;" onclick="location.href='#springUrl('/index.htm')'">逛逛美房</div>
+      </div>
+    </div>
+  </body>
+</html>

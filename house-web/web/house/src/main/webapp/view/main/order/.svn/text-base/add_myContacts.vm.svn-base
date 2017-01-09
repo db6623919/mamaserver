@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>选择联系人</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-cache" />
+  <link rel="stylesheet" href="#springUrl('/assets/css/amazeui.min.css')"/>
+  <link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/reset.css')">
+  
+  <script type="text/javascript">
+  	var adaptPageClass = "content";
+  </script>
+</head>
+<body>
+  <div class="body content">
+    <header class="bg-red">
+       <div class="head">
+        <a class="back ui-link"  tdata-rel="back" onclick="hiedeAddContans()">返回</a>
+        <div class="title header_title" id="header-title">添加入住人</div>
+       </div>
+    </header>
+    <section class="order-main">
+      <form >
+		
+        <ul class="list">
+          <li>
+            <div class=" clearfix">
+              <div class="color-grey pull-left">
+					姓名：
+              </div>
+              <div class="pull-left">
+                <span class="color-black " id="s_contactsName">
+					<input id="contactsName" placeholder="姓名" type="text" class="reg_input_1 text-color" rel="name" msgid="error_7" need="need"  msg="姓名" >
+                </span>
+              </div>
+              <div class=" reg_err_div div_hidden fr" id="error_7">
+                <img src="/assets/i/order/icon_err.png" class="err_icon_1">
+                 <font id="error_7_span">姓名不能为空</font>
+              </div>
+            </div>
+          </li>
+          
+          <li>
+            <div class=" clearfix">
+              <div class="color-grey pull-left">
+					手机号：
+              </div>
+              <div class="pull-left">
+                <span class="color-black" id="room_info">
+					<input id="contactsPhone" placeholder="手机号" type="telephone" class="reg_input_1 text-color" need="need" rel="phone" msgid="error_1" msg="手机号"  maxlength="11" islogin="isLogin"></span>
+              </div>
+              <div class=" reg_err_div div_hidden fr" id="error_1">
+                <img src="/assets/i/order/icon_err.png" class="err_icon_1" need="need"/>
+                <font id="error_1_span"></font>
+              </div>   
+            </div>
+          </li>
+        </ul>
+
+		<div class="submit_foot"></div>
+        <a class="btn bg-red submitOrd" type="button" class="button"  onclick="addMyContacts()" >确定</a>
+      </form >
+    </section>
+	
+  </div>
+ 
+ <script type="text/javascript">
+ function addMyContacts() {
+	var contactsName = $('#contactsName').val();
+	var contactsPhone = $('#contactsPhone').val();
+	
+	if($("#contactsName").val() == ""){
+		alert("请填写姓名！");
+		$("contactsName").focus();
+		return false;
+	}
+	if($("#contactsPhone").val() == ""){
+		alert("请填写手机号码！");
+		$("contactsPhone").focus();
+		return false;
+	}
+	if (!checkMobile(contactsPhone)) {
+		alert("手机格式不正确");
+		$("#contactsPhone").focus();
+		return false ;
+	}	
+	$.ajax({
+		type : 'post',
+		url : "/my/addMyContacts.htm",
+		data : {"contactsName": contactsName,
+				"contactsPhone": contactsPhone
+				},
+		dataType: "json",
+		success : function(resp) {
+			if (resp.data.code == 0) {
+				showTip(resp.data.msg);
+				$("#modal").css("display","none");
+				$("#modal_addContacts").css("display","none");
+				$("#modal_contacts").css("display","block");	
+				//$("#modal_contacts").load("#springUrl('/my/choose_myCoupon.htm')");
+				$("#modal_contacts").css("zIndex","999");
+				
+				var html = "<ul class='list'>";
+				    html += "  <li>";
+				    html += "      <div class='clearfix' data-info='person'>";
+				    html += "        <div class='color-black pull-left'>";
+				    html += "          <span class='name' data-info='name' id='name_" + resp.data.contactsId + "'>入住人:" + contactsName + "</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+				    html += "          <span class='number' data-info='number' id='number_" + resp.data.contactsId + "'>手机号:" + contactsPhone + "</span>";
+					html += "        </div>";
+					html += "        <div class='pull-right icon-select'>";
+					html += "          <img id='" + resp.data.contactsId + "' sign='select' contactsName='" + contactsName + "' contactsPhone='" + contactsPhone + "' src='../assets/i/neworder_3_5/select.png' data-selector='img'>";
+					html += "        </div>";
+					html += "      </div>";
+					html += "  </li>";
+					html += "</ul>";
+				$("#show_list").append(html);
+				
+				$('[data-selector="img"]').on('click', function() {
+			   	  contactsId = $(this).attr("id");
+			      cp.selectToggle($(this))
+			    })	
+				
+			} else {
+				showTip(resp.data.msg);
+			}
+		},
+	});
+	
+	
+}
+
+function hiedeAddContans() {
+	$("#modal_addContacts").css("display","none");
+	$("#modal_contacts").css("display","block");
+}
+ </script>
+ 
+</body>
+</html>

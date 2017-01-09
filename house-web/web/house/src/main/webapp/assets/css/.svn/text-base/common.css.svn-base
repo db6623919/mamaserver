@@ -1,0 +1,21 @@
+*, ul{margin: 0;padding: 0;}
+img{vertical-align: middle;}
+
+.clearfix {*zoom:1;}
+.clearfix:before,.clearfix:after {display:table; line-height:0; content:"";}
+.clearfix:after {clear:both;}
+.pull-left{float: left;min-width: 20%;}
+.pull-right{float: right;}
+
+.mb-08{margin-bottom: .8rem;}
+.color-red{color:#fb394c;}
+.color-grey{color: #919191;}
+.color-black{color: #333;}
+.bg-red
+{
+	background-color: #fb394c;
+}
+.header_title.title
+{
+	font-size: 1.36rem;
+}

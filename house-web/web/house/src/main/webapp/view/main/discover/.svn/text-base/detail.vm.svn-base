@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+	<head lang="en">
+		<meta charset="UTF-8">
+		<title>发现</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="Cache-Control" content="no-cache" />
+		<link rel="stylesheet" href="#springUrl('/assets/css/amazeui.min.css')" />
+		<link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/reset.css')">
+		<link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/discover/detail.css')">
+		<link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/common/recommend.css')">
+		<link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/common/header.css')">
+			
+		<script type="text/javascript" src="#springUrl('/assets/js/jquery.min.js')"></script>
+		<script type="text/javascript" src="#springUrl('/assets/js/common.js?_v=1')"></script>
+
+		<script  type="text/javascript" charset="utf-8">
+			var adaptPageClass = 'content';
+		</script>
+		
+	</head>
+
+	<body>
+        <header>
+            <div class="head">
+				<a class="red-back ui-link" href="javascript:void(0);" onclick="javascript :history.go(-1);" tdata-rel="back"></a>
+                <div class="white-bg-title header_title" id="header-title">夕阳红</div>
+            </div>
+        </header>
+		<div id="modal_order" class="body content discover">
+			<!--夕阳红-->
+			<div class="banner elderly">
+				<img src="#springUrl('/assets/i/discover/share.png')" class="share"/>
+			</div>
+			<div class="desc-pad">
+				<h1>最美夕阳红</h1>
+				<div class="subtitle">一起品茶，一起慢生活，一起看夕阳</div>
+				<div class="separator"></div>
+				<p class="desc">往事如风，带走了如花的青春，吹散了满天的浮云。失去的，再也无法挽回；流走的，成为生命里的过往。当所有的波澜起伏风平浪静，我用闲适淡然面对余生。</p>
+			</div>
+			<!--亲子等其他三个暂时未提供-->
+
+			<!--推荐客栈-->
+			<div class="recommend-container">
+				<h2>推荐客栈</h2>
+				<div id="list">
+					<div class="item">
+						<a class="to-special" href=""  />
+        				  <img class='lazy_load_img' xzsrc="请在这里放图片路径" src="#springUrl('/assets/i/common/lazy_image.jpg')" />
+        				</a>
+						<div class="title">
+        					<h3>大理双廊青云客栈</h3>
+                            <span>市场：¥488起/晚</span>
+        				</div>
+        				<div class="desc">
+							<ul class="info">
+								<li>交通便利</li>
+								<li>全套家电</li>
+								<li>交通便利</li>
+							</ul>
+         					<span class="discount-cont">
+        						送房:
+        						<span class="special-price">¥<strong>345</strong></span>
+        						起/晚
+        					</span>
+        				</div>
+					</div>
+					<div class="item">
+						<a class="to-special" href=""  />
+        				  <img class='lazy_load_img'  xzsrc="请在这里放图片路径" src="#springUrl('/assets/i/common/lazy_image.jpg')" />
+        				</a>
+						<div class="title">
+        					<h3>大理双廊青云客栈</h3>
+                            <span>市场：¥488起/晚</span>
+        				</div>
+        				<div class="desc">
+							<ul class="info">
+								<li>交通便利</li>
+								<li>全套家电</li>
+								<li>交通便利</li>
+							</ul>
+         					<span class="discount-cont">
+        						送房:
+        						<span class="special-price">¥<strong>345</strong></span>
+        						起/晚
+        					</span>
+        				</div>
+					</div>
+				</div>
+		</div>
+
+	</body>
+	
+</html>

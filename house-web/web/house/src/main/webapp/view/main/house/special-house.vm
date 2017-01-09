@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+
+	<head lang="en">
+		<meta charset="UTF-8">
+		<title>房源列表</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="Cache-Control" content="no-cache" />
+		<link rel="stylesheet" href="#springUrl('/assets/css/amazeui.min.css')" />
+		<link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/reset.css')">
+		<link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/special-house.css')">
+		<link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/scrollbar.css')" />
+	</head>
+
+	<body class="content">
+		<header>
+			<div class="head">
+				<a class="back ui-link" href="javascript:void(0);" onclick="javascript :history.go(-1);" tdata-rel="back"></a>
+				<div class="special-house-title header_title" id="header-title">每日特价</div>
+			</div>
+		</header>
+		<div id="wrapper">
+			<div id="scroller">
+				<input type="hidden" value="$!pageNum" id="pageNum" name="pageNum" />
+				<div id="pullDown">
+					<span class="pullDownIcon"></span><span class="pullDownLabel">下拉刷新...</span>
+				</div>
+				<div id="modal_order" class="body special">
+					<div class="banner">
+						<span class="related">
+					<img src="#springUrl('/assets/i/house/related.png')"/>
+					$!relatedInn家相关
+				</span>
+						<img class="home-icon" xzsrc="http://file.88mmmoney.com/e2188e0b-a1c7-48c0-9e7a-41aa61247afd" src="#springUrl('/assets/i/house/home.png')" />
+						<h2>特价房专题</h2>
+						<div class="desc">
+							<strong>50家</strong>控股客栈，<strong>500家</strong>深度合作客栈，<strong>5000家</strong>连接客栈
+						</div>
+						<div class="desc">
+							依托民宿经营贷置换房源，全网最低价
+						</div>
+					</div>
+					<!--推荐客栈-->
+					<div class="recommend-container">
+						<h2>推荐客栈</h2>
+
+						<div class="h-list" id="h-list" name="h-list">
+
+							#foreach ($!specialsHouse in $!list)
+							<div class="item house-detail">
+								<a class="to-special" onclick="detail($!specialsHouse.houseId);_czc.push(['_trackEvent', '房源详情', '房源详情-房源详情页', '房源详情-房源详情页','24','']);" />
+									<img class='lazy_load_img' src="#springUrl('/assets/i/common/lazy_image.jpg')" xzsrc="$!specialsHouse.imageUrl!h5i6s" />
+									<span class="deep-coop">
+										<img  src="#springUrl('/assets/i/index/flag.png')" />
+										$!specialsHouse.partnership
+                				  </span>
+								</a>
+								<div class="title">
+									<h3>$!specialsHouse.houseName</h3>
+									#if ($!specialsHouse.market_price > 0)
+									<span>市场价：¥$!specialsHouse.market_price起/晚</span>
+									#end
+								</div>
+								<div class="desc">
+									<span class="info">$!specialsHouse.room室$!specialsHouse.office厅$!specialsHouse.toilet卫 $!specialsHouse.beds床 宜住$!specialsHouse.personNum人</span>
+									<span class="discount-cont">
+									#if($!specialsHouse.market_price > 0)
+									<i>$!specialsHouse.discount折</i>
+									#end
+        						送房价:
+        						<span class="special-price">¥<strong>$!specialsHouse.memTotalAmt</strong></span> 起/晚
+									</span>
+								</div>
+							</div>
+							#end
+						</div>
+					</div>
+				</div>
+				<div id="pullUp" onclick="">
+					<span class="pullUpIcon"></span><span class="pullUpLabel"></span>
+				</div>
+			</div>
+		</div>
+	</body>
+
+	<script type="text/javascript" src="#springUrl('/assets/js/jquery.min.js')"></script>
+	<script type="text/javascript" src="#springUrl('/assets/js/common.js?_v=1')"></script>
+	<script src="#springUrl('/assets/js/mm-img-lazyload.js?version1608121009')"></script>
+	<!--下拉刷新-->
+	<script src="#springUrl('/assets/js/pulltorefresh.js?version1608121009')" type="text/javascript" charset="utf-8"></script>
+	<script src="#springUrl('/assets/js/special-list.js?version1608121009')" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" charset="utf-8">
+		var adaptPageClass = 'content';
+		function detail(houseId) {
+			self.location.href = "/house/toDetail.htm?houseId=" + houseId;
+		}
+		$(function() {
+			var lazyload = {};
+			lazyload.img = function(obj) {
+				var img = typeof(obj) == 'object' ? obj : $(obj);
+				var xz_src = img.attr('xzsrc');
+				if(xz_src && xz_src != 'ok') {
+					img.attr('src', xz_src);
+					img.attr('xzsrc', 'ok');
+				}
+			}
+			var lazy_load_imgs = $('.lazy_load_img');
+			setTimeout(function() {
+				lazy_load_imgs.mmlazyload({
+					replaceImage: false,
+					pxOffset: 50,
+					memorySaver: true
+				});
+			}, 1000);
+		})
+	</script>
+
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+
+	<head lang="en">
+		<meta charset="UTF-8">
+		<title>赠券详情</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="Cache-Control" content="no-cache" />
+		<link rel="stylesheet" href="#springUrl('/assets/css/amazeui.min.css')" />
+		<link rel="stylesheet" href="#springUrl('/assets/css/reset.css')" />
+		<link rel="stylesheet" href="#springUrl('/assets/css/order_3_5.css')">
+		
+		<script type="text/javascript" src="#springUrl('/assets/js/jquery.min.js')"></script>
+		<script type="text/javascript" src="#springUrl('/assets/js/amazeui.min.js')"></script>
+		<script type="text/javascript" src="#springUrl('/assets/js/common.js?_v=1')"></script>
+		<script type="text/javascript" src="#springUrl('/assets/js/TouchSlide.1.0.source.js')"></script>
+		<script type="text/javascript">
+			var adaptPageClass = "content";
+		</script>
+	</head>
+
+	<body>
+		<div class="body content">
+			<header class="header clearfix">
+		       	<div class="head">
+		        	<a class="back ui-link" href="javascript:void(0);" onClick="javascript :history.go(-1);" tdata-rel="back">返回</a>
+		        	<div class="title header_title" id="header-title">赠券详情</div>
+		       	</div>
+	    		<div class="menumask" style="display:none;z-index:9;width:100%;position:absolute;top:0;left:0;bottom: 0;height:100%;background-colorT:red;opacity:0.01"></div>
+	    	</header>
+
+			<section class="order-detail">
+				<div class="slider" id="selectC_tab">
+					<div id="list" class="bd">
+						<ul>
+							<div class="item">
+								<div class="item-content clearfix">
+									<div class="am-u-sm-4 pl-0 pr-0">
+										<img src="#springUrl('/assets/i/travel/give-desc.png')" class="h-5">
+									</div>
+									<div class="am-u-sm-8 fs-1">
+					              		<p>
+						                 	 <span class="labels color-grey">名称</span>
+											 <span class="text" id="name">【三亚】亲和源</span>
+										</p>
+										<p>
+											<span class="labels color-grey">份数</span>
+											<span class="text" id="count">1份</span>
+										</p>
+										<p>
+											<span class="labels color-grey">总数</span>
+											<span class="text" id="total">3张</span>
+										</p>
+									</div>
+								</div>
+								<div class="item-center clearfix fs-1">
+									<div class="pull-left">
+										<span>赠言</span>
+									</div>
+									<div class="pull-right " id="detail">
+										恭喜发财,大吉大利！
+									</div>
+								</div>
+								<div class="item-center clearfix fs-1">
+									<div class="pull-left">
+										<span>赠送人</span>
+									</div>
+									<div class="pull-right " id="giveName" value="">
+										$!name
+									</div>
+								</div>
+								
+								<div class="item-center clearfix fs-1">
+									<div class="pull-left">
+										<span>领取时间</span>
+									</div>
+									<div class="pull-right color-grey" id="startTime">
+										
+									</div>
+								</div>
+								
+								
+							</div>
+						</ul>
+					</div>
+				</div>
+			</section>
+			
+		</div>
+		
+		<script>
+			onload=function(){
+				console.log(${data});
+				var jsonData=${data};
+				console.log(jsonData);
+				if(jsonData.code==0){
+					var result=jsonData.data.hotelCouponGive;
+					var detail=JSON.parse(result.showDetail);
+					$("#name").html(detail.houseName);
+					$("#count").html(detail.copiesCount);
+					$("#total").html(detail.total);
+					//$("#giveName").html(cutOut(result.name));
+					$("#detail").html(detail.msg);
+					$("#startTime").html(getLocalTime(result.createTime));
+				}else{
+				
+				}
+			}
+		</script>
+		
+	</body>
+	
+</html>

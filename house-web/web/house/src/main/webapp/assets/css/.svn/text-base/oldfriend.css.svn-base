@@ -1,0 +1,57 @@
+.am-header{
+  background-color: #ff5216;
+}
+.am-header-title a{
+  color: #ffffff;
+}
+.am-fri-imgtitle{
+  background-color: rgba(0,0,0,.7);
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  color: #fff;
+  font-size: 1.5rem;
+}
+.am-pad-0{
+  padding-left:0px;
+}
+.am-fri-imgtitle-1{
+  background-color: #000000;
+  margin-top: 5px;
+  padding-right: 15px;
+  padding-left: 10px;
+  line-height: 2.6rem;
+  overflow: hidden;
+  height: 2.6rem;
+  border-radius: 0px 20px 20px 0px;
+  position: absolute;
+}
+.am-fri-imgtitle-2{
+  padding-top: 5px;
+  overflow: hidden;
+  font-size: 1.2rem;
+}
+.am-font-1-9{
+  font-size: 1.9rem;
+}
+.am-friends-days-1{
+  background-color: #ff5216;
+  padding-left: 4px;
+  padding-right: 4px;
+  border-radius: 5px;
+  margin-right: 2px;
+  font-size: 2rem;
+}
+.am-friends-days{
+  float: right;
+  margin-top: 15px;
+}
+.am-padding-right-5{
+  padding-right:5px;
+}
+.am-padding-left-3{
+  padding-left:3px;
+}
+.am-imgtitle2-top{
+  margin-top: 1.3rem;
+}

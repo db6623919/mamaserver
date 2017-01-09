@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>妈妈送房</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-cache" />
+  <link rel="stylesheet" href="#springUrl('/assets/css/amazeui.min.css')"/>
+  <link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/reset.css')">
+  <link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/recharge-hotline.css')">
+  <script type="text/javascript" src="#springUrl('/assets/js/jquery.min.js')"></script>
+  <script type="text/javascript" src="#springUrl('/assets/js/amazeui.min.js')"></script>
+  <script type="text/javascript" src="#springUrl('/assets/js/common.js')"></script>
+  <script type="text/javascript" src="#springUrl('/assets/js/count-time.js')"></script>
+  <script type="text/javascript">
+  	var adaptPageClass = "content";
+  </script>
+  <style>
+
+  </style>
+</head>
+<body>
+  <div class="body content">
+    <header class="header clearfix">
+       <div class="head">
+        <a class="back ui-link" href="javascript:void(0);" onClick="javascript :history.go(-1);" tdata-rel="back">返回</a>
+        <div class="title header_title" id="header-title">线下充值指导</div>
+
+       </div>
+    </header>
+    <div class="am-g bg-fbf">
+        <div class="ml-5 mr-5 mt-5 pl-15 pr-15 am-reg-border">
+             <h1 class="fs-13 am-mg-0 mt-5 text-color-red pt-5 pb-5 reg-border-bottom" >
+                <span class="am-title-border"></span>
+                第一步<span class="ml-5">转账</span>
+            </h1>
+            <p >
+                任意方式转账至妈妈送房专用充值账户，备注格式为“您的姓名+手机号”;
+            </p>
+            <p style="color:#f75c52">
+            充值1元 = 1积分，<br>
+	即充即奖，多充多奖，首充大奖，续充还奖<br>
+	<a href="#springUrl('/recharge-detail.htm')" style="text-decoration:underline;">点击查看奖励规则</a>
+             </p>
+            <p >    
+                账户名：深圳妈妈送房网络科技有限公司<br>
+                账 &nbsp;&nbsp;&nbsp;号：<span style="color:#0099ff;">8110301014400027354</span><br>
+                开户行：中信银行深圳三诺大厦支行
+            </p>
+            <h1 class="fs-13 am-mg-0 mt-5 text-color-red pt-5 pb-5 reg-border-bottom" >
+                <span class="am-title-border"></span>
+                第二步<span class="ml-5">知会</span>
+            </h1>
+            <p >
+                转账后立即拨打客服电话400-9966-633，<br>
+                知会我们您的姓名、手机号和充值金额<br>
+                挂机后请保持手机畅通<br>
+            </p>
+            <h1 class="fs-13 am-mg-0 mt-5 text-color-red pt-5 pb-5 reg-border-bottom" >
+                <span class="am-title-border"></span>
+                第三步<span class="ml-5">确认</span>
+            </h1>
+            <p >
+                资金到账确认无误后，客服会给您回电确认资金到账,如超24小时未到账或金额有出入，客服也会给您回电查找原因，解决问题，一直到确认资金到账。
+            </p>
+            <h1 class="fs-13 am-mg-0 mt-5 text-color-red pt-5 pb-5 reg-border-bottom" >
+                <span class="am-title-border"></span>
+                第四步<span class="ml-5">使用</span>
+            </h1>
+            <p >
+              您可以使用充值和奖励的积分订房了！
+            </p>
+            <p style="color:#f75c52">  
+              谢谢您对妈妈送房的支持，随时欢迎您来电咨询！
+            </p>
+        </div>
+        <div class="reg_botton a_hand mt-5" onclick=""><a href="tel:4009966633">联系客服，每天9点-21点</a></div>
+        <div class="reg_botton a_hand mt-5 mb-15" onclick="toIndex()"><a href="#">逛逛美房</a></div>
+    </div>
+  </div>
+  <script>
+  function toIndex(){
+      self.location.href='#springUrl('/index.htm')';
+  }
+  </script>
+</body>
+</html>

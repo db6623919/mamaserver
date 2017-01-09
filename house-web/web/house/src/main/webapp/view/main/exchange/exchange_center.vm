@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+	<meta charset="UTF-8">
+	<title>换劵中心</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="Cache-Control" content="no-cache" />
+
+	<link rel="stylesheet" href="#springUrl('/assets/css/amazeui.min.css')" />
+	<link rel="stylesheet" href="#springUrl('/assets/css/reset.css')" />
+	<link rel="stylesheet" href="#springUrl('/assets/css/order_what.css')">
+	<link rel="stylesheet" href="#springUrl('/assets/css/trade.css')" />
+
+	<script type="text/javascript" src="#springUrl('/assets/js/jquery.min.js')"></script>
+	<script type="text/javascript" src="#springUrl('/assets/js/amazeui.min.js')"></script>
+	<script type="text/javascript" src="#springUrl('/assets/js/common.js?_v=1')"></script>
+	<script type="text/javascript" src="#springUrl('/assets/js/TouchSlide.1.0.source.js')"></script>
+	<script type="text/javascript">
+		var adaptPageClass = "content";
+	</script>
+	#parse("/is_login.vm")
+</head>
+<body class="bg-ee">
+	<div class="body content ">
+		<header class="header clearfix">
+	       	<div class="head">
+	        	<a class="back ui-link" href="javascript:void(0);" onClick="javascript :history.go(-1);" tdata-rel="back">返回</a>
+	        	<div class="title header_title" id="header-title">换劵中心</div>
+	       	</div>
+	       	<div class="more_wraper2" onclick="location.href='#springUrl("/my/exchange/add.htm")'">
+						发布换劵
+			</div>
+    	</header>
+
+		<div class="list" id="list">
+			
+
+			
+		</div>
+	</div>
+	<script type="text/javascript" src="#springUrl('/assets/js/underscore-min.js')"></script>
+	<script type="text/template" id="tpl">
+			<% _.each(datas, function (item,i) { %>
+				<%var item_detail=JSON.parse(item.showDetail)%>
+				<div class="item border-default mt-08  pb-10" onclick="location.href='#springUrl("/exchange/item-<%-item.id%>.htm")'">
+					<div class="icon_head">
+						<img src="#springUrl('/assets/i/moren.png')" class="">
+					</div>
+					<div class="item_head">
+						<div class="fl fs-1 pl-10 pl-36">
+							<p>
+								<%-item.memberName%><br> <span class="fs-0-9 text-color-91"><%-getLocalTime(item.createTime)%>发布</span>
+							</p>
+						</div>
+					</div>
+					<div class="clear"></div>
+					<div class="content ml-44">
+						<div class="item_body_img">
+							<img src="../assets/i/travel/give-desc.png" class="icon_houses">
+						</div>
+						
+						<div class="item_body_content fs-1 text-color-91">
+							<p>酒店：<%-item_detail.houseName%></p>
+							<p>&nbsp;</p>
+							<p class=" text-color-fb fs-0-9">（<%-item_detail.inSeason==1?"旺季劵"+eval(item.hotelCouponIds).length:"平季劵"+eval(item.hotelCouponIds).length%>张）</p>
+						</div>
+					</div>
+	
+	
+					<div class="item_body ml-44 fs-1 text-color-34">
+						<span class="rec">&nbsp;</span>交换意向：<span class="text-color"><%-item_detail.intention%></span>
+					</div>
+				</div>
+			<% }); %>
+	</script>
+	<script>
+		(function(){
+			var datas=[];
+			_(datas);
+		})();
+		onload=function(){
+				$.ajax({
+					type:'get',
+					url:"#springUrl('/exchange/listToJson.htm')",
+					success:function(data){
+						if(data.code==0){
+								var status=[];
+								status.push("交换中");
+								status.push("成功交换");
+								status.push("取消交换");
+								datas=JSON.parse(data.data);
+								var render=_.template($('#tpl').html());
+								var html=render({datas:datas,status:status,user:user});
+								$('#list').html(html);
+						}else{
+							myAlert('友情提示', '系统繁忙，请稍后重试');
+						}
+						
+					}
+				});
+		}
+	</script>
+</body>
+	
+</html>

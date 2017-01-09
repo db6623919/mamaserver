@@ -1,0 +1,50 @@
+body,
+html {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	font-family: "微软雅黑";
+	font-weight: normal;
+	font-size: 1.1rem;
+}
+
+.search {
+	position: relative;
+	height: 35px;
+	line-height: 35px;
+}
+
+.search span {
+	position: relative;
+	display: inline-block;
+	width: 32%;
+	text-align: center;
+}
+
+.search span:not(:last-child):after {
+	position: absolute;
+	content: "";
+	width: 1px;
+	height: 20px;
+	background-color: #999;
+	top: 8px;
+	right: 0;
+}
+
+#allmap {
+	width: 100%;
+	height: 600px;
+}
+
+p {
+	margin-left: 5px;
+	font-size: 14px;
+}
+
+.house-location {
+	height: 30px;
+	line-height: 30px;
+	color: #333;
+	padding-left: 10px;
+	font-size: 14px;
+}

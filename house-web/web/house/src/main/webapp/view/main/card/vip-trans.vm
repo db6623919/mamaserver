@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>妈妈送房</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-cache" />
+  <link rel="stylesheet" href="#springUrl('/assets/css/amazeui.min.css')"/>
+  <link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/reset.css')">
+  <link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/card.css')">
+  <script type="text/javascript" src="#springUrl('/assets/js/jquery.min.js')"></script>
+  <script type="text/javascript" src="#springUrl('/assets/js/amazeui.min.js')"></script>
+  <script type="text/javascript" src="#springUrl('/assets/js/common.js')"></script>
+  <script type="text/javascript">
+  	var adaptPageClass = "content";
+  </script>
+  <style>
+
+  </style>
+</head>
+<body>
+  <div class="body content">
+    <header class="header clearfix">
+       <div class="head">
+        <a class="back ui-link" href="javascript:void(0);" onClick="javascript :history.go(-1);" tdata-rel="back">返回</a>
+        <div class="title header_title" id="header-title">可转让有保障</div>
+       </div>
+    </header>
+    <div class="w-100 pl-15 pr-15 mt-15 vip-buy">
+        <h1 class="fs-13 am-mg-0 text-color-75 pt-5 pb-5 pr-15" >
+            <span class="am-title-border"></span>
+           	 持有会员卡6个月以上，且累计消费额度超过累计充值额度20%的会员，可以转让会员卡及其相应权益。
+        </h1>
+        <h1 class="fs-13 am-mg-0 text-color-75 pt-5 pb-5 pr-15 mt-15" >
+            <span class="am-title-border"></span>
+            妈妈送房免费提供会籍转让过程的转让信息挂牌、转让登记等服务，转让价格由出让方和受让方协商决定，会员卡对应的剩余权益不因转让价格变化而变化。
+        </h1>
+    </div>
+  </div>
+</body>
+</html>

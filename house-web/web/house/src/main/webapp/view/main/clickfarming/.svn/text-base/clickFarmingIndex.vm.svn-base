@@ -1,0 +1,11 @@
+<html>
+	<meta charset="UTF-8">
+	<meta name="viewport"
+	content="width=device-width,height=device-height,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+	<meta name="format-detection" content="telephone=no, email=no"/> 
+	<title>妈妈送房</title>
+	<body>
+		<script type="text/javascript" src="#springUrl('/assets/js/clickfarm/config.js?v=201701061600')"></script>
+		<script type="text/javascript" src="#springUrl('/assets/js/clickfarm/bundle.js?v=201701061600')"></script>
+	</body>
+</html>

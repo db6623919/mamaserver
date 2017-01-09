@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:p="http://www.springframework.org/schema/p" xmlns:jaxws="http://cxf.apache.org/jaxws" xmlns:http-conf="http://cxf.apache.org/transports/http/configuration"
+    xmlns:util="http://www.springframework.org/schema/util"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+                        http://www.springframework.org/schema/beans/spring-beans.xsd
+                        http://cxf.apache.org/jaxws
+                        http://cxf.apache.org/schemas/jaxws.xsd
+                        http://cxf.apache.org/transports/http/configuration
+                        http://cxf.apache.org/schemas/configuration/http-conf.xsd
+                         http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd"
+    default-autowire="byName" default-lazy-init="true">
+    <!-- MA系统 -->
+    <jaxws:client id="memberFacade" serviceClass="com.netfinworks.ma.service.facade.IMemberFacade" address="${ma-web.address}/MemberFacade" />
+    <jaxws:client id="tokenFacade" serviceClass="com.netfinworks.ma.service.facade.ITokenFacade" address="${ma-web.address}/TokenFacade" />
+    <jaxws:client id="bankAccountFacade" serviceClass="com.netfinworks.ma.service.facade.IBankAccountFacade" address="${ma-web.address}/BankAccountFacade" />
+    <jaxws:client id="payPwdFacade" serviceClass="com.netfinworks.ma.service.facade.IPayPwdFacade" address="${ma-web.address}/PayPwdFacade" />
+    <jaxws:client id="operatorFacade" serviceClass="com.netfinworks.ma.service.facade.IOperatorFacade" address="${ma-web.address}/OperatorFacade" />
+    <jaxws:client id="accountFacade" serviceClass="com.netfinworks.ma.service.facade.IAccountFacade" address="${ma-web.address}/AccountFacade" />
+    <jaxws:client id="verifyFacade" serviceClass="com.netfinworks.ma.service.facade.IVerifyFacade" address="${ma-web.address}/VerifyFacade" />
+    <jaxws:client id="loginPwdFacade" serviceClass="com.netfinworks.ma.service.facade.ILoginPwdFacade" address="${ma-web.address}/LoginPwdFacade" />
+    <jaxws:client id="merchantFacade" serviceClass="com.netfinworks.ma.service.facade.IMerchantFacade" address="${ma-web.address}/MerchantFacade" />
+     <!-- 认证系统 -->
+    <jaxws:client id="certFacade" serviceClass="com.netfinworks.cert.service.facade.ICertFacade" address="${cert.address}/certFacade" />
+    <jaxws:client id="certValidateFacade" serviceClass="com.netfinworks.cert.service.facade.ICertValidateFacade" address="${cert.address}/certValidateFacade" />
+    
+    <jaxws:client id="redisFacade" serviceClass="com.mama.jedis.service.facade.RedisFacade" address="${redis.remote.url}/redisFacade" />
+    
+    <bean id="certService" class="com.mmzb.house.ext.service.impl.CertServiceImpl"></bean>
+    <bean id="memberService" class="com.mmzb.house.ext.service.impl.MemberServiceImpl"></bean>
+</beans>

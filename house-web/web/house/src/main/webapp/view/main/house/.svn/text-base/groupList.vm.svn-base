@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+
+	<head lang="en">
+		<meta charset="UTF-8">
+		<title>团购抢房</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="renderer" content="webkit">
+		<link rel="stylesheet" href="#springUrl('/assets/css/amazeui.min.css')" />
+		<link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/reset.css')">
+		<link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/group-house-list.css')">
+	</head>
+
+	<body>
+		<div id="modal_order" class="body content">
+			<header class="bg-red">
+				<div class="head">
+					<a class="back ui-link" href="javascript:void(0);" onclick="self.location=document.referrer;" tdata-rel="back">返回</a>
+					<div class="title header_title" id="header-title">团购抢房</div>
+					<div class="more_wraper header-menu-btn">
+					</div>
+				</div>
+			</header>
+			<ul class="h-list">
+				<p>①团购券有效期至2017年3月31日；<br/>②周五、周六使用需补差价，具体查看产品详情；<br/>③请提前48小时预约使用；<br/>④元旦、春节大节假日不可以使用</p>
+				
+				<li class="data-item" onclick="detail(838)">
+					<div class="house-item">
+						<img class="lazy_load_img" src="#springUrl('/assets/i/common/lazy_image.jpg')" xzsrc="http://file.88mmmoney.com/cf00cbe9-1c89-4617-8875-80d686bd8071" />
+					</div>
+					<div class="name-price">
+						<p class="name">[团购]海岸之星美景民宿海景房套餐</p>
+						<p class="price">¥ <span>279</span>起/晚</p>
+					</div>
+					<div class="house-special">
+						<span>1居</span>
+						<span>5分</span>
+						<span>2点评</span>
+						<span>宜住2人</span>
+					</div>
+				</li>
+				<li class="data-item" onclick="detail(844)">
+					<div class="house-item">
+						<img class="lazy_load_img" src="#springUrl('/assets/i/common/lazy_image.jpg')" xzsrc="http://file.88mmmoney.com/29d56a1d-f82d-4913-97a6-af833c5905bb" />
+					</div>
+					<div class="name-price">
+						<p class="name">[团购]那些年客栈浪漫大床房套餐</p>
+						<p class="price">¥ <span>299</span>起/晚</p>
+					</div>
+					<div class="house-special">
+						<span>1居</span>
+						<span>5分</span>
+						<span>1点评</span>
+						<span>宜住2人</span>
+					</div>
+				</li>
+				<li class="data-item" onclick="detail(840)">
+					<div class="house-item">
+						<img class="lazy_load_img" src="#springUrl('/assets/i/common/lazy_image.jpg')" xzsrc="http://file.88mmmoney.com/70dd496f-997a-4a6d-9fd0-4d20c5466d64" />
+					</div>
+					<div class="name-price">
+						<p class="name">[团购]梦园彼岸海边客栈精品大床套餐</p>
+						<p class="price">¥ <span>339</span>起/晚</p>
+					</div>
+					<div class="house-special">
+						<span>1居</span>
+						<span>5分</span>
+						<span>1点评</span>
+						<span>宜住2人</span>
+					</div>
+				</li>
+				<li class="data-item" onclick="detail(843)">
+					<div class="house-item">
+						<img class="lazy_load_img" src="#springUrl('/assets/i/common/lazy_image.jpg')" xzsrc="http://file.88mmmoney.com/49be1b4d-b924-4179-a4be-0dbd1320f07f" />
+					</div>
+					<div class="name-price">
+						<p class="name">[团购]深圳海誓湾一号海景房套餐</p>
+						<p class="price">¥ <span>399</span>起/晚</p>
+					</div>
+					<div class="house-special">
+						<span>1居</span>
+						<span>5分</span>
+						<span>1点评</span>
+						<span>宜住2人</span>
+					</div>
+				</li>
+				<li class="data-item" onclick="detail(841)">
+					<div class="house-item">
+						<img class="lazy_load_img" src="#springUrl('/assets/i/common/lazy_image.jpg')" xzsrc="http://file.88mmmoney.com/f3474567-7cc0-45ee-9b87-6d54451261af" />
+					</div>
+					<div class="name-price">
+						<p class="name">[团购]阿鲁古雅海景客栈海景房套餐</p>
+						<p class="price">¥ <span>519</span>起/晚</p>
+					</div>
+					<div class="house-special">
+						<span>1居</span>
+						<span>5分</span>
+						<span>1点评</span>
+						<span>宜住2人</span>
+					</div>
+				</li>
+				<li class="data-item" onclick="detail(839)">
+					<div class="house-item">
+						<img class="lazy_load_img" src="#springUrl('/assets/i/common/lazy_image.jpg')" xzsrc="http://file.88mmmoney.com/9f3169c4-98bd-42cf-b0ed-dca94644a98f" />
+					</div>
+					<div class="name-price">
+						<p class="name">[团购]HERE印象海滨旗舰店海景房套餐</p>
+						<p class="price">¥ <span>529</span>起/晚</p>
+					</div>
+					<div class="house-special">
+						<span>1居</span>
+						<span>5分</span>
+						<span>1点评</span>
+						<span>宜住2人</span>
+					</div>
+				</li>
+				<li class="data-item" onclick="detail(842)">
+					<div class="house-item">
+						<img class="lazy_load_img" src="#springUrl('/assets/i/common/lazy_image.jpg')" xzsrc="http://file.88mmmoney.com/5b3358b5-0534-446c-8291-e1479b9ae45f" />
+					</div>
+					<div class="name-price">
+						<p class="name">[团购]子居精品客栈高级大床套餐</p>
+						<p class="price">¥ <span>599</span>起/晚</p>
+					</div>
+					<div class="house-special">
+						<span>1居</span>
+						<span>5分</span>
+						<span>1点评</span>
+						<span>宜住2人</span>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<script type="text/javascript" src="#springUrl('/assets/js/jquery.min.js')"></script>
+		<script type="text/javascript" src="#springUrl('/assets/js/common.js')"></script>
+		<script src="#springUrl('/assets/js/mm-img-lazyload.js')" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			var adaptPageClass = "content";
+			function detail(houseId) {
+					self.location.href = "/house/toDetail.htm?houseId=" + houseId;
+			}
+			$(function() {
+				var lazyload = {};
+				lazyload.img = function(obj) {
+					var img = typeof(obj) == 'object' ? obj : $(obj);
+					var xz_src = img.attr('xz_src');
+					if(xz_src && xz_src != 'ok') {
+						img.attr('src', xz_src);
+						img.attr('xz_src', 'ok');
+					}
+				}
+				var lazy_load_imgs = $('.lazy_load_img');
+				setTimeout(function() {
+					lazy_load_imgs.mmlazyload({
+						replaceImage: false,
+						pxOffset: 50,
+						memorySaver: true
+					});
+				}, 300);
+			})
+		</script>
+	</body>
+
+</html>

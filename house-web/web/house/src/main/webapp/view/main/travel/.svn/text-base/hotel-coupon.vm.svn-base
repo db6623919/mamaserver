@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+	<head lang="en">
+		<meta charset="UTF-8">
+		<title>我的旅居券</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="Cache-Control" content="no-cache" />
+		<link rel="stylesheet" href="#springUrl('/assets/css/amazeui.min.css')" />
+		<link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/reset.css')">
+		<link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/trade.css')">
+		<script type="text/javascript" src="#springUrl('/assets/js/jquery.min.js')"></script>
+		<script type="text/javascript" src="#springUrl('/assets/js/amazeui.min.js')"></script>
+		<script type="text/javascript" src="#springUrl('/assets/js/common.js?_v=1')"></script>
+		<link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/index.css')">
+		<script type="text/javascript" src="#springUrl('/assets/js/TouchSlide.1.0.source.js')"></script>
+		<script type="text/javascript">
+			var adaptPageClass = "content";
+		</script>
+	</head>
+	<body>
+		<div class="body content bg-ee" style="min-height: 979px;">
+			<header class="header clearfix">
+				<div class="head">
+					<a class="back ui-link" href="javascript:void(0);" onclick="javascript :history.go(-1);" tdata-rel="back">返回</a>
+					<div class="title header_title" id="header-title">我的旅居券</div>
+				</div>
+			</header>
+			<div class="am-g ">
+				<div class="w-100 h-48 pos-relative border-bottom-default bc-white">
+					<div class="am-u-sm-6 tc border-right-default h-100" onclick="location.href='#springUrl('/my/give/center.htm')'">
+							<div class="mt-04"><img src="#springUrl('/assets/i/trade/icon_blue.png')" class="icon_travel"></div>
+							<div class="mt-2 fs-12">赠券</div>
+					</div>
+					<div class="am-u-sm-6 tc h-100" onclick="location.href='#springUrl('/my/exchange/list.htm')'">
+						<div class="mt-04"><img src="#springUrl('/assets/i/trade/icon_red.png')" class="icon_travel"></div>
+						<div class="mt-2 fs-12">换券</div>
+					</div>
+				</div>
+				
+				#foreach ($hotelCoupon in $hotelCouponGroups)
+					#set($class="tranvel_gray")
+					#set($span='<p class="fs-0-9 text-color-91">未知状态</p>')
+					#if($hotelCoupon.status == 0)
+						#set($class="tranvel_blue")
+						#set($span='<p class="fs-0-9 text-color-91">'+$!dateTool.format("yyyy-MM-dd",$hotelCoupon.expireTime)+'到期</p>')
+					#elseif($hotelCoupon.status == 1)
+						#set($class="tranvel_blue")
+						#set($span='<p class="fs-0-9 text-color-91">未生效</p>')
+					#elseif($hotelCoupon.status == 2)
+						#set($class="tranvel_red")
+						#set($span='<p class="fs-0-9 text-color-91">已冻结</p>')
+					#elseif($hotelCoupon.status == 11)
+						#set($span='<p class="fs-0-9 text-color-91">已使用</p>')
+					#elseif($hotelCoupon.status == 12)
+						#set($span='<p class="fs-0-9 text-color-91">已过期</p>')
+					#end
+					<div class="w-100  mt-12 pl-10 pr-10 pos-relative" onclick="location.href='#springUrl("/my/coupon/${hotelCoupon.hotelCouponIds[0]}.htm")'">
+						<div class="${class} height-70">
+							<div class="am-travel">
+								<div class="am-u-sm-9" >
+									<p class="fs-12 text-color-6 fw-bd mt-0 mb-0">${hotelCoupon.name}</p>
+									<p class="fs-0-9 text-color-91 mt-5 mb-0" >免费入住1晚</p>
+								</div>
+								<div class="am-u-sm-3 tr text-color-white fs-12 tr" >
+									<span class="fw-bd fs-2-64">${hotelCoupon.count}</span>张
+								</div>
+								<div class="clear"></div>
+								<div class="mt-5">
+									<div class="am-u-sm-6">
+										<p class="fs-0-9 text-color-91">#if($hotelCoupon.inSeason) 旺季入住 #else 平季入住 #end</p>
+									</div>
+									<div class="am-u-sm-6 tr">
+										${span}
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				#end
+				#if($hotelCouponGroups.size() == 0)
+					<div style="text-align: center;">
+						<p class="am-text-center fs-0-9 text-color-91" ><h2>您暂无旅居券</h2></p>
+					</div>
+				#end
+			</div>
+		</div>
+	</body>
+</html>

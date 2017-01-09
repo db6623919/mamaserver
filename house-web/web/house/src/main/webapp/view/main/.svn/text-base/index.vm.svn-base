@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>妈妈送房</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-cache" />
+  <link rel="stylesheet" href="#springUrl('/assets/css/amazeui.min.css')"/>
+  <link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/reset.css')">
+  <link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/index.css')">
+  <link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/travel_h.css')">
+  <script type="text/javascript" src="#springUrl('/assets/js/jquery.min.js')"></script>
+  <script type="text/javascript" src="#springUrl('/assets/js/amazeui.min.js')"></script>
+  <script type="text/javascript" src="#springUrl('/assets/js/common.js')"></script>
+  <script type="text/javascript" src="#springUrl('/assets/js/TouchSlide.1.0.source.js')"></script>
+  <script type="text/javascript">
+  	var adaptPageClass = "content";
+  </script>
+</head>
+<body style="background-color:#edf9fe;">
+  <div class="body content" style="background-color:#edf9fe;">
+    <header class="header clearfix">
+       <div class="head">
+        <a href="#springUrl('/index.htm')" data-ajax="false" class="logolink"><img src="#springUrl('/assets/i/common/mmsf-logo.png')" /></a>
+           <div class="am-select"><span class="am-select-icon"><img src="#springUrl('/assets/i/common/searchIcon.png')"></img></span><span class="am-select-text">您和家人想去哪儿？</span></div>
+        <div class="title header_title" id="header-title"></div>
+        <div class="more_wraper header-menu-btn">
+         <a class="more_R menu_action" data-menuaction="switch" href="#"></a>
+         <div class="more_pop hMenulist" style="display: none;">
+          <span class="pop_tri"></span>
+          <ul class="more_ul" style="display: none;">
+          $!isLogin $isLogin
+           #if($!isLogin==1)
+				<li class="menu_action"><span class="register"></span><a href="#springUrl('/my/getOrders.htm?page=1&type=0')" class="text-color-red">我的订单</a></li>
+				<li class="menu_action no_bor1"><span class="login"></span><a href="#springUrl('/my/usercenter.htm')" class="text-color-red">个人中心</a></li>
+		   #else
+               <li class="menu_action"><span class="login"></span><a href="#springUrl('/my/toLogin.htm')" class="text-color-red">登录</a></li>
+               <li class="menu_action no_bor1"><span class="register"></span><a href="#springUrl('/toRegister.htm')" class="text-color-red">注册</a></li>
+		   #end
+          </ul>
+         </div>
+        </div>
+       </div>
+    </header>
+     <div class="w-100">
+      <div class="am-slider am-slider-a1" data-am-flexslider>
+        <ul class="am-slides">
+          #foreach ($banner in $response.data.bannerList)
+			<li><a href="$banner.link"><img src="$banner.filePath"></a></li>
+	     #end
+        </ul>
+      </div>
+    </div>
+    <div class="w-100 bc-white clearfix border-bottom">
+        <!-- 点击事件判定范围在整个div中-->
+        <div class="am-u-sm-4 tc mt-10 mb-13" onclick="location.href='#springUrl('/travelList.htm')'">
+          <span class="index-icon i-invest"></span>
+          <p class="am-mg-0 fs-12 text-color-75">挣钱送房11 $!isLogin</p>
+        </div>
+        <div class="am-u-sm-4 tc mt-10 mb-13" onclick="location.href='#springUrl('/travelIndex.htm')'">
+          <span class="index-icon i-trade"></span>
+          <p class="am-mg-0 fs-12 text-color-75">交换变现</p>
+        </div>
+        <div class="am-u-sm-4 tc mt-10 mb-13">
+          <span class="index-icon i-booking" onclick="location.href='#springUrl('/getHotCities.htm')'"></span>
+          <p class="am-mg-0 fs-12 text-color-75">预约体验</p>
+        </div>
+    </div>
+    <div class="w-100 bc-white clearfix border-bottom am-index-activity pb-10">
+        <!-- 点击事件判定范围在整个div中-->
+        <div class="am-u-sm-6 tc mt-10 mb-10 am-pr-0 am-pl-0" onclick="location.href='http://mp.weixin.qq.com/s?__biz=MzI5ODAzNjczNA==&mid=400488175&idx=1&sn=e013a5e680ddf8553cdc0e48d75a9ee7#rd'">
+          <div class="fl w-40">
+            <img src="#springUrl('/assets/i/index/ad-1.png')">
+          </div>
+          <div class="fl mt-5 w-60">
+            <h1 class="am-mg-0 fs-12 text-color-75 fw-bd tl">惊爆活动</h1>
+            <p class="am-mg-0 fs-0-9 text-color-grey tl">三亚旅居买一送二</p>
+          </div>
+        </div>
+        <div class="am-u-sm-6 tc mt-10 mb-10 am-pl-0" onclick="location.href='#springUrl('/toDailyActivity.htm')'">
+          <div class="fr mt-5 w-60">
+            <div class="tl">
+              <h1 class="am-mg-0 fs-12 text-color-75 fw-bd tl">天天送房</h1>
+              <p class="am-mg-0 fs-0-9 text-color-grey tl">每天有送快来抢</p>
+            </div>
+          </div>
+           <div class="fr w-40">
+            <img src="#springUrl('/assets/i/index/ad-2.png')">
+          </div>
+        </div>
+    </div>
+     <div class="bc-white clearfix border-bottom am-index-city pb-10" >
+      <div id="picScroll" class="picScroll">
+        <div class="bd">
+        	#foreach ($!num in $!response.data.pageNum)
+            <ul>
+            	#set($count=$!num)
+            	#foreach ($!cityInfoList in $!response.data.cityInfoList)
+            	#if($velocityCount > 6*$count && $velocityCount <=6*($count+1))	
+              <li>
+                <div onclick="toList($!cityInfoList.cityId,'$!cityInfoList.cityName')">
+                  <img src="$!cityInfoList.imgUrl"/>
+                  #if($!cityInfoList.roomNum == 0)
+                  <span class="house-count">筹备中</span>
+                  <span class="img-cover"></span>
+                  #else
+                  <span class="house-count"></span>
+                  #end
+                </div>
+                <p class="fs-11 text-color-75 am-mg-0">$!cityInfoList.cityName</p>
+              </li>
+              #end
+              #end
+            </ul>
+			#end
+        </div>
+        <div class="hd">
+            <ul></ul>
+        </div>
+      </div>
+    </div>
+    <div class="w-100 mt-10 bc-white border-top border-bottom clearfix">
+      <div class="pt-5 pb-5 clearfix">
+        <div class="am-u-sm-6 tl fs-12 text-color-75">
+          <img src="#springUrl('/assets/i/common/travel.png')" class="travel-icon subtitle-icon">
+          旅居宝推荐
+        </div>
+        <a class="am-u-sm-6 tr fs-1 text-color-d9 pt-5" onclick="location.href='#springUrl('/travelList.htm')'">
+          更多
+          <img src="#springUrl('/assets/i/common/more.png')" class="more-icon">
+        </a>
+      </div>
+
+      <div class="w-100 mb-5 mt-20 bc-white clearfix" onclick="location.href='#springUrl('/travelDetail.htm')'">
+        <div class="am-img-container" >
+          <!-- <span class="fs-12 collect-amount">募集额1000万元</span> -->
+          <img src="#springUrl('/assets/i/index/1.jpg')" id="test-href">
+        <!-- <div class="am-room-collection collection new-collection"></div> -->
+          <div class="project-progress tc text-color-red">
+            <p class="text fs-12 fw-bd">预热中</p>
+            <div class="progress-bar-cover">
+              <div class="progress-bar-outer-left">
+                 <div class="progress-bar-inner-left" style="transform:rotate(122.4deg)">
+
+                </div>
+              </div>
+              <div class="progress-bar-outer-right">
+                <div class="progress-bar-inner-right" style="transform:rotate(180deg)">
+
+                </div>
+              </div> 
+              <span class="progress-text text-color-white">85%</span>
+            </div>
+          </div>
+          <div class="am-img-container-index">
+            <div class="clearfix w-100 pos-relative">
+              <div class="text-color-newgray am-mg-0 fs-12 fl w-65 pl-10 pr-10">
+               旅居宝-海南波波利海岸一期
+              </div>
+              <div class="fr w-35 text-color-82 pos-absolute pos-right-10">
+                <div class="am-mg-0 fs-11 tr"><span class="fs-14">5</span>万/份</div>
+                <!-- <div class="am-mg-0 fs-0-9 tr text-color-dimred mt-5">市场价 <span class="fs-11 text-delete">¥3000</span></div> -->
+              </div>
+            </div>
+            <div class="clearfix">
+              <div class="info-list clearfix pl w-70">
+                <span class="total fs-1">1000万元</span>
+                <span class="expected fs-1">5%固定收益</span>
+                <span class="free fs-1">7%居住收益</span>
+                <span class="limitation fs-1">3年</span>
+              </div>
+              <div class="fr w-30 market-price">
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+	#foreach ($!houseinfo in $!response.data.houseInfoList)
+    <div class="w-100  bc-white border-bottom clearfix">
+    #if($velocityCount ==1)
+      <div class="pt-5 pb-10 mb-15">
+        <div class="am-u-sm-6 tl fs-12 text-color-75">
+          <img src="#springUrl('/assets/i/common/suitcase.png')" class="travel-icon subtitle-icon">
+          任我行推荐
+        </div>
+        <a class="am-u-sm-6 tr fs-1 text-color-d9 pt-5" onclick="location.href='#springUrl('/listall.htm')'">
+          更多
+          <img src="#springUrl('/assets/i/common/more.png')" class="more-icon">
+        </a>
+           #else 
+           <div>
+           #end
+      </div>
+      <div class="am-img-container" onclick="roomDetail($!houseinfo.houseId)">
+        <img xzsrc="$!houseinfo.introductionImg[0]" class="lazy_load_img" src="#springUrl('/assets/i/common/lazy_image_index.jpg')" replacesrc="#springUrl('/assets/i/common/lazy_image_index.jpg')" id="test-href">
+        <div class="am-img-container-index">
+          <div class="clearfix w-100 pos-relative">
+            <div class="text-color-newgray am-mg-0 fs-12 fl w-65 pl-10 pr-10">
+              $!houseinfo.houseName
+            </div>
+            <div>
+            <div class="am-index-rec fs-1"><span class="ml-10 mr-5">妈妈价￥<i class="fs-12">$!houseinfo.discontMax</i>~<i class="fs-12">$!houseinfo.memTotalAmt</i></span></div>
+            <div class="am-index-rec-grey fs-1"></div>
+	        <div class="am-index-rec-font fs-1"><span class="ml-5 mr-5">市场价￥<span class="text-decorate-line-through fs-12">$!houseinfo.totalAmt</span></div>
+         	</div>
+          <div class="clearfix">
+            <div class="info-list clearfix pl w-70">
+              <span class="room fs-1">$!houseinfo.room.substring(0,1)室</span>
+              <span class="people fs-1">宜住$!houseinfo.room.substring(6,7)人</span>
+              <span class="set fs-1">共$!houseinfo.totalRoomNum套</span>
+            </div>
+            <div class="fr w-30 market-price">
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+     #end
+      <footer class="w-100 mt-15 index-bottom pb-35">
+        <div class="w-100 tc">
+          <p class="fs-12 text-color-80 am-mg-0" style="line-height:2rem;"><span class="phone-icon"></span>客服电话<br><a class="fs-13 text-color-80" href="tel:400-9966-633">400-9966-633</a></p>
+        </div>
+        <div class="am-g mt-10">
+          <div class="am-u-sm-1">
+            &nbsp;
+          </div>
+          <div class="am-u-sm-10 tc ">
+            <ul class="am-footer-ul am-pl-0">
+                <li><a href="http://mp.weixin.qq.com/s?__biz=MzI5ODAzNjczNA==&mid=400226264&idx=3&sn=f4b4238a30156991e8ab4c8f239d1379&scene=1&srcid=1031PiJOeQO636XDWZOeMoh0#wechat_redirect" target="_blank">玩转送房</a></li>
+                <li><a href="#springUrl('/renwoxing.htm')" target="_blank">任我行卡</a></li>
+                <li><a href="#springUrl('/recharge-detail.htm')" target="_blank">充值有送</a></li>
+            </ul>  
+          </div>
+          <div class="am-u-sm-1">
+            &nbsp;
+          </div>
+        </div>
+        <!--<div class="am-g mt-10">
+          <div class="am-u-sm-3">
+            &nbsp;
+          </div>
+          <div class="am-u-sm-6 tc ">
+            <ul class="am-footer-icon-ul am-pl-0">
+                <li><a class="sina-icon" href="#" target="_blank"></a></li>
+                <li><a class="wechat-icon" href="#" target="_blank"></a></li>
+            </ul>  
+          </div>
+          <div class="am-u-sm-3">
+            &nbsp;
+          </div>
+        </div> -->
+        
+        <div class="w-100 tc mt-10">
+          <p class="fs-1 text-color-80 am-mg-0" style="line-height:2rem;">深圳妈妈送房网络科技有限公司@2015</p>
+        </div>
+      </footer>
+ </div>
+       <div class="fc" id="toRegister">
+          <div class="fc-main"></div>
+          <a class="reg-now" href="#springUrl('/toRegister.htm')">
+            <div class="fc-text">
+                <mark>
+                  <b>欢迎注册妈妈送房</b>
+                    居家出行最暖的选择
+                </mark>
+                <div class="fc-btn">立即注册</div>      
+            </div>
+          </a>
+          <div class="index-close">
+            <i></i>
+          </div>
+        </div>
+      </div>       
+      
+      <div class="fc" id="toInvite">
+          <div class="fc-main"></div>
+          <a class="reg-now" href="#springUrl('/toSharePage.htm')?friendCode=$!response.data.userInfo.phone">
+            <div class="fc-text">
+                <i class="lucky-money"></i>
+                <mark>
+                  <b>$!invitationTip</b>
+                </mark>
+                <div class="fc-btn">邀请有送</div>      
+            </div>
+          </a>
+          <div class="index-close">
+            <i></i>
+          </div>
+        </div>
+      </div>        
+<script type="text/javascript" src="#springUrl('/assets/js/mm-img-lazyload.js')"></script>
+<script type="text/javascript">
+  TouchSlide({ 
+    slideCell:"#picScroll",
+    titCell:".hd ul", //开启自动分页 autoPage:true ，此时设置 titCell 为导航元素包裹层
+    autoPage:true, //自动分页
+    pnLoop:"true", // 前后按钮循环
+    switchLoad:"_src" ,//切换加载，真实图片路径为"_src" 
+    delayTime:500
+  });
+  $(function(){
+	var islogin ='$!isLogin';
+  	if(islogin =='1'){
+  		//$(".fc").hide();
+  		$("#toRegister").hide();
+  		$("#toInvite").show();
+  	}else{
+  		//$(".fc").show();
+  		$("#toRegister").show();
+  		$("#toInvite").hide();
+  	}
+  
+    $('.am-slider').flexslider({
+      directionNav: false 
+    });
+	$(".am-select").on("click",function(){
+        location.href='#springUrl('/getHotCities.htm')';
+    }); 
+    var lazyload = {};
+    lazyload.img = function(obj){
+        var img = typeof(obj) == 'object' ? obj : $(obj);
+        var xz_src = img.attr('xz_src');
+        if (xz_src && xz_src != 'ok') {
+            img.attr('src',xz_src);
+            img.attr('xz_src','ok');
+        }
+    }
+    var lazy_load_imgs = $('.lazy_load_img');
+        setTimeout(function () {
+            lazy_load_imgs.mmlazyload({replaceImage:false,pxOffset:50, memorySaver:true});
+        },300);
+    $(".index-close").on("click",function(){
+        $(".fc").hide();
+    });
+
+  });
+  
+    $('.am-slider').flexslider({
+      directionNav: false 
+    });
+  
+  function toList(cityId,cityName){
+  	cityName = encodeURI(encodeURI(cityName));
+  	location.href="/city/list.htm?cityId="+cityId+"&cityName="+cityName;
+  }
+  
+  function roomDetail(houseId){
+		self.location.href="#springUrl('/toDetail.htm?houseId=')"+houseId;	
+  }
+</script> 
+</body>
+</html>
+<script type="text/javascript">
+	 $.ajax({
+            type: 'POST',
+            url: '#springUrl('/countPvUv.htm')' ,
+            success: function(imgUrl) {
+			$("#imgUrl").attr("src",imgUrl);
+
+            }
+        });
+</script>
+<img id="imgUrl" width="0" height="0" style="display:none"/></body>
+</html>

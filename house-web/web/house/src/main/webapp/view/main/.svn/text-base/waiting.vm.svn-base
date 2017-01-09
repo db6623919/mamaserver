@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+	<head lang="en">
+		<meta charset="UTF-8">
+		<title>妈妈送房</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="Cache-Control" content="no-cache" />
+		<link rel="stylesheet" href="#springUrl('/assets/css/amazeui.min.css')" />
+		<link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/reset.css')">
+		<link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/index.css')">
+		<script type="text/javascript" src="#springUrl('/assets/js/jquery.min.js')"></script>
+		<script type="text/javascript" src="#springUrl('/assets/js/amazeui.min.js')"></script>
+		<script type="text/javascript" src="#springUrl('/assets/js/common.js')"></script>
+
+		<script type="text/javascript">
+			var adaptPageClass = "content";
+		</script>
+		<style>
+			body{background-color: #EBEBEB;}
+			
+		</style>
+	</head>
+	
+	<body>
+		<div class="content">
+			<div style="margin-top: 15%;margin-left: 5%;margin-right:5%; left;font-size: 1.3rem">
+			    众筹：让更多爱好生活喜欢民宿的朋友参与精美民宿的搭建<br>
+
+                                           业务联系人：陈先生<a href="tel:17774339555">17774339555</a>
+				<!-- <img src="#springUrl('/assets/i/index/waiting.png')"  style="width: 50%;" alt=""/> -->
+			</div>
+		</div>
+
+	</body>
+
+</html>

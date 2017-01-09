@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>妈妈送房</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-cache" />
+  <link rel="stylesheet" href="#springUrl('/assets/css/amazeui.min.css')"/>
+  <link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/reset.css')">
+  <link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/order-suc.css')">
+  <script type="text/javascript" src="#springUrl('/assets/js/jquery.min.js')"></script>
+  <script type="text/javascript" src="#springUrl('/assets/js/common.js')"></script>
+  <script type="text/javascript" src="#springUrl('/assets/js/amazeui.min.js')"></script>
+  <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+  <script type="text/javascript">
+    var adaptPageClass = "body";
+  </script>
+  <style type="text/css">
+    .am-11-cotent{
+      position: relative;
+    }
+    .am-11-cotent img{
+      width: 100%;
+    }
+    .am-des-bottom{
+      position: absolute;
+      bottom: 1.5rem;
+      left: 0;
+    }
+
+    #weixin-tip{
+      position:fixed;
+      right:0;
+      top:0;
+      background:rgba(0,0,0,0.8);
+      filter:alpha(opacity=70);
+      width:100%;
+      height:100%;
+      z-index:100;
+      color:white;
+      text-align:right;
+      display:none;
+    }
+
+    .bd li div{position:relative;z-index:3;}
+    .bd li img{ width:5rem;height:5rem; background:url(images/loading.gif) #fff center center no-repeat;}
+    .bd li .house-count{position:absolute; z-index:5;width:5rem;height:5rem;left:16.6%;top:0px;color:white;text-align:center;line-height:5rem;}
+
+    .share-gif{
+      margin-top:5.5rem;
+      margin-bottom:3rem;
+      text-align:center;
+    }
+    .share-message{
+      padding-left:4rem;
+      padding-right:4rem;
+      text-align:center;
+    }
+    .share-gif img{
+      width:60%;
+    }
+    .invite_button{
+      margin: 0.5rem 6rem;
+      border-radius: 6px;
+      background-color:#f5a711;
+
+    }
+  </style>
+</head>
+<body>
+	<form  id="actionForm" action="#springUrl('/toSharePage.htm')" >
+ 		<input type="hidden" name="friendCode" id="friendCode" value="$!friendCode">
+	</form>
+  <div  class="body content" style="background-color:#1883d5;"  id="div1">
+    <!--<header class="header clearfix">
+       <div class="head">
+        <a class="back ui-link" href="index.html" tdata-rel="back">返回</a>
+        <div class="title header_title" id="header-title">邀请有送</div>
+       </div>
+    </header> -->
+  	<div class="am-11-cotent">
+          <img src="#springUrl('/assets/i/common/share-background-2.jpg')">
+          <div class="am-des-bottom w-100 tc">
+              <div id="share_btn" class="invite_button a_hand mt-10">邀请有送</div>
+          </div>
+  	</div>
+ 
+  </div>
+  
+   <div  class="body content" style="background-color:#1883d5;border: 1px solid blue"  id="div2">
+
+	<div class="share-gif">
+		<img id="share-result" src="#springUrl('/assets/i/common/share-gif-1.png')">
+	</div>
+
+	<div class="share-message">
+	<p class="am-mg-0 text-color-white line-h-2 fs-15">10秒注册，您即获50元！<br>
+	同时为朋友赚取<br>
+	至少11元旅行基金</p>
+	</div>
+
+  </div>
+  
+  
+   <div id="weixin-tip" style="height:988px;">
+
+  <div class="share-gif">
+    <img id="share-gif-img" src="#springUrl('/assets/i/common/share-gif-1.png')">
+  </div>
+
+  <div class="share-arrow">
+  </div>
+
+  <div class="share-message">
+  点击右上角【发送给朋友】或【分享到朋友圈】，邀请小伙伴们帮你凑个份子去旅行吧！
+  </div>
+
+  </div>
+
+<script type="text/javascript">
+
+wx.config({
+        debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+        appId: '$!appId', // 必填，公众号的唯一标识
+        timestamp: '$!timestamp', // 必填，生成签名的时间戳
+        nonceStr: '$!noncestr', // 必填，生成签名的随机串
+        signature: '$!signature',// 必填，签名，见附录1
+        jsApiList: [
+        	'onMenuShareTimeline',
+    		'onMenuShareAppMessage'
+        ] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+	});
+
+	wx.ready(function(){
+	
+	        //分享到朋友圈
+			wx.onMenuShareTimeline({
+        	    title: '哥们还单着，来凑个份子送他去旅行', // 分享标题
+        	    link: '$!shareUrl', // 分享链接
+        	    imgUrl: 'http://m.mmsfang.com/assets/i/common/share-weixin-icon.jpg', // 分享图标
+        	    trigger: function (res) {
+                 // 不要尝试在trigger中使用ajax异步请求修改本次分享的内容，因为客户端分享操作是一个同步操作，这时候使用ajax的回包会还没有返回
+                   //alert('用户点击分享到朋友圈');
+                },
+				success: function (res) {
+                   //alert('已分享到朋友圈');
+                   $("#weixin-tip").hide(); 
+                },
+                cancel: function (res) {
+                  //alert('已取消分享到朋友圈');
+                }
+    		 });
+			 
+			 //分享给好友
+			 wx.onMenuShareAppMessage({
+        	    title: '哥们还单着，来凑个份子送他去旅行', // 分享标题
+        	    desc: '注册可得50元，同时为朋友赢得最低11元旅行基金。', // 分享描述
+        	    link: '$!shareUrl', // 分享链接
+        	    imgUrl: 'http://m.mmsfang.com/assets/i/common/share-weixin-icon.jpg', // 分享图标
+        	    type: '', // 分享类型,music、video或link，不填默认为link
+        	    dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+        	    success: function () { 
+        	        //alert('已分享给好友');
+        	        $("#weixin-tip").hide(); 
+        	    },
+        	    cancel: function () { 
+        	        // 用户取消分享后执行的回调函数
+					//alert('已取消分享给好友');
+        	    }
+    		});
+	});
+
+function is_weixin(){
+  var ua = navigator.userAgent.toLowerCase();
+  if (ua.match(/MicroMessenger/i) == "micromessenger") {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+var start_car_cnt = 0;
+var share_gif_img = document.getElementById('share-result');
+var timer;
+window.onload = function() {
+	$("#div1").hide();
+  //兼容IOS，不需要的可以去掉
+  var winHeight = typeof window.innerHeight != 'undefined' ? window.innerHeight : document.documentElement.clientHeight;
+  var weixin_div = document.getElementById('weixin-tip');
+  var share_btn=document.getElementById('share_btn');
+  weixin_div.style.height = winHeight + 'px';//兼容IOS弹窗整屏
+  var is_weixin_ok  = is_weixin();
+  if(!is_weixin_ok){
+    share_btn.style.display='none';
+  }
+
+  share_btn.onclick = function(e) {
+    if(is_weixin_ok){
+       $("#actionForm").submit();
+    }
+  }
+  weixin_div.onclick = function(e) {
+    weixin_div.style.display = 'none';
+  }
+	timer = window.setInterval(start_car, 200);
+}
+
+function start_car(){
+	start_car_cnt = start_car_cnt +1;
+	var currnet_cnt = start_car_cnt%3;
+	//alert(currnet_cnt);
+	//alert(share_gif_img.getAttribute('src'));
+
+	if(currnet_cnt==0)
+		share_gif_img.setAttribute('src','#springUrl('/assets/i/common/share-gif-0.png')');
+	if(currnet_cnt==1)
+		share_gif_img.setAttribute('src','#springUrl('/assets/i/common/share-gif-1.png')');
+	if(currnet_cnt==2)
+		share_gif_img.setAttribute('src','#springUrl('/assets/i/common/share-gif-2.png')');
+	if(start_car_cnt==25){
+		clearInterval(timer);
+		$("#div2").hide();
+		$("#div1").show();
+	}	
+
+}
+
+</script>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+	<head lang="en">
+		<meta charset="UTF-8">
+		<title>旅居券详情</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="Cache-Control" content="no-cache" />
+		<link rel="stylesheet" href="#springUrl('/assets/css/amazeui.min.css')" />
+		<link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/reset.css')">
+		<script type="text/javascript" src="#springUrl('/assets/js/jquery.min.js')"></script>
+		<script type="text/javascript" src="#springUrl('/assets/js/amazeui.min.js')"></script>
+		<script type="text/javascript" src="#springUrl('/assets/js/common.js?_v=1')"></script>
+		<link rel="stylesheet" type="text/css" href="#springUrl('/assets/css/index.css')">
+		<script type="text/javascript" src="#springUrl('/assets/js/TouchSlide.1.0.source.js')"></script>
+		<script type="text/javascript" src="#springUrl('/assets/js/main.js')"></script>
+		<script type="text/javascript">
+			var adaptPageClass = "content";
+		</script>
+	</head>
+
+	<body>
+		<div class="body content bg-ee" style="min-height: 979px;">
+
+			<header class="header clearfix">
+				<div class="head">
+					<a class="back ui-link" href="javascript:void(0);" onclick="javascript :history.go(-1);" tdata-rel="back">返回</a>
+					<div class="title header_title" id="header-title">旅居券详情</div>
+				</div>
+			</header>
+			<div class="am-g">
+				<div style="position:relative;">
+					<ul data-am-widget="gallery" class="am-gallery am-avg-sm-1 am-gallery-default clearfix" data-am-gallery="{pureview:{weChatImagePreview: false}}">
+						#set ($index=0)
+						#foreach ($img in $houseInfo.introductionImg)
+							#if($index == 0)
+								<li>
+							#else
+								<li style="display:none;">	
+							#end
+								<a href="#">
+									<img src="$!{img}" alt="$houseInfo.introductionName[$index]">
+								</a>
+							</li>
+							#set($index=$index + 1)
+						#end
+					</ul>
+					<div class="am-img-title pos-absolute ">
+						<p class="text-color-white">$!{houseInfo.houseName}</p>
+					</div>
+				</div>
+				<div class="w-100 pl-10 fs-1 text-color bc-white pt-15 pb-15">
+					<p class="text-color">$!houseInfo.room.substring(0,1)室$!houseInfo.room.substring(1,2)厅$!houseInfo.room.substring(2,3)卫 $!houseInfo.room.substring(3,4)床  宜住$!houseInfo.room.substring(6,7)人</p>
+					<p class="text-color am-mg-0 text-color-91"><span class="text-color-fb">免费入住券<span class="fw-bd">$!{hotelCouponGroup.count}</span>张</span>
+						#set($class="text-color-91 ")
+						#if($hotelCouponGroup.status == 0)
+							#set($class="text-color")
+							(有效期至：$!dateTool.format("yyyy-MM-dd",$hotelCouponGroup.expireTime))
+						#elseif($hotelCouponGroup.status == 1)
+							(未生效)
+						#elseif($hotelCouponGroup.status == 2)
+							(已冻结)
+						#elseif($hotelCouponGroup.status == 11)
+							(已使用)
+						#elseif($hotelCouponGroup.status == 12)
+							(已过期)
+						#else
+							(未知状态)
+						#end
+					</p>
+				</div>
+
+				<div class="w-100  pl-10 fs-1 text-color bc-f3 pt-15 pb-15 fs-0-9 text-color-91 border-bottom">
+					<p class="fs-1 text-color mb-5 mt-0"><span class="am-title-border mr-5">&nbsp;</span><span style="line-height:1.2rem">备注<span></p>
+					#if("$!houseInfo.inSeasonDesc" != "")
+						<p class="mb-5 mt-0">${houseInfo.inSeasonDesc}</p>
+					#end					
+					<p class="mb-5 mt-0">2张平季旅居券兑换1张旺季旅居券</p>
+					#if("$!hotelCouponGroup.disabledDates" != "")
+						<p class="mb-5 mt-0">部分时段不可用</p>
+					#end
+				</div>
+
+				<a onclick="toOrder('$!houseInfo.houseId','$!hotelCouponGroup.status')">
+				<div class="w-100 bc-white border-top border-bottom mt-15 ">
+					<div class="am-img-container-room clearfix">
+						<p class="fs-11  pl-15 am-mg-0 ${class}" id="building-detail">入住<span class="fr fs-12  pr-15">&gt;</span></p>
+					</div>
+				</div>
+				</a>
+			</div>
+	</body>
+	</div>
+	<script type="text/javascript">
+		function toOrder(houseId,status){
+			if(status==0){
+				var startdate = GetDateStr(0);
+				var enddate = GetDateStr(1);
+				self.location.href="/my/orderDate.htm?houseId="+houseId+"&startdate="+startdate+"&enddate="+enddate+"&totalTime=1";
+			}
+			
+		}
+	</script>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+
+	<head lang="en">
+		<meta charset="UTF-8">
+		<title>领取旅居劵</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="Cache-Control" content="no-cache" />
+		<link rel="stylesheet" type="text/css" href="../assets/css/reset.css">
+		<link rel="stylesheet" type="text/css" href="../assets/css/order_3_5.css">
+		<link rel="stylesheet" type="text/css" href="../assets/css/wx.css"/>
+		<script type="text/javascript" src="../assets/js/zepto.min.js"></script>
+		<script type="text/javascript" src="../assets/js/common.js"></script>
+		<script type="text/javascript">
+			var adaptPageClass = "content";
+		</script>
+	</head>
+		
+	<body>
+		<div class="body content">
+			<header class="bg-red ">
+				<div class="head">
+					<a class="back ui-link"  href="javascript:void(0);" onClick="javascript :history.go(-1);">返回</a>
+					<div class="title header_title" id="header-title">旅居劵</div>
+					<div class="more_wraper">
+					</div>
+				</div>
+			</header>
+			<div class="wx_top">
+					<div class="coupon_count"><span id="count">6</span>张免费入住的旅居劵</div>
+					<div class="coupon_house">入住房间：<span id="houseName">三亚亲和源三房两厅</span></div>
+			</div>
+			<div class="wx_middle fs-12  text-color-white">
+				<div class="wx_middle_one">
+					<div class="">来自您的好友：<span class="fw-bd" id="friendName">立场县</span></div>
+					<div class="wx_submit" onclick="change_middle()">
+						立即领取
+					</div>
+				</div>
+				<div class="wx_middle_two">
+					<form class="">
+						<div class=" w-100 ">请输入您的手机号及验证码，完成领取</div>
+						<div class="middle_form tl">
+							<div class="border-bottom-default  pt-10 pb-10">
+								<input type="text" value="" class="wx_input" name="phoneNumber" placeholder="请输入手机号">
+							</div>
+							<div class="pt-10 pb-10 ">
+								<input type="text" value=""  class="wx_input w-50" name="verifyCode" placeholder="请输入验证码">
+								<a  id="code" class="code">获取验证码</a>
+							</div>
+						</div>
+						<div class="wx_submit" id="submit">
+							完成领劵
+						</div>
+					</form>
+				</div>
+					
+			</div>
+			<div class="wx_bottom"></div>
+			
+		</div>
+			
+	</body>
+	<script type="text/javascript" src="#springUrl('/assets/js/wx.js')" ></script>
+	<script type="text/javascript">
+		onload=function(){
+				var data=${data};
+				var giveCode;
+				if(data.code==0){
+					var result=data.data.hotelCouponGive;
+					var showDetail=JSON.parse(result.showDetail);
+					giveCode=result.giveCode;
+					$("#friendName").html(cutOut(result.memberId));
+					$("#count").html(showDetail.copiesLimit);
+					$("#houseName").html(showDetail.houseName);
+				}else{
+					myAlert('友情提示', '系统繁忙，请稍后重试');
+				}
+			$("#submit").bind("click",function(){
+				if(!v.checkPhone($("input[name='phoneNumber']").val())){
+					myAlert("提示","手机号码格式不正确");
+					return false;
+				}
+				if($("input[name='verifyCode']").val()==""){
+					myAlert("提示","验证码不能为空");
+					return false;
+				}
+				var p=$("form").serialize();
+				var url="#springUrl('/receive/"+giveCode+".htm')";
+				v.getCoupons(p,url);
+				return false;
+			});
+			var code=$("#code");
+			var v=verification();
+			code.bind("click",function(){
+				var phone=$("input[name='phoneNumber']").val();
+				if(!v.checkPhone(phone)){
+					myAlert("提示","手机号码格式不正确");
+					return false;
+				}
+				code.unbind("click");
+				var url="#springUrl('/sendVerifyCode.htm')";
+				v.getCode(url,$("input[name='phoneNumber']"),this);
+			});
+		}
+		
+		function change_middle(){
+			$(".wx_middle_one").hide();
+			$(".wx_middle_two").show();
+		}
+	</script>
+</html>
