@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mama.server.main.dao.HouseShopDao">
+	  
+  <select id="getAllHouseShops" parameterType="Map" resultType="com.mama.server.main.dao.model.HouseShopPo" useCache="true">
+    SELECT hs.*,c.name cityName FROM thouseshop hs,tCity c where hs.cityID=c.cityId
+    <if test="id != null">
+       and hs.id = #{id}
+    </if> 
+    <if test="limit != null">
+      LIMIT #{start},#{end}
+    </if> 
+  </select>
+  
+  <insert id="insertHouseShop" parameterType="com.mama.server.main.dao.model.HouseShopPo" useGeneratedKeys="true" keyProperty="id">
+    INSERT INTO thouseshop(shopName,shopDesc,bossImage,bossPhone,bossWeChat,createTime,updateTime,cityID,level,type,bossName,imgUrl,partnership) 
+    VALUES(#{shopName},#{shopDesc},#{bossImage},#{bossPhone},#{bossWeChat}, now(),now(),#{cityID},#{level},#{type},#{bossName},#{imgUrl},#{partnership} )
+  </insert>  
+
+  <select id="getHouseShopByPar" resultType="com.mama.server.main.dao.model.HouseShopPo" parameterType="com.mama.server.main.dao.model.HouseShopPo" useCache="true">
+    SELECT * FROM thouseshop WHERE 1 = 1
+    <if test="shopName != null">
+      and shopName=#{shopName}
+    </if>
+  </select>
+  
+  <update id="updateHouseShop" parameterType="com.mama.server.main.dao.model.HouseShopPo">
+    UPDATE thouseshop SET
+    id = id
+    <if test="shopName != null">
+      ,shopName=#{shopName}
+    </if>
+    <if test="shopDesc != null ">
+      ,shopDesc=#{shopDesc}
+    </if>
+    <if test="bossImage != null">
+      ,bossImage=#{bossImage}
+    </if>
+    <if test="bossPhone != null">
+      ,bossPhone=#{bossPhone}
+    </if>
+    <if test="bossWeChat != null">
+      ,bossWeChat=#{bossWeChat}
+    </if>
+    <if test="cityID >0">
+      ,cityID=#{cityID}
+    </if>
+    <if test="level != null">
+      ,level=#{level}
+    </if>
+    <if test="type != null">
+      ,type=#{type}
+    </if>
+    <if test="bossName != null">
+      ,bossName=#{bossName}
+    </if>
+    <if test="imgUrl != null">
+      ,imgUrl=#{imgUrl}
+    </if>
+    <if test="partnership != null">
+      ,partnership=#{partnership}
+    </if>
+    <if test="recommended_status !=2">
+      ,recommended_status=#{recommended_status}
+    </if>
+    ,updateTime = now() 
+    WHERE id = #{id}
+  </update>
+  
+  <insert id="delHouseShop" parameterType="int">
+    DELETE FROM thouseshop where id = #{id}
+  </insert>
+  
+  <select id="getAllHouseShopsByTopicId" parameterType="Map" resultType="com.mama.server.main.dao.model.HouseShopPo" useCache="true">
+    SELECT a.id,a.shopName,a.shopDesc,a.bossImage,a.bossPhone,a.bossWeChat,a.level,a.type,a.bossName,a.imgUrl,b.name cityName,a.partnership 
+	from (select * from thouseshop s LEFT JOIN (SELECT topicID,shopId from T_Topic_Shop where topicID=#{topicId }) t on s.id=t.shopId ) a,
+	tCity b where a.cityID=b.cityId 
+	<if test="shopName != null">
+	  and a.shopName like CONCAT('%',#{shopName},'%')
+    </if>
+    <if test="cityName != null">
+      and b.name=#{cityName }
+    </if>
+    <if test="type != null">
+      and a.type=#{type }
+    </if>
+	ORDER BY a.topicID desc 
+	<if test="limit != null">
+      LIMIT #{start},#{end}
+    </if>
+  </select>
+</mapper> 

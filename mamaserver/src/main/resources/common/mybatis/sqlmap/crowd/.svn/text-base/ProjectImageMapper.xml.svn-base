@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mama.server.main.dao.crowd.ProjectImageDAO">
+    <resultMap id="BaseResultMap" type="com.mama.server.main.dao.model.crowd.ProjectImagePo">
+        <id column="ID" property="id" jdbcType="INTEGER"/>
+        <result column="PROJECT_ID" property="projectId" jdbcType="INTEGER"/>
+        <result column="IMAGE_URL" property="imageUrl" jdbcType="VARCHAR"/>
+        <result column="NAME" property="name" jdbcType="VARCHAR"/>
+        <result column="REMARK" property="remark" jdbcType="VARCHAR"/>
+        <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    
+    <select id="selectProjectImage" parameterType="com.mama.server.main.dao.model.crowd.ProjectImagePo"
+        resultMap="BaseResultMap">
+        SELECT * FROM t_project_Image
+        <where>
+            <if test="id != null">
+                ID = #{id}
+            </if>
+            <if test="projectId != null">
+                PROJECT_ID = #{projectId}
+            </if>
+        </where>
+    </select>
+
+</mapper>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mama.server.main.dao.TopicActivityDao">
+  
+  <!-- 添加客栈信息 -->
+  <insert id="insertTopicActivity" parameterType="com.mama.server.main.dao.model.TopicActivityPo" useGeneratedKeys="true" keyProperty="id">
+    INSERT INTO T_Topic_Activity(activityName,activityType,imgUrl,title,introduction,createTime,updateTime) 
+    VALUES(#{activityName },#{activityType },#{imgUrl },#{title },#{introduction },now(),now())
+  </insert>
+  
+  <!-- 查询客栈信息 -->
+  <select id="getTopicActivity" parameterType="com.mama.server.main.dao.model.TopicActivityPo" resultType="com.mama.server.main.dao.model.TopicActivityPo">
+		SELECT ta.*,(select count(*) from T_Topic_Shop where topicID = ta.id) shopCount FROM T_Topic_Activity ta where 1=1
+		<if test="id != null ">
+			and ta.id = #{id }
+		</if>
+		<if test="activityName != null ">
+			and ta.activityName = #{activityName }
+		</if>
+		<if test="activityType != null ">
+			and ta.activityType = #{activityType}
+		</if>
+		order by updateTime desc
+	</select>
+	
+
+	<!-- 修改客栈信息 -->
+	<update id="updateTopicActivity" parameterType="com.mama.server.main.dao.model.TopicActivityPo">
+		update T_Topic_Activity set updateTime=now()
+		<if test="activityName != null">
+	      ,activityName=#{activityName }
+	    </if>
+	    <if test="activityType != null">
+	      ,activityType=#{activityType }
+	    </if>
+	    <if test="imgUrl != null">
+	      ,imgUrl=#{imgUrl }
+	    </if>
+	    <if test="title != null">
+	      ,title=#{title }
+	    </if>
+	    <if test="introduction != null">
+	      ,introduction=#{introduction }
+	    </if>
+		where id = #{id}
+	</update>
+	
+	<delete id="removeTopicActivity" parameterType="com.mama.server.main.dao.model.TopicActivityPo">
+	    DELETE FROM T_Topic_Activity WHERE id=#{id}
+	</delete>
+
+	<select id="getTopicShopList" parameterType="com.mama.server.main.dao.model.TopicShopPo" resultType="com.mama.server.main.dao.model.TopicShopPo">
+		SELECT * FROM T_Topic_Shop where topicID=#{topicID}
+	</select>
+	<!-- 删除关联客栈 -->
+	<delete id="removeTopicShop" parameterType="com.mama.server.main.dao.model.TopicShopPo">
+	    DELETE FROM T_Topic_Shop WHERE 1=1 
+	    <!--  topicID=#{topicID} and shopId=#{shopId}-->
+	     <if test="topicID > 0">
+	      and topicID=#{topicID }
+	     </if>
+	     <if test="shopId != null">
+	      and shopId=#{shopId }
+	     </if>
+	</delete>
+    <!-- 添加关联客栈 -->
+	 <insert id="insertTopicShop" parameterType="com.mama.server.main.dao.model.TopicShopPo" useGeneratedKeys="true" keyProperty="id">
+	    INSERT INTO T_Topic_Shop(topicID,shopId) 
+	    VALUES(#{topicID },#{shopId })
+	 </insert>
+	
+</mapper> 

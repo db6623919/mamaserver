@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xmlns:context="http://www.springframework.org/schema/context"
+   xmlns:task="http://www.springframework.org/schema/task"
+   xsi:schemaLocation="http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans.xsd
+   http://www.springframework.org/schema/context
+   http://www.springframework.org/schema/context/spring-context.xsd
+   http://www.springframework.org/schema/task
+   http://www.springframework.org/schema/task/spring-task.xsd">
+
+  <task:annotation-driven scheduler="qbScheduler" mode="proxy"/>  
+  <task:scheduler id="qbScheduler" pool-size="10" />
+  
+   <task:scheduled-tasks>
+   <!-- 
+    <task:scheduled ref="orderTask" method="checkVerifiedOrdersTask" cron="0 0 1 * * ?"/>
+    <task:scheduled ref="orderTask" method="checkNotLivedOrdersTask" cron="0 0 8 * * ?"/>
+     -->
+     <task:scheduled ref="exportBillTask" method="exportBill" cron="0 1 0 15 * ?"/>
+     
+     <task:scheduled ref="clickFarmingAmtTask" method="clickFarmingAmt" fixed-rate="3600000"/>
+     
+    <!-- <task:scheduled ref="recordTask" method="updateRecordWinFlag" cron="0 1 0 * * ?"/> -->
+    <task:scheduled ref="updateInventoryTask" method="updateInventory" cron="0 0 0 1 * ?"/>
+    <!-- <task:scheduled ref="checkOrderPayStatusTask" method="checkOrderPayStatus" fixed-rate="3600000"/> -->
+  </task:scheduled-tasks> 
+    
+  <!-- Scheduling -->
+  
+  <!--
+  <task:scheduled-tasks scheduler="testScheduler">
+    <task:scheduled ref="testTasks" method="test" cron="*/5 * * * * *" />
+  </task:scheduled-tasks>
+  -->
+  
+  <!-- Schedulers -->
+
+  <!-- Jobs -->
+
+
+</beans>

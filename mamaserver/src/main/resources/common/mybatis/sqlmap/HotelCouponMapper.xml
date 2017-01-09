@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mama.server.main.dao.HotelCouponDao">
+
+	<resultMap type="com.mama.server.main.dao.model.ExchangePo" id="exchangeMap">
+		<id column="id" property="id" />
+		<collection property="requestCount" column="id" select="getExchangeRequestCount"></collection>
+	</resultMap>
+
+	<resultMap type="com.mama.server.main.dao.model.ExchangePo" id="exchangeDetailMap">
+		<id column="id" property="id" />
+		<collection property="requests" column="id" select="getExchangeRequests"></collection>
+	</resultMap>
+
+	<select id="getHotelCoupons" resultType="com.mama.server.main.dao.model.HotelCouponPo">
+		SELECT * FROM T_Hotel_Coupon
+		WHERE
+		mmWalletId = #{mmWalletId}
+		<if test="ids != null and ids.size > 0">
+			and id in
+			<foreach collection="ids" item="id" open="(" close=")" separator=",">
+				#{id}
+			</foreach>
+		</if>
+		<if test="devId != null and devId > 0">
+			and devId = #{devId}
+		</if>
+		<if test="houseId != null and houseId > 0">
+			and houseId = #{houseId}
+		</if>
+		<if test="expireTimeFrom != null">
+			and expireTime >= #{expireTimeFrom}
+		</if>
+		<if test="expireTimeTo != null">
+			and expireTime &lt; #{expireTimeTo}
+		</if>
+		<if test="statusIds != null and statusIds.size > 0">
+			and status in
+			<foreach collection="statusIds" item="status" open="(" close=")" separator=",">
+				#{status}
+			</foreach>
+		</if>
+		order by status
+	</select>
+
+	<select id="getHotelCouponGroup" resultType="com.mama.server.main.dao.model.HotelCouponPo">
+		SELECT T_Hotel_Coupon.*
+		FROM
+		T_Hotel_Coupon
+		LEFT JOIN
+		(SELECT * FROM T_Hotel_Coupon WHERE id = #{id}) T_Hotel_Coupon2
+		ON
+		T_Hotel_Coupon.mmWalletId = T_Hotel_Coupon2.mmWalletId
+		WHERE
+		T_Hotel_Coupon.name = T_Hotel_Coupon2.name
+		AND T_Hotel_Coupon.devId = T_Hotel_Coupon2.devId
+		AND T_Hotel_Coupon.houseId =
+		T_Hotel_Coupon2.houseId
+		AND T_Hotel_Coupon.inSeason = T_Hotel_Coupon2.inSeason
+		AND T_Hotel_Coupon.status = T_Hotel_Coupon2.status
+		AND (T_Hotel_Coupon.expireTime =
+		T_Hotel_Coupon2.expireTime OR (T_Hotel_Coupon.expireTime IS NULL AND T_Hotel_Coupon2.expireTime IS NULL))
+		AND (T_Hotel_Coupon.disabledDates = T_Hotel_Coupon2.disabledDates OR
+		(T_Hotel_Coupon.disabledDates IS NULL AND T_Hotel_Coupon2.disabledDates IS NULL))
+	</select>
+
+	<update id="updateHotelCouponStatus">
+		update T_Hotel_Coupon set status = #{status}
+		<where>
+			<choose>
+				<when test="ids != null and ids.size > 0">
+					and id in
+					<foreach collection="ids" item="id" open="(" close=")" separator=",">
+						#{id}
+					</foreach>
+				</when>
+				<otherwise>
+					1 != 1
+				</otherwise>
+			</choose>
+		</where>
+	</update>
+
+	<insert id="addHotelCouponExchange" useGeneratedKeys="true" keyProperty="id">
+		insert into
+		T_Exchange (memberId,hotelCouponIds,status,showDetail)
+		values
+		(#{data.memberId},#{data.hotelCouponIds},#{data.status},#{data.showDetail})
+	</insert>
+
+	<insert id="addHotelCouponExchangeRequest" useGeneratedKeys="true" keyProperty="id">
+		insert into
+		T_Exchange_Request (memberId,exchangeId,hotelCouponIds,status,showDetail)
+		values
+		(#{data.memberId},#{data.exchangeId},#{data.hotelCouponIds},#{data.status},#{data.showDetail})
+	</insert>
+
+	<select id="getHotelCouponExchanges" resultMap="exchangeMap">
+		SELECT * FROM T_Exchange
+		<where>
+			<if test="id != null and id >0">
+				and id = #{id}
+			</if>
+			<choose>
+				<when test="type == 1">
+					and memberId = #{memberId}
+				</when>
+				<when test="type == 2">
+					and id in (select exchangeId from T_Exchange_Request where memberId = #{memberId})
+				</when>
+			</choose>
+			<if test="statusIds != null and statusIds.size > 0">
+				and status in
+				<foreach collection="statusIds" item="status" open="(" close=")" separator=",">
+					#{status}
+				</foreach>
+			</if>
+		</where>
+		order by id desc
+	</select>
+
+	<select id="getExchangeDetailById" resultMap="exchangeDetailMap">
+		SELECT * FROM T_Exchange WHERE id = #{id}
+	</select>
+
+	<select id="getExchangeRequestById" resultType="com.mama.server.main.dao.model.ExchangeRequestPo">
+		SELECT * FROM T_Exchange_Request WHERE id = #{id}
+	</select>
+
+	<select id="getExchangeRequests" resultType="com.mama.server.main.dao.model.ExchangeRequestPo">
+		SELECT * FROM T_Exchange_Request WHERE exchangeId = #{id} order by id desc
+	</select>
+
+	<select id="getExchangeRequestCount" resultType="int">
+		SELECT count(1) FROM T_Exchange_Request WHERE exchangeId = #{id}
+	</select>
+
+	<update id="updateExchange">
+		update T_Exchange set status = #{status} where id = #{id}
+	</update>
+
+	<update id="updateExchangeRequest">
+		update T_Exchange_Request set status = #{status} where id = #{id}
+	</update>
+
+	<update id="changeHotelCoupon">
+		UPDATE T_Hotel_Coupon SET mmWalletId = #{memberId}
+		<where>
+			and id in
+			<foreach collection="hotelCouponIds" item="id" open="(" close=")" separator=",">
+				#{id}
+			</foreach>
+		</where>
+	</update>
+	
+	<select id="getHotelCouponGiveList" resultType="com.mama.server.main.dao.model.HotelCouponGivePo">
+		<choose>
+			<when test="type == 2">
+				SELECT T_Hotel_Coupon_Give.*, T_Hotel_Coupon_Give_Receive.createTime AS receivedTime FROM T_Hotel_Coupon_Give_Receive inner join T_Hotel_Coupon_Give
+				ON
+				T_Hotel_Coupon_Give_Receive.hotelCouponGiveId = T_Hotel_Coupon_Give.id
+				WHERE T_Hotel_Coupon_Give_Receive.accountRefId = #{memberId} AND T_Hotel_Coupon_Give_Receive.accountType =
+				1
+				order by T_Hotel_Coupon_Give_Receive.id desc
+			</when>
+			<otherwise>
+				SELECT * FROM T_Hotel_Coupon_Give
+				<where>
+					<if test="id != null and id > 0">
+						and id = #{id}
+					</if>
+					<if test="memberId != null and memberId != ''">
+						and memberId = #{memberId}
+					</if>
+					<if test="giveCode != null and giveCode != ''">
+						and giveCode = #{giveCode}
+					</if>
+				</where>
+				ORDER BY id DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="getHotelCouponGiveDetail" resultMap="hotelCouponGiveDetailMap">
+		SELECT * FROM T_Hotel_Coupon_Give
+		<where>
+			<choose>
+				<when test="id != null">
+					AND id = #{id}
+				</when>
+				<when test="giveCode !=null and giveCode != ''">
+					AND giveCode = #{giveCode}
+				</when>
+				<otherwise>
+					AND FALSE
+				</otherwise>
+			</choose>
+		</where>
+	</select>
+	
+	<insert id="addHotelCouponGive" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO
+		T_Hotel_Coupon_Give
+		(memberId,giveCode,hotelCouponIds,receivedHotelCouponIds,status,showDetail)
+		VALUES
+		(#{data.memberId},#{data.giveCode},#{data.hotelCouponIds},#{data.receivedHotelCouponIds},#{data.status},#{data.showDetail})
+	</insert>
+	
+	<update id="updateHotelCouponGiveStatus">
+		update T_Hotel_Coupon_Give set status = #{status} where id = #{id}
+	</update>
+	
+	<select id="findHotelCouponGiveReceiveCount" resultType="int">
+		SELECT COUNT(1) FROM T_Hotel_Coupon_Give_Receive WHERE hotelCouponGiveId = #{hotelCouponGiveId} and accountRefId =
+		#{accountRefId}
+	</select>
+	
+	<update id="updateReceivedHotelCouponIds">
+		update T_Hotel_Coupon_Give set receivedHotelCouponIds = #{receivedHotelCouponIds} where id = #{id}
+	</update>
+	
+	<insert id="addHotelCouponGiveReceive" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO
+		T_Hotel_Coupon_Give_Receive
+		(accountType,accountRefId,hotelCouponGiveId,hotelCouponIds)
+		VALUES
+		(#{data.accountType},#{data.accountRefId},#{data.hotelCouponGiveId},#{data.hotelCouponIds})
+	</insert>
+	
+	<insert id="copyHotelCoupon">
+		INSERT INTO T_Hotel_Coupon
+		(mmWalletId,status,name,sourceType,sourceGroupId,sourceId,inSeason,disabledDates,devId,houseId,expireTime)
+		SELECT
+		#{mmWalletId},#{status},name,sourceType,sourceGroupId,sourceId,inSeason,disabledDates,devId,houseId,expireTime FROM T_Hotel_Coupon
+		<where>
+			id in
+			<foreach collection="hotelCouponIds" item="id" open="(" close=")" separator=",">
+				#{id}
+			</foreach>
+		</where>
+	</insert>
+	
+	<resultMap type="com.mama.server.main.dao.model.HotelCouponGivePo" id="hotelCouponGiveDetailMap">
+		<id column="id" property="id" />
+		<collection property="receives" column="id" select="getHotelCouponGiveReceives"></collection>
+	</resultMap>
+	
+	<select id="getHotelCouponGiveReceives" resultType="com.mama.server.main.dao.model.HotelCouponGiveReceivePo">
+		SELECT * FROM T_Hotel_Coupon_Give_Receive where hotelCouponGiveId = #{id}
+	</select>
+</mapper> 

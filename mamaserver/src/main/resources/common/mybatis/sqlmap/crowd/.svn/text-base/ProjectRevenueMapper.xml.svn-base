@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mama.server.main.dao.crowd.ProjectRevenueDAO">
+    <resultMap id="BaseResultMap" type="com.mama.server.main.dao.model.crowd.ProjectRevenuePo">
+        <id column="ID" property="id" jdbcType="INTEGER"/>
+        <result column="PROJECT_ID" property="projectId" jdbcType="INTEGER"/>
+        <result column="MONEY" property="money" jdbcType="NUMERIC"/>
+        <result column="TYPE" property="type" jdbcType="INTEGER"/>
+        <result column="TOTAL_NUM" property="totalNum" jdbcType="NUMERIC"/>
+        <result column="FINISH_NUM" property="finishNum" jdbcType="NUMERIC"/>
+        <result column="REMARK" property="remark" jdbcType="VARCHAR"/>
+        <result column="EXCEED_ABLE" property="exceedAble" jdbcType="INTEGER"/>
+        <result column="CREA_TETIME" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <select id="selectProjectRevenue" parameterType="com.mama.server.main.dao.model.crowd.ProjectRevenuePo"
+        resultMap="BaseResultMap">
+        SELECT * FROM t_project_revenue
+        <where>
+            <if test="id != null">
+                ID = #{id}
+            </if>
+            <if test="projectId != null">
+                PROJECT_ID = #{projectId}
+            </if>
+        </where>    
+    </select>
+
+</mapper>

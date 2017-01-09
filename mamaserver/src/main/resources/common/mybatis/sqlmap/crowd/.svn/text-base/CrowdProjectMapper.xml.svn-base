@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mama.server.main.dao.crowd.CrowdProjectDAO">
+    <resultMap id="BaseResultMap" type="com.mama.server.main.dao.model.crowd.CrowdProjectPo">
+        <id column="ID" property="id" jdbcType="INTEGER"/>
+        <result column="PROJECT_NAME" property="projectName" jdbcType="VARCHAR"/>
+        <result column="INTRODUTION_IMAGE_ID" property="introdutionImageId" jdbcType="VARCHAR"/>
+        <result column="VIDEO_URL" property="videoUrl" jdbcType="VARCHAR"/>
+        <result column="BRIEF_INTRODUCTION" property="briefIntroduction" jdbcType="VARCHAR"/>
+        <result column="TARGET_MONEY" property="targetMoney" jdbcType="NUMERIC"/>
+        <result column="BEGIN_TIME" property="beginTime" jdbcType="DATETIME"/>
+        <result column="END_TIME" property="endTime" jdbcType="DATETIME"/>
+        <result column="RAISED_AMOUNT" property="raisedAmount" jdbcType="NUMERIC"/>
+        <result column="PROJECT_STORY" property="projectStroy" jdbcType="VARCHAR"/>
+        <result column="PROJECT_PLAN" property="projectPlan" jdbcType="VARCHAR"/>
+        <result column="REWARD" property="reward" jdbcType="VARCHAR"/>
+        <result column="STATUS" property="status" jdbcType="INTEGER"/>
+        <result column="IS_REMOVED" property="isRemoved" jdbcType="INTEGER"/>
+        <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="UPDATE_TIME" property="uppdateTime" jdbcType="TIMESTAMP"/>
+        <!-- <result column="" property="" jdbcType=""/> -->
+    </resultMap>
+    <insert id="insertCrowdProject" parameterType="com.mama.server.main.dao.model.crowd.CrowdProjectPo"
+        useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO t_crowd_project(PROJECT_NAME,INTRODUTION_IMAGE_ID,VIDEO_URL,BRIEF_INTRODUCTION,TARGET_MONEY,BEGIN_TIME,END_TIME,RAISED_AMOUNT,PROJECT_STORY,
+        PROJECT_PLAN,REWARD,STATUS,IS_REMOVED,CREATE_TIME,UPDATE_TIME) 
+        values(#{projectName},#{introdutionImageId},#{videoUrl},#{briefIntroduction},#{targetMoney},#{beginTime},#{endTime},#{raisedAmount},#{projectStroy},
+        #{projectPlan},#{reward},#{status},#{isRemoved},now(),now());
+    </insert>
+    
+    <delete id="deleteCrowdProject" parameterType="com.mama.server.main.dao.model.crowd.CrowdProjectPo">
+        DELETE FROM t_crowd_project
+        <where>
+            <if test="id != null">
+                ID = #{id}
+            </if>
+        </where>
+    </delete>
+    
+    <update id="updateCrowdProject"></update>
+    
+    <select id="selectCrowdProject" parameterType="com.mama.server.main.dao.model.crowd.CrowdProjectPo"
+        resultMap="BaseResultMap">
+        SELECT * FROM t_crowd_project
+        <where>
+            <if test="id != null">
+                ID = #{id}
+            </if>
+        </where>
+    
+    </select>
+    
+</mapper>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mama.server.main.dao.CollectDao">
+  
+  <delete id="removeCollect" parameterType="com.mama.server.main.dao.model.CollectPo">
+    DELETE FROM tCollect WHERE houseId=#{houseId} and uid=#{uid}
+  </delete>
+  
+  <!-- 加入收藏 -->
+  <insert id="insertCollect" parameterType="com.mama.server.main.dao.model.CollectPo" keyProperty="id">
+    INSERT INTO tCollect(uid,houseId,operTime) 
+    VALUES(#{uid},#{houseId},NOW())
+  </insert>
+  
+  <!-- 查询收藏 -->
+  <select id="getCollectByAllParam" parameterType="com.mama.server.main.dao.model.CollectPo" resultType="com.mama.server.main.dao.model.CollectPo">
+    SELECT id,houseId,uid,DATE_FORMAT(operTime,'%Y-%m-%d %H:%i:%s') operTime,removed FROM tCollect
+    WHERE 1 = 1
+    <if test="uid != null">
+      and uid=#{uid}
+    </if>
+    <if test="houseId != -1">
+      and houseId=#{houseId}
+    </if>
+    <if test="removed != null">
+      and removed=#{removed}
+    </if>
+    order by operTime desc
+  </select>
+  
+  <!-- 删除收藏 -->
+  <update id="updateCollect" parameterType="com.mama.server.main.dao.model.CollectPo">
+    UPDATE tCollect set removed = #{removed}
+    WHERE 1 = 1
+    <if test="uid != null">
+      and uid=#{uid}
+    </if>
+    <if test="houseId != -1">
+      and houseId=#{houseId}
+    </if>
+    <if test="removed != null">
+      and removed=#{removed}
+    </if>
+  </update>
+  
+</mapper> 

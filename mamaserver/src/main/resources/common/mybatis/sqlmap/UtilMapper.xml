@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mama.server.main.dao.UtilDao">
+  <insert id="insSms" parameterType="com.mama.server.main.dao.model.SmsPo" keyProperty="id">
+    INSERT INTO tSms(uid,content,phone,type,operTime,status,used)
+    VALUE(#{uid},#{content},#{phone},#{type},NOW(),#{status},#{used})
+  </insert>
+  
+  <select id="getSmsByAllParam" parameterType="com.mama.server.main.dao.model.SmsPo" resultType="com.mama.server.main.dao.model.SmsPo">
+    SELECT uid,content,phone,type,DATE_FORMAT(operTime,'%Y%m%d%H%i%s') operTime,status,used FROM tSms
+    WHERE 1 = 1
+    <if test="uid != null">
+      and uid=#{uid}
+    </if>
+    <if test="status != null and status != 0 ">
+      and status=#{status}
+    </if>
+    <if test="content != null">
+      and content=#{content}
+    </if>
+    <if test="phone != null">
+      and phone=#{phone}
+    </if>
+    <if test="type != null and type != 0">
+      and type=#{type}
+    </if>
+    <if test="used != null and used != 0">
+      and used=#{used}
+    </if>
+    <if test="operTime != null">
+      and DATE_FORMAT(operTime,'%Y-%m-%d')=#{operTime}
+    </if>
+     ORDER BY operTime DESC
+  </select>
+  
+  <update id="updateSmsById" parameterType="com.mama.server.main.dao.model.SmsPo">
+    UPDATE tSms
+    SET uid = uid
+    <if test="content != null">
+      ,content=#{content}
+    </if>
+    <if test="status != null">
+      , status=#{status}
+    </if>
+    <if test="content != null">
+      , content=#{content}
+    </if>
+    <if test="phone != null">
+      , phone=#{phone}
+    </if>
+    <if test="type != null">
+      , type=#{type}
+    </if>
+    <if test="used != null">
+      , used=#{used}
+    </if>
+    WHERE id=#{id}
+  </update>
+  
+  <insert id="insProvince" parameterType="com.mama.server.main.dao.model.ProvincePo">
+    INSERT INTO tProvince(name,showDetail)
+    VALUE(#{name},#{showDetail}) 
+  </insert>
+  
+  <update id="updateProvinceById" parameterType="com.mama.server.main.dao.model.ProvincePo">
+    UPDATE tProvince
+    SET provId = provId
+    <if test="provId != null">
+      ,provId=#{provId}
+    </if>
+    <if test="name != null">
+      , name=#{name}
+    </if>
+    <if test="showDetail != null">
+      , showDetail=#{showDetail}
+    </if>
+    <if test="removed != null">
+      , removed=#{removed}
+    </if>
+    WHERE provId=#{provId}
+  </update>
+  
+  <!--根据省份名称修改省份信息  -->
+  <update id="updateProvinceByName" parameterType="com.mama.server.main.dao.model.ProvincePo">
+    UPDATE tProvince
+    SET provId = provId,removed=0
+    <if test="showDetail != null">
+      , showDetail=#{showDetail}
+    </if>
+    WHERE name=#{name}
+  </update>
+
+  <!--判断省份是否存在  -->
+  <select id="checkProvince" parameterType="String" resultType="int" >
+    SELECT count(1) FROM tProvince where name=#{name} ; 
+  </select>
+  
+  <select id="getProvince" resultType="com.mama.server.main.dao.model.ProvincePo" useCache="true">
+    SELECT * FROM tProvince; 
+  </select>
+  
+  <select id="getProvinces" parameterType="Map" resultType="com.mama.server.main.dao.model.ProvincePo" useCache="true">
+    SELECT * FROM tProvince where removed=0 
+    <if test="limit != null">
+      LIMIT #{start},#{end}
+    </if> 
+  </select>
+  
+  <!-- 判断城市是否存在 -->
+  <select id="checkCity" parameterType="String" resultType="com.mama.server.main.dao.model.CityPo" >
+    SELECT * FROM tCity where name=#{name}; 
+  </select>
+  
+  <!--查询省份是否有关联城市  --> 
+  <select id="getCityByProId" parameterType="com.mama.server.main.dao.model.CityPo" resultType="int">
+    SELECT count(*) FROM tCity where provId=#{provId}; 
+  </select>
+  
+  <insert id="insCity" parameterType="com.mama.server.main.dao.model.CityPo">
+    INSERT INTO tCity(provId,type,name,showDetail,sort,pinyin)
+    VALUE(#{provId},#{type},#{name},#{showDetail},#{sort},#{pinyin}) 
+  </insert>
+  
+  
+  
+  <update id="updateCityById" parameterType="com.mama.server.main.dao.model.CityPo">
+    UPDATE tCity
+    SET cityId = cityId
+    <if test="provId != null">
+      ,provId=#{provId}
+    </if>
+    <if test="name != null">
+      , name=#{name}
+    </if>
+    <if test="type != null">
+      , type=#{type}
+    </if>
+    <if test="showDetail != null">
+      , showDetail=#{showDetail}
+    </if>
+    <if test="sort != null">
+      ,sort=#{sort}
+    </if>
+    <if test="pinyin != null">
+      ,pinyin=#{pinyin}
+    </if>
+    <if test="removed != null">
+      , removed=#{removed}
+    </if>
+    WHERE cityId=#{cityId}
+  </update>
+  
+  <!--根据城市名称修改城市信息  -->
+  <update id="updateCityByName" parameterType="com.mama.server.main.dao.model.CityPo">
+    UPDATE tCity
+    SET cityId = cityId, removed=0
+    <if test="provId != null">
+      ,provId=#{provId}
+    </if>
+    <if test="type != null">
+      , type=#{type}
+    </if>
+    <if test="showDetail != null">
+      , showDetail=#{showDetail}
+    </if>
+    <if test="sort != null">
+      ,sort=#{sort}
+    </if>
+    WHERE name=#{name}
+  </update>
+
+  <select id="getCity" parameterType="Map" resultType="com.mama.server.main.dao.model.CityPo" useCache="true">
+    SELECT * FROM tCity where removed=0 
+    ORDER BY sort ASC
+    <if test="limit != null">
+      LIMIT #{start},#{end}
+    </if> 
+  </select>
+ 
+   <select id="getCityByPar" parameterType="com.mama.server.main.dao.model.CityPo" resultType="com.mama.server.main.dao.model.CityPo" useCache="true">
+    SELECT * FROM tCity
+	WHERE 1 = 1
+    <if test="provId >0">
+      and provId = #{provId}
+    </if>
+    <if test="cityId != null">
+      and cityId = #{cityId}
+    </if>
+  </select>
+  
+  <select id="getCityByName" parameterType="com.mama.server.main.dao.model.CityPo" resultType="com.mama.server.main.dao.model.CityPo" useCache="true">
+    SELECT * FROM tCity
+	WHERE 1 = 1
+    <if test="name != null">
+      and name like CONCAT('%',#{name},'%') 
+    </if>
+  </select>
+  
+  <select id="getCityById" parameterType="int" resultType="com.mama.server.main.dao.model.CityPo" useCache="true">
+    SELECT * FROM tCity WHERE cityId = #{cityId}
+  </select>
+  
+   
+  <select id="getCityByType" parameterType="com.mama.server.main.dao.model.CityPo" resultType="com.mama.server.main.dao.model.CityPo" useCache="true">
+    SELECT * FROM tCity
+	WHERE 1 = 1
+    <if test="type != null">
+      and type &amp; #{type} = #{type}
+    </if>
+  </select>
+  
+  <insert id="insertOpen" parameterType="com.mama.server.main.dao.model.OpenIdInfoPo">
+    INSERT INTO openIdInfo(phone,openId)
+    VALUE(#{phone},#{openId}) 
+  </insert>
+  <select id="getOpenIdInfoPoByAllParam" parameterType="com.mama.server.main.dao.model.OpenIdInfoPo" resultType="com.mama.server.main.dao.model.OpenIdInfoPo">
+    SELECT * FROM openIdInfo
+	WHERE 1 = 1
+    <if test="phone != null">
+      and phone=#{phone}
+    </if>
+    <if test="openId != null">
+      and openId=#{openId}
+    </if>
+  </select>
+  <update id="updateOpen" parameterType="com.mama.server.main.dao.model.OpenIdInfoPo">
+  	update openIdInfo set
+  		phone = phone
+  	<if test="openId != null">
+      ,openId=#{openId}
+    </if>
+ 	 WHERE phone=#{phone}
+  </update>
+  
+  
+</mapper> 

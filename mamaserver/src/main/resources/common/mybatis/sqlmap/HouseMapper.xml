@@ -1,0 +1,772 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mama.server.main.dao.HouseDao">
+
+  <insert id="insertDeveloper" parameterType="com.mama.server.main.dao.model.DeveloperPo">
+    INSERT INTO tDeveloper(name,showDetail,type,mark) 
+    VALUES(#{name},#{showDetail},#{type},#{mark})
+  </insert>
+  
+  <update id="updateDeveloper" parameterType="com.mama.server.main.dao.model.DeveloperPo">
+    UPDATE tDeveloper SET
+    devId = devId
+    <if test="showDetail != null">
+      ,showDetail=#{showDetail}
+    </if>
+    <if test="type != null and type  != 0">
+      ,type=#{type}
+    </if>
+    <if test="mark != null">
+      ,mark=#{mark}
+    </if>
+    <if test="name != null">
+      ,name=#{name}
+    </if>
+    <if test="removed != null">
+      ,removed=#{removed}
+    </if>
+    WHERE devId = #{devId}
+  </update>
+  
+  <select id="getDeveloper" resultType="com.mama.server.main.dao.model.DeveloperPo" useCache="true">
+    SELECT * FROM tDeveloper where removed=0 
+    <if test="devId != null">
+      and devId=#{devId}
+    </if>
+    <if test="limit != null">
+      LIMIT #{start},#{end}
+    </if> 
+  </select>
+  
+  <select id="getDeveloperByDevId" resultType="com.mama.server.main.dao.model.DeveloperPo" parameterType="com.mama.server.main.dao.model.DeveloperPo" useCache="true">
+    SELECT * FROM tDeveloper WHERE devId = #{devId} 
+  </select>
+  
+  <insert id="insertBuilding" parameterType="com.mama.server.main.dao.model.BuildingPo">
+    INSERT INTO tBuilding(devId,provId,cityId,showDetail,type,mark,removed,name,project_introduction,unit_area,built_area,average_price,surrounding_scenic,property_type,decoration_standard,built_address,open_date,purchase_discount,consultant_phone,develop_name,launch_date,year_limit,built_status,built_type,volume_rate,greening_rate,plan_households,plan_parking,presale_permit,property_comp_name,property_fee,hearting_mode,water_elec,project_feature,scenic_resource,humanity_matching,education_matching,business_matching,commerce_matching,leisure_matching,hospital_resource,exhibition_images,apartment_images,showings_images,showings_videos,building_type,index_image,trade_area ) 
+    VALUES(#{devId},#{provId},#{cityId},#{showDetail},#{type},#{mark},#{removed},#{name},#{project_introduction},#{unit_area},#{built_area},#{average_price},#{surrounding_scenic},#{property_type},#{decoration_standard},#{built_address},#{open_date},#{purchase_discount},#{consultant_phone},#{develop_name},#{launch_date},#{year_limit},#{built_status},#{built_type},#{volume_rate},#{greening_rate},#{plan_households},#{plan_parking},#{presale_permit},#{property_comp_name},#{property_fee},#{hearting_mode},#{water_elec},#{project_feature},#{scenic_resource},#{humanity_matching},#{education_matching},#{business_matching},#{commerce_matching},#{leisure_matching},
+    #{hospital_resource},#{exhibition_images},#{apartment_images},#{showings_images},#{showings_videos},#{building_type},#{index_image},#{trade_area})
+  </insert>
+  
+  <update id="updateBuilding" parameterType="com.mama.server.main.dao.model.BuildingPo">
+    UPDATE tBuilding SET 
+    bldId = bldId,
+			 <if test="devId != null">
+		     	devId = #{devId},
+		     </if>
+			 <if test="provId != null">
+		     	provId = #{provId},
+		     </if>
+			 <if test="cityId != null">
+		     	cityId = #{cityId},
+		     </if>
+			 <if test="showDetail != null">
+		     	showDetail = #{showDetail},
+		     </if>
+			 <if test="type != null">
+		     	type = #{type},
+		     </if>
+			 <if test="mark != null">
+		     	mark = #{mark},
+		     </if>
+			 <if test="removed != null">
+		     	removed = #{removed},
+		     </if>
+			 <if test="name != null">
+		     	name = #{name},
+		     </if>
+			 <if test="project_introduction != null">
+		     	project_introduction = #{project_introduction},
+		     </if>
+			 <if test="unit_area != null">
+		     	unit_area = #{unit_area},
+		     </if>
+			 <if test="built_area != null">
+		     	built_area = #{built_area},
+		     </if>
+			 <if test="average_price != null">
+		     	average_price = #{average_price},
+		     </if>
+			 <if test="surrounding_scenic != null">
+		     	surrounding_scenic = #{surrounding_scenic},
+		     </if>
+			 <if test="property_type != null">
+		     	property_type = #{property_type},
+		     </if>
+			 <if test="decoration_standard != null">
+		     	decoration_standard = #{decoration_standard},
+		     </if>
+			 <if test="built_address != null">
+		     	built_address = #{built_address},
+		     </if>
+			 <if test="open_date != null">
+		     	open_date = #{open_date},
+		     </if>
+			 <if test="purchase_discount != null">
+		     	purchase_discount = #{purchase_discount},
+		     </if>
+			 <if test="consultant_phone != null">
+		     	consultant_phone = #{consultant_phone},
+		     </if>
+			 <if test="develop_name != null">
+		     	develop_name = #{develop_name},
+		     </if>
+			 <if test="launch_date != null">
+		     	launch_date = #{launch_date},
+		     </if>
+			 <if test="year_limit != null">
+		     	year_limit = #{year_limit},
+		     </if>
+			 <if test="built_status != null">
+		     	built_status = #{built_status},
+		     </if>
+			 <if test="built_type != null">
+		     	built_type = #{built_type},
+		     </if>
+			 <if test="volume_rate != null">
+		     	volume_rate = #{volume_rate},
+		     </if>
+			 <if test="greening_rate != null">
+		     	greening_rate = #{greening_rate},
+		     </if>
+			 <if test="plan_households != null">
+		     	plan_households = #{plan_households},
+		     </if>
+			 <if test="plan_parking != null">
+		     	plan_parking = #{plan_parking},
+		     </if>
+			 <if test="presale_permit != null">
+		     	presale_permit = #{presale_permit},
+		     </if>
+			 <if test="property_comp_name != null">
+		     	property_comp_name = #{property_comp_name},
+		     </if>
+			 <if test="property_fee != null">
+		     	property_fee = #{property_fee},
+		     </if>
+			 <if test="hearting_mode != null">
+		     	hearting_mode = #{hearting_mode},
+		     </if>
+			 <if test="water_elec != null">
+		     	water_elec = #{water_elec},
+		     </if>
+			 <if test="project_feature != null">
+		     	project_feature = #{project_feature},
+		     </if>
+			 <if test="scenic_resource != null">
+		     	scenic_resource = #{scenic_resource},
+		     </if>
+			 <if test="humanity_matching != null">
+		     	humanity_matching = #{humanity_matching},
+		     </if>
+			 <if test="education_matching != null">
+		     	education_matching = #{education_matching},
+		     </if>
+			 <if test="business_matching != null">
+		     	business_matching = #{business_matching},
+		     </if>
+			 <if test="commerce_matching != null">
+		     	commerce_matching = #{commerce_matching},
+		     </if>
+			 <if test="leisure_matching != null">
+		     	leisure_matching = #{leisure_matching},
+		     </if>
+			 <if test="hospital_resource != null">
+		     	hospital_resource = #{hospital_resource},
+		     </if>
+			 <if test="exhibition_images != null">
+		     	exhibition_images = #{exhibition_images},
+		     </if>
+			 <if test="apartment_images != null">
+		     	apartment_images = #{apartment_images},
+		     </if>
+			 <if test="showings_images != null">
+		     	showings_images = #{showings_images},
+		     </if>
+			 <if test="showings_videos != null">
+		     	showings_videos = #{showings_videos},
+		     </if>
+			 <if test="building_type != null">
+		     	building_type = #{building_type},
+		     </if>
+			 <if test="index_image != null">
+		     	index_image = #{index_image},
+		     </if>
+		     <if test="trade_area != null">
+		     	trade_area = #{trade_area},
+		     </if>
+		     bldId = bldId
+		where bldId=#{bldId}
+  </update>
+  
+  <select id="getBuildingByCityId" resultType="com.mama.server.main.dao.model.BuildingPo" parameterType="com.mama.server.main.dao.model.BuildingPo" useCache="true">
+    SELECT * FROM tBuilding WHERE cityId = #{cityId} and removed=0
+  </select>
+  
+  <select id="getBuildingByDevId" resultType="int" parameterType="int" >
+    SELECT count(1) FROM tBuilding WHERE devId = #{devId} and removed=0
+  </select>
+  
+  <select id="getBuilding" resultType="com.mama.server.main.dao.model.BuildingPo" parameterType="com.mama.server.main.dao.model.BuildingPo" useCache="true">
+    SELECT 
+    bldId,devId,provId,cityId,showDetail,type,mark,removed,name,project_introduction,unit_area,built_area,average_price,
+    surrounding_scenic,property_type,decoration_standard,built_address,open_date,purchase_discount,consultant_phone,develop_name,
+    launch_date,year_limit,built_status,built_type,volume_rate,greening_rate,plan_households,plan_parking,presale_permit,property_comp_name,property_fee,
+    hearting_mode,water_elec,project_feature,scenic_resource,humanity_matching,education_matching,business_matching,commerce_matching,leisure_matching,
+    hospital_resource,exhibition_images,apartment_images,showings_images,showings_videos,building_type,index_image,trade_area  
+    FROM tBuilding 
+    WHERE 1 = 1
+   	<if test="bldId != null and bldId  != 0">
+		AND bldId = #{bldId}
+	</if>
+	<if test="devId != null and devId  != 0">
+		AND devId = #{devId}
+	</if>
+	<if test="provId != null and provId  != 0">
+		AND provId = #{provId}
+	</if>
+	<if test="cityId != null and cityId  != 0">
+		AND cityId = #{cityId}
+	</if>
+	<if test="showDetail != null ">
+		AND showDetail = #{showDetail}
+	</if>
+	<if test="type != null and type  != 0">
+		AND type = #{type}
+	</if>
+	<if test="mark != null ">
+		AND mark = #{mark}
+	</if>
+	<if test="removed != null and removed  != 0">
+		AND removed = #{removed}
+	</if>
+	<if test="name != null ">
+		AND name = #{name}
+	</if>
+	<if test="project_introduction != null ">
+		AND project_introduction = #{project_introduction}
+	</if>
+	<if test="unit_area != null ">
+		AND unit_area = #{unit_area}
+	</if>
+	<if test="built_area != null ">
+		AND built_area = #{built_area,jdbcType=DECIMAL}
+	</if>
+	<if test="average_price != null and average_price  != 0">
+		AND average_price = #{average_price}
+	</if>
+	<if test="surrounding_scenic != null ">
+		AND surrounding_scenic = #{surrounding_scenic}
+	</if>
+	<if test="property_type != null ">
+		AND property_type = #{property_type}
+	</if>
+	<if test="decoration_standard != null ">
+		AND decoration_standard = #{decoration_standard}
+	</if>
+	<if test="built_address != null ">
+		AND built_address = #{built_address}
+	</if>
+	<if test="open_date != null ">
+		AND open_date = #{open_date}
+	</if>
+	<if test="purchase_discount != null ">
+		AND purchase_discount = #{purchase_discount}
+	</if>
+	<if test="consultant_phone != null ">
+		AND consultant_phone = #{consultant_phone}
+	</if>
+	<if test="develop_name != null ">
+		AND develop_name = #{develop_name}
+	</if>
+	<if test="launch_date != null ">
+		AND launch_date = #{launch_date}
+	</if>
+	<if test="year_limit != null and year_limit  != 0">
+		AND year_limit = #{year_limit}
+	</if>
+	<if test="built_status != null and built_status  != 0">
+		AND built_status = #{built_status}
+	</if>
+	<if test="built_type != null and built_type  != 0">
+		AND built_type = #{built_type}
+	</if>
+	<if test="volume_rate != null ">
+		AND volume_rate = #{volume_rate}
+	</if>
+	<if test="greening_rate != null ">
+		AND greening_rate = #{greening_rate}
+	</if>
+	<if test="plan_households != null ">
+		AND plan_households = #{plan_households}
+	</if>
+	<if test="plan_parking != null ">
+		AND plan_parking = #{plan_parking}
+	</if>
+	<if test="presale_permit != null ">
+		AND presale_permit = #{presale_permit}
+	</if>
+	<if test="property_comp_name != null ">
+		AND property_comp_name = #{property_comp_name}
+	</if>
+	<if test="property_fee != null ">
+		AND property_fee = #{property_fee}
+	</if>
+	<if test="hearting_mode != null ">
+		AND hearting_mode = #{hearting_mode}
+	</if>
+	<if test="water_elec != null ">
+		AND water_elec = #{water_elec}
+	</if>
+	<if test="project_feature != null ">
+		AND project_feature = #{project_feature}
+	</if>
+	<if test="scenic_resource != null ">
+		AND scenic_resource = #{scenic_resource}
+	</if>
+	<if test="humanity_matching != null ">
+		AND humanity_matching = #{humanity_matching}
+	</if>
+	<if test="education_matching != null ">
+		AND education_matching = #{education_matching}
+	</if>
+	<if test="business_matching != null ">
+		AND business_matching = #{business_matching}
+	</if>
+	<if test="commerce_matching != null ">
+		AND commerce_matching = #{commerce_matching}
+	</if>
+	<if test="leisure_matching != null ">
+		AND leisure_matching = #{leisure_matching}
+	</if>
+	<if test="hospital_resource != null ">
+		AND hospital_resource = #{hospital_resource}
+	</if>
+	<if test="exhibition_images != null ">
+		AND exhibition_images = #{exhibition_images}
+	</if>
+	<if test="apartment_images != null ">
+		AND apartment_images = #{apartment_images}
+	</if>
+	<if test="showings_images != null ">
+		AND showings_images = #{showings_images}
+	</if>
+	<if test="showings_videos != null ">
+		AND showings_videos = #{showings_videos}
+	</if>
+	<if test="building_type != null ">
+		AND building_type = #{building_type}
+	</if>
+	<if test="index_image != null ">
+		AND index_image = #{index_image}
+	</if>
+  </select>
+  
+  <select id="getBuildings" resultType="com.mama.server.main.dao.model.BuildingPo" parameterType="Map" useCache="true">
+    SELECT 
+    bldId,devId,provId,cityId,showDetail,type,mark,removed,name,project_introduction,unit_area,built_area,average_price,surrounding_scenic,property_type,decoration_standard,built_address,open_date,purchase_discount,consultant_phone,develop_name,launch_date,year_limit,built_status,built_type,volume_rate,greening_rate,plan_households,plan_parking,presale_permit,property_comp_name,property_fee,hearting_mode,water_elec,project_feature,scenic_resource,humanity_matching,education_matching,business_matching,commerce_matching,leisure_matching,hospital_resource,exhibition_images,apartment_images,showings_images,showings_videos,building_type,index_image  
+    FROM tBuilding 
+    WHERE removed=0 
+   	<if test="bldId != null and bldId  != 0">
+		AND bldId = #{bldId}
+	</if>
+	<if test="devId != null and devId  != 0">
+		AND devId = #{devId}
+	</if>
+	<if test="provId != null and provId  != 0">
+		AND provId = #{provId}
+	</if>
+	<if test="cityId != null and cityId  != 0">
+		AND cityId = #{cityId}
+	</if>
+	<if test="showDetail != null ">
+		AND showDetail = #{showDetail}
+	</if>
+	<if test="type != null and type  != 0">
+		AND type = #{type}
+	</if>
+	<if test="mark != null ">
+		AND mark = #{mark}
+	</if>
+	<if test="removed != null and removed  != 0">
+		AND removed = #{removed}
+	</if>
+	<if test="name != null ">
+		AND name = #{name}
+	</if>
+	<if test="project_introduction != null ">
+		AND project_introduction = #{project_introduction}
+	</if>
+	<if test="unit_area != null ">
+		AND unit_area = #{unit_area}
+	</if>
+	<if test="built_area != null ">
+		AND built_area = #{built_area,jdbcType=DECIMAL}
+	</if>
+	<if test="average_price != null and average_price  != 0">
+		AND average_price = #{average_price}
+	</if>
+	<if test="surrounding_scenic != null ">
+		AND surrounding_scenic = #{surrounding_scenic}
+	</if>
+	<if test="property_type != null ">
+		AND property_type = #{property_type}
+	</if>
+	<if test="decoration_standard != null ">
+		AND decoration_standard = #{decoration_standard}
+	</if>
+	<if test="built_address != null ">
+		AND built_address = #{built_address}
+	</if>
+	<if test="open_date != null ">
+		AND open_date = #{open_date}
+	</if>
+	<if test="purchase_discount != null ">
+		AND purchase_discount = #{purchase_discount}
+	</if>
+	<if test="consultant_phone != null ">
+		AND consultant_phone = #{consultant_phone}
+	</if>
+	<if test="develop_name != null ">
+		AND develop_name = #{develop_name}
+	</if>
+	<if test="launch_date != null ">
+		AND launch_date = #{launch_date}
+	</if>
+	<if test="year_limit != null and year_limit  != 0">
+		AND year_limit = #{year_limit}
+	</if>
+	<if test="built_status != null and built_status  != 0">
+		AND built_status = #{built_status}
+	</if>
+	<if test="built_type != null and built_type  != 0">
+		AND built_type = #{built_type}
+	</if>
+	<if test="volume_rate != null ">
+		AND volume_rate = #{volume_rate}
+	</if>
+	<if test="greening_rate != null ">
+		AND greening_rate = #{greening_rate}
+	</if>
+	<if test="plan_households != null ">
+		AND plan_households = #{plan_households}
+	</if>
+	<if test="plan_parking != null ">
+		AND plan_parking = #{plan_parking}
+	</if>
+	<if test="presale_permit != null ">
+		AND presale_permit = #{presale_permit}
+	</if>
+	<if test="property_comp_name != null ">
+		AND property_comp_name = #{property_comp_name}
+	</if>
+	<if test="property_fee != null ">
+		AND property_fee = #{property_fee}
+	</if>
+	<if test="hearting_mode != null ">
+		AND hearting_mode = #{hearting_mode}
+	</if>
+	<if test="water_elec != null ">
+		AND water_elec = #{water_elec}
+	</if>
+	<if test="project_feature != null ">
+		AND project_feature = #{project_feature}
+	</if>
+	<if test="scenic_resource != null ">
+		AND scenic_resource = #{scenic_resource}
+	</if>
+	<if test="humanity_matching != null ">
+		AND humanity_matching = #{humanity_matching}
+	</if>
+	<if test="education_matching != null ">
+		AND education_matching = #{education_matching}
+	</if>
+	<if test="business_matching != null ">
+		AND business_matching = #{business_matching}
+	</if>
+	<if test="commerce_matching != null ">
+		AND commerce_matching = #{commerce_matching}
+	</if>
+	<if test="leisure_matching != null ">
+		AND leisure_matching = #{leisure_matching}
+	</if>
+	<if test="hospital_resource != null ">
+		AND hospital_resource = #{hospital_resource}
+	</if>
+	<if test="exhibition_images != null ">
+		AND exhibition_images = #{exhibition_images}
+	</if>
+	<if test="apartment_images != null ">
+		AND apartment_images = #{apartment_images}
+	</if>
+	<if test="showings_images != null ">
+		AND showings_images = #{showings_images}
+	</if>
+	<if test="showings_videos != null ">
+		AND showings_videos = #{showings_videos}
+	</if>
+	<if test="building_type != null ">
+		AND building_type = #{building_type}
+	</if>
+	<if test="index_image != null ">
+		AND index_image = #{index_image}
+	</if>
+	<if test="limit != null">
+      LIMIT #{start},#{end}
+    </if> 
+  </select>
+  
+  <!--  useGeneratedKeys="true" keyProperty="houseId" -->
+  <insert id="insertHouse" parameterType="com.mama.server.main.dao.model.HousePo" useGeneratedKeys="true" keyProperty="houseId">
+    INSERT INTO tHouse(devId,bldId,cityId,summaryInfo,showDetail,type,mark,flag,room,theme,luxury,freezeAmt,totalAmt,memFreezeAmt,memTotalAmt,totalRoomNum,operTime,sort,recommendTime,houseshop_id
+    ,market_price,specials_stauts) 
+    VALUES(#{devId},#{bldId},#{cityId},#{summaryInfo},#{showDetail},#{type},#{mark},#{flag},#{room},#{theme},#{luxury},#{freezeAmt},#{totalAmt},#{memFreezeAmt},#{memTotalAmt},
+    #{totalRoomNum},NOW(),#{sort},#{recommendTime},#{houseshop_id},#{market_price},0)
+  </insert>
+  
+  <update id="updateHouse" parameterType="com.mama.server.main.dao.model.HousePo">
+   UPDATE tHouse set houseId = houseId
+    <if test="devId != null and devId  != 0">
+      ,devId=#{devId}
+    </if>
+    <if test="bldId != null and bldId  != 0">
+      ,bldId=#{bldId}
+    </if>
+    <if test="cityId != null and cityId  != 0">
+      ,cityId=#{cityId}
+    </if>
+    <if test="summaryInfo != null">
+      ,summaryInfo=#{summaryInfo}
+    </if>
+    <if test="showDetail != null">
+      ,showDetail=#{showDetail}
+    </if>
+    <if test="type != null and type != 0">
+      ,type=#{type}
+    </if>
+    <if test="mark != null and mark != 0">
+      ,mark=#{mark}
+    </if>
+    <if test="flag != null">
+      ,flag=#{flag}
+    </if>
+    <if test="room != null and room != 0">
+      ,room=#{room}
+    </if>
+    <if test="theme != null and theme != 0">
+      ,theme=#{theme}
+    </if>
+    <if test="luxury != null and luxury  != 0">
+      ,luxury=#{luxury}
+    </if>
+    <if test="freezeAmt != null and freezeAmt  != 0">
+      ,freezeAmt=#{freezeAmt}
+    </if>
+    <if test="totalAmt != null and totalAmt  != 0">
+      ,totalAmt=#{totalAmt}
+    </if>
+    <if test="memFreezeAmt != null and memFreezeAmt  != 0">
+      ,memFreezeAmt=#{memFreezeAmt}
+    </if>
+    <if test="memTotalAmt != null and memTotalAmt  != 0">
+      ,memTotalAmt=#{memTotalAmt}
+    </if>
+    <if test="totalRoomNum != null and totalRoomNum  != 0">
+      ,totalRoomNum=#{totalRoomNum}
+    </if>
+    <if test="sort != null">
+      ,sort=#{sort}
+    </if>
+    <if test="removed != null">
+      ,removed=#{removed}
+    </if>
+    <if test="recommendTime != null">
+      ,recommendTime=#{recommendTime}
+    </if>
+    <if test="houseshop_id >0 ">
+      ,houseshop_id=#{houseshop_id}
+    </if>
+    <if test="market_price >0">
+      ,market_price=#{market_price}
+    </if>
+    <if test="specials_stauts != null">
+      ,specials_stauts=#{specials_stauts}
+    </if>
+    WHERE houseId = #{houseId}
+  </update>
+  
+  <select id="getHouseByBldId" resultType="com.mama.server.main.dao.model.HousePo" parameterType="com.mama.server.main.dao.model.HousePo" useCache="true">
+    SELECT * FROM tHouse WHERE bldId = #{bldId} 
+  </select>
+  
+   <select id="getHouseByBySpstatus" resultType="com.mama.server.main.dao.model.HousePo" parameterType="com.mama.server.main.dao.model.HousePo" useCache="true">
+    SELECT * FROM tHouse WHERE bldId = #{bldId} 
+  </select>
+  
+  <select id="getHouseByAllParam" resultType="com.mama.server.main.dao.model.HousePo" parameterType="com.mama.server.main.dao.model.HousePo" useCache="true">
+    SELECT * FROM tHouse 
+    WHERE 1 = 1
+    <if test="houseId != null and houseId != 0">
+      and houseId=#{houseId}
+    </if>
+    <if test="devId != null and devId != 0">
+      and devId=#{devId}
+    </if>
+    <if test="bldId != null and bldId != 0">
+      and bldId=#{bldId}
+    </if>
+    <if test="cityId != null and cityId != 0">
+      and cityId=#{cityId}
+    </if>
+    <if test="type != null and type != 0">
+      and type=#{type}
+    </if>
+    <if test="mark != null and mark != 0">
+      and mark &amp; #{mark} = #{mark}
+    </if>
+    <if test="flag != null and flag != 0">
+      and flag &amp; #{flag} = #{flag}
+    </if>
+    <if test="room != null and room != 0">
+      and room=#{room}
+    </if>
+    <if test="theme != null and theme != 0">
+      and theme=#{theme}
+    </if>
+    <if test="luxury != null and luxury != 0">
+      and luxury=#{luxury}
+    </if>
+    <if test="totalRoomNum != null and totalRoomNum != 0">
+      and totalRoomNum=#{totalRoomNum}
+    </if>
+    <if test="summaryInfo != null">
+      and summaryInfo like CONCAT('%',#{summaryInfo },'%')
+    </if>
+    <if test="removed != null">
+      and removed=#{removed}
+    </if>
+  </select>
+  
+  <insert id="insertHouseOrder" parameterType="com.mama.server.main.dao.model.HouseOrderPo">
+    INSERT INTO tHouseOrder(houseId,uid,orderId,totalRoomNum,date) 
+    VALUES(#{houseId},#{uid},#{orderId},#{totalRoomNum},#{date})
+  </insert>
+  
+  <delete id="deleteHousePrice" parameterType="com.mama.server.main.dao.model.HousePricePo">
+  	DELETE FROM tHousePrice
+  	<where>
+  		houseId = #{houseId} and date = DATE(#{date})
+  	</where> 
+  </delete>
+  
+  <insert id="insertHousePrice" parameterType="com.mama.server.main.dao.model.HousePricePo">
+    INSERT INTO tHousePrice(houseId,memTotalAmt,memFreezeAmt,totalAmt,freezeAmt,date,inSeason)
+    VALUES (#{houseId},#{memTotalAmt},#{memFreezeAmt},#{totalAmt},#{freezeAmt},#{date},#{inSeason})
+  </insert>
+  
+  <update id="updateHouseOrderById" parameterType="com.mama.server.main.dao.model.HouseOrderPo">
+   UPDATE tHouseOrder set houseId = houseId
+    <if test="houseId != null and houseId != 0">
+      ,houseId=#{houseId}
+    </if>
+    <if test="uid != null">
+      ,uid=#{uid}
+    </if>
+    <if test="orderId != null and orderId != 0">
+      ,orderId=#{orderId}
+    </if>
+    <if test="date != null">
+      ,date=#{date}
+    </if>
+    <if test="totalRoomNum != null and totalRoomNum != 0">
+      ,totalRoomNum=#{totalRoomNum}
+    </if>
+    <if test="removed != null">
+      ,removed=#{removed}
+    </if>
+    WHERE id = #{id}
+  </update>
+  
+  <!--根据订单更改住房状态  -->
+  <update id="updateHouseOrderByOrderId" parameterType="com.mama.server.main.dao.model.HouseOrderPo">
+   UPDATE tHouseOrder set 
+    <if test="removed != null">
+      removed=#{removed}
+    </if>
+    WHERE orderId=#{orderId}
+  </update>
+  
+  <update id="updateHousePriceById" parameterType="com.mama.server.main.dao.model.HousePricePo">
+    UPDATE tHousePrice set priceId = priceId
+    <if test="houseId != 0 and houseId != null">
+      ,houseId=#{houseId}
+    </if>
+    <if test="memTotalAmt != 0 and memTotalAmt != null">
+      ,memTotalAmt=#{memTotalAmt}
+    </if>
+    <if test="memFreezeAmt != 0 and memFreezeAmt != null">
+      ,memFreezeAmt=#{memFreezeAmt}
+    </if>
+    <if test="totalAmt != 0 and totalAmt != null">
+      ,totalAmt=#{totalAmt}
+    </if>
+    <if test="freezeAmt != 0 and freezeAmt != null">
+      ,freezeAmt=#{freezeAmt}
+    </if>
+    <if test="date != null">
+      ,date=#{date}
+    </if>
+    <if test="inSeason != null">
+      ,inSeason=#{inSeason}
+    </if>
+    WHERE priceId=#{priceId}
+  </update>
+  
+  <select id="getHouseOrderByAllParam" resultType="com.mama.server.main.dao.model.HouseOrderPo" parameterType="com.mama.server.main.dao.model.HouseOrderPo" useCache="true">
+    SELECT * FROM tHouseOrder 
+    WHERE 1 = 1
+	<if test="houseId != null and houseId != 0">
+      and houseId=#{houseId}
+    </if>
+    <if test="uid != null">
+      and uid=#{uid}
+    </if>
+    <if test="orderId != null">
+      and orderId=#{orderId}
+    </if>
+    <if test="date != null">
+      and date=#{date}
+    </if>
+    <if test="removed != null">
+      and removed=#{removed}
+    </if>
+  </select>
+  
+  <select id="getHousePriceByAllParam" resultType="com.mama.server.main.dao.model.HousePricePo" parameterType="com.mama.server.main.dao.model.HousePricePo" useCache="true">
+    SELECT * FROM tHousePrice
+    WHERE 1 = 1
+    <if test="houseId != 0">
+      and houseId=#{houseId}
+    </if>
+    <if test="date != null">
+      and date=#{date}
+    </if>
+    order by date
+  </select>
+  
+  <select id="getHousePriceByByDate" resultType="com.mama.server.main.dao.model.HousePricePo" useCache="true">
+    SELECT * FROM tHousePrice WHERE houseId=#{houseId} and date >= #{startDate} and date &lt; #{endDate}
+  </select>
+  
+  <select id="getTopicHouses" resultType="Map"  parameterType="com.mama.server.main.dao.model.HousePo">
+    	SELECT h.houseId,hs.partnership from T_Topic_Shop ts,thouseshop hs,tHouse h where ts.shopId=hs.id and hs.id=h.houseshop_id and ts.topicID=#{topicId }
+  </select>
+    
+  <select id="getRecommondHouse" resultType="com.mama.server.common.entity.RecommodHouse" >
+    	SELECT h.houseId,hs.partnership,h.summaryInfo,h.room,h.memTotalAmt,h.market_price,h.houseshop_id,h.specials_stauts,h.showDetail from tHouse h,thouseshop hs where h.houseshop_id=hs.id 
+AND hs.recommended_status=1 and h.removed=0;
+  </select>
+  
+</mapper> 

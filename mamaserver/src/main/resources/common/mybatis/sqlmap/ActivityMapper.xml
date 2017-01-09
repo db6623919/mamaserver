@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mama.server.main.dao.ActivityDao">
+
+	<resultMap id="BaseResultAmrMap" type="com.mama.server.main.dao.model.ActivityMemberRecordPo" >
+	    <id column="ID" property="id" jdbcType="INTEGER" />
+	    <result column="MEMBER_ID" property="memberId" jdbcType="VARCHAR" />
+	    <result column="MEMBER_IDENTITY" property="memberIdentity" jdbcType="VARCHAR" />
+	    <result column="ACTIVITY_CODE" property="activityCode" jdbcType="VARCHAR" />
+	    <result column="ACTIVITY_NAME" property="activityName" jdbcType="VARCHAR" />
+	    <result column="RECORD_DATE" property="recordDate" jdbcType="VARCHAR" />
+	    <result column="TOTAL_POINT" property="totalPoint" jdbcType="INTEGER" />
+	    <result column="WIN_FLAG" property="winFlag" jdbcType="VARCHAR" />
+	    <result column="PRIZE_PROD_ID" property="prizeProdId" jdbcType="VARCHAR" />
+	    <result column="PRIZE_PROD_NAME" property="prizeProdName" jdbcType="VARCHAR" />
+	    <result column="GMT_CREATE" property="gmtCreate" jdbcType="TIMESTAMP" />
+	    <result column="GMT_MODIFIED" property="gmtModified" jdbcType="TIMESTAMP" />
+	    <result column="SHARE_TIMES" property="shareTimes" jdbcType="INTEGER" />
+	  </resultMap>
+	  
+	  <resultMap id="BaseResultArMap" type="com.mama.server.main.dao.model.ActivityRecordPo" >
+	    <id column="ID" property="id" jdbcType="INTEGER" />
+	    <result column="RECORD_ID" property="recordId" jdbcType="INTEGER" />
+	    <result column="RANDOM" property="random" jdbcType="VARCHAR" />
+	    <result column="POINT" property="point" jdbcType="INTEGER" />
+	    <result column="GMT_CREATE" property="gmtCreate" jdbcType="TIMESTAMP" />
+	    <result column="GMT_MODIFIED" property="gmtModified" jdbcType="TIMESTAMP" />
+	  </resultMap>
+	  
+	  <resultMap id="BaseResultAcMap" type="com.mama.server.main.dao.model.ActivityConfPo" >
+	    <id column="ID" property="id" jdbcType="INTEGER" />
+	    <result column="ACTIVITY_CODE" property="activityCode" jdbcType="VARCHAR" />
+	    <result column="TYPE" property="type" jdbcType="VARCHAR" />
+	    <result column="TYPE_VALUE" property="typeValue" jdbcType="VARCHAR" />
+	    <result column="VALID_START" property="validStart" jdbcType="TIMESTAMP" />
+	    <result column="VALID_END" property="validEnd" jdbcType="TIMESTAMP" />
+	  </resultMap>
+	  
+    <!--添加会员抽奖记录  -->
+  	<insert id="insertActivityMemberRecord" parameterType="com.mama.server.main.dao.model.ActivityMemberRecordPo" useGeneratedKeys="true" keyProperty="id">
+    INSERT INTO t_activity_member_record(member_id,member_identity,activity_code,record_date,total_point,win_flag
+    ,prize_prod_id,prize_prod_name,gmt_create,gmt_modified,SHARE_TIMES) 
+    VALUES(#{memberId},#{memberIdentity},#{activityCode},#{recordDate},#{totalPoint},#{winFlag}
+    ,#{prizeProdId},#{prizeProdName},now(),now(),#{shareTimes})
+  </insert>
+  
+  <!-- 添加会员抽奖记录明细 -->
+  <insert id="insertActivityRecord" parameterType="com.mama.server.main.dao.model.ActivityRecordPo" useGeneratedKeys="true" keyProperty="id">
+    INSERT INTO t_activity_record(record_id,random,point,gmt_create,gmt_modified) 
+    VALUES(#{recordId},#{random},#{point},now(),now())
+  </insert>
+  
+  <!-- 查询会员记录 -->
+  <select id="getActivityMemberRecord" parameterType="com.mama.server.main.dao.model.ActivityMemberRecordPo" resultMap="BaseResultAmrMap">
+		SELECT * FROM t_activity_member_record where 1=1
+		<!-- 会员ID -->
+		<if test="memberId != null ">
+			and member_id = #{memberId}
+		</if>
+		<!-- 活动编码 -->
+		<if test="activityCode != null ">
+			and activity_code = #{activityCode}
+		</if>
+		<!-- 抽奖记录日期 -->
+		<if test="recordDate != null ">
+			and record_date = #{recordDate}
+		</if>
+	</select>
+	
+	<!-- 锁 -->
+	<select id="getActivityMemberRecordForUpdate" parameterType="com.mama.server.main.dao.model.ActivityMemberRecordPo" resultMap="BaseResultAmrMap">
+		SELECT * FROM t_activity_member_record where 1=1
+		<!-- 会员ID -->
+		<if test="memberId != null ">
+			and member_id = #{memberId}
+		</if>
+		<!-- 活动编码 -->
+		<if test="activityCode != null ">
+			and activity_code = #{activityCode}
+		</if>
+		<!-- 抽奖记录日期 -->
+		<if test="recordDate != null ">
+			and record_date = #{recordDate}
+		</if>
+		for update
+	</select>
+	
+	<!-- 查询会员记录明细 -->
+   <select id="getActivityRecord" parameterType="com.mama.server.main.dao.model.ActivityRecordPo" resultMap="BaseResultArMap" >
+		SELECT * FROM t_activity_record where 1=1
+		<!-- 记录ID -->
+		<if test="recordId != null ">
+			and record_id = #{recordId}
+		</if>
+		<!-- <if test="startDate != null ">
+			and gmt_create > #{startDate}
+		</if>
+		<if test="endDate != null ">
+			and #{endDate} >= gmt_create 
+		</if> -->
+	</select>
+	
+	<!-- 修改会员抽奖记录总分 -->
+	<update id="updateActivityMemberRecordPoint" parameterType="com.mama.server.main.dao.model.ActivityMemberRecordPo">
+		update t_activity_member_record set total_point = total_point + #{totalPoint},gmt_modified=now()
+		where id = #{id}
+	</update>
+	
+	<!-- 查询当天中奖记录 -->
+	<select id="getLotteryRecord" parameterType="com.mama.server.main.dao.model.ActivityMemberRecordPo" resultMap="BaseResultAmrMap" >
+		SELECT member_identity,total_point FROM t_activity_member_record where 1=1
+		<if test="winFlag != null ">
+			and win_flag=#{winFlag}
+		</if>
+		<if test="recordDate != null ">
+			and record_date=#{recordDate}
+		</if>
+		<if test="memberId != null ">
+			and member_id=#{memberId}
+		</if>
+		<if test="activityCode != null ">
+			and activity_code=#{activityCode}
+		</if>
+		and total_point>0
+	</select>
+	
+	<!-- 获取配置信息 -->
+	<select id="getActivityConf" resultMap="BaseResultAcMap">
+		SELECT * FROM t_activity_conf where 1=1 and activity_code=#{activityCode}
+	</select>
+
+<!--查询会员当天总积分  -->
+	<select id="getRecordPointByMemberId" resultMap="BaseResultAmrMap">
+		SELECT total_point FROM t_activity_member_record where 1=1
+		<!-- 会员ID -->
+		<if test="memberId != null ">
+			and member_id = #{memberId}
+		</if>
+		<!-- 活动编码 -->
+		<if test="activityCode != null ">
+			and activity_code = #{activityCode}
+		</if>
+		<!-- 抽奖记录日期 -->
+		<if test="recordDate != null ">
+			and record_date = #{recordDate}
+		</if>
+	</select>
+	
+	<!-- 修改中奖记录 -->
+	<update id="updateRecordWinFlag" parameterType="com.mama.server.main.dao.model.ActivityMemberRecordPo">
+		 update t_activity_member_record set win_flag=#{winFlag},prize_prod_id=#{prizeProdId},prize_prod_name=#{prizeProdName}  where id in ( select t.id from (select  id  from t_activity_member_record where record_date=#{recordDate} and activity_code=#{activityCode} order by TOTAL_POINT desc limit 0,2 ) t)
+	</update>
+	
+	<!-- 修改会员抽奖记录分享次数 -->
+	<update id="updateActivityMemberRecordShareTimes" parameterType="com.mama.server.main.dao.model.ActivityMemberRecordPo">
+		update t_activity_member_record set share_times = share_times + 1,gmt_modified=now()
+		where member_id = #{memberId } and activity_code=#{activityCode } and record_date=#{recordDate }
+	</update>
+	
+	<!-- 抽奖记录查询 -->
+	<select id="getRecordMember" parameterType="com.mama.server.main.dao.model.ActivityMemberRecordPo" resultMap="BaseResultAmrMap" >
+		select * from (
+			select amr.MEMBER_ID,amr.MEMBER_IDENTITY,amr.TOTAL_POINT,amr.RECORD_DATE,amr.SHARE_TIMES,a.ACTIVITY_NAME,amr.WIN_FLAG,(select count(*) from t_activity_record where record_id = amr.id) as recordTimes from t_activity_member_record amr,t_activity a where amr.ACTIVITY_CODE=a.CODE
+			<if test="winFlag != null ">
+				and win_flag=#{winFlag}
+			</if>
+			<if test="recordDate != null ">
+				and record_date=#{recordDate}
+			</if>
+			<if test="memberId != null ">
+				and member_id=#{memberId}
+			</if>
+			<if test="activityCode != null ">
+				and activity_code=#{activityCode}
+			</if>
+			order by amr.total_point desc,amr.gmt_create
+		) a 
+	</select>
+</mapper> 

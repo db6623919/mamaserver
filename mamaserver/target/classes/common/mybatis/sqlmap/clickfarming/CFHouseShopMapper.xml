@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mama.server.main.dao.clickfarming.CFHouseShopDao">
+    <resultMap id="BaseResultMap" type="com.mama.server.main.dao.model.clickfarming.CFHouseShopPo">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="shopId" property="shopId" jdbcType="INTEGER" />
+        <result column="totalAmt" property="totalAmt" jdbcType="INTEGER" />
+        <result column="discount" property="discount" jdbcType="FLOAT" />
+        <result column="discountLimit" property="discountLimit" jdbcType="INTEGER"/>
+        <result column="message_switch" property="message_switch" jdbcType="INTEGER"/>
+        <result column="discountType" property="discountType" jdbcType="INTEGER"/>
+        <result column="lowestAmt" property="lowestAmt" jdbcType="INTEGER"/>
+    </resultMap>
+    
+    <sql id="BaseColumn">
+        shopId, totalAmt, discount, discountLimit,message_switch,discountType,lowestAmt
+    </sql>
+    
+    <insert id="insertOrUpdatePo" parameterType="com.mama.server.main.dao.model.clickfarming.CFHouseShopPo">
+        INSERT INTO T_HouseShop_ClickFarming(
+        <include refid="BaseColumn"></include>
+        )
+        VALUES(#{shopId},#{totalAmt},#{discount},#{discountLimit},#{message_switch},#{discountType},#{lowestAmt})
+        ON DUPLICATE KEY UPDATE totalAmt = #{totalAmt}, discount = #{discount}, discountLimit = #{discountLimit},
+        message_switch = #{message_switch},discountType = #{discountType},lowestAmt = #{lowestAmt}
+    </insert>
+    
+    <select id="selectPo" parameterType="com.mama.server.main.dao.model.clickfarming.CFHouseShopPo"
+            resultMap="BaseResultMap">
+        SELECT
+        <include refid="BaseColumn"></include>
+        FROM T_HouseShop_ClickFarming
+        <where>
+            <if test="shopId != null">
+                shopId = #{shopId}
+            </if>
+        </where>
+    </select>
+    
+    <select id="selectAll" resultMap="BaseResultMap">
+        SELECT * FROM T_HouseShop_ClickFarming where message_switch=0
+    </select>
+     
+    <select id="selectFreezeAmtById" parameterType="Map" resultType="int">
+    	SELECT SUM(`freezeAmt`) FROM tOrder tt WHERE shopId=#{shopId} and tt.status in(11) and orderType=2
+    	<if test="day != null">
+            and DATE_FORMAT(operTime,'%Y-%m-%d')=DATE_FORMAT(now(),'%Y-%m-%d')
+     	</if>
+    </select>
+    
+</mapper>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+  
+  <plugins>
+    <plugin interceptor="com.mama.server.util.dao.PaginationInterceptor"></plugin>
+  </plugins>
+  
+  <mappers>
+    <!-- <mapper resource="mybatis/sqlmap/HelloMapper.xml" />-->
+    <mapper resource="common/mybatis/sqlmap/UserMapper.xml" />
+    <mapper resource="common/mybatis/sqlmap/OrderMapper.xml" />
+    <mapper resource="common/mybatis/sqlmap/UtilMapper.xml" />
+    <mapper resource="common/mybatis/sqlmap/HouseMapper.xml" />
+    <mapper resource="common/mybatis/sqlmap/FlowMapper.xml" />
+    <mapper resource="common/mybatis/sqlmap/CustomerMapper.xml" />
+    <mapper resource="common/mybatis/sqlmap/HotelCouponMapper.xml" />
+    <mapper resource="common/mybatis/sqlmap/ActivityMapper.xml" />
+    <mapper resource="common/mybatis/sqlmap/OrderPayDOMapper.xml" />
+    <mapper resource="common/mybatis/sqlmap/TradeAreaMapper.xml" />
+    <mapper resource="common/mybatis/sqlmap/CollectMapper.xml" />
+    <mapper resource="common/mybatis/sqlmap/HouseTagMapper.xml" />
+    <mapper resource="common/mybatis/sqlmap/HouseCommentMapper.xml" />
+    <mapper resource="common/mybatis/sqlmap/ActivityEnrollMapper.xml" />
+    <mapper resource="common/mybatis/sqlmap/HouseShopMapper.xml" />
+    <mapper resource="common/mybatis/sqlmap/VersionMapper.xml" />
+    <mapper resource="common/mybatis/sqlmap/clickfarming/CFHouseShopMapper.xml" />
+    <mapper resource="common/mybatis/sqlmap/clickfarming/ShopOwnerMapper.xml" />
+    <mapper resource="common/mybatis/sqlmap/TopicActivityMapper.xml" />
+    <mapper resource="common/mybatis/sqlmap/AppVersionMapper.xml" />
+    <mapper resource="common/mybatis/sqlmap/HouseCardMapper.xml" />
+    <!-- 
+    <mapper resource="common/mybatis/sqlmap/crowd/CrowdProjectMapper.xml"/>
+    <mapper resource="common/mybatis/sqlmap/crowd/ProjectRevenueMapper.xml"/>
+    <mapper resource="common/mybatis/sqlmap/crowd/ProjectImageMapper.xml"/>
+ -->
+  </mappers>
+</configuration>

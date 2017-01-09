@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mama.server.main.dao.crowd.CrowdLinkManDao">
+
+	<resultMap id="BaseResultCrowdLinkManMap" type="com.mama.server.main.dao.model.crowd.CrowdLinkManPo" >
+	    <id column="ID" property="id" jdbcType="INTEGER" />
+	    <result column="UID" property="uid" jdbcType="VARCHAR" />
+	    <result column="NAME" property="name" jdbcType="VARCHAR" />
+	    <result column="IDENTITY_NO" property="identityNo" jdbcType="VARCHAR" />
+	    <result column="PHONENO" property="phoneNo" jdbcType="VARCHAR" />
+	    <result column="EMAIL" property="email" jdbcType="VARCHAR" />
+	    <result column="IS_REMOVED" property="isRemoved" jdbcType="INTEGER" />
+	    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+	    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+	</resultMap>
+	  
+  	<!-- 添加众筹联系人记录明细 -->
+  	<insert id="insertCrowdLinkMan" parameterType="com.mama.server.main.dao.model.crowd.CrowdLinkManPo" 
+  			useGeneratedKeys="true" keyProperty="id">
+    	INSERT INTO t_crowd_link_man(UID,NAME,IDENTITY_NO,PHONENO,EMAIL,IS_REMOVED,CREATE_TIME,UPDATE_TIME) 
+    	VALUES(#{uid},#{name},#{identityNo},#{phoneNo},#{email},#{isRemoved},now(),now())
+  	</insert>
+  
+  	<!-- 根据登录人账号id查询用户信息是否存在 -->
+  	<select id="queryCrowdLinkManBuUid" resultMap="BaseResultCrowdLinkManMap" >
+		SELECT * FROM t_crowd_link_man where uid=#{uid}
+	</select>
+</mapper> 

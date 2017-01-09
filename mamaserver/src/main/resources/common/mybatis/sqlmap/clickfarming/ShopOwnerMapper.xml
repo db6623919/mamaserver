@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mama.server.main.dao.ShopOwnerDao">
+	<!-- 根据手机号码查询该手机号码下属的客栈数量 -->
+	<select id="queryShopNumByPhone" parameterType="String"
+		resultType="Integer">
+		select count(id) from thouseshop where bossphone=#{mobile}
+	</select>
+
+	<!-- 根据手机号码查询客栈刷单列表 -->
+	<select id="getShuaDanShopOrderList" parameterType="Map"
+		resultType="com.mama.server.main.dao.model.clickfarming.ShuaDanOrderPo">
+		select 
+		o.orderId,o.`status` as orderStatus, s.shopName ,o.uid, o.totalAmt, o.freezeAmt, 
+		o.payAmt,date_format(o.operTime,'%Y-%m-%d %H:%i:%s') as payTime 
+		from tOrder o, thouseshop s where o.shopId=s.id and o.orderType=2 
+		<if test="bossPhone != null">
+			and s.bossPhone=#{bossPhone}
+		</if>
+		<if test="null != orderStatusList and orderStatusList.size() > 0">
+	      and o.`status` in 
+	          <foreach collection="orderStatusList" item="orderStatus" open="(" separator="," close=")">
+				#{orderStatus}
+	          </foreach> 
+	    </if>
+		order by o.operTime desc
+	</select>
+
+	<!-- 客栈刷单金额查询 -->
+	<select id="getShopOrderList" parameterType="com.mama.server.main.dao.model.clickfarming.CFShopOrderPo" resultType="com.mama.server.main.dao.model.clickfarming.CFShopOrderPo">
+		SELECT o.shopId,hs.shopName,hs.bossName,hs.bossPhone,o.freezeAmt,o.totalAmt,o.payAmt,o.orderNum,o.settleNum from (
+		SELECT shopId,SUM(freezeAmt) freezeAmt,sum(totalAmt) totalAmt,SUM(payAmt) payAmt,count(shopId) orderNum,
+		(SELECT COUNT(*) from tOrder b where  orderType=2 and settleStatus=1 and status=11 and b.shopId=a.shopId) settleNum
+		from tOrder a where orderType=2 and status=11 group by shopId
+		) o,thouseshop hs where o.shopId=hs.id 
+		<if test="shopName != null">
+			and hs.shopName like CONCAT('%',#{shopName},'%')
+		</if>
+		<if test="bossName != null">
+			and hs.bossName like CONCAT('%',#{bossName},'%')
+		</if>
+		<if test="bossPhone != null">
+			and hs.bossPhone like CONCAT('%',#{bossPhone},'%')
+		</if>
+	</select>
+	
+	<!-- 刷单列表查询 -->
+	<select id="getCfOrderList" resultType="Map" parameterType="com.mama.server.main.dao.model.OrderPo" useCache="true">
+	    SELECT orderId,uid,freezeAmt,totalAmt,payAmt,status,verifyCode,DATE_FORMAT(operTime,'%Y-%m-%d %H:%i:%s') operTime,pay_type,shopId,shopName,liveDetail,settleStatus 
+	    FROM tOrder o,thouseshop hs  WHERE orderType = 2 and o.shopId=hs.id
+	    <if test="orderId != null">
+	      and orderId=#{orderId}
+	    </if>
+	    <if test="status != null and status != 0">
+	      and status=#{status}
+	    </if>
+	    <if test="shopId != null and shopId != 0">
+	      and shopId=#{shopId}
+	    </if>
+	    <if test="startTime != null">
+	      and operTime >= #{startTime}
+	    </if>
+	    <if test="enTime != null">
+	      and #{enTime } > operTime
+	    </if>
+	    <if test="shopName != null">
+			and shopName like CONCAT('%',#{shopName},'%')
+		</if>
+		<if test="month != null">
+			and DATE_FORMAT(operTime,'%Y-%m')=DATE_FORMAT(date_sub(NOW(),interval 1 month),'%Y-%m')
+		</if>
+	 	  order by operTime desc
+  </select>
+  
+  <!-- 店铺对账单列表 -->
+  <select id="getShopBillList" resultType="Map" parameterType="com.mama.server.main.dao.model.OrderPo" useCache="true">
+ 		SELECT shopId,DATE_FORMAT(operTime,'%Y-%m') operTime,SUM(totalAmt) totalAmt,SUM(freezeAmt) freezeAmt,
+ 		SUM(payAmt) payAmt,COUNT(shopId) orderNum,
+ 		(
+ 		  SELECT COUNT(*) from tOrder b where  orderType=2 and settleStatus=1 and status=11 and b.shopId=a.shopId 
+ 		  and DATE_FORMAT(b.operTime,'%Y-%m')=DATE_FORMAT(a.operTime,'%Y-%m')
+ 		) settleNum
+ 		 from tOrder a where 1=1
+ 		<if test="orderType != null">
+			and a.orderType=#{orderType }
+		</if>
+		<if test="status != null">
+			and a.status=#{status }
+		</if>
+		<if test="shopId != null">
+			and a.shopId=#{shopId }
+		</if>
+ 		GROUP BY DATE_FORMAT(a.operTime,'%Y-%m') order by DATE_FORMAT(a.operTime,'%Y-%m') desc
+  </select>
+  
+  <select id="getTotalBill" resultType="Map" parameterType="com.mama.server.main.dao.model.OrderPo" useCache="true">
+  	SELECT SUM(totalAmt) totalAmt,sum(freezeAmt) freezeAmt,sum(payAmt) payAmt,COUNT(orderId) orderNum,
+	(SELECT COUNT(*) from tOrder where status=11 and orderType=2 and settleStatus=1) settleNum
+ 	from tOrder where status=11 and orderType=2						
+  </select>
+</mapper> 

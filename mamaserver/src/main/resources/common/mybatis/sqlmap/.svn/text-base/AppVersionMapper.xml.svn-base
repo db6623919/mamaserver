@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mama.server.main.dao.AppVersionDao">
+
+
+  <select id="getAppVersion" resultType="com.mama.server.main.dao.model.AppVersionPo" parameterType="com.mama.server.main.dao.model.AppVersionPo">
+    SELECT * FROM t_app_version WHERE product_type=#{product_type } and source=#{source } and versionStatus=#{versionStatus }
+  </select>
+  
+
+  
+</mapper> 

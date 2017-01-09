@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mama.server.main.dao.TradeAreaDao">
+
+  <insert id="insertTradeArea" parameterType="com.mama.server.main.dao.model.TradeArea">
+    INSERT INTO tTradeArea(cityId,name,sort) 
+    VALUES(#{cityId},#{name},#{sort})
+  </insert>
+  
+  <select id="getAllTradeArea" parameterType="Map" resultType="com.mama.server.main.dao.model.TradeArea" useCache="true">
+    SELECT * FROM tTradeArea order by id desc
+    <if test="limit != null">
+      LIMIT #{start},#{end}
+    </if> 
+  </select>
+  
+  <select id="getTradeAreaById" resultType="com.mama.server.main.dao.model.TradeArea" parameterType="com.mama.server.main.dao.model.TradeArea" useCache="true">
+    SELECT * FROM tTradeArea WHERE id = #{id} 
+  </select>
+  
+  <select id="getTradeAreaByPar" resultType="com.mama.server.main.dao.model.TradeArea" parameterType="com.mama.server.main.dao.model.TradeArea" useCache="true">
+    SELECT * FROM tTradeArea WHERE 1 = 1
+    <if test="id != null">
+      and id=#{id}
+    </if>
+    <if test="name != null">
+      and name like CONCAT('%',#{name},'%') 
+    </if>
+    <if test="cityId != null">
+      and cityId=#{cityId}
+    </if>
+  </select>
+  
+  <insert id="delTradeAreaById" parameterType="com.mama.server.main.dao.model.TradeArea">
+    DELETE FROM tTradeArea where id = #{id}
+  </insert>
+  
+  <update id="updateTradeArea" parameterType="com.mama.server.main.dao.model.TradeArea">
+    UPDATE tTradeArea SET
+    id = id
+    <if test="cityId != null">
+      ,cityId=#{cityId}
+    </if>
+    <if test="name != null ">
+      ,name=#{name}
+    </if>
+    <if test="sort != null">
+      ,sort=#{sort}
+    </if>
+    WHERE id = #{id}
+  </update>
+  
+</mapper> 

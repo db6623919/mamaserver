@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mama.server.main.dao.HouseTagDao">
+
+  <insert id="insertHouseTag" parameterType="com.mama.server.main.dao.model.HouseTag">
+    INSERT INTO t_house_tag(id,name,isDispayOnSearch) 
+    VALUES(#{id},#{name},#{isDispayOnSearch})
+  </insert>
+  
+  <select id="getAllHouseTag" parameterType="Map" resultType="com.mama.server.main.dao.model.HouseTag" useCache="true">
+    SELECT * FROM t_house_tag where removed = 0 
+    <if test="isDispayOnSearch != null">
+      and isDispayOnSearch=#{isDispayOnSearch}
+    </if>
+    <if test="limit != null">
+      LIMIT #{start},#{end}
+    </if> 
+  </select>
+  
+  <select id="getHouseTagById" resultType="com.mama.server.main.dao.model.HouseTag" parameterType="com.mama.server.main.dao.model.HouseTag" useCache="true">
+    SELECT * FROM t_house_tag WHERE id = #{id} 
+  </select>
+  
+  <select id="getHouseTagByPar" resultType="com.mama.server.main.dao.model.HouseTag" parameterType="com.mama.server.main.dao.model.HouseTag" useCache="true">
+    SELECT * FROM t_house_tag WHERE removed = 0
+    <if test="id != null">
+      and id=#{id}
+    </if>
+    <if test="name != null">
+      and name=#{name}
+    </if>
+  </select>
+  
+    <select id="duplicateHouseTagByPar" resultType="com.mama.server.main.dao.model.HouseTag" parameterType="com.mama.server.main.dao.model.HouseTag" useCache="true">
+    SELECT * FROM t_house_tag WHERE removed = 0
+    <if test="id != null">
+      and (id=#{id}
+    </if>
+    <if test="name != null">
+      or name=#{name}) 
+    </if>
+  </select>
+  
+  <insert id="delHouseTagById" parameterType="com.mama.server.main.dao.model.HouseTag">
+    DELETE FROM t_house_tag where id = #{id}
+  </insert>
+  
+  <update id="updateHouseTag" parameterType="com.mama.server.main.dao.model.HouseTag">
+    UPDATE t_house_tag SET
+    id = id
+    <if test="id != null">
+      ,id=#{id}
+    </if>
+    <if test="name != null ">
+      ,name=#{name}
+    </if>
+    <if test="removed != null">
+      ,removed=#{removed}
+    </if>
+    <if test="isDispayOnSearch != null">
+      ,isDispayOnSearch=#{isDispayOnSearch}
+    </if>
+    WHERE id = #{id}
+  </update>
+  
+</mapper> 

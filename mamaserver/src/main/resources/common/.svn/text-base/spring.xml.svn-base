@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	    http://www.springframework.org/schema/beans/spring-beans.xsd
+	    http://www.springframework.org/schema/context
+	    http://www.springframework.org/schema/mvc
+	    http://www.springframework.org/schema/mvc/spring-mvc.xsd
+	    http://www.springframework.org/schema/context/spring-context.xsd 
+	    http://www.springframework.org/schema/util
+        http://www.springframework.org/schema/util/spring-util.xsd">
+
+
+	<!-- 启动基于Spring MVC的注解功能 -->
+	<!-- <mvc:annotation-driven>
+		<mvc:message-converters register-defaults="true">
+			<bean class="org.springframework.http.converter.StringHttpMessageConverter">
+				<property name="supportedMediaTypes" value="text/plain;charset=UTF-8" />
+			</bean>
+		</mvc:message-converters>
+	</mvc:annotation-driven>
+	<context:component-scan base-package="com.mama.server.main" /> -->
+	<!-- <import resource="spring/spring-*.xml"/> -->
+
+	<import resource="classpath*:/dev/spring/spring-*.xml" />
+	
+	    <!-- 新增服务对象 -->
+    <bean id="payIdGenerateService" class="com.mama.server.main.service.imp.PayIdGenerateServiceImpl">
+         <property name="workerid" value = "0" />
+         <property name="datacenterid" value = "0" />
+    </bean>
+    
+    <util:properties id="properties" location="file:/opt/pay/config/mmsfang/mamaserver/app.properties"/>
+    <bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+   		<property name="staticMethod" value="com.mama.server.util.PropertiesUtils.setProperties"/>
+   		<property name="arguments" ref="properties" />
+ 	</bean>
+</beans>

@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mama.server.main.dao.HouseCardDao">
+  
+  <!-- 房券查询 -->
+  <select id="getHouseCardList" resultType="com.mama.server.main.dao.model.HouseCardPo" parameterType="Map" useCache="true">
+    	select hc.id,hc.cardNo,hc.orderNo,hc.buyPhone,hc.buyTime,hc.exchangeName,hc.exchangeTime,hc.exchangePhoneNo,
+    	hc.houseId,hc.shopId,hc.useStatus,DATE_FORMAT(hc.endDate,'%Y-%m-%d') endDate,hc.receivePhone,hc.cardPrice,
+		hc.shareStatus,hs.shopName shopName,hs.bossPhone bossPhone,hs.bossName bossName 
+		from t_house_card hc,thouseshop hs 
+		where hc.shopId=hs.id 
+		<if test="orderNo != null">
+	      and hc.orderNo=#{orderNo }
+	    </if>
+    	<if test="cardNo != null">
+	      and hc.cardNo=#{cardNo }
+	    </if>
+	    <if test="buyPhone != null">
+	      and hc.buyPhone=#{buyPhone }
+	    </if>
+	    <if test="exchangePhoneNo != null">
+	      and hc.exchangePhoneNo=#{exchangePhoneNo }
+	    </if>
+	    <if test="receivePhone != null">
+	      	and hc.receivePhone=#{receivePhone}
+	    </if>
+	    <if test="shareStatus != null">
+	      and hc.shareStatus=#{shareStatus}
+	    </if>
+	    <if test="uid != null">
+	      and hc.buyId=#{uid}
+	    </if>
+  </select>
+  
+  <!-- 根据手机号码分页查询领取的房券列表 -->
+  <select id="queryEarnedHouseCardList" resultType="com.mama.server.main.dao.model.HouseCardPo" parameterType="Map">
+    	select hc.id,hc.cardNo,hc.orderNo,hc.buyPhone,hc.buyTime,hc.exchangeName,hc.exchangeTime,hc.exchangePhoneNo,hc.houseId,hc.shopId
+		,hc.useStatus,DATE_FORMAT(hc.endDate,'%Y-%m-%d') endDate,hc.sharePatchNo,hc.receivePhone,hc.cardPrice,hc.shareStatus,
+		hs.shopName shopName,hs.bossPhone bossPhone,hs.bossName bossName from t_house_card hc,thouseshop hs 
+		where hc.shopId=hs.id and hc.receivePhone=#{receivePhone} and hc.useStatus=0 
+		order by receiveTime desc
+  </select>
+  
+	<!-- 根据uid分页查询已经兑换的房券列表 -->
+	<select id="queryExchangedHouseCardList" resultType="com.mama.server.main.dao.model.HouseCardPo" parameterType="Map">
+    	select hc.id,hc.cardNo,hc.orderNo,hc.buyPhone,hc.buyTime,hc.exchangeName,hc.exchangeTime,hc.exchangePhoneNo,hc.houseId,hc.shopId
+		,hc.useStatus,DATE_FORMAT(hc.endDate,'%Y-%m-%d') endDate,hc.receivePhone,hc.cardPrice,
+		hs.shopName shopName,hs.bossPhone bossPhone,hs.bossName bossName from t_house_card hc,thouseshop hs 
+		where hc.shopId=hs.id and hc.useStatus=1 and (hc.buyId=#{uid} or hc.receivePhone=#{phoneNo}) order by exchangeTime desc
+	</select>
+  
+    <!-- 按订单ID房券查询 -->
+  <select id="getHouseCardListByOrderId" resultType="com.mama.server.main.dao.model.HouseCardPo" parameterType="Map" useCache="true">		
+		select * from t_house_card hc where 1=1 
+    	<if test="orderNo != null">
+	      and hc.orderNo=#{orderNo }
+	    </if>
+  </select> 
+  
+  <!-- 房券兑换 -->
+  <update id="exchangeHouseCard" parameterType="com.mama.server.main.dao.model.HouseCardPo">
+    update t_house_card SET exchangeName=#{exchangeName },exchangePhoneNo=#{exchangePhoneNo},useStatus=1,exchangeTime = now()
+    WHERE id = #{id}
+  </update>
+  
+  <!--addHouseCard 新增 -->
+  <insert id="addHouseCard" parameterType="com.mama.server.main.dao.model.HouseCardPo">
+    INSERT INTO t_house_card(cardNo,orderNo,houseId,shopId,buyId,buyPhone,buyTime,useStatus,endDate,cardPrice) 
+    VALUES(#{cardNo},#{orderNo},#{houseId},#{shopId},#{buyId},#{buyPhone},NOW(),#{useStatus},#{endDate},#{cardPrice})
+  </insert>
+  
+  <!-- 分页查询房券订单列表  -->
+	<select id="queryHouseCardOrderList" parameterType="Map"
+		resultType="com.mama.server.main.dao.model.n99.HouseCardOrderPo">
+		select 
+		o.orderId,o.`status` as orderStatus, o.payAmt,date_format(o.operTime,'%Y-%m-%d %H:%i:%s') as payTime,
+		o.totalRoomNum,t.summaryInfo houseName,DATE_FORMAT(o.retentionTime,'%Y-%m-%d') endDate
+		from tOrder o,tHouse t where o.uid=#{uid} and o.orderType=3 and o.houseId=t.houseId
+		<if test="null != orderStatusList and orderStatusList.size() > 0">
+	      and o.`status` in 
+	          <foreach collection="orderStatusList" item="orderStatus" open="(" separator="," close=")">
+				#{orderStatus}
+	          </foreach> 
+	    </if>
+		order by o.operTime desc
+	</select>
+	
+	<!-- 根据用户id查询当前用户下所有分享中的orderId  -->
+	<select id="queryOrderIdListByUid" parameterType="String" resultType="String">
+		select o.orderId 
+		from tOrder o where o.uid=#{uid} and o.orderType=3 and o.`status`=11
+		order by o.operTime desc
+	</select>
+	
+	<!-- 根据订单号查询剩余可分享房券数量 -->
+	<select id="queryHouseCardLeftNum" parameterType="Map" resultType="Integer">
+		select count(cardNo) from t_house_card t 
+		where orderno=#{orderId} and useStatus=0 
+		and (receivePhone is null or receivePhone='')
+		and buyId=#{uid}
+	</select>
+	
+	<!-- 根据房券编码查询房券详情 -->
+  	<select id="queryHouseCardDetail" resultType="com.mama.server.main.dao.model.HouseCardPo" parameterType="Map">
+    	select hc.id,hc.cardNo,hc.orderNo,hc.houseId,hc.shopId,hc.buyId,hc.buyPhone,hc.buyTime,hc.exchangeName,
+    	hc.exchangeTime,hc.exchangePhoneNo,hc.receivePhone,hc.cardPrice,hc.shareStatus
+		,hc.useStatus,hc.endDate,hs.shopName shopName,hs.bossPhone bossPhone,hs.bossName bossName 
+		from t_house_card hc,thouseshop hs 
+		where hc.shopId=hs.id 
+		<if test="cardNo != null">
+	      and hc.cardNo=#{cardNo}
+	    </if>
+	    <if test="id != null">
+	      and hc.id=#{id}
+	    </if>
+  	</select>
+  	
+  	<!-- 根据订单号查询对应的房券编码列表 -->
+  	<select id="queryCardNoList" resultType="String" parameterType="Map">
+    	select cardNo from t_house_card where buyId=#{uid} and useStatus=0 
+    	and sharePatchNo is null and receivePhone is null and orderNo=#{orderId}  
+    	order by id asc LIMIT 0,#{cardNum}
+  	</select>
+	
+	<!-- 根据分享批次号查询领取房券 -->
+  	<select id="queryToReceiveHouseCard" resultType="String" parameterType="String">
+    	select cardNo 
+    	from t_house_card where useStatus=0 and (shareStatus=1 or shareStatus=4) 
+    	and exchangePhoneNo is null and sharePatchNo=#{sharePatchNo}    
+    	order by id asc LIMIT 0,1
+  	</select>
+  	
+	<!-- 分享点击确定后更新对应批次的分享状态 -->
+  	<update id="updateShareStatus" parameterType="String">
+		update t_house_card set shareStatus=1 where cardNo=#{cardNo} and useStatus=0
+	</update>
+	
+	<!--保存房券分享批次表记录 -->
+	<insert id="saveHouseCardShareBatch" parameterType="com.mama.server.main.dao.model.n99.HouseCardShareBatchVo">
+    	INSERT INTO t_house_card_share(shareBatchNo,shareCardNum,orderId,shareUid,cardNo,shareType,shareTime) 
+    	VALUES(#{shareBatchNo},#{shareCardNum},#{orderId},#{shareUid},#{cardNo},#{shareType},now())
+  	</insert>
+  	
+  	<!--保存房券分享批次表记录 -->
+	<insert id="saveHouseCardFlowPo" parameterType="com.mama.server.main.dao.model.n99.HouseCardFlowPo">
+    	INSERT INTO t_house_card_flow(shareBatchNo,receivePhone,cardNo,receiveTime) 
+    	VALUES(#{shareBatchNo},#{receivePhone},#{cardNo},now())
+  	</insert>
+  
+	<!-- 根据批房券分享批次号查询房券分享记录  -->
+  	<select id="queryHouseCardShareBatchRecord" resultType="com.mama.server.main.dao.model.n99.HouseCardShareBatchVo" parameterType="String">
+    	select hcs.id,hcs.shareBatchNo,hcs.shareCardNum,hcs.orderId,hcs.shareUid,hcs.cardNo,hcs.shareType,
+    	DATE_FORMAT(hcs.shareTime,'%Y-%m-%d %H:%i:%s') shareTime
+		from t_house_card_share hcs 
+		where hcs.shareBatchNo=#{shareBatchNo}
+  	</select> 
+  	
+  	<!-- 查询当前批次号已经分享成功的总房券数 -->
+	<select id="queryTotalShareNumByBatchNo" parameterType="String" resultType="Integer">
+		select count(id) from t_house_card_flow t where shareBatchNo=#{shareBatchNo}
+	</select>
+	
+	<!-- 查询批量分享待领取的房券信息 -->
+	<select id="queryToReceiveHouseCardForBatchShare" resultType="com.mama.server.main.dao.model.HouseCardPo" parameterType="String">
+    	select * from t_house_card t 
+    	where orderNo=#{orderId} and useStatus=0 and shareStatus!=2 and (receivePhone is null or receivePhone='') limit 0,1
+  	</select>
+  	
+  	<!-- 查询单次分享待领取的房券信息 -->
+	<select id="queryToReceiveHouseCardForCardNoShare" resultType="com.mama.server.main.dao.model.HouseCardPo" parameterType="String">
+    	select * from t_house_card t 
+    	where cardNo=#{cardNo} and useStatus=0 and shareStatus=1
+  	</select>
+  	
+  	<!-- 领取房券 -->
+  	<update id="updateHouseCardForReceive" parameterType="Map">
+		update t_house_card set cardNo=#{newCardNo},receivePhone=#{receivePhone},receiveTime=now(),shareStatus=2 
+		where useStatus=0 and exchangePhoneNo is null
+	    and cardNo=#{cardNo}
+	</update>
+	
+	<!-- 根据订单号查询房券信息 -->
+	<select id="queryHouseCardByOrderId" resultType="com.mama.server.main.dao.model.HouseCardPo" parameterType="String">
+    	select * from t_house_card t where orderNo=#{orderId} limit 0,1
+  	</select>
+  	
+  	<!-- 根据订房券编码查询房券信息 -->
+	<select id="queryHouseCardByCardNo" resultType="com.mama.server.main.dao.model.HouseCardPo" parameterType="String">
+    	select * from t_house_card t where cardNo=#{cardNo}
+  	</select>
+</mapper> 

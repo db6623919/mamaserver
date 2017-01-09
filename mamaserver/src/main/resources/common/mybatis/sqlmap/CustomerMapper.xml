@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mama.server.main.dao.CustomerDao">
+  <insert id="save" parameterType="com.mama.server.main.dao.model.CustomerUserPo" keyProperty="uid" useGeneratedKeys="true">
+    INSERT INTO tCustomerUser(user,password,level,houseId,devId,bldId,operTime) 
+    VALUES(#{user},#{password},#{level},#{houseId},#{devId},#{bldId},NOW())
+  </insert>
+  
+  <select id="count" resultType="int">
+    SELECT COUNT(*) FROM tCustomerUser
+  </select>
+  
+  <select id="get" resultType="com.mama.server.main.dao.model.CustomerUserPo" useCache="true">
+    SELECT * FROM tCustomerUser 
+  </select>
+  
+  <select id="getAll" resultType="com.mama.server.main.dao.model.CustomerUserPo">
+    SELECT * FROM tCustomerUser
+  </select>
+  
+   <select id="getUserInfoByAllParam" parameterType="com.mama.server.main.dao.model.CustomerUserPo" resultType="com.mama.server.main.dao.model.CustomerUserPo">
+    SELECT * FROM tCustomerUser
+    WHERE 1 = 1
+    <if test="uid != null and uid != 0">
+      and uid=#{uid}
+    </if>
+    <if test="user != null">
+      and user=#{user}
+    </if>
+    <if test="password != null">
+      and password=#{password}
+    </if>
+    <if test="houseId != null and houseId != 0">
+      and houseId=#{houseId}
+    </if>
+    <if test="devId != null and devId != 0">
+      and devId=#{devId}
+    </if>
+    <if test="bldId != null and bldId != 0">
+      and bldId=#{bldId}
+    </if>
+  </select>
+
+</mapper> 

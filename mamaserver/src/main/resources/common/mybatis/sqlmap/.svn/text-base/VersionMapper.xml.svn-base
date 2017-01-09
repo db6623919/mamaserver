@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mama.server.main.dao.VersionDao">
+
+  <insert id="insertVersion" parameterType="com.mama.server.main.dao.model.Version">
+    INSERT INTO t_version(versionNo,versionType) 
+    VALUES(#{versionNo},#{versionType})
+  </insert>
+
+  <select id="getVersionByPar" resultType="com.mama.server.main.dao.model.Version" parameterType="java.lang.Integer">
+    SELECT * FROM t_version WHERE versionType=#{versionType}
+  </select>
+  
+  <update id="updateVersion" parameterType="com.mama.server.main.dao.model.Version">
+    UPDATE t_version SET
+    id = id
+    <if test="versionNo != null">
+      ,versionNo=#{versionNo}
+    </if>
+    WHERE versionType = #{versionType}
+  </update>
+  
+</mapper> 

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.qq.bita.x.agent.hello.dao.HelloDao">
+  <insert id="save" parameterType="com.qq.bita.x.agent.hello.dao.model.HelloPO" keyProperty="id">
+    INSERT INTO t_hello (remoteAddress, time) VALUES (#{remoteAddress}, #{time})
+  </insert>
+  
+  <select id="count" resultType="int">
+    SELECT COUNT(*) FROM t_hello
+  </select>
+  
+  <select id="getAll" resultType="com.qq.bita.x.agent.hello.dao.model.HelloPO">
+    SELECT * FROM t_hello
+  </select>
+  
+  <select id="getListByRemoteAddress" resultType="com.qq.bita.x.agent.hello.dao.model.HelloPO">
+    SELECT * FROM t_hello WHERE remoteAddress = #{remoteAddress}
+  </select>
+  
+  <select id="get" parameterType="Integer" resultType="com.qq.bita.x.agent.hello.dao.model.HelloPO" useCache="true">
+    SELECT * FROM t_hello WHERE id=#{id}
+  </select>
+  
+  <update id="update" parameterType="com.qq.bita.x.agent.hello.dao.model.HelloPO">
+    UPDATE t_hello
+    SET 1 = 1
+    <if test="#{greeting} != null">
+      ,remoteAddress=#{remoteAddress}
+    </if>
+    <if test="#{time} != null">
+      ,time=#{time}
+    </if>
+    WHERE id=#{id}
+  </update>
+  
+  <delete id="delete" parameterType="Integer">
+    DELETE FROM t_hello WHERE id=#{id}
+  </delete>
+</mapper> 

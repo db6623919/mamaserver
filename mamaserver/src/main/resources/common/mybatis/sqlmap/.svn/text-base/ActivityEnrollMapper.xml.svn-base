@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mama.server.main.dao.ActivityEnrollDao">
+	  
+  <select id="getActivityEnrollByPar" parameterType="Map" resultType="com.mama.server.main.dao.model.ActivityEnrollPo" useCache="true">
+    SELECT * FROM t_activity_enroll where 1 = 1 
+    <if test="name != null">
+      and name like CONCAT('%','${name}','%' )
+    </if>
+    <if test="phone != null">
+      and phone=#{phone}
+    </if>
+    <if test="weChat != null">
+      and weChat=#{weChat}
+    </if>
+    <if test="educated != null">
+      and educated=#{educated}
+    </if>
+    <if test="status != null">
+      and status=#{status}
+    </if>
+    <if test="limit != null">
+      LIMIT #{start},#{end}
+    </if> 
+  </select>
+  
+  <insert id="insertActivityEnroll" parameterType="com.mama.server.main.dao.model.ActivityEnrollPo" useGeneratedKeys="true" keyProperty="id">
+    INSERT INTO t_activity_enroll(name,phone,weChat,age,sex,educated,enroll_time,status) 
+    VALUES(#{name},#{phone},#{weChat},#{age},#{sex},#{educated},now(),#{status})
+  </insert>
+	  
+
+	<update id="updateActivityEnrollPo" parameterType="com.mama.server.main.dao.model.ActivityEnrollPo">
+		update t_activity_enroll set status = 1,confirm_time = now() 
+		where id = #{id}
+	</update>	  
+
+</mapper> 
