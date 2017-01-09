@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:util="http://www.springframework.org/schema/util"
+    xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://www.springframework.org/schema/context
+            http://www.springframework.org/schema/context/spring-context.xsd
+            http://www.springframework.org/schema/aop
+            http://www.springframework.org/schema/aop/spring-aop.xsd
+            http://www.springframework.org/schema/util
+            http://www.springframework.org/schema/util/spring-util.xsd
+            http://www.springframework.org/schema/mvc
+			http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd"
+    default-autowire="byName">
+
+    <aop:aspectj-autoproxy />
+    <context:annotation-config />
+
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+	        <list>
+	            <value>file:/opt/pay/config/house/app/app.properties</value>
+	        </list>
+        </property>
+    </bean>
+    
+    <context:component-scan base-package="com.mmzb.house.app" />
+	
+	<!--Spring 容器静态类注入 -->
+	<bean id="applicationContextUtil" class="com.mmzb.house.app.web.util.ApplicationContextUtil" />
+	
+	<bean id="xssFilter" class="com.mmzb.house.app.web.filter.XssFilter"/>
+	
+	<import resource="classpath*:META-INF/spring/house-*.xml"/>
+
+    <bean class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
+        <property name="beanNames">
+            <list>
+                <value>customOrderRepository</value>
+                <value>functionRepository</value>
+                <value>functionContentRepository</value>
+                <!-- <value>memberRepository</value> <value>roleRepository</value> -->
+                <value>industryRepository</value>
+            </list>
+        </property>
+        <property name="interceptorNames">
+            <value>dalLoggerInterceptor</value>
+        </property>
+    </bean>
+
+    <util:properties id="properties" location="file:/opt/pay/config/house/app/app.properties"/>
+    
+    <bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+   		<property name="staticMethod" value="com.mmzb.house.app.web.util.MsgUtil.setProperties"/>
+   		<property name="arguments" ref="properties" />
+ 	</bean>
+    
+</beans>
